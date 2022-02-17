@@ -53,9 +53,10 @@ export default class Level extends Phaser.Scene {
         this.scene.start('end');
       }
       else {
-        let s = this.bases.children.entries;
+        const s = this.bases.children.entries;
         this.spawn(s.filter(o => o !== base));
 
-      }
+      } //Hola
+
   }
 }
