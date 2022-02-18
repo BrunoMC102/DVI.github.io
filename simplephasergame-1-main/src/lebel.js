@@ -1,6 +1,6 @@
 import Enemy from './enemy.js';
 import Player from './player.js';
-
+import PlayerTopDown from './playerTopDown.js';
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
  * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
@@ -25,7 +25,7 @@ export default class Lebel extends Phaser.Scene {
   create() {
     //this.stars = 10;
     
-    this.player = new Player(this, 200, 300);
+    this.player = new PlayerTopDown(this, 200, 300);
 
     this.a = new Enemy(this, this.player, this.bases, 450, 200);
   

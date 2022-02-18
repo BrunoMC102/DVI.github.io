@@ -44,35 +44,38 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     let dx = this.player.x - this.x;
     let dy = this.player.y - this.y;
     let t = Math.abs(dx)+Math.abs(dy);
+
+
+    if(this.atack.ready){
+      if (this.atack.wait < 200){
+        this.atack.wait++
+        if (this.atack.wait == 200){
+          this.atack.x = dx/t * 5;
+          this.atack.y = dy/t * 5;
+        }
+        
+      }
+      else{
+        this.move(this.atack.x,this.atack.y);
+        if ((this.x > 1230) || (this.x < 5) || (this.y < 10) || (this.y > 950)){
+            this.atack.ready = false;
+            this.atack.wait = 0;
+        }
+      }
     
-    if ((Math.abs(dx)< 300) && (Math.abs(dy) < 300)){
+    
+    }
+    else if ((Math.abs(dx)< 300) && (Math.abs(dy) < 300)){
         if(this.atack.charge > 1000){
             
             this.atack.ready = true;
             this.atack.charge = 0;
         }
-        if(this.atack.ready){
-          if (this.atack.wait < 200){
-            this.atack.wait++
-            if (this.atack.wait == 200){
-              this.atack.x = dx/t * 5;
-              this.atack.y = dy/t * 5;
-            }
-            
-          }
-          else{
-            this.move(this.atack.x,this.atack.y);
-            if ((this.x > 900) || (this.x < 100) || (this.y < 50) || (this.y > 450)){
-                this.atack.ready = false;
-                this.atack.wait = 0;
-            }
-          }
-        }
         else{
-            this.move(dx/t,dy/t);
-            this.atack.charge++;
-        }
-    }
+        this.move(dx/t,dy/t);
+        this.atack.charge++;
+        } 
+      }
     else{
     if (this.x > 900){
       this.sentido = -1;
