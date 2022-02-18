@@ -23,7 +23,12 @@ export default class Boot extends Phaser.Scene {
     this.load.image('base', 'base.png');
     this.load.image('star', 'star.png');
     this.load.image('player', 'player.png');
+
     this.load.image('enemy', 'enemy_white.png');
+
+    this.load.image('dungeon', 'Dungeon64.png');
+    this.load.tilemapTiledJSON('tilemap', 'Dungeon64.json');
+
   }
 
   /**
@@ -31,7 +36,11 @@ export default class Boot extends Phaser.Scene {
    * nivel del juego
    */
   create() {
-    this.scene.start('lebel');
+    //Para probar enemigo descomentar esto y comentar el de abajo
+    //this.scene.start('lebel');
+
+    //Para jugar en el modo vista lateral descomentar level y descomentar gravity en game
+    this.scene.start('levelTopDown');
     //this.scene.start('level');
   }
 

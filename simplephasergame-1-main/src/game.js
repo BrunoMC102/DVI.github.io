@@ -2,6 +2,7 @@ import Boot from './boot.js';
 import End from './end.js';
 import Level from './level.js';
 import Lebel from './lebel.js';
+import LevelTopDown from './levelTopDown.js';
 
 
 /**
@@ -10,14 +11,15 @@ import Lebel from './lebel.js';
  */
 let config = {
     type: Phaser.AUTO,
-    width: 1000,
-    height: 500,
+    width: 1280,
+    height: 960,
     scale: {
         // mode: Phaser.Scale.FIT,  
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Level,Lebel, End],
+
+    scene: [Boot, Level, Lebel, LevelTopDown, End],
     physics: {
         default: 'arcade',
         arcade: {
