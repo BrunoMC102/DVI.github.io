@@ -61,7 +61,7 @@ export default class Lebel extends Phaser.Scene {
   }*/
 
   update(d,dt){
-    this.a.moveU();
+    //this.a.moveU();
     //new Platform(this, this.player, this.bases, Math.random()*900, Math.random()*500);
   }
     

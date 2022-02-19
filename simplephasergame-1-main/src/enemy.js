@@ -14,6 +14,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
    * @param {number} y Coordenada y
    */
   sentido = 1;
+  v = 250;
   atack = {
     x : 0,
     y : 0,
@@ -26,7 +27,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     this.player = player
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, false);
-    
+    this.scene.physics.add.collider(this,player);
+    //this.body.setCollideWorldBounds();
     //this.scene.physics.add.collider(this, player);    
   }
 
@@ -39,7 +41,12 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     }
   }*/
 
-  moveU(x,y){
+  preUpdate(t,dt){
+    
+    this.moveU();
+  }
+
+  moveU(){
     
     let dx = this.player.x - this.x;
     let dy = this.player.y - this.y;
@@ -48,15 +55,18 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     if(this.atack.ready){
       if (this.atack.wait < 200){
+        this.body.setVelocity(0,0);
         this.atack.wait++
         if (this.atack.wait == 200){
-          this.atack.x = dx/t * 5;
-          this.atack.y = dy/t * 5;
+          this.atack.x = dx/t * this.v * 5;
+          this.atack.y = dy/t * this.v * 5;
         }
         
       }
       else{
-        this.move(this.atack.x,this.atack.y);
+        this.body.setVelocity(this.atack.x,this.atack.y);
+        //this.move(this.atack.x,this.atack.y);
+        
         if ((this.x > 1230) || (this.x < 5) || (this.y < 10) || (this.y > 950)){
             this.atack.ready = false;
             this.atack.wait = 0;
@@ -72,7 +82,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
             this.atack.charge = 0;
         }
         else{
-        this.move(dx/t,dy/t);
+        //this.move(dx/t,dy/t);
+        this.body.setVelocity(dx*this.v/t,dy*this.v/t);
         this.atack.charge++;
         } 
       }
@@ -84,7 +95,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
       this.sentido = 1;
     }
     this.atack.charge = 0;
-    this.move(this.sentido,0);
+    this.body.setVelocity(this.sentido*this.v,0);
+    //this.move(this.sentido,0);
   }
     
 
