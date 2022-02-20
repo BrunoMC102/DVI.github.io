@@ -14,8 +14,8 @@ export default class LevelTopDown extends Phaser.Scene {
     const voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
     const wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
 
-    //this.showWallHitbox(wallLayer, voidLayer);
-
+    //this.showHitbox(voidLayer);
+    //this.showHitbox(wallLayer);
     this.bases = this.add.group();
 
     this.playerData = this.cache.json.get('playerData');
@@ -24,24 +24,28 @@ export default class LevelTopDown extends Phaser.Scene {
 
     this.physics.add.collider(this.player, wallLayer);
     this.physics.add.collider(this.player, voidLayer);
+    
+    //Hitbox que contiene fisicas para ver si solapa con el player (puede ser un array para tener varias hitbox)
+    this.sceneChange = this.add.zone(1250, 510, 60, 122);
+    this.physics.world.enable(this.sceneChange);
+    this.sceneChange.body.setAllowGravity(false);
   }
 
   update() {
     //Si player pasa del pixel 1200 (el puente para ir a la habitacion de la derecha) entocnes empieza la nueva escena y se pasan las coordenadas donde empezara player
-    if (this.player.x > 1200) {
+    /*if (this.player.x > 1200) {
+      this.scene.start('lebel', {coordinates: {x: 100, y: 500}});
+    }*/
+    //Esto es mejor porque solo revisa si se encuentra en la hitbox
+    if (this.physics.overlap(this.player, this.sceneChange)) {
       this.scene.start('lebel', {coordinates: {x: 100, y: 500}});
     }
   }
 
-  showWallHitbox(wallLayer, voidLayer) {
+  showHitbox(layer) {
     const debugGraphics = this.add.graphics().setAlpha(0.7);
-    wallLayer.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Phaser.Display.Color(243,234,48,255),
-      faceColor: new Phaser.Display.Color(40,39,37,255)
-    });
 
-    voidLayer.renderDebug(debugGraphics, {
+    layer.renderDebug(debugGraphics, {
       tileColor: null,
       collidingTileColor: new Phaser.Display.Color(243,234,48,255),
       faceColor: new Phaser.Display.Color(40,39,37,255)
