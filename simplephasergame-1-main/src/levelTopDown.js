@@ -6,7 +6,7 @@ export default class LevelTopDown extends Phaser.Scene {
     super({ key: 'levelTopDown' });
   }
 
-  create() {
+  create(data) {
     const map = this.make.tilemap({ key: 'tilemap', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
 
@@ -19,7 +19,7 @@ export default class LevelTopDown extends Phaser.Scene {
     this.bases = this.add.group();
 
     this.playerData = this.cache.json.get('playerData');
-    this.player = new PlayerTopDown(this, 0, 500);
+    this.player = new PlayerTopDown(this, data.coordinates.x, data.coordinates.y);
     this.player.setPlayerData(this.playerData);
 
     this.physics.add.collider(this.player, wallLayer);
@@ -27,8 +27,9 @@ export default class LevelTopDown extends Phaser.Scene {
   }
 
   update() {
+    //Si player pasa del pixel 1200 (el puente para ir a la habitacion de la derecha) entocnes empieza la nueva escena y se pasan las coordenadas donde empezara player
     if (this.player.x > 1200) {
-      this.scene.start('lebel');
+      this.scene.start('lebel', {coordinates: {x: 100, y: 500}});
     }
   }
 

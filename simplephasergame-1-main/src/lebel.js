@@ -21,7 +21,7 @@ export default class Lebel extends Phaser.Scene {
   /**
    * Creación de los elementos de la escena principal de juego
    */
-  create() {
+  create(data) {
     const map = this.make.tilemap({ key: 'tilemap', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
 
@@ -30,7 +30,7 @@ export default class Lebel extends Phaser.Scene {
     const wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
 
     this.playerData = this.cache.json.get('playerData');
-    this.player = new PlayerTopDown(this, 200, 300);
+    this.player = new PlayerTopDown(this, data.coordinates.x, data.coordinates.y);
     this.player.setPlayerData(this.playerData);
 
     this.a = new Enemy(this, this.player, this.bases, 450, 200);
@@ -40,8 +40,10 @@ export default class Lebel extends Phaser.Scene {
   }
 
   update(d,dt){
-    //this.a.moveU();
-    //new Platform(this, this.player, this.bases, Math.random()*900, Math.random()*500);
+    //Si player pasa del pixel 100 (el puente para ir a la habitacion de la derecha) entocnes empieza la nueva escena y se pasan las coordenadas donde empezara player
+    if (this.player.x < 100) {
+      this.scene.start('levelTopDown', {coordinates: {x: 1200, y: 500}});
+    }
   }
     
     
