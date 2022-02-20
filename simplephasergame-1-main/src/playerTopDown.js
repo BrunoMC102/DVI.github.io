@@ -12,6 +12,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       this.scene.physics.add.existing(this);
       this.body.setCollideWorldBounds();
       this.cursors = this.scene.input.keyboard.createCursorKeys();
+      this.body.allowGravity = false;
     }
 
     setPlayerData(playerData) {
