@@ -8,16 +8,17 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
      */
     constructor(scene, x, y) {
       super(scene, x, y, 'player');
-      this.score = 0;
       this.scene.add.existing(this);
       this.scene.physics.add.existing(this);
-      // Queremos que el jugador no se salga de los límites del mundo
       this.body.setCollideWorldBounds();
-      this.speed = 300;
-      this.vSpeed = 300;
       this.cursors = this.scene.input.keyboard.createCursorKeys();
     }
-  
+
+    setPlayerData(playerData) {
+      this.speed = playerData.speed;
+      this.vSpeed = playerData.vSpeed;
+    }
+    
     preUpdate(t,dt) {
       super.preUpdate(t,dt);
       if (this.cursors.up.isDown) {

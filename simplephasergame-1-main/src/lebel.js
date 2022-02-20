@@ -1,5 +1,4 @@
 import Enemy from './enemy.js';
-import Player from './player.js';
 import PlayerTopDown from './playerTopDown.js';
 /**
  * Escena principal del juego. La escena se compone de una serie de plataformas 
@@ -23,42 +22,22 @@ export default class Lebel extends Phaser.Scene {
    * Creación de los elementos de la escena principal de juego
    */
   create() {
-    //this.stars = 10;
-    
+    const map = this.make.tilemap({ key: 'tilemap', tileWidth: 64, tileHeight: 64});
+    const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
+
+    const groundLayer = map.createLayer('Ground', tileset);
+    const voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
+    const wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
+
+    this.playerData = this.cache.json.get('playerData');
     this.player = new PlayerTopDown(this, 200, 300);
+    this.player.setPlayerData(this.playerData);
 
     this.a = new Enemy(this, this.player, this.bases, 450, 200);
-  
-    
-    //this.spawn();
+
+    this.physics.add.collider(this.player, wallLayer);
+    this.physics.add.collider(this.player, voidLayer);
   }
-
-  /**
-   * Genera una estrella en una de las bases del escenario
-   * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
-   * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
-   */
-  spawn(from = null) {
-    Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
-  }
-
-  /**
-   * Método que se ejecuta al coger una estrella. Se pasa la base
-   * sobre la que estaba la estrella cogida para evitar repeticiones
-   * @param {Base} base La base sobre la que estaba la estrella que se ha cogido
-   */
-  /*starPickt (base) {
-    this.player.point();
-      if (this.player.score == this.stars) {
-        this.scene.start('end');
-      }
-      else {
-        const s = this.bases.children.entries;
-        this.spawn(s.filter(o => o !== base));
-
-      } //Hola
-
-  }*/
 
   update(d,dt){
     //this.a.moveU();
