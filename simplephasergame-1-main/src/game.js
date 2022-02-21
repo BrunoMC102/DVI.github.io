@@ -3,6 +3,7 @@ import End from './end.js';
 import Level from './level.js';
 import Lebel from './lebel.js';
 import LevelTopDown from './levelTopDown.js';
+import LevelScroll from './levelScroll.js';
 
 
 /**
@@ -19,7 +20,7 @@ let config = {
     },
     pixelArt: true,
 
-    scene: [Boot, Level, Lebel, LevelTopDown, End],
+    scene: [Boot, Level, Lebel, LevelTopDown,LevelScroll, End],
     physics: {
         default: 'arcade',
         arcade: {
