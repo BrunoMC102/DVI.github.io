@@ -6,7 +6,11 @@ export default class LevelTopDown extends Phaser.Scene {
     super({ key: 'levelTopDown' });
   }
 
-  create(data) {
+  init(data) {
+    this.coordinates = data.coordinates;
+  }
+
+  create() {
     const map = this.make.tilemap({ key: 'tilemap', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
 
@@ -19,7 +23,7 @@ export default class LevelTopDown extends Phaser.Scene {
     this.bases = this.add.group();
 
     this.playerData = this.cache.json.get('playerData');
-    this.player = new PlayerTopDown(this, data.coordinates.x, data.coordinates.y);
+    this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y);
     this.player.setPlayerData(this.playerData);
 
     this.physics.add.collider(this.player, wallLayer);

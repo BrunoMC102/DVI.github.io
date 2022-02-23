@@ -11,6 +11,10 @@ export default class Lebel extends Phaser.Scene {
     
   }
 
+  init(data) {
+    this.coordinates = data.coordinates;
+  }
+
   create(data) {
     const map = this.make.tilemap({ key: 'tilemap', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
@@ -20,7 +24,7 @@ export default class Lebel extends Phaser.Scene {
     const wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
 
     this.playerData = this.cache.json.get('playerData');
-    this.player = new PlayerTopDown(this, data.coordinates.x, data.coordinates.y);
+    this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y);
     this.player.setPlayerData(this.playerData);
 
     this.a = new Enemy(this, this.player, this.bases, 450, 200);

@@ -45,7 +45,8 @@ export default class Boot extends Phaser.Scene {
     //this.scene.start('lebel');
 
     //Para jugar en el modo vista lateral descomentar level
-    this.scene.start('levelScroll', {coordinates: {x: 0, y: 500}});
+    this.scene.start('levelTopDown', {coordinates: {x: 0, y: 500}});
+    //this.scene.start('levelScroll', {coordinates: {x: 0, y: 500}});
     //this.scene.start('level');
   }
 
