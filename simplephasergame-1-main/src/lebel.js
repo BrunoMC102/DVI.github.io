@@ -1,4 +1,5 @@
 import Enemy from './enemy.js';
+import Enemy2 from './enemy2.js';
 import PlayerTopDown from './playerTopDown.js';
 
 export default class Lebel extends Phaser.Scene {
@@ -27,7 +28,7 @@ export default class Lebel extends Phaser.Scene {
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y);
     this.player.setPlayerData(this.playerData);
 
-    this.a = new Enemy(this, this.player, this.bases, 450, 200);
+    this.a = new Enemy(this, this.player, 450, 200);
 
     this.physics.add.collider(this.player, wallLayer);
     this.physics.add.collider(this.player, voidLayer);
