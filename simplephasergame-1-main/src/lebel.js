@@ -13,6 +13,7 @@ export default class Lebel extends Phaser.Scene {
 
   init(data) {
     this.coordinates = data.coordinates;
+    this.playerData = data.playerData;
   }
 
   create(data) {
@@ -23,7 +24,6 @@ export default class Lebel extends Phaser.Scene {
     const voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
     const wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
 
-    this.playerData = this.cache.json.get('playerData');
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y);
     this.player.setPlayerData(this.playerData);
 
@@ -40,7 +40,7 @@ export default class Lebel extends Phaser.Scene {
 
   update(d,dt){
     if (this.physics.overlap(this.player, this.sceneChange)) {
-      this.scene.start('levelTopDown', {coordinates: {x: 1170, y: 500}});
+      this.scene.start('levelTopDown', {coordinates: {x: 1170, y: 500}, playerData: this.player.getPlayerData()});
     }
   }
   

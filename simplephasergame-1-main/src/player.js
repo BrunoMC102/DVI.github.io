@@ -11,6 +11,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
    * @param {number} x Coordenada X
    * @param {number} y Coordenada Y
    */
+  
+  
+
   constructor(scene, x, y) {
     super(scene, x, y, 'player');
     this.score = 0;

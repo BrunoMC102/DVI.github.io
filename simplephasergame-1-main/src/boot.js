@@ -33,7 +33,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('dungeon', 'Dungeon64.png');
     this.load.tilemapTiledJSON('tilemap', 'Dungeon64.json');
 
-    this.load.json('playerData', 'playerData.json');
+    
   }
 
   /**
@@ -45,7 +45,7 @@ export default class Boot extends Phaser.Scene {
     //this.scene.start('lebel');
 
     //Para jugar en el modo vista lateral descomentar level
-    this.scene.start('levelTopDown', {coordinates: {x: 0, y: 500}});
+    this.scene.start('levelTopDown', {coordinates: {x: 0, y: 500}, playerData: {vSpeed: 300, speed: 300, health:6}});
     //this.scene.start('levelScroll', {coordinates: {x: 0, y: 500}});
     //this.scene.start('level');
   }

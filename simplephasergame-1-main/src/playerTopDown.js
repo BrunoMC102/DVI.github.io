@@ -6,6 +6,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      */
+
+
+     
+
     constructor(scene, x, y) {
       super(scene, x, y, 'player');
       this.scene.add.existing(this);
@@ -18,8 +22,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
     setPlayerData(playerData) {
       this.speed = playerData.speed;
       this.vSpeed = playerData.vSpeed;
+      this.health = playerData.health;
     }
     
+    getPlayerData(){
+      return {speed:this.speed,vSpeed:this.vSpeed,health:this.health};
+    }
+
     preUpdate(t,dt) {
       super.preUpdate(t,dt);
       if (this.cursors.up.isDown) {

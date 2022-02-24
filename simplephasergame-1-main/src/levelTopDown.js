@@ -6,8 +6,12 @@ export default class LevelTopDown extends Phaser.Scene {
     super({ key: 'levelTopDown' });
   }
 
+
+  
+
   init(data) {
     this.coordinates = data.coordinates;
+    this.playerData = data.playerData;
   }
 
   create() {
@@ -22,8 +26,9 @@ export default class LevelTopDown extends Phaser.Scene {
     //this.showHitbox(wallLayer);
     this.bases = this.add.group();
 
-    this.playerData = this.cache.json.get('playerData');
+    
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y);
+    this.player.life = this.currentLife;
     this.player.setPlayerData(this.playerData);
 
     this.physics.add.collider(this.player, wallLayer);
@@ -42,7 +47,7 @@ export default class LevelTopDown extends Phaser.Scene {
     }*/
     //Esto es mejor porque solo revisa si se encuentra en la hitbox
     if (this.physics.overlap(this.player, this.sceneChange)) {
-      this.scene.start('lebel', {coordinates: {x: 100, y: 500}});
+      this.scene.start('lebel', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
     }
   }
 

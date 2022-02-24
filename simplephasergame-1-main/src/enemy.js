@@ -15,6 +15,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
    */
   sentido = 1;
   v = 250;
+  damage = 1;
   atack = {
     x : 0,
     y : 0,
@@ -43,7 +44,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
   }*/
 
   preUpdate(t,dt){
-    
+    super.preUpdate(t,dt);
     this.moveU();
   }
 
@@ -104,6 +105,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     //this.x += x;
     //this.y += y;
     //this.scene.physics.add.collider(this, this.player);    
+  }
+  doDamage(){
+      if(this.scene.physics.collide(this,this.player)){
+        this.player.recibeDamage(this.damage);
+      }
   }
   move(x,y){
     this.x += x;
