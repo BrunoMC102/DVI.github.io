@@ -9,7 +9,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
 
 
      
-
     constructor(scene, x, y) {
       super(scene, x, y, 'player');
       this.scene.add.existing(this);
@@ -17,16 +16,22 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       this.body.setCollideWorldBounds();
       this.cursors = this.scene.input.keyboard.createCursorKeys();
       this.body.allowGravity = false;
+      this.immunity = 0;
     }
 
     setPlayerData(playerData) {
       this.speed = playerData.speed;
       this.vSpeed = playerData.vSpeed;
       this.health = playerData.health;
+      this.label = this.scene.add.text(10, 10, "" + this.health);
     }
     
     getPlayerData(){
       return {speed:this.speed,vSpeed:this.vSpeed,health:this.health};
+    }
+
+    updateHealth() {
+      this.label.text = 'Health: ' + this.health;
     }
 
     preUpdate(t,dt) {
@@ -49,6 +54,18 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       else {
         this.body.setVelocityX(0);
       }
+      if (this.immunity > 0)
+        this.immunity -= dt;
+
+      this.label.text = 'Health: ' + this.health;
     }
+    hurt(damage){
+      if (this.immunity <= 0){
+        this.health -= damage;
+        this.immunity = 1500;
+      }
+
+    }
+    
   }
   

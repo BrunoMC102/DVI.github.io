@@ -14,7 +14,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
    * @param {number} y Coordenada y
    */
   sentido = 1;
-  v = 250;
+  v = 150;
   damage = 1;
   atack = {
     x : 0,
@@ -25,11 +25,14 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
   }
   constructor(scene, player, baseGroup, x, y) {
     super(scene, x, y, 'enemy');
+    this.c = false;
     this.player = player
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, false);
-    this.scene.physics.add.collider(this,player);
+    // this.scene.physics.add.collider(this, player);
     this.body.allowGravity = false;
+
+    this.scene.physics.add.collider(this, this.player, () => this.doDamage());
     //this.body.setCollideWorldBounds();
     //this.scene.physics.add.collider(this, player);    
   }
@@ -45,7 +48,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
   preUpdate(t,dt){
     super.preUpdate(t,dt);
+    //this.doDamage();
     this.moveU();
+    
   }
 
   moveU(){
@@ -69,9 +74,10 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.body.setVelocity(this.atack.x,this.atack.y);
         //this.move(this.atack.x,this.atack.y);
         
-        if ((this.x > 1230) || (this.x < 5) || (this.y < 10) || (this.y > 950)){
+        if (this.c){
             this.atack.ready = false;
             this.atack.wait = 0;
+            this.c = false;
         }
       }
     
@@ -90,14 +96,9 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         } 
       }
     else{
-    if (this.x > 900){
-      this.sentido = -1;
-    }
-    if (this.x < 100){
-      this.sentido = 1;
-    }
+    this.body.setVelocity(0,0);
     this.atack.charge = 0;
-    this.body.setVelocity(this.sentido*this.v,0);
+    
     //this.move(this.sentido,0);
   }
     
@@ -107,12 +108,17 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
     //this.scene.physics.add.collider(this, this.player);    
   }
   doDamage(){
-      if(this.scene.physics.collide(this,this.player)){
-        this.player.recibeDamage(this.damage);
-      }
+    
+      // if(this.body.oncoll(this,this.player)){
+      this.player.hurt(this.damage);
+      // }
   }
   move(x,y){
     this.x += x;
     this.y += y;
+  }
+  isCol(){
+    if(this.atack.ready)
+      this.c = true;
   }
 }
