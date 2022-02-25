@@ -7,10 +7,6 @@ import EnemyParent from './enemyParent.js';
  */
 export default class Enemy extends EnemyParent{
   
- 
-  sentido = 1;
-  v = 150;
-  damage = 1;
   atack = {
     x : 0,
     y : 0,
@@ -18,13 +14,13 @@ export default class Enemy extends EnemyParent{
     charge : 0  ,
     wait : 0
   }
+
   constructor(scene, player, x, y) {
     super(scene,player,x,y,'enemy');
+    this.dist = 600;
   }
 
   
-
- 
   moveU(){
     
     let dx = this.player.x - this.x;
@@ -55,14 +51,14 @@ export default class Enemy extends EnemyParent{
     
     
     }
-    else if ((Math.abs(dx)< 300) && (Math.abs(dy) < 300)){
+    else if ((Math.abs(dx)< this.dist) && (Math.abs(dy) < this.dist)){
         if(this.atack.charge > 1000){
             
             this.atack.ready = true;
             this.atack.charge = 0;
         }
         else{
-        //this.move(dx/t,dy/t);
+        //this.scene.physics.moveToObject(this,this.player,this.v); tambien es valido esta forma de perseguir al jugador
         this.body.setVelocity(dx*this.v/t,dy*this.v/t);
         this.atack.charge++;
         } 
@@ -71,13 +67,8 @@ export default class Enemy extends EnemyParent{
     this.body.setVelocity(0,0);
     this.atack.charge = 0;
     
-    //this.move(this.sentido,0);
-    }
     
-
-    //this.x += x;
-    //this.y += y;
-    //this.scene.physics.add.collider(this, this.player);    
+    }
   }
   isCol(){
     if(this.atack.ready)

@@ -29,12 +29,16 @@ export default class Lebel extends Phaser.Scene {
     this.player.setPlayerData(this.playerData);
 
     this.a = new Enemy(this, this.player, 450, 200);
+    this.b = new Enemy2(this, this.player, 600, 400);
 
     this.physics.add.collider(this.player, wallLayer);
     this.physics.add.collider(this.player, voidLayer);
 
     this.physics.add.collider(this.a, wallLayer,()=>this.a.isCol());
     this.physics.add.collider(this.a, voidLayer,()=>this.a.isCol());
+
+    this.physics.add.collider(this.b, wallLayer,()=>this.b.isCol());
+    this.physics.add.collider(this.b, voidLayer,()=>this.b.isCol());
 
     //Hitbox que contiene fisicas para ver si solapa con el player (puede ser un array para tener varias hitbox)
     this.sceneChange = this.add.zone(30, 510, 60, 122);
