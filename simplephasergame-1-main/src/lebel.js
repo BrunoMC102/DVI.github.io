@@ -18,7 +18,7 @@ export default class Lebel extends Phaser.Scene {
   }
 
   create(data) {
-    const map = this.make.tilemap({ key: 'tilemap', tileWidth: 64, tileHeight: 64});
+    const map = this.make.tilemap({ key: 'tilemap2', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
 
     const groundLayer = map.createLayer('Ground', tileset);

@@ -15,7 +15,7 @@ export default class LevelTopDown extends Phaser.Scene {
   }
 
   create() {
-    const map = this.make.tilemap({ key: 'tilemap', tileWidth: 64, tileHeight: 64});
+    const map = this.make.tilemap({ key: 'tilemap1', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
 
     const groundLayer = map.createLayer('Ground', tileset);

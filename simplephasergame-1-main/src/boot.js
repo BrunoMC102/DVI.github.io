@@ -31,9 +31,9 @@ export default class Boot extends Phaser.Scene {
 
 
     this.load.image('dungeon', 'Dungeon64.png');
-    this.load.tilemapTiledJSON('tilemap', 'Dungeon64.json');
+    this.load.tilemapTiledJSON('tilemap1', 'Dungeon1.json');
+    this.load.tilemapTiledJSON('tilemap2', 'Dungeon2.json');
 
-    
   }
 
   /**
