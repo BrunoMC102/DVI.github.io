@@ -7,16 +7,15 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
      * @param {number} y Coordenada Y
      */
 
-
-     
     constructor(scene, x, y) {
-      super(scene, x, y, 'player');
+      super(scene, x, y, 'character', 'idle1.png');
       this.scene.add.existing(this);
       this.scene.physics.add.existing(this);
       this.body.setCollideWorldBounds();
       this.cursors = this.scene.input.keyboard.createCursorKeys();
       this.body.allowGravity = false;
       this.immunity = 0;
+      this.createAnimations();
     }
 
     setPlayerData(playerData) {
@@ -38,18 +37,22 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       super.preUpdate(t,dt);
       if (this.cursors.up.isDown) {
         this.body.setVelocityY(-this.vSpeed);
+        this.anims.play('idle-up');
       }
       else if (this.cursors.down.isDown) {
         this.body.setVelocityY(this.vSpeed);
+        this.anims.play('idle-down');
       }
       else {
         this.body.setVelocityY(0);
       }
       if (this.cursors.left.isDown) {
         this.body.setVelocityX(-this.speed);
+        this.anims.play('idle-left');
       }
       else if (this.cursors.right.isDown) {
         this.body.setVelocityX(this.speed);
+        this.anims.play('idle-right');
       }
       else {
         this.body.setVelocityX(0);
@@ -67,5 +70,11 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
 
     }
     
+    createAnimations() {
+      this.scene.anims.create({key: 'idle-right', frames: [{ key: 'character', frame: 'idle1.png'}], duration: -1});
+      this.scene.anims.create({key: 'idle-left', frames: [{ key: 'character', frame: 'idle2.png'}], duration: -1});
+      this.scene.anims.create({key: 'idle-up', frames: [{ key: 'character', frame: 'idle3.png'}], duration: -1});
+      this.scene.anims.create({key: 'idle-down', frames: [{ key: 'character', frame: 'idle4.png'}], duration: -1});
+    }
   }
   
