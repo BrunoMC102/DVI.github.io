@@ -22,7 +22,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       this.projectiles = this.scene.physics.add.group({
         classType: Phaser.Physics.Arcade.Image
       })
-      
+      this.damage = 10;
     }
 
     setPlayerData(playerData) {
@@ -99,12 +99,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
 
     fire(){
       
-        this.projectile = this.projectiles.get(this.x,this.y,'enemy');
+        this.projectile = this.projectiles.get(this.x,this.y,'flecha');
 
         if (this.scene.enemies != undefined){
           this.scene.enemies.forEach( a => {this.scene.physics.add.collider(this.projectile, a, () => {
             this.projectile.destroy();
-            a.destroy()})});
+            a.hurt(this.damage)})});
         }
 
         if (this.scene.layers != undefined){

@@ -24,7 +24,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('star', 'star.png');
     this.load.image('player', 'player.png');
     this.load.image('enemy', 'enemy_white.png');
-
+    this.load.image('flecha','flecha.png')
     
     this.load.image('scroll1', 'castle_tileset_part1.png');
     this.load.image('dungeon', 'Dungeon64.png');

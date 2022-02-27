@@ -12,6 +12,7 @@ export default class EnemyParent extends Phaser.GameObjects.Sprite {
    * @param {Player} player Jugador del juego
    * @param {number} x Coordenada x
    * @param {number} y Coordenada y
+   * 
    */
  
   constructor(scene, player, x, y, sprite) {
@@ -24,6 +25,7 @@ export default class EnemyParent extends Phaser.GameObjects.Sprite {
     this.body.allowGravity = false;
     this.v = 150;
     this.scene.physics.add.collider(this, this.player, () => this.doDamage());
+    this.health = 30;
     //this.body.setCollideWorldBounds();
      
   }
@@ -47,4 +49,13 @@ export default class EnemyParent extends Phaser.GameObjects.Sprite {
   isCol(){
 
   }
+
+  hurt(damage){
+    this.health -= damage;
+    if(this.health <= 0){
+      this.destroy();
+    }
+
+  }
+
 }
