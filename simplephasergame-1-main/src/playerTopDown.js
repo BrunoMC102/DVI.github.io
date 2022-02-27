@@ -19,6 +19,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       this.body.setSize(this.body.width * 0.5, this.body.height * 0.8);
       this.body.offset.y = 20;
       this.body.offset.x = 25;
+      this.projectiles = this.scene.physics.add.group({
+        classType: Phaser.Physics.Arcade.Image
+      })
+      
     }
 
     setPlayerData(playerData) {
@@ -67,6 +71,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       if (this.immunity > 0)
         this.immunity -= dt;
 
+      if(Phaser.Input.Keyboard.JustDown(this.cursors.space)){
+        this.fire();
+      }
       this.label.text = 'Health: ' + this.health;
     }
     hurt(damage){
@@ -82,5 +89,47 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       this.scene.anims.create({key: 'idle-down', frames: [{ key: 'character', frame: 'idle2.png'}], duration: -1});
       this.scene.anims.create({key: 'idle-up', frames: [{ key: 'character', frame: 'idle3.png'}], duration: -1});
     }
+
+
+    /*pColliders(){
+      if (this.scene.enemies != undefined){
+        this.scene.enemies.forEach( a => {this.scene.physics.add.collider(this.projectiles, a, () => {this.hurt(-100)})});
+      }
+    }*/
+
+    fire(){
+      
+        this.projectile = this.projectiles.get(this.x,this.y,'enemy');
+
+        if (this.scene.enemies != undefined){
+          this.scene.enemies.forEach( a => {this.scene.physics.add.collider(this.projectile, a, () => {
+            this.projectile.destroy();
+            a.destroy()})});
+        }
+
+        if (this.scene.layers != undefined){
+          this.scene.layers.forEach( a => {this.scene.physics.add.collider(this.projectile, a, () => {
+            this.projectile.destroy();
+            })});
+        }
+        this.projectile.setCollideWorldBounds(true);
+        this.projectile.body.onWorldBounds = true;
+        this.projectile.body.world.on('worldbounds', () => {
+          this.projectile.destroy();
+          
+        },this);
+
+
+        this.projectile.body.allowGravity = false;
+        let v = this.body.velocity.normalize().scale(1000);
+        if (v.x == 0 && v.y == 0){
+          this.body.facing;
+          this.projectile.setVelocity(1000,0);
+        }
+        else
+          this.projectile.setVelocity(v.x,v.y);
+      }
+    
+      
   }
   
