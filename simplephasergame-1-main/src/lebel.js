@@ -1,6 +1,5 @@
 import Enemy from './enemy.js';
 import Enemy2 from './enemy2.js';
-import Enemy3 from './enemy3.js';
 import PlayerTopDown from './playerTopDown.js';
 
 export default class Lebel extends Phaser.Scene {
