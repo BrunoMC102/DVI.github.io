@@ -37,13 +37,10 @@ export default class LevelTopDown extends Phaser.Scene {
     
 
     //Hitbox que contiene fisicas para ver si solapa con el player (puede ser un array para tener varias hitbox)
-    this.sceneChange = this.add.zone(1250, 510, 60, 122);
+    this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(993,60,60,20)];
     this.physics.world.enable(this.sceneChange);
-    this.sceneChange.body.setAllowGravity(false);
-
-    this.sceneChange = this.add.zone(993, 60, 60, 20);
-    this.physics.world.enable(this.sceneChange);
-    this.sceneChange.body.setAllowGravity(false);
+    this.sceneChange[0].body.setAllowGravity(false);
+    this.sceneChange[1].body.setAllowGravity(false);
   }
 
   update() {
@@ -52,8 +49,11 @@ export default class LevelTopDown extends Phaser.Scene {
       this.scene.start('lebel', {coordinates: {x: 100, y: 500}});
     }*/
     //Esto es mejor porque solo revisa si se encuentra en la hitbox
-    if (this.physics.overlap(this.player, this.sceneChange)) {
+    if (this.physics.overlap(this.player, this.sceneChange[0])) {
       this.scene.start('lebel', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
+    }
+    if (this.physics.overlap(this.player, this.sceneChange[1])) {
+      this.scene.start('levelScroll', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
     }
   }
 
