@@ -28,12 +28,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
     setPlayerData(playerData) {
       this.speed = playerData.speed;
       this.vSpeed = playerData.vSpeed;
+      this.jumpSpeed = playerData.jumpSpeed;
       this.health = playerData.health;
       this.label = this.scene.add.text(10, 10, "" + this.health);
     }
     
     getPlayerData(){
-      return {speed:this.speed,vSpeed:this.vSpeed,health:this.health};
+      return {speed:this.speed,vSpeed:this.vSpeed,health:this.health,jumpSpeed: this.jumpSpeed};
     }
 
     updateHealth() {
