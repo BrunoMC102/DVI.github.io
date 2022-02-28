@@ -44,10 +44,6 @@ export default class LevelTopDown extends Phaser.Scene {
   }
 
   update() {
-    //Si player pasa del pixel 1200 (el puente para ir a la habitacion de la derecha) entocnes empieza la nueva escena y se pasan las coordenadas donde empezara player
-    /*if (this.player.x > 1200) {
-      this.scene.start('lebel', {coordinates: {x: 100, y: 500}});
-    }*/
     //Esto es mejor porque solo revisa si se encuentra en la hitbox
     if (this.physics.overlap(this.player, this.sceneChange[0])) {
       this.scene.start('lebel', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
