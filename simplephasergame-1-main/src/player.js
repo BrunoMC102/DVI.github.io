@@ -42,7 +42,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
 
   createAnimations() {
-    this.scene.anims.create({key: 'walk', duration: 15, frames: this.anims.generateFrameNames('characterScroll',{ start: 143, end: 151,prefix: 'walk-',suffix: '.png'})});
+    this.scene.anims.create({
+    key: 'walk', 
+    frames: this.anims.generateFrameNames('characterScroll',{ start: 143, end: 151,prefix: 'walk-',suffix: '.png'}),
+    frameRate: 15,
+    repeat: -1});
+
   }
   
   
@@ -73,7 +78,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
     else if (this.cursors.right.isDown) {
       this.body.setVelocityX(this.speed);
-      this.anims.play('walk');
+   
       this.scaleX = 1;
     }
     else {
