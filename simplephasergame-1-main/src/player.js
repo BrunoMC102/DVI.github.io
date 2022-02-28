@@ -15,7 +15,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   
 
   constructor(scene, x, y) {
-    super(scene, x, y, 'characterScroll', 'walk-143.png');
+    super(scene, x, y, 'characterScroll', '143.png');
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     // Queremos que el jugador no se salga de los límites del mundo
@@ -42,7 +42,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
 
   createAnimations() {
-    this.scene.anims.create({key: 'walk', duration: 15, frames: this.anims.generateFrameNames('characterScroll',{ start: 143, end: 151,prefix: 'walk-',suffix: '.png'})});
+    this.scene.anims.create({key: 'walk', frames: this.anims.generateFrameNames('characterScroll',{ start: 143, end: 151,prefix: 'walk-',suffix: '.png'})});
   }
   
   
