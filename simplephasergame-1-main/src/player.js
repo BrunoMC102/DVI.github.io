@@ -15,7 +15,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   
 
   constructor(scene, x, y) {
-    super(scene, x, y, 'characterScroll', 'walk-143.png');
+    super(scene, x, y, 'characterScroll', '143.png');
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     // Queremos que el jugador no se salga de los límites del mundo

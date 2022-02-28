@@ -17,6 +17,11 @@ export default class LevelScroll extends Phaser.Scene {
     super({ key: 'levelScroll' });
   }
 
+  init(data) {
+    this.coordinates = data.coordinates;
+    this.playerData = data.playerData;
+  }
+
   /**
    * Creación de los elementos de la escena principal de juego
    */
@@ -27,6 +32,7 @@ export default class LevelScroll extends Phaser.Scene {
     
 
     this.player = new Player(this, 200, 500);
+    this.player.setPlayerData(this.playerData);
     const voidLayer = map.createLayer('TopLayer', tileset).setCollisionByProperty({ collides: true });
     const wallLayer = map.createLayer('BottomLayer', tileset).setCollisionByProperty({ collides: true });
 
