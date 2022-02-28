@@ -40,6 +40,10 @@ export default class LevelTopDown extends Phaser.Scene {
     this.sceneChange = this.add.zone(1250, 510, 60, 122);
     this.physics.world.enable(this.sceneChange);
     this.sceneChange.body.setAllowGravity(false);
+
+    this.sceneChange = this.add.zone(993, 60, 60, 20);
+    this.physics.world.enable(this.sceneChange);
+    this.sceneChange.body.setAllowGravity(false);
   }
 
   update() {
