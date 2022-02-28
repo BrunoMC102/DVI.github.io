@@ -31,8 +31,8 @@ export default class LevelScroll extends Phaser.Scene {
     const wallLayer = map.createLayer('BottomLayer', tileset).setCollisionByProperty({ collides: true });
 
       
-    this.showHitbox(voidLayer);
-    this.showHitbox(wallLayer);
+    //this.showHitbox(voidLayer);
+    //this.showHitbox(wallLayer);
     this.bases = this.add.group();
 
 
