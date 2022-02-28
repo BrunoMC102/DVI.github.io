@@ -20,23 +20,29 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.physics.add.existing(this);
     // Queremos que el jugador no se salga de los límites del mundo
     this.body.setCollideWorldBounds();
-    this.speed = 300;
-    this.jumpSpeed = -400;
     // Esta label es la UI en la que pondremos la puntuación del jugador
     this.cursors = this.scene.input.keyboard.createCursorKeys();
     this.createAnimations();
+    this.body.setSize(this.body.width * 0.5, this.body.height * 0.8);
+    this.body.offset.y = 20;
+    this.body.offset.x = 25;
 
   }
 
   setPlayerData(playerData) {
     this.speed = playerData.speed;
     this.vSpeed = playerData.vSpeed;
+    this.jumpSpeed = playerData.jumpSpeed;
     this.health = playerData.health;
     this.label = this.scene.add.text(10, 10, "" + this.health);
   }
 
+  getPlayerData(){
+    return {speed:this.speed,vSpeed:this.vSpeed,health:this.health,jumpSpeed: this.jumpSpeed};
+  }
+
   createAnimations() {
-    this.scene.anims.create({key: 'stop', frames: this.anims.generateFrameNames('characterScroll',{ start: 143, end: 151,prefix: 'walk-',suffix: '.png'})});
+    this.scene.anims.create({key: 'walk', frames: this.anims.generateFrameNames('characterScroll',{ start: 143, end: 151,prefix: 'walk-',suffix: '.png'})});
   }
   
   
@@ -57,12 +63,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
     super.preUpdate(t,dt);
     if (this.cursors.up.isDown && this.body.onFloor()) {
       this.body.setVelocityY(this.jumpSpeed);
+      
     }
     if (this.cursors.left.isDown) {
       this.body.setVelocityX(-this.speed);
+      this.anims.play('walk');
+      this.scaleX = -1;
+
     }
     else if (this.cursors.right.isDown) {
       this.body.setVelocityX(this.speed);
+      this.anims.play('walk');
+      this.scaleX = 1;
     }
     else {
       this.body.setVelocityX(0);
