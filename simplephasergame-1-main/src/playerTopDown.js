@@ -23,6 +23,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
         classType: Phaser.Physics.Arcade.Image
       })
       this.damage = 10;
+      this.projectileSpeed = 100;
     }
 
     setPlayerData(playerData) {
@@ -31,6 +32,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       this.jumpSpeed = playerData.jumpSpeed;
       this.health = playerData.health;
       this.label = this.scene.add.text(10, 10, "" + this.health);
+      this.plabel = this.scene.add.text(10, 30, "");
     }
     
     getPlayerData(){
@@ -71,11 +73,22 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       }
       if (this.immunity > 0)
         this.immunity -= dt;
-
-      if(Phaser.Input.Keyboard.JustDown(this.cursors.space)){
-        this.fire();
-      }
       this.label.text = 'Health: ' + this.health;
+      
+      if(this.cursors.space.isDown){
+        if (this.projectileSpeed < 1000)
+          this.projectileSpeed += dt/2
+        else{
+          this.projectileSpeed = 1000
+        }
+        this.plabel.text = 'Projectile: ' + Math.floor((this.projectileSpeed-100)*100/900) + '%';
+      }
+      if(Phaser.Input.Keyboard.JustUp(this.cursors.space)){
+        this.fire();
+        this.projectileSpeed = 100;
+        this.plabel.text = '';
+      }
+      
     }
     hurt(damage){
       if (this.immunity <= 0){
@@ -122,15 +135,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
 
 
         this.projectile.body.allowGravity = false;
-        let v = this.body.velocity.normalize().scale(1000);
+        let v = this.body.velocity.normalize().scale(this.projectileSpeed);
         if (v.x == 0 && v.y == 0){
           this.body.facing;
-          this.projectile.setVelocity(1000,0);
+          this.projectile.setVelocity(this.projectileSpeed,0);
         }
         else
           this.projectile.setVelocity(v.x,v.y);
       }
-    
-      
   }
   

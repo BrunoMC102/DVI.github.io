@@ -35,6 +35,7 @@ export default class Lebel extends Phaser.Scene {
     this.enemies = [this.a,this.b,this.c];
     this.layers = [wallLayer];
 
+    
 
     this.physics.add.collider(this.player, wallLayer);
     this.physics.add.collider(this.player, voidLayer);

@@ -12,7 +12,6 @@ export default class Enemy3 extends EnemyParent{
     super(scene,player,x,y,'enemy');
     this.a = 1000;
     this.v = 50;
-    this.projectile;
     this.cont = 0;
     this.projectilesE = this.scene.physics.add.group({
         classType: Phaser.Physics.Arcade.Image,
