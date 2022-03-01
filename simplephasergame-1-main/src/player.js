@@ -34,7 +34,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.vSpeed = playerData.vSpeed;
     this.jumpSpeed = playerData.jumpSpeed;
     this.health = playerData.health;
-    this.label = this.scene.add.text(10, 10, "" + this.health);
+    this.label = this.scene.add.text(10, 10, "Health: " + this.health);
   }
 
   getPlayerData(){
