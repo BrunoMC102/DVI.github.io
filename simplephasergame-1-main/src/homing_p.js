@@ -8,6 +8,11 @@ export default class Homing_p extends Phaser.GameObjects.Image{
         this.scene.physics.add.existing(this, false);
         this.body.allowGravity = false;
         this.setVisible(true);
+        
+        this.body.onWorldBounds = true;
+        this.body.world.on('worldbounds', (o1) => {
+          this.destroy();
+        });
     }
 
 

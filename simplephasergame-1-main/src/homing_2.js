@@ -7,6 +7,11 @@ export default class Homing_2 extends Phaser.GameObjects.Image{
         this.body.allowGravity = false;
         this.setVisible(true);
         this.cont = 15000;
+        this.body.setCollideWorldBounds(true);
+        this.body.onWorldBounds = true;
+        this.body.world.on('worldbounds', () => {
+          this.destroy();
+        });
     }
 
 
@@ -22,7 +27,7 @@ export default class Homing_2 extends Phaser.GameObjects.Image{
         }
         else if (this.cont < 5000){
             this.cont+=dt;
-            this.body.setVelocity(this.x_h/this.z_h*100,this.y_h/this.z_h*100);
+            this.body.setVelocity(this.x_h/this.z_h*500,this.y_h/this.z_h*500);
         }
         else
             this.body.setVelocity(0,0);

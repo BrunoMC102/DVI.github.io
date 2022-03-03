@@ -1,4 +1,4 @@
-export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
+export default class PlayerTopDown extends Phaser.GameObjects.Container {
   
     /**
      * Constructor del jugador
@@ -8,7 +8,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
      */
 
     constructor(scene, x, y) {
-      super(scene, x, y, 'character', 'idle1.png');
+      super(scene, x, y);
       this.scene.add.existing(this);
       this.scene.physics.add.existing(this);
       this.body.setCollideWorldBounds();
@@ -16,14 +16,15 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       this.body.allowGravity = false;
       this.immunity = 0;
       this.createAnimations();
-      this.body.setSize(this.body.width * 0.5, this.body.height * 0.8);
-      this.body.offset.y = 20;
-      this.body.offset.x = 25;
+      
+      this.body.offset.x = -20;
+      this.body.offset.y = -27;
       this.projectiles = this.scene.physics.add.group({
         classType: Phaser.Physics.Arcade.Image
       })
-
-      
+      this.sprite = new Phaser.GameObjects.Sprite(scene,0, 0,'character','idle1.png');
+      this.add(this.sprite);
+      this.body.setSize(this.body.width * 0.7, this.body.height * 1.2);
       this.damage = 10;
       this.projectileBaseSpeed = 500;
       this.projectileSpeed = this.projectileBaseSpeed;
@@ -47,31 +48,29 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
     updateHealth() {
       this.label.text = 'Health: ' + this.health;
     }
-
     preUpdate(t,dt) {
-      super.preUpdate(t,dt);
       if (this.cursors.up.isDown) {
         this.body.setVelocityY(-this.vSpeed);
-        this.anims.play('idle-up');
+        this.sprite.anims.play('idle-up');
       }
       else if (this.cursors.down.isDown) {
         this.body.setVelocityY(this.vSpeed);
-        this.anims.play('idle-down');
+        this.sprite.anims.play('idle-down');
       }
       else {
         this.body.setVelocityY(0);
       }
       if (this.cursors.left.isDown) {
         this.body.setVelocityX(-this.speed);
-        this.anims.play('idle-side');
-        this.scaleX = 1;
-        this.body.offset.x = 25;
+        this.sprite.anims.play('idle-side');
+        this.sprite.scaleX = 1;
+        //this.body.offset.x = 25;
       }
       else if (this.cursors.right.isDown) {
         this.body.setVelocityX(this.speed);
-        this.anims.play('idle-side');
-        this.scaleX = -1;
-        this.body.offset.x = 70;
+        this.sprite.anims.play('idle-side');
+        this.sprite.scaleX = -1;
+        //this.body.offset.x = 70;
       }
       else {
         this.body.setVelocityX(0);
@@ -132,11 +131,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
             })});
         }
         
-        /*this.projectile.setCollideWorldBounds(true);
+        this.projectile.setCollideWorldBounds(true);
         this.projectile.body.onWorldBounds = true;
-        this.projectile.body.world.on('worldbounds', () => {
-          this.projectile.destroy();
-        },this);*/
+        this.projectile.body.world.on('worldbounds', (o1) => {
+          o1.destroy();
+          o1.gameObject.destroy();
+        },this);
 
 
         this.projectile.body.allowGravity = false;
