@@ -37,7 +37,7 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/atlas/');
     this.load.atlas('character', 'atlas.png', 'atlas.json');
 
-    this.load.atlas('characterScroll', 'texture.png', 'texture.json');
+    this.load.atlas('characterScroll', 'movement.png', 'movement.json');
   }
 
   /**

@@ -1,0 +1,116 @@
+{
+  "meta": {
+    "version": "0.6.7"
+  },
+  "savePath": "",
+  "images": [
+    {
+      "name": "jump-039.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/jump-039.png",
+      "folder": ""
+    },
+    {
+      "name": "jump-040.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/jump-040.png",
+      "folder": ""
+    },
+    {
+      "name": "jump-041.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/jump-041.png",
+      "folder": ""
+    },
+    {
+      "name": "jump-042.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/jump-042.png",
+      "folder": ""
+    },
+    {
+      "name": "jump-043.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/jump-043.png",
+      "folder": ""
+    },
+    {
+      "name": "jump-044.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/jump-044.png",
+      "folder": ""
+    },
+    {
+      "name": "jump-045.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/jump-045.png",
+      "folder": ""
+    },
+    {
+      "name": "walk-143.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/walk-143.png",
+      "folder": ""
+    },
+    {
+      "name": "walk-144.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/walk-144.png",
+      "folder": ""
+    },
+    {
+      "name": "walk-145.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/walk-145.png",
+      "folder": ""
+    },
+    {
+      "name": "walk-146.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/walk-146.png",
+      "folder": ""
+    },
+    {
+      "name": "walk-147.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/walk-147.png",
+      "folder": ""
+    },
+    {
+      "name": "walk-148.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/walk-148.png",
+      "folder": ""
+    },
+    {
+      "name": "walk-149.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/walk-149.png",
+      "folder": ""
+    },
+    {
+      "name": "walk-150.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/walk-150.png",
+      "folder": ""
+    },
+    {
+      "name": "walk-151.png",
+      "path": "C:/Users/joseb/OneDrive - Universidad Complutense de Madrid (UCM)/Documentos/DVI/PruebasTexture/Desembalaje/walk-151.png",
+      "folder": ""
+    }
+  ],
+  "folders": [],
+  "packOptions": {
+    "textureName": "movement",
+    "textureFormat": "png",
+    "removeFileExtension": false,
+    "prependFolderName": true,
+    "base64Export": false,
+    "tinify": false,
+    "tinifyKey": "",
+    "scale": 1,
+    "filter": "none",
+    "exporter": "JSON (hash)",
+    "fileName": "pack-result",
+    "savePath": "",
+    "width": 2048,
+    "height": 2048,
+    "fixedSize": false,
+    "powerOfTwo": false,
+    "padding": 0,
+    "extrude": 0,
+    "allowRotation": true,
+    "allowTrim": true,
+    "trimMode": "trim",
+    "alphaThreshold": "0",
+    "detectIdentical": true,
+    "packer": "MaxRectsBin",
+    "packerMethod": "BestShortSideFit"
+  }
+}

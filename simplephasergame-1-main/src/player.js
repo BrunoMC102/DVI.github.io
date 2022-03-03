@@ -49,6 +49,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
     frameRate: 15,
     repeat: -1});
 
+    this.scene.anims.create({
+    key: 'jump', 
+    frames: this.anims.generateFrameNames('characterScroll',{ start: 39, end: 45 ,prefix: 'jump-',suffix: '.png'}),
+    frameRate: 10 ,
+    repeat: 1});
+
   }
   
   
@@ -68,18 +74,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
     if (this.cursors.up.isDown && this.body.onFloor()) {
+      this.anims.play('jump');
       this.body.setVelocityY(this.jumpSpeed);
       
     }
-    if (this.cursors.left.isDown) {
-      this.anims.play('walk',true);
+     if (this.cursors.left.isDown) {
+      this.anims.play('jump',true);
       this.body.setVelocityX(-this.speed);
       this.scaleX = -1;
       this.body.offset.x = 95;
 
     }
     else if (this.cursors.right.isDown) {
-      this.anims.play('walk',true);
+      this.anims.play('jump',true);
       this.body.setVelocityX(this.speed);
       this.scaleX = 1;
       this.body.offset.x = 35;
