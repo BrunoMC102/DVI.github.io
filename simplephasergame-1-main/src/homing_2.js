@@ -9,8 +9,8 @@ export default class Homing_2 extends Phaser.GameObjects.Image{
         this.cont = 15000;
         this.body.setCollideWorldBounds(true);
         this.body.onWorldBounds = true;
-        this.body.world.on('worldbounds', () => {
-          this.destroy();
+        this.body.world.on('worldbounds', (o1) => {
+          o1.gameObject.destroy();
         });
     }
 

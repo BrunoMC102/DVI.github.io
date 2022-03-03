@@ -11,7 +11,7 @@ export default class Homing_p extends Phaser.GameObjects.Image{
         
         this.body.onWorldBounds = true;
         this.body.world.on('worldbounds', (o1) => {
-          this.destroy();
+          o1.gameObject.destroy();
         });
     }
 
