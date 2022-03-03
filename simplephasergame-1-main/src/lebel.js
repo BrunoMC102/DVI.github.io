@@ -1,7 +1,11 @@
 import Enemy from './enemy.js';
 import Enemy2 from './enemy2.js';
 import Enemy3 from './enemy3.js';
+import EnemyParent from './enemyParent.js';
 import PlayerTopDown from './playerTopDown.js';
+import PowerUp from './powerUp.js';
+import Enemy4 from './enemy4.js';
+import Enemy5 from './enemy5.js';
 
 export default class Lebel extends Phaser.Scene {
   /**
@@ -29,12 +33,13 @@ export default class Lebel extends Phaser.Scene {
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y);
     this.player.setPlayerData(this.playerData);
 
-    this.a = new Enemy(this, this.player, 450, 200);
-    this.b = new Enemy2(this, this.player, 600, 400);
-    this.c = new Enemy3(this, this.player, 700, 300);
+    this.a = new Enemy4(this, this.player, 450, 200);
+    this.b = new Enemy5(this, this.player, 600, 400);
+    this.c = new Enemy5(this, this.player, 700, 300);
     this.enemies = [this.a,this.b,this.c];
     this.layers = [wallLayer];
-
+    
+    
 
     this.physics.add.collider(this.player, wallLayer);
     this.physics.add.collider(this.player, voidLayer);

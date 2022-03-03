@@ -12,14 +12,13 @@ export default class Enemy3 extends EnemyParent{
     super(scene,player,x,y,'enemy');
     this.a = 1000;
     this.v = 50;
-    this.projectile;
     this.cont = 0;
     this.projectilesE = this.scene.physics.add.group({
         classType: Phaser.Physics.Arcade.Image,
         
     })
     this.Pv = 1000;
-    
+    //this.body.setMass(100000);
   }
 
 
@@ -29,15 +28,15 @@ export default class Enemy3 extends EnemyParent{
     let t = Math.abs(dx)+Math.abs(dy);
 
     this.projectileE = this.projectilesE.get(this.x,this.y,'flecha');
-   
-    this.scene.physics.add.collider(this.projectileE, this.player, () => {
-    this.projectileE.destroy();
-    this.player.hurt(this.damage)
-    });
+    
+    this.scene.physics.add.overlap(this.projectileE, this.player, (o1,o2) => {
+      o1.destroy();
+      this.player.hurt(this.damage)
+      });
         
     if (this.scene.layers != undefined){
-        this.scene.layers.forEach( a => {this.scene.physics.add.collider(this.projectileE, a, () => {
-            this.projectileE.destroy();
+        this.scene.layers.forEach( a => {this.scene.physics.add.collider(this.projectileE, a, (o1,o2) => {
+            o1.destroy();
             })});
     }
     

@@ -22,7 +22,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       this.projectiles = this.scene.physics.add.group({
         classType: Phaser.Physics.Arcade.Image
       })
+
+      
       this.damage = 10;
+      this.projectileBaseSpeed = 500;
+      this.projectileSpeed = this.projectileBaseSpeed;
+      this.projectileMaxSpeed = 1000;
+      
     }
 
     setPlayerData(playerData) {
@@ -31,6 +37,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       this.jumpSpeed = playerData.jumpSpeed;
       this.health = playerData.health;
       this.label = this.scene.add.text(10, 10, "" + this.health);
+      this.plabel = this.scene.add.text(10, 30, "");
     }
     
     getPlayerData(){
@@ -71,11 +78,22 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
       }
       if (this.immunity > 0)
         this.immunity -= dt;
-
-      if(Phaser.Input.Keyboard.JustDown(this.cursors.space)){
-        this.fire();
-      }
       this.label.text = 'Health: ' + this.health;
+      
+      if(this.cursors.space.isDown){
+        if (this.projectileSpeed < this.projectileMaxSpeed)
+          this.projectileSpeed += dt/2
+        else{
+          this.projectileSpeed = this.projectileMaxSpeed
+        }
+        this.plabel.text = 'Projectile: ' + Math.floor((this.projectileSpeed-this.projectileBaseSpeed)*100/(this.projectileMaxSpeed-this.projectileBaseSpeed)) + '%';
+      }
+      if(Phaser.Input.Keyboard.JustUp(this.cursors.space)){
+        this.fire();
+        this.projectileSpeed = this.projectileBaseSpeed;
+        this.plabel.text = '';
+      }
+      
     }
     hurt(damage){
       if (this.immunity <= 0){
@@ -101,36 +119,54 @@ export default class PlayerTopDown extends Phaser.GameObjects.Sprite {
     fire(){
       
         this.projectile = this.projectiles.get(this.x,this.y,'flecha');
-
+        
         if (this.scene.enemies != undefined){
-          this.scene.enemies.forEach( a => {this.scene.physics.add.collider(this.projectile, a, () => {
-            this.projectile.destroy();
-            a.hurt(this.damage)})});
+          this.scene.enemies.forEach( a => {this.scene.physics.add.overlap(this.projectile, a, (o1, o2) => {
+            o1.destroy();
+            o2.hurt(this.damage)})});
         }
 
         if (this.scene.layers != undefined){
-          this.scene.layers.forEach( a => {this.scene.physics.add.collider(this.projectile, a, () => {
-            this.projectile.destroy();
+          this.scene.layers.forEach( a => {this.scene.physics.add.collider(this.projectile, a, (o1,o2) => {
+            o1.destroy();
             })});
         }
-        this.projectile.setCollideWorldBounds(true);
+        
+        /*this.projectile.setCollideWorldBounds(true);
         this.projectile.body.onWorldBounds = true;
         this.projectile.body.world.on('worldbounds', () => {
           this.projectile.destroy();
-          
-        },this);
+        },this);*/
 
 
         this.projectile.body.allowGravity = false;
-        let v = this.body.velocity.normalize().scale(1000);
+        let v = this.body.velocity.normalize().scale(this.projectileSpeed);
         if (v.x == 0 && v.y == 0){
           this.body.facing;
-          this.projectile.setVelocity(1000,0);
+          this.projectile.setVelocity(this.projectileSpeed,0);
+          this.projectile.setVelocity(this.getDirectionX() * this.projectileSpeed, this.getDirectionY() * this.projectileSpeed);
         }
         else
           this.projectile.setVelocity(v.x,v.y);
       }
-    
       
-  }
+          
+        
+
+      getDirectionX(){
+        if(this.body.facing == Phaser.Physics.Arcade.FACING_RIGHT)
+          return 1;
+        if(this.body.facing == Phaser.Physics.Arcade.FACING_LEFT)
+          return -1;
+        return 0;
+      }
+
+      getDirectionY(){
+        if(this.body.facing == Phaser.Physics.Arcade.FACING_UP)
+          return -1;
+        if(this.body.facing == Phaser.Physics.Arcade.FACING_DOWN)
+          return 1;
+        return 0;
+      }
+}
   

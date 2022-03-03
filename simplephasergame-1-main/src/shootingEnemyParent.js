@@ -31,28 +31,28 @@ export default class ShootingEnemyParent extends EnemyParent{
     let t = Math.abs(dx)+Math.abs(dy);
 
     //this.projectileE = this.projectilesE.get(this.x,this.y,'flecha');
-    this.projectileE = this.projectilesE.get(this.x,this.y,'flecha');
-    this.scene.physics.add.collider(this.projectileE, this.player, () => {
-    this.projectileE.destroy();
+    this.creador();
+    this.scene.physics.add.collider(this.projectileE, this.player, (o1,o2) => {
+    o1.destroy();
     this.player.hurt(this.damage)
     });
 
     this.wallColl();
 
-    this.projectileE.setCollideWorldBounds(true);
+    /*this.projectileE.setCollideWorldBounds(true);
     this.projectileE.body.onWorldBounds = true;
     this.projectileE.body.world.on('worldbounds', () => {
         this.projectileE.destroy();
-        },this);
-    this.projectileE.body.allowGravity = false;
-    this.projectileE.setVelocity(dx*this.Pv/t,dy*this.Pv/t); 
+        },this);*/
+    
+    this.projectileE.body.setVelocity(dx*this.Pv/t,dy*this.Pv/t); 
     //this.projectileE.rotation =   Math.atan2(dx/t,dy/t) + 180;
     }
   
   wallColl(){
     if (this.scene.layers != undefined){
-        this.scene.layers.forEach( a => {this.scene.physics.add.collider(this.projectileE, a, () => {
-            this.projectileE.destroy();
+        this.scene.layers.forEach( a => {this.scene.physics.add.collider(this.projectileE, a, (o1,o2) => {
+            o1.destroy();
             })});
     }
   }
@@ -61,7 +61,9 @@ export default class ShootingEnemyParent extends EnemyParent{
     this.attack(d,dt);
   }
 
-
+  creador(){
+    this.projectileE = new Phaser.Physics.Arcade.Image(this.x,this.y,'flecha');
+  }
 
   attack(d,dt){
       if (this.cont === 0){

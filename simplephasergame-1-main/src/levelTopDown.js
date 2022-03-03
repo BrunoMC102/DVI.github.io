@@ -1,4 +1,5 @@
 import PlayerTopDown from './playerTopDown.js';
+import PowerUp from './powerUp.js';
 
 export default class LevelTopDown extends Phaser.Scene {
 
@@ -26,14 +27,14 @@ export default class LevelTopDown extends Phaser.Scene {
     //this.showHitbox(wallLayer);
     this.bases = this.add.group();
 
-    
+    this.layers = [wallLayer];
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y);
     this.player.life = this.currentLife;
     this.player.setPlayerData(this.playerData);
 
     this.physics.add.collider(this.player, wallLayer);
     this.physics.add.collider(this.player, voidLayer);
-    
+    new PowerUp(this, this.player, 450, 200);
     
 
     //Hitbox que contiene fisicas para ver si solapa con el player (puede ser un array para tener varias hitbox)
