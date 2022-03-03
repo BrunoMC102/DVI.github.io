@@ -36,7 +36,7 @@
         {
          "columns":16,
          "firstgid":1,
-         "image":"castle_tileset_part1.png",
+         "image":"..\/sprites\/castle_tileset_part1.png",
          "imageheight":2688,
          "imagewidth":1024,
          "margin":0,

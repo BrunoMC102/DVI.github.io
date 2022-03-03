@@ -74,10 +74,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
   preUpdate(t,dt) {
     super.preUpdate(t,dt);
     if (this.cursors.up.isDown && this.body.onFloor()) {
-      this.anims.play('jump');
+      this.anims.play('jump', false);
       this.body.setVelocityY(this.jumpSpeed);
       
     }
+    {
      if (this.cursors.left.isDown) {
       this.anims.play('jump',true);
       this.body.setVelocityX(-this.speed);
@@ -95,6 +96,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.body.setVelocityX(0);
       this.anims.play('stand');
     }
+  }
   }
   
 }
