@@ -9,6 +9,7 @@ export default class Enemy5 extends ShootingEnemyParent{
   
   constructor(scene, player, x, y) {
     super(scene,player,x,y,'enemy');
+    this.Pv = 300;
   }
   creador(){
     this.projectileE = new Homing_2(this.scene,this.x,this.y);

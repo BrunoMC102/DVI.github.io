@@ -1,3 +1,5 @@
+import  ProjectileBar  from "./projectileBar.js";
+
 export default class PlayerTopDown extends Phaser.GameObjects.Container {
   
     /**
@@ -17,18 +19,21 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.immunity = 0;
       this.createAnimations();
       
-      this.body.offset.x = -20;
+      this.body.offset.x = -23;
       this.body.offset.y = -27;
       this.projectiles = this.scene.physics.add.group({
         classType: Phaser.Physics.Arcade.Image
       })
       this.sprite = new Phaser.GameObjects.Sprite(scene,0, 0,'character','idle1.png');
       this.add(this.sprite);
-      this.body.setSize(this.body.width * 0.7, this.body.height * 1.2);
+      this.body.setSize(this.body.width * 0.75, this.body.height * 1.2);
       this.damage = 10;
       this.projectileBaseSpeed = 500;
       this.projectileSpeed = this.projectileBaseSpeed;
       this.projectileMaxSpeed = 1000;
+      this.projectileBar = new ProjectileBar(scene,0,70);
+      this.add(this.projectileBar);
+      this.projectileBar.setVisible(false);
       
     }
 
@@ -85,12 +90,16 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         else{
           this.projectileSpeed = this.projectileMaxSpeed
         }
-        this.plabel.text = 'Projectile: ' + Math.floor((this.projectileSpeed-this.projectileBaseSpeed)*100/(this.projectileMaxSpeed-this.projectileBaseSpeed)) + '%';
+        
+        //this.plabel.text = 'Projectile: ' + Math.floor((this.projectileSpeed-this.projectileBaseSpeed)*100/(this.projectileMaxSpeed-this.projectileBaseSpeed)) + '%';
+        this.projectileBar.actualiza(Math.floor((this.projectileSpeed-this.projectileBaseSpeed)*100/(this.projectileMaxSpeed-this.projectileBaseSpeed)));
+        this.projectileBar.setVisible(true);
       }
       if(Phaser.Input.Keyboard.JustUp(this.cursors.space)){
         this.fire();
         this.projectileSpeed = this.projectileBaseSpeed;
         this.plabel.text = '';
+        this.projectileBar.setVisible(false);
       }
       
     }

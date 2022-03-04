@@ -14,6 +14,7 @@ export default class ShootingEnemyParent extends EnemyParent{
     //this.projectilesE = this.scene.physics.add.group({
     //    classType: Phaser.Physics.Arcade.Image,
     //})
+    this.shootTime = 5;
     this.Pv = 1000; //Projectile speed
     this.projectilesE = this.scene.physics.add.group({
       classType: this.cl,
@@ -26,9 +27,7 @@ export default class ShootingEnemyParent extends EnemyParent{
 
 
   fire(){
-    let dx = this.player.x - this.x;
-    let dy = this.player.y - this.y;
-    let t = Math.abs(dx)+Math.abs(dy);
+    
 
     //this.projectileE = this.projectilesE.get(this.x,this.y,'flecha');
     this.creador();
@@ -45,7 +44,7 @@ export default class ShootingEnemyParent extends EnemyParent{
         this.projectileE.destroy();
         },this);*/
     
-    this.projectileE.body.setVelocity(dx*this.Pv/t,dy*this.Pv/t); 
+    this.setInitialVelocity();
     //this.projectileE.rotation =   Math.atan2(dx/t,dy/t) + 180;
     }
   
@@ -70,11 +69,18 @@ export default class ShootingEnemyParent extends EnemyParent{
         this.fire();
       }
       this.cont+=dt;
-      if(this.cont >= 10000){
+      if(this.cont >= this.shootTime*1000){
             this.cont = 0;
       }
    }
   
+   setInitialVelocity(){
+    let dx = this.player.x - this.x;
+    let dy = this.player.y - this.y;
+    let t = Math.abs(dx)+Math.abs(dy);
+     this.projectileE.body.setVelocity(dx*this.Pv/t,dy*this.Pv/t)
+    }
+
   move(){
 
   }
