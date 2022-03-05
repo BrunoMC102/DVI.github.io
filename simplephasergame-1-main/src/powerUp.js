@@ -10,9 +10,6 @@ export default class PowerUp extends Phaser.GameObjects.Image{
         
     }
 
-
-   
-
     givePower(){
         this.player.projectileBaseSpeed *= 10;
         this.player.projectileMaxSpeed *= 10;

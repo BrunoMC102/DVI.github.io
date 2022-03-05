@@ -44,6 +44,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.health = playerData.health;
       this.label = this.scene.add.text(10, 10, "" + this.health);
       this.plabel = this.scene.add.text(10, 30, "");
+      this.money = 0; // dinero del jugador
+      this.healthPotions = 0; // pociones de vida
+      this.manaPotions = 0; // pociones de mana
     }
     
     getPlayerData(){

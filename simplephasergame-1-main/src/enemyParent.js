@@ -47,7 +47,7 @@ export default class EnemyParent extends Phaser.GameObjects.Sprite {
   }
   
   isCol(){
-
+      
   }
 
   hurt(damage){

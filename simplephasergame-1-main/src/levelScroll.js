@@ -1,4 +1,6 @@
 
+import HealthPotion from './healthPotion.js';
+import healthPotion from './healthPotion.js';
 import Player from './player.js';
 
 /**
@@ -29,17 +31,15 @@ export default class LevelScroll extends Phaser.Scene {
     const map = this.make.tilemap({ key: 'tilemapJose', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('castle_tileset_part1', 'scroll1');
 
-    
-
-   
  
     const wallLayer = map.createLayer('BottomLayer', tileset).setCollisionByProperty({ collides: true });
     this.player = new Player(this, 200, 500);
     this.player.setPlayerData(this.playerData);
     this.cameras.main.startFollow(this.player);
     const voidLayer = map.createLayer('TopLayer', tileset).setCollisionByProperty({ collides: true });
+
     
-      
+
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
     this.bases = this.add.group();

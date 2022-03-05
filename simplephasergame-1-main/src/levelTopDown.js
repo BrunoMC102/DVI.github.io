@@ -1,3 +1,4 @@
+import HealthPotion from './healthPotion.js';
 import PlayerTopDown from './playerTopDown.js';
 import PowerUp from './powerUp.js';
 
@@ -35,7 +36,8 @@ export default class LevelTopDown extends Phaser.Scene {
     this.physics.add.collider(this.player, wallLayer);
     this.physics.add.collider(this.player, voidLayer);
     new PowerUp(this, this.player, 450, 200);
-    
+    new HealthPotion(this, this.player, 600, 200);
+
 
     //Hitbox que contiene fisicas para ver si solapa con el player (puede ser un array para tener varias hitbox)
     this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(993,60,60,20)];
