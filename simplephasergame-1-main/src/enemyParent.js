@@ -4,7 +4,7 @@
  * Cada plataforma es responsable de crear la base que aparece sobre ella y en la 
  * que, durante el juego, puede aparecer una estrella
  */
-export default class EnemyParent extends Phaser.GameObjects.Sprite {
+export default class EnemyParent extends Phaser.GameObjects.Container {
   
   /**
    * Constructor de la Plataforma
@@ -15,8 +15,8 @@ export default class EnemyParent extends Phaser.GameObjects.Sprite {
    * 
    */
  
-  constructor(scene, player, x, y, sprite) {
-    super(scene, x, y, sprite);
+  constructor(scene, player, x, y, texture) {
+    super(scene, x, y);
     this.c = false;
     this.damage = 1;
     this.player = player
@@ -27,13 +27,17 @@ export default class EnemyParent extends Phaser.GameObjects.Sprite {
     this.scene.physics.add.collider(this, this.player, () => this.doDamage());
     this.health = 30;
     //this.body.setCollideWorldBounds();
-     
+    this.sprite = new Phaser.GameObjects.Sprite(scene,0,0, texture);
+    this.add(this.sprite);
+    this.body.setSize(this.sprite.width,this.sprite.height);
+    this.sprite.x = this.sprite.width/2;
+    this.sprite.y = this.sprite.height/2;
   }
 
   
 
   preUpdate(t,dt){
-    super.preUpdate(t,dt);
+    
     this.moveU(t,dt);
     
   }

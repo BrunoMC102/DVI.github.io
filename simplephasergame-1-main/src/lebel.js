@@ -3,7 +3,7 @@ import Enemy2 from './enemy2.js';
 import Enemy3 from './enemy3.js';
 import EnemyParent from './enemyParent.js';
 import PlayerTopDown from './playerTopDown.js';
-import PowerUp from './powerUp.js';
+import PowerUp from './objetos_recogibles/powerUp.js';
 import Enemy4 from './enemy4.js';
 import Enemy5 from './enemy5.js';
 

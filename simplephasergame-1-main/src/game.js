@@ -19,7 +19,9 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-
+    input: {
+        gamepad: true
+    },
     scene: [Boot, Level, Lebel, LevelTopDown,LevelScroll, End],
     physics: {
         default: 'arcade',

@@ -12,6 +12,10 @@ export default class Basic_projectile extends Phaser.GameObjects.Image{
           o1.gameObject.destroy();
         });
         this.time_left = 10;
+        
+        const dimension = Math.min(this.body.width,this.body.height);
+        this.body.setSize(dimension,dimension);
+        
     }
 
 
