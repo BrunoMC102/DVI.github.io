@@ -1,3 +1,6 @@
+import Arrow from "./objetos_recogibles/consumibles/arrow.js";
+import Coin from "./objetos_recogibles/consumibles/coin.js";
+import Health from "./objetos_recogibles/consumibles/health.js";
 
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
@@ -32,6 +35,11 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     this.body.setSize(this.sprite.width,this.sprite.height);
     this.sprite.x = this.sprite.width/2;
     this.sprite.y = this.sprite.height/2;
+
+    
+    
+    const consumibles = [()=>new Coin(scene,player,this.x,this.y), ()=>new Health(scene,player,this.x,this.y),()=>new Arrow(scene,player,this.x,this.y)]
+    this.consumible = consumibles[Math.floor(Math.random()*consumibles.length)];
   }
 
   
@@ -58,8 +66,17 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     this.health -= damage;
     if(this.health <= 0){
       this.destroy();
+      this.spawnLoot();
     }
 
+  }
+
+  spawnLoot(){
+    
+    
+    if(Math.random() < 1){
+      this.consumible();
+    }
   }
 
 }
