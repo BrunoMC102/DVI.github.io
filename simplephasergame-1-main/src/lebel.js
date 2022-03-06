@@ -6,6 +6,7 @@ import PlayerTopDown from './playerTopDown.js';
 import PowerUp from './objetos_recogibles/powerUp.js';
 import Enemy4 from './enemy4.js';
 import Enemy5 from './enemy5.js';
+import Spectral from './objetos_recogibles/pasivos/spectral.js';
 
 export default class Lebel extends Phaser.Scene {
   /**
@@ -36,6 +37,8 @@ export default class Lebel extends Phaser.Scene {
     this.a = new Enemy4(this, this.player, 450, 200);
     this.b = new Enemy5(this, this.player, 600, 400);
     this.c = new Enemy5(this, this.player, 700, 300);
+    new Spectral(this, this.player, 450, 200);
+
     this.enemies = [this.a,this.b,this.c];
     this.layers = [wallLayer];
     

@@ -12,6 +12,7 @@ export default class Enemy4 extends ShootingEnemyParent{
     this.Pv = 300;
     this.shootTime = 2;
   }
+  
   creador(){
     this.projectileE = new Homing_p(this.scene,this.x,this.y);
   }

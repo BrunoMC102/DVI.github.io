@@ -72,9 +72,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
   }
 
   spawnLoot(){
-    
-    
-    if(Math.random() < 1){
+    if(Math.random() < 0.8){
       this.consumible();
     }
   }
