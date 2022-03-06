@@ -26,7 +26,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.body.setSize(this.body.width * 0.5, this.body.height * 0.8);
     this.body.offset.y = 20;
     this.body.offset.x = 25;
-
   }
 
   setPlayerData(playerData) {
@@ -35,6 +34,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.jumpSpeed = playerData.jumpSpeed;
     this.health = playerData.health;
     this.label = this.scene.add.text(10, 10, "Health: " + this.health);
+    this.money = 0; // dinero del jugador
+    this.healthPotions = 0; // pociones de vida
+    this.manaPotions = 0; // pociones de mana
   }
 
   getPlayerData(){

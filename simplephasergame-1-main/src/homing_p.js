@@ -1,24 +1,18 @@
+import Basic_projectile from "./basic_projectile.js";
 
 
-export default class Homing_p extends Phaser.GameObjects.Image{
+export default class Homing_p extends Basic_projectile{
 
     constructor(scene,x,y){
         super(scene,x,y,'flecha');
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this, false);
-        this.body.allowGravity = false;
-        this.setVisible(true);
-        
-        this.body.onWorldBounds = true;
-        this.body.world.on('worldbounds', (o1) => {
-          o1.gameObject.destroy();
-        });
+        this.body.setMaxSpeed(300);
     }
 
 
     preUpdate(t,dt){
-        
-        this.scene.physics.moveToObject(this,this.scene.player, 100);
+       
+        this.scene.physics.accelerateToObject(this,this.scene.player, 300);
+        super.preUpdate(t,dt);
     }
 
 }

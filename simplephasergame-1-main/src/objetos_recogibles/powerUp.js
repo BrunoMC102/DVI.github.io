@@ -1,7 +1,7 @@
 export default class PowerUp extends Phaser.GameObjects.Image{
 
-    constructor(scene,player,x,y){
-        super(scene,x,y,'');
+    constructor(scene,player,x,y,texture){
+        super(scene,x,y,texture);
         this.player = player;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, false);
@@ -9,9 +9,6 @@ export default class PowerUp extends Phaser.GameObjects.Image{
         this.scene.physics.add.collider(this, this.player, () => {this.givePower();this.destroy()});
         
     }
-
-
-   
 
     givePower(){
         this.player.projectileBaseSpeed *= 10;
