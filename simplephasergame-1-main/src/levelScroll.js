@@ -33,10 +33,12 @@ export default class LevelScroll extends Phaser.Scene {
 
    
  
-    const wallLayer = map.createLayer('BottomLayer', tileset).setCollisionByProperty({ collides: true });
+    const wallLayer = map.createLayer('BottomLayer', tileset).setCollisionByProperty({ collides: true }).setScrollFactor(0,0);
     this.player = new Player(this, 200, 500);
     this.player.setPlayerData(this.playerData);
     this.cameras.main.startFollow(this.player);
+    this.cameras.main.setBounds(0,0,3840,960);
+    
     const voidLayer = map.createLayer('TopLayer', tileset).setCollisionByProperty({ collides: true });
     
       

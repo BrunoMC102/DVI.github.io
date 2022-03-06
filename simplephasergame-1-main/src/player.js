@@ -77,7 +77,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     
     if(this.cursors.up.isDown){
     if ( this.body.onFloor()) {
-      this.anims.chain(['jump', 'jumpfinal']);
+      //this.anims.chain(['jump', 'jumpfinal']);
       this.anims.play('jump');
       this.body.setVelocityY(this.jumpSpeed);
       
