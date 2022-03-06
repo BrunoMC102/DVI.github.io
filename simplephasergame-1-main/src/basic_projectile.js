@@ -19,9 +19,9 @@ export default class Basic_projectile extends Phaser.GameObjects.Image{
     }
 
 
-    preUpdate(t,dt){
+    preUpdate(t,dt){ //Llamar despues en clases hijos
+
         this.setRotation(this.body.velocity.angle());
-        
         if(this.time_left <= 0) this.destroy();
         this.time_left -= dt/1000;
         

@@ -196,11 +196,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
             o2.hurt(this.damage)})});
         }
 
-        if (this.scene.layers != undefined){
-          this.scene.layers.forEach( a => {this.scene.physics.add.collider(this.projectile, a, (o1,o2) => {
-            o1.destroy();
-            })});
-        }
+        this.wallColl();
+        
         
         this.projectile.setCollideWorldBounds(true);
         this.projectile.body.onWorldBounds = true;
@@ -234,8 +231,18 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       }
       
           
-        
+      wallColl(){
+        if (this.scene.layers != undefined){
+          this.scene.layers.forEach( a => {this.scene.physics.add.collider(this.projectile, a, (o1,o2) => {
+            o1.destroy();
+            })});
+        }
+      }
 
+      setSpectral(){
+        this.wallColl = ()=>{};
+      }
+      
       getDirectionX(){
         if(this.body.facing == Phaser.Physics.Arcade.FACING_RIGHT)
           return 1;
