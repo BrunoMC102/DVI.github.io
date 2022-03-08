@@ -34,9 +34,10 @@ export default class LevelTopDown2 extends Phaser.Scene {
     this.player.setPlayerData(this.playerData);
 
     this.a = new Enemy(this, this.player, 450, 200);
+    this.a = new Enemy5(this, this.player, 600, 200);
     new Spectral(this, this.player, 450, 200);
 
-    this.enemies = [this.a];
+    this.enemies = [this.a, this.b];
     this.layers = [wallLayer];
     
     this.physics.add.collider(this.player, wallLayer);
