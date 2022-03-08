@@ -26,7 +26,6 @@ export default class Basic_projectile extends Phaser.GameObjects.Image{
         }
         if(this.time_left <= 0) this.destroy();
         this.time_left -= dt/1000;
-        
     }
 
 }
