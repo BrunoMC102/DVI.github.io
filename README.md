@@ -1,3 +1,68 @@
 # Juego simple con Phaser
+JUGABILIDAD
 
-Este juego ha sido desarrollado por Carlos León Aznar. En este repositorio contiene una reorganización del código y de los assets usados para su desarrollo por Guillermo Jiménez
+Mecánicas del personaje principal(Lateral)
+Salto
+Correr(Extra)
+Ataque(A melee)Opcional
+
+
+Mecanicas del personaje principal(Aereo)
+Ataque
+Rodar(Extra)
+
+
+Stats del personaje:
+
+Vida:
+Velocidad:
+Daño a melee:
+Daño a distancia:
+Rango:
+Velocidad de ataque: 
+
+Menu o lobby inicial:
+
+-Tienda 
+-Lugar para mejorar el arbol de habilidades(Extra)
+-Npcs(Extra)
+-Banco(Extra)
+
+
+Recursos del jugador:
+-Oro o moneda(para tiendas)
+-Vida
+-Otra moneda 
+-Habitaciones
+-Extra: Cambiar skin por mejoras.
+
+Personaje:
+-1 persona 
+
+Enemigos:
+-Bandidos
+-Slime
+-Esqueletos
+-Boss
+
+Controles , nos gustaría mando pero en principio teclado.
+
+Paleta para el lobby: Adobe Color
+Paleta mazmorra tonos más oscuros poco a poco.
+
+Principios de niveles: 
+como son niveles
+
+Dinamicas:
+
+
+Imputs : Controles
+
+Menu inicial
+
+Genero 
+
+UML diagrama de clase
+
+Descripcion del proceso
+
