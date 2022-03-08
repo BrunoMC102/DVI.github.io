@@ -1,3 +1,4 @@
+import Basic_projectile from './basic_projectile.js';
 import EnemyParent from './enemyParent.js';
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
@@ -64,7 +65,7 @@ export default class ShootingEnemyParent extends EnemyParent{
   }
 
   creador(){
-    this.projectileE = new Phaser.Physics.Arcade.Image(this.x,this.y,'flecha');
+    this.projectileE = new Basic_projectile(this.scene,this.x,this.y,'flecha');
   }
 
   attack(d,dt){

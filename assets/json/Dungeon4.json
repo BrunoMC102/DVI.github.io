@@ -48,7 +48,7 @@
         {
          "columns":21,
          "firstgid":1,
-         "image":"..\/sprites\/Dungeon64.png",
+         "image":"..\/..\/..\/Recursos\/Tilesets\/Dungeon\/Dungeon64.png",
          "imageheight":416,
          "imagewidth":1344,
          "margin":0,
@@ -981,7 +981,7 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
