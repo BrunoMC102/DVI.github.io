@@ -37,6 +37,7 @@ export default class LevelScroll extends Phaser.Scene {
     this.player.setPlayerData(this.playerData);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setBounds(0,0,3840,960);
+   
     
     const voidLayer = map.createLayer('TopLayer', tileset).setCollisionByProperty({ collides: true });
 
@@ -45,6 +46,9 @@ export default class LevelScroll extends Phaser.Scene {
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
     this.bases = this.add.group();
+    this.sceneChange =  this.add.zone(50,810,60,122);
+    this.physics.world.enable(this.sceneChange);
+    this.sceneChange.body.setAllowGravity(false);
 
 
 
@@ -54,6 +58,14 @@ export default class LevelScroll extends Phaser.Scene {
 
   
 
+  }
+
+  update() {
+    //Esto es mejor porque solo revisa si se encuentra en la hitbox
+    if (this.physics.overlap(this.player, this.sceneChange)) {
+      this.scene.start('levelTopDown', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
+    }
+  
   }
 
   showHitbox(layer) {
