@@ -30,6 +30,8 @@ export default class ShootingEnemyParent extends EnemyParent{
     
 
     //this.projectileE = this.projectilesE.get(this.x,this.y,'flecha');
+
+
     this.creador();
     this.scene.physics.add.collider(this.projectileE, this.player, (o1,o2) => {
     o1.destroy();
@@ -49,6 +51,7 @@ export default class ShootingEnemyParent extends EnemyParent{
     }
   
   wallColl(){
+    
     if (this.scene.layers != undefined){
         this.scene.layers.forEach( a => {this.scene.physics.add.collider(this.projectileE, a, (o1,o2) => {
             o1.destroy();
