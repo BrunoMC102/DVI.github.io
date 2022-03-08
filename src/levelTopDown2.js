@@ -3,18 +3,17 @@ import Enemy2 from './enemy2.js';
 import Enemy3 from './enemy3.js';
 import EnemyParent from './enemyParent.js';
 import PlayerTopDown from './playerTopDown.js';
-import PowerUp from './objetos_recogibles/powerUp.js';
 import Enemy4 from './enemy4.js';
 import Enemy5 from './enemy5.js';
 import Spectral from './objetos_recogibles/pasivos/spectral.js';
 
-export default class Lebel extends Phaser.Scene {
+export default class LevelTopDown2 extends Phaser.Scene {
   /**
    * Constructor de la escena
    */
   a = null;
   constructor() {
-    super({ key: 'lebel' });
+    super({ key: 'levelTopDown2' });
     
   }
 
@@ -57,13 +56,17 @@ export default class Lebel extends Phaser.Scene {
     this.physics.add.collider(this.c, voidLayer,()=>this.c.isCol());
 
     //Hitbox que contiene fisicas para ver si solapa con el player (puede ser un array para tener varias hitbox)
-    this.sceneChange = this.add.zone(30, 510, 60, 122);
+    this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(30, 510, 60, 122)];
     this.physics.world.enable(this.sceneChange);
-    this.sceneChange.body.setAllowGravity(false);
+    this.sceneChange[0].body.setAllowGravity(false);
+    this.sceneChange[1].body.setAllowGravity(false);
   }
 
   update(d,dt){
-    if (this.physics.overlap(this.player, this.sceneChange)) {
+    if (this.physics.overlap(this.player, this.sceneChange[0])) {
+      this.scene.start('levelTopDown3', {coordinates: {x: 100, y: 500}, playerData: this.player.getPlayerData()});
+    }
+    if (this.physics.overlap(this.player, this.sceneChange[1])) {
       this.scene.start('levelTopDown', {coordinates: {x: 1170, y: 500}, playerData: this.player.getPlayerData()});
     }
   }

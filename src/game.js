@@ -1,10 +1,11 @@
 import Boot from './boot.js';
 import End from './end.js';
 import Level from './level.js';
-import Lebel from './lebel.js';
 import LevelTopDown from './levelTopDown.js';
+import LevelTopDown2 from './levelTopDown2.js';
+import LevelTopDown3 from './levelTopDown3.js';
+import LevelTopDown4 from './levelTopDown4.js';
 import LevelScroll from './levelScroll.js';
-
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -22,7 +23,7 @@ let config = {
     input: {
         gamepad: true
     },
-    scene: [Boot, Level, Lebel, LevelTopDown,LevelScroll, End],
+    scene: [Boot, Level, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelScroll, End],
     physics: {
         default: 'arcade',
         arcade: {
