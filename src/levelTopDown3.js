@@ -1,4 +1,11 @@
+import EnemyParent from './enemyParent.js';
 import PlayerTopDown from './playerTopDown.js';
+import Enemy from './enemy.js';
+import Enemy2 from './enemy2.js';
+import Enemy3 from './enemy3.js';
+import Enemy4 from './enemy4.js';
+import Enemy5 from './enemy5.js';
+import Spectral from './objetos_recogibles/pasivos/spectral.js';
 
 export default class LevelTopDown3 extends Phaser.Scene {
 
@@ -28,8 +35,15 @@ export default class LevelTopDown3 extends Phaser.Scene {
     this.player.life = this.currentLife;
     this.player.setPlayerData(this.playerData);
 
+    this.a = new Enemy2(this, this.player, 600, 400);
+    this.enemies = [this.a];
+    this.layers = [wallLayer];
+
     this.physics.add.collider(this.player, wallLayer);
     this.physics.add.collider(this.player, voidLayer);
+
+    this.physics.add.collider(this.a, wallLayer,()=>this.a.isCol());
+    this.physics.add.collider(this.a, voidLayer,()=>this.a.isCol());
 
     this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(30, 510, 60, 122)];
     this.physics.world.enable(this.sceneChange);
