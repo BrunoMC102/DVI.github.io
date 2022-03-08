@@ -1,5 +1,11 @@
 # Knightmares
 
+Nombre del Juego: KnightMares
+Nombre del Grupo : 6
+
+Dirección del juego: https://brunomc102.github.io/DVI.github.io/
+
+
 IDEA GENERAL
 
 Este juego se basa en un juego Roguelike que combinará las vistas de Side-Lateral y Top-Down.
