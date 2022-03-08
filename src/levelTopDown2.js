@@ -34,7 +34,7 @@ export default class LevelTopDown2 extends Phaser.Scene {
     this.player.setPlayerData(this.playerData);
 
     this.a = new Enemy(this, this.player, 450, 200);
-    this.a = new Enemy5(this, this.player, 600, 200);
+    this.b = new Enemy5(this, this.player, 600, 200);
     new Spectral(this, this.player, 450, 200);
 
     this.enemies = [this.a, this.b];
@@ -45,6 +45,9 @@ export default class LevelTopDown2 extends Phaser.Scene {
 
     this.physics.add.collider(this.a, wallLayer,()=>this.a.isCol());
     this.physics.add.collider(this.a, voidLayer,()=>this.a.isCol());
+
+    this.physics.add.collider(this.b, wallLayer,()=>this.b.isCol());
+    this.physics.add.collider(this.b, voidLayer,()=>this.b.isCol());
 
     //Hitbox que contiene fisicas para ver si solapa con el player (puede ser un array para tener varias hitbox)
     this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(30, 510, 60, 122)];
