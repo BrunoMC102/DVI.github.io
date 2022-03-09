@@ -12,6 +12,7 @@ export default class Enemy6 extends ShootingEnemyParent{
     super(scene,player,x,y,'enemy');
     this.Pv = 300;
     this.fireDirection = new Phaser.Math.Vector2(0,1);
+    //this.shootTime = 1;
   }
   creador(){
     this.projectileE = new Homing_p(this.scene,this.x,this.y);
