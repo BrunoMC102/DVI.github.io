@@ -15,12 +15,12 @@ export default class Enemy6_2 extends ShootingEnemyParent{
     this.fireDirection = new Phaser.Math.Vector2(1,0);
     //this.shootTime = 1;
     this.dispCont = 0;
-    this.dispMax = 300;
-    this.dispTime = 0.03;
-    this.actDispTime = 0;
-    this.nVueltas = 6;
-    this.shootTime = 5; 
-    this.shootTime += this.dispMax*this.dispTime; 
+    this.dispMax = 300;  //Numero de proyectiles disparado cada ataque
+    this.dispTime = 0.03;  //Tiempo entre proyectiles de un mismo ataque
+    this.actDispTime = 0;  
+    this.nVueltas = 6;  //Numero de vueltas que dan los proyectles en un ataque (puede ser menor a 1)
+    this.shootTime = 5; //Tiempo entre ataques
+    this.shootTime += this.dispMax*this.dispTime; //Suma el tiempo que dura un ataque al tiempo entre ataques
   }
   /*creador(){
     this.projectileE = new Homing_p(this.scene,this.x,this.y);
