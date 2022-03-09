@@ -46,10 +46,12 @@ export default class LevelScroll extends Phaser.Scene {
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
     this.bases = this.add.group();
-    this.sceneChange =  this.add.zone(50,810,60,122);
-    this.physics.world.enable(this.sceneChange);
-    this.sceneChange.body.setAllowGravity(false);
-
+    this.sceneChange =  [this.add.zone(50,810,60,122),this.add.zone(3800, 400, 60, 122), this.add.zone(3800,800,60,122), this.add.zone(50,200,60,122)];
+    this.physics.world.enable(this.sceneChange); 
+    this.sceneChange[0].body.setAllowGravity(false);
+    this.sceneChange[1].body.setAllowGravity(false);
+    this.sceneChange[2].body.setAllowGravity(false);
+    this.sceneChange[3].body.setAllowGravity(false);
 
 
     
@@ -62,8 +64,17 @@ export default class LevelScroll extends Phaser.Scene {
 
   update() {
     //Esto es mejor porque solo revisa si se encuentra en la hitbox
-    if (this.physics.overlap(this.player, this.sceneChange)) {
+    if (this.physics.overlap(this.player, this.sceneChange[0])) {
       this.scene.start('levelTopDown', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
+    }
+    if (this.physics.overlap(this.player, this.sceneChange[1])) {
+      this.scene.start('levelTopDown2', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
+    }
+    if (this.physics.overlap(this.player, this.sceneChange[2])) {
+      this.scene.start('levelTopDown3', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
+    }
+    if (this.physics.overlap(this.player, this.sceneChange[3])) {
+      this.scene.start('levelTopDown4', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
     }
   
   }
