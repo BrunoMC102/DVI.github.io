@@ -5,6 +5,7 @@ import Enemy2 from './enemy2.js';
 import Enemy3 from './enemy3.js';
 import Enemy4 from './enemy4.js';
 import Enemy5 from './enemy5.js';
+import Enemy6 from './enemies/enemy6.js';
 import Spectral from './objetos_recogibles/pasivos/spectral.js';
 
 export default class LevelTopDown4 extends Phaser.Scene {
@@ -35,8 +36,8 @@ export default class LevelTopDown4 extends Phaser.Scene {
     this.player.life = this.currentLife;
     this.player.setPlayerData(this.playerData);
 
-    this.a = new Enemy3(this, this.player, 500, 300);
-    this.b = new Enemy4(this, this.player, 700, 300);
+    this.a = new Enemy6(this, this.player, 500, 300);
+    this.b = new Enemy6(this, this.player, 700, 300);
     this.enemies = [this.a,this.b];
     this.layers = [wallLayer];
 
