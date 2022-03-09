@@ -1,6 +1,7 @@
 import ShootingEnemyParent from '../shootingEnemyParent.js';
 import Homing_p from '../homing_p.js';
 
+
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
  * Cada plataforma es responsable de crear la base que aparece sobre ella y en la 
@@ -10,17 +11,21 @@ export default class Enemy6_2 extends ShootingEnemyParent{
   
   constructor(scene, player, x, y) {
     super(scene,player,x,y,'enemy');
-    this.Pv = 300;
+    this.Pv = 100;
     this.fireDirection = new Phaser.Math.Vector2(1,0);
     //this.shootTime = 1;
     this.dispCont = 0;
-    this.dispMax = 16;
-    this.dispTime = 0.1;
+    this.dispMax = 300;
+    this.dispTime = 0.03;
     this.actDispTime = 0;
+    this.nVueltas = 6;
+    this.shootTime = 5; 
+    this.shootTime += this.dispMax*this.dispTime; 
   }
-  creador(){
+  /*creador(){
     this.projectileE = new Homing_p(this.scene,this.x,this.y);
-  }
+    
+  }*/
 
   setInitialVelocity(){
         this.projectileE.body.setVelocity(this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv);
@@ -30,6 +35,7 @@ export default class Enemy6_2 extends ShootingEnemyParent{
 
         if (this.cont === 0){
             this.attack_aux = () => {this.fire()};
+            this.dispCont = 0;
         }
         this.cont+=dt;
         this.actDispTime+=dt;
@@ -43,7 +49,6 @@ export default class Enemy6_2 extends ShootingEnemyParent{
         }
         if(this.dispCont >= this.dispMax){
             this.attack_aux = () => {};
-            this.dispCont = 0;
         }
     }
 
@@ -53,7 +58,7 @@ export default class Enemy6_2 extends ShootingEnemyParent{
 
     fire(){
         super.fire();
-        this.fireDirection.rotate(Math.PI/4);
+        this.fireDirection.rotate(Math.PI*2*this.nVueltas/this.dispMax);
     }
      
 }
