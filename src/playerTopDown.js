@@ -18,7 +18,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.cursors = this.scene.input.keyboard.createCursorKeys();
       this.body.allowGravity = false;
       this.immunity = 0;
-      this.createAnimations();
       
       this.body.offset.x = -23;
       this.body.offset.y = -27;
@@ -180,13 +179,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         this.sprite.tint = 0xff0000;
       }
     }
-    
-    createAnimations() {
-      this.scene.anims.create({key: 'idle-side', frames: [{ key: 'character', frame: 'idle1.png'}], duration: -1});
-      this.scene.anims.create({key: 'idle-down', frames: [{ key: 'character', frame: 'idle2.png'}], duration: -1});
-      this.scene.anims.create({key: 'idle-up', frames: [{ key: 'character', frame: 'idle3.png'}], duration: -1});
-    }
-
 
     /*pColliders(){
       if (this.scene.enemies != undefined){
