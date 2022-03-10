@@ -30,6 +30,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('vida', 'heart.png');
     
     this.load.image('scroll1', 'castle_tileset_part1.png');
+    this.load.image('scroll2', 'castle_tileset_part2.png');
+    this.load.image('scroll3', 'castle_tileset_part3.png');
+    
     this.load.image('dungeon', 'Dungeon64.png');
 
     this.load.setPath('assets/json/');

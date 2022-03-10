@@ -1,14 +1,9 @@
 
 import HealthPotion from './healthPotion.js';
-import healthPotion from './healthPotion.js';
 import Player from './player.js';
 
 /**
- * Escena principal del juego. La escena se compone de una serie de plataformas 
- * sobre las que se sitúan las bases en las podrán aparecer las estrellas. 
- * El juego comienza generando aleatoriamente una base sobre la que generar una estrella. 
- * Cada vez que el jugador recoge la estrella, aparece una nueva en otra base.
- * El juego termina cuando el jugador ha recogido 10 estrellas.
+ .
  * @extends Phaser.Scene
  */
 export default class LevelScroll extends Phaser.Scene {
@@ -30,16 +25,18 @@ export default class LevelScroll extends Phaser.Scene {
   create() {
     const map = this.make.tilemap({ key: 'tilemapJose', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('castle_tileset_part1', 'scroll1');
+    const tileset2 = map.addTilesetImage('castle_tileset_part2', 'scroll2');
+    const tileset3 = map.addTilesetImage('castle_tileset_part3', 'scroll3');
 
  
-    const wallLayer = map.createLayer('BottomLayer', tileset).setCollisionByProperty({ collides: true }).setScrollFactor(0,0);
+    const wallLayer = map.createLayer('BottomLayer', [tileset,tileset2,tileset3]).setCollisionByProperty({ collides: true }).setScrollFactor(0,0);
     this.player = new Player(this, 200, 500);
     this.player.setPlayerData(this.playerData);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setBounds(0,0,3840,960);
    
     
-    const voidLayer = map.createLayer('TopLayer', tileset).setCollisionByProperty({ collides: true });
+    const voidLayer = map.createLayer('TopLayer', [tileset,tileset2,tileset3]).setCollisionByProperty({ collides: true });
 
     
 
@@ -55,7 +52,7 @@ export default class LevelScroll extends Phaser.Scene {
 
 
     
-    this.physics.add.collider(this.player, wallLayer);
+    // this.physics.add.collider(this.player, wallLayer);
     this.physics.add.collider(this.player, voidLayer);
 
   
