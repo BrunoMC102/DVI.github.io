@@ -22,7 +22,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     //this.body.setCollideWorldBounds();
     // Esta label es la UI en la que pondremos la puntuación del jugador
     this.cursors = this.scene.input.keyboard.createCursorKeys();
-    this.createAnimations();
     this.body.setSize(this.body.width * 0.5, this.body.height * 0.8);
     this.body.offset.y = 20;
     this.body.offset.x = 25;
@@ -41,25 +40,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   getPlayerData(){
     return {speed:this.speed,vSpeed:this.vSpeed,health:this.health,jumpSpeed: this.jumpSpeed};
-  }
-
-  createAnimations() {
-    this.scene.anims.create({key: 'stand', frames: [{ key: 'characterScroll', frame: 'walk-143.png'}], duration: -1});
-    this.scene.anims.create({
-    key: 'walk', 
-    frames: this.anims.generateFrameNames('characterScroll',{ start: 143, end: 151 ,prefix: 'walk-',suffix: '.png'}),
-    frameRate: 15,
-    repeat: -1});
-
-    this.scene.anims.create({
-    key: 'jump', 
-    frames: this.anims.generateFrameNames('characterScroll',{ start: 39, end: 45 ,prefix: 'jump-',suffix: '.png'}),
-    frameRate: 10 ,
-    repeat: 0});
-    this.scene.anims.create({key: 'jumpfinal', frames: [{ key: 'characterScroll', frame: 'jump-43.png'}], duration: -1});
-
-  }
-  
+  } 
   
   /**
    * Actualiza la UI con la vida actual
