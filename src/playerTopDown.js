@@ -42,6 +42,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.projectileBar.setVisible(false);
       
       this.projectileCharging = false;
+      this.origTint = this.sprite.tint;
     }
 
     setPlayerData(playerData) {
@@ -61,7 +62,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.projectileSpeed = this.projectileBaseSpeed;
       this.projectileMaxSpeed = 1000;
       this.arrows = 100;
-
+      this.flickerTime = 0;
     }
     
     getPlayerData(){
@@ -111,6 +112,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
       if (this.immunity > 0)
         this.immunity -= dt;
+      else
+        this.displayColor = () => {};
       
       //Handle shooting keyboard
       if(this.arrows > 0){
@@ -129,6 +132,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           this.projectileBar.setVisible(false);
           this.arrows--
         }
+
+        this.displayColor();
+        this.flickerTime +=dt;
       }
 
       //Handle shooting controller
@@ -169,8 +175,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       if (this.immunity <= 0){
         this.health -= damage;
         this.immunity = 1500;
+        this.displayColor = this.flickering;
+        this.flickerTime = -200;
+        this.sprite.tint = 0xff0000;
       }
-
     }
     
     createAnimations() {
@@ -258,5 +266,21 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           return 1;
         return 0;
       }
+
+      flickering(){
+        if(this.flickerTime >= 0){
+          if(this.flickerTime < 200 ){
+            this.sprite.tint = this.origTint;
+            this.sprite.alpha = 1;
+          }
+          else {
+            this.sprite.alpha = 0.3;
+          }
+          if(this.flickerTime > 400)
+            this.flickerTime = 0;
+        }
+      }
+
+      displayColor(){}
 }
   
