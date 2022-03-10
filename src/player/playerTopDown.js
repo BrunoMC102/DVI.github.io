@@ -19,7 +19,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.body.allowGravity = false;
       this.immunity = 0;
 
-      this.createAnimations();
+      //this.createAnimations();
       this.playerData = data;
       this.playerData.player = this;
       this.body.offset.x = -23;
