@@ -7,6 +7,6 @@ export default class Coin extends PowerUp{
     }
     
     givePower(){
-        this.player.money++;
+        this.player.playerData.money++;
     }
 }

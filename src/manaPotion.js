@@ -11,7 +11,7 @@ export default class ManaPotion extends Phaser.GameObjects.Image{
     }
 
     givePotion(){
-        this.player.manaPotions++;
+        this.player.playerData.manaPotions++;
     }
 
 }

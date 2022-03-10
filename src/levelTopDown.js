@@ -1,5 +1,5 @@
 import HealthPotion from './healthPotion.js';
-import PlayerTopDown from './playerTopDown.js';
+import PlayerTopDown from './player/playerTopDown.js';
 import PowerUp from './objetos_recogibles/powerUp.js';
 import Coin from './objetos_recogibles/consumibles/coin.js';
 import Health from './objetos_recogibles/consumibles/health.js';
@@ -29,10 +29,8 @@ export default class LevelTopDown extends Phaser.Scene {
     this.bases = this.add.group();
 
     this.layers = [wallLayer];
-    this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y);
-    this.player.life = this.currentLife;
-    this.player.setPlayerData(this.playerData);
-
+    this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
+    
     this.physics.add.collider(this.player, wallLayer);
     this.physics.add.collider(this.player, voidLayer);
     new Coin(this, this.player, 450, 200);
@@ -49,10 +47,10 @@ export default class LevelTopDown extends Phaser.Scene {
   update() {
     //Esto es mejor porque solo revisa si se encuentra en la hitbox
     if (this.physics.overlap(this.player, this.sceneChange[0])) {
-      this.scene.start('levelTopDown2', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
+      this.scene.start('levelTopDown2', {coordinates: {x: 100, y: 500}, playerData:this.playerData});
     }
     if (this.physics.overlap(this.player, this.sceneChange[1])) {
-      this.scene.start('levelScroll', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
+      this.scene.start('levelScroll', {coordinates: {x: 100, y: 500}, playerData:this.playerData});
     }
   }
 

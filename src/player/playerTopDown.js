@@ -1,5 +1,5 @@
 
-import  ProjectileBar  from "./projectileBar.js";
+import ProjectileBar from "../projectileBar.js";
 
 export default class PlayerTopDown extends Phaser.GameObjects.Container {
   
@@ -10,7 +10,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
      * @param {number} y Coordenada Y
      */
 
-    constructor(scene, x, y) {
+    constructor(scene, x, y, data) {
       super(scene, x, y);
       this.scene.add.existing(this);
       this.scene.physics.add.existing(this);
@@ -19,7 +19,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.body.allowGravity = false;
       this.immunity = 0;
       this.createAnimations();
-      
+      this.playerData = data;
+      this.playerData.player = this;
       this.body.offset.x = -23;
       this.body.offset.y = -27;
       this.projectiles = this.scene.physics.add.group({
@@ -43,13 +44,14 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       
       this.projectileCharging = false;
       this.origTint = this.sprite.tint;
+      this.setPlayerData();
     }
 
     setPlayerData(playerData) {
-      this.speed = playerData.speed;
-      this.vSpeed = playerData.vSpeed;
-      this.jumpSpeed = playerData.jumpSpeed;
-      this.health = playerData.health;
+      this.speed = 300;
+      this.vSpeed = 300;
+      this.jumpSpeed = -400;
+      this.health = 6;
       this.damage = 10;
       
       
@@ -65,36 +67,33 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.flickerTime = 0;
     }
     
-    getPlayerData(){
-      return {speed:this.speed,vSpeed:this.vSpeed,health:this.health,jumpSpeed: this.jumpSpeed};
-    }
-
+    
     updateHealth() {
-      this.label.text = 'Health: ' + this.health;
+      this.label.text = 'Health: ' + this.playerData.health;
     }
     preUpdate(t,dt) {
 
 
       
       if (this.cursors.up.isDown) {
-        this.body.setVelocityY(-this.vSpeed);
+        this.body.setVelocityY(-this.playerData.vSpeed);
         this.sprite.anims.play('idle-up');
       }
       else if (this.cursors.down.isDown) {
-        this.body.setVelocityY(this.vSpeed);
+        this.body.setVelocityY(this.playerData.vSpeed);
         this.sprite.anims.play('idle-down');
       }
       else {
         this.body.setVelocityY(0);
       }
       if (this.cursors.left.isDown) {
-        this.body.setVelocityX(-this.speed);
+        this.body.setVelocityX(-this.playerData.speed);
         this.sprite.anims.play('idle-side');
         this.sprite.scaleX = 1;
         //this.body.offset.x = 25;
       }
       else if (this.cursors.right.isDown) {
-        this.body.setVelocityX(this.speed);
+        this.body.setVelocityX(this.playerData.speed);
         this.sprite.anims.play('idle-side');
         this.sprite.scaleX = -1;
         //this.body.offset.x = 70;
@@ -107,7 +106,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       const pad = this.scene.input.gamepad.getPad(0);
       if(pad != undefined){
         const dir = new Phaser.Math.Vector2(pad.leftStick.x,pad.leftStick.y);
-        this.body.setVelocity(dir.normalize().scale(this.speed).x,dir.normalize().scale(this.speed).y);
+        this.body.setVelocity(dir.normalize().scale(this.speed).x,dir.normalize().scale(this.playerData.speed).y);
       }
 
       if (this.immunity > 0)
@@ -118,19 +117,19 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       //Handle shooting keyboard
       if(this.arrows > 0){
         if(this.cursors.space.isDown){
-          if (this.projectileSpeed < this.projectileMaxSpeed)
-            this.projectileSpeed += dt/2
+          if (this.playerData.projectileSpeed < this.playerData.projectileMaxSpeed)
+          this.playerData.projectileSpeed += dt/2
           else{
-            this.projectileSpeed = this.projectileMaxSpeed
+            this.playerData.projectileSpeed = this.playerData.projectileMaxSpeed
           }
-          this.projectileBar.actualiza((this.projectileSpeed-this.projectileBaseSpeed)*100/(this.projectileMaxSpeed-this.projectileBaseSpeed));
+          this.projectileBar.actualiza((this.playerData.projectileSpeed-this.playerData.projectileBaseSpeed)*100/(this.playerData.projectileMaxSpeed-this.playerData.projectileBaseSpeed));
           this.projectileBar.setVisible(true);
         }
         if(Phaser.Input.Keyboard.JustUp(this.cursors.space)){
           this.fire();
-          this.projectileSpeed = this.projectileBaseSpeed;
+          this.playerData.projectileSpeed = this.playerData.projectileBaseSpeed;
           this.projectileBar.setVisible(false);
-          this.arrows--
+          this.playerData.arrows--
         }
 
         this.displayColor();
@@ -139,33 +138,33 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
       //Handle shooting controller
       if(pad != undefined){
-        if(this.arrows > 0){
+        if(this.playerData.arrows > 0){
           if(pad.R2 > 0){
-            if (this.projectileSpeed < this.projectileMaxSpeed)
-              this.projectileSpeed += dt/2
+            if (this.playerData.projectileSpeed < this.playerData.projectileMaxSpeed)
+            this.playerData.projectileSpeed += dt/2
             else{
-              this.projectileSpeed = this.projectileMaxSpeed
+              this.playerData.projectileSpeed = this.playerData.projectileMaxSpeed
             }
-            this.projectileBar.actualiza((this.projectileSpeed-this.projectileBaseSpeed)*100/(this.projectileMaxSpeed-this.projectileBaseSpeed));
+            this.projectileBar.actualiza((this.playerData.projectileSpeed-this.playerData.projectileBaseSpeed)*100/(this.playerData.projectileMaxSpeed-this.playerData.projectileBaseSpeed));
             this.projectileBar.setVisible(true);
             this.projectileCharging = true;
           }
           if(this.projectileCharging && pad.R2 == 0){
             this.fire();
-            this.projectileSpeed = this.projectileBaseSpeed;
+            this.playerData.projectileSpeed = this.playerData.projectileBaseSpeed;
             this.projectileBar.setVisible(false);
-            this.arrows--
+            this.playerData.arrows--
             this.projectileCharging = false;
           }
         }
       }
       
       //Actualizacion informacion en pantalla
-      this.health_label.text = 'Health: ' + this.health;
-      this.money_label.text = 'Money: ' + this.money;
-      this.arrow_label.text = 'Arrows: ' + this.arrows;
-      this.mPotion_label.text = 'Mana Potions: ' + this.manaPotions;
-      this.hPotion_label.text = 'Health Potions: ' + this.healthPotions;
+      this.health_label.text = 'Health: ' + this.playerData.health;
+      this.money_label.text = 'Money: ' + this.playerData.money;
+      this.arrow_label.text = 'Arrows: ' + this.playerData.arrows;
+      this.mPotion_label.text = 'Mana Potions: ' + this.playerData.manaPotions;
+      this.hPotion_label.text = 'Health Potions: ' + this.playerData.healthPotions;
 
     }
 
@@ -173,7 +172,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
     hurt(damage){
       if (this.immunity <= 0){
-        this.health -= damage;
+        this.playerData.health -= damage;
         this.immunity = 1500;
         this.displayColor = this.flickering;
         this.flickerTime = -200;
@@ -204,7 +203,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
             o2.hurt(this.damage)})});
         }
 
-        this.wallColl();
+        this.playerData.wallColl();
         
         
         this.projectile.setCollideWorldBounds(true);
@@ -219,11 +218,11 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
         this.projectile.body.allowGravity = false;
         
-        let v = this.body.velocity.normalize().scale(this.projectileSpeed);
+        let v = this.body.velocity.normalize().scale(this.playerData.projectileSpeed);
         if (v.x == 0 && v.y == 0){
           this.body.facing;
-          this.projectile.setVelocity(this.projectileSpeed,0);
-          this.projectile.setVelocity(this.getDirectionX() * this.projectileSpeed, this.getDirectionY() * this.projectileSpeed);
+          this.projectile.setVelocity(this.playerData.projectileSpeed,0);
+          this.projectile.setVelocity(this.getDirectionX() * this.playerData.projectileSpeed, this.getDirectionY() * this.playerData.projectileSpeed);
         }
         else
           this.projectile.setVelocity(v.x,v.y);
@@ -233,22 +232,16 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         if(pad != undefined){
           const dir = new Phaser.Math.Vector2(pad.rightStick.x,pad.rightStick.y);
           if (dir.x != 0 || dir.y != 0)
-            this.projectile.setVelocity(dir.normalize().scale(this.projectileSpeed).x,dir.normalize().scale(this.projectileSpeed).y);
+            this.projectile.setVelocity(dir.normalize().scale(this.playerData.projectileSpeed).x,dir.normalize().scale(this.playerData.projectileSpeed).y);
         }
         this.projectile.setRotation(this.projectile.body.velocity.angle());
       }
       
           
-      wallColl(){
-        if (this.scene.layers != undefined){
-          this.scene.layers.forEach( a => {this.scene.physics.add.collider(this.projectile, a, (o1,o2) => {
-            o1.destroy();
-            })});
-        }
-      }
+      
 
       setSpectral(){
-        this.wallColl = ()=>{};
+        this.playerData.wallColl = ()=>{};
       }
       
       getDirectionX(){

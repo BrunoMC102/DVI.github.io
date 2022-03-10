@@ -11,6 +11,6 @@ export default class HealthPotion extends Phaser.GameObjects.Image{
     }
 
     givePotion(){
-        this.player.healthPotions++;
+        this.player.playerData.healthPotions++;
     }
 }

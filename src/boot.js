@@ -1,3 +1,4 @@
+import PlayerData from "./player/playerData.js";
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -58,7 +59,7 @@ export default class Boot extends Phaser.Scene {
     //this.scene.start('lebel');
 
     //Para jugar en el modo vista lateral descomentar level
-    this.scene.start('levelTopDown', {coordinates: {x: 0, y: 500}, playerData: {vSpeed: 300, speed: 300, health:6, jumpSpeed: -400}});
+    this.scene.start('levelTopDown', {coordinates: {x: 0, y: 500}, playerData: new PlayerData()});
     //this.scene.start('levelScroll', {coordinates: {x: 0, y: 500}});
     //this.scene.start('level');
   }

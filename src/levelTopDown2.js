@@ -1,5 +1,5 @@
 import EnemyParent from './enemyParent.js';
-import PlayerTopDown from './playerTopDown.js';
+import PlayerTopDown from './player/playerTopDown.js';
 import Enemy from './enemy.js';
 import Enemy2 from './enemy2.js';
 import Enemy3 from './enemy3.js';
@@ -31,8 +31,7 @@ export default class LevelTopDown2 extends Phaser.Scene {
     const voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
     const wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
 
-    this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y);
-    this.player.setPlayerData(this.playerData);
+   this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
 
     //this.a = new Enemy(this, this.player, 450, 200);
     this.b = new Enemy7(this, this.player, 600, 200);
@@ -59,10 +58,10 @@ export default class LevelTopDown2 extends Phaser.Scene {
 
   update(d,dt){
     if (this.physics.overlap(this.player, this.sceneChange[0])) {
-      this.scene.start('levelTopDown3', {coordinates: {x: 100, y: 500}, playerData: this.player.getPlayerData()});
+      this.scene.start('levelTopDown3', {coordinates: {x: 100, y: 500}, playerData: this.playerData});
     }
     if (this.physics.overlap(this.player, this.sceneChange[1])) {
-      this.scene.start('levelTopDown', {coordinates: {x: 1170, y: 500}, playerData: this.player.getPlayerData()});
+      this.scene.start('levelTopDown', {coordinates: {x: 1170, y: 500}, playerData: this.playerData});
     }
   }
   

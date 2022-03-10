@@ -7,6 +7,6 @@ export default class Arrow extends PowerUp{
     }
     
     givePower(){
-        this.player.arrows++;
+        this.player.playerData.arrows++;
     }
 }

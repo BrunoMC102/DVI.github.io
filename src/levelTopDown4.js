@@ -1,5 +1,5 @@
 import EnemyParent from './enemyParent.js';
-import PlayerTopDown from './playerTopDown.js';
+import PlayerTopDown from './player/playerTopDown.js';
 import Enemy from './enemy.js';
 import Enemy2 from './enemy2.js';
 import Enemy3 from './enemy3.js';
@@ -33,9 +33,7 @@ export default class LevelTopDown4 extends Phaser.Scene {
     this.bases = this.add.group();
 
     this.layers = [wallLayer];
-    this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y);
-    this.player.life = this.currentLife;
-    this.player.setPlayerData(this.playerData);
+    this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
 
     this.a = new Enemy6(this, this.player, 500, 300);
     this.b = new Enemy6_2(this, this.player, 700, 300);
@@ -61,10 +59,10 @@ export default class LevelTopDown4 extends Phaser.Scene {
   update() {
     //Esto es mejor porque solo revisa si se encuentra en la hitbox
     if (this.physics.overlap(this.player, this.sceneChange[0])) {
-      this.scene.start('levelTopDown', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
+      this.scene.start('levelTopDown', {coordinates: {x: 100, y: 500}, playerData:this.playerData});
     }
     if (this.physics.overlap(this.player, this.sceneChange[1])) {
-      this.scene.start('levelTopDown3', {coordinates: {x: 1170, y: 500}, playerData:this.player.getPlayerData()});
+      this.scene.start('levelTopDown3', {coordinates: {x: 1170, y: 500}, playerData:this.playerData});
     }
   }
 

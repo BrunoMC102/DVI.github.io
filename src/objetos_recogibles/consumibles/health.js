@@ -7,6 +7,6 @@ export default class Health extends PowerUp{
     }
     
     givePower(){
-        this.player.health++;
+        this.player.playerData.health++;
     }
 }
