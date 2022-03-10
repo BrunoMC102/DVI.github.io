@@ -9,7 +9,7 @@ export default class Enemy2 extends EnemyParent{
  
   
   constructor(scene, player, x, y) {
-    super(scene,player,x,y,'enemy');
+    super(scene,player,x,y,'brainmole', 'attack-7.png');
     this.a = 1000;
     this.v = 50;
   }
@@ -17,7 +17,7 @@ export default class Enemy2 extends EnemyParent{
 
   
   moveU(d,dt){
-    
+    //this.scene.anims.play('mole');
     this.resbala();
   }
   

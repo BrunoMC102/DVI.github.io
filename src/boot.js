@@ -45,6 +45,7 @@ export default class Boot extends Phaser.Scene {
 
     this.load.setPath('assets/atlas/');
     this.load.atlas('character', 'atlas.png', 'atlas.json');
+    this.load.atlas('brainmole', 'brainmole.png', 'brainmole.json');
 
     this.load.atlas('characterScroll', 'movement.png', 'movement.json');
   }
@@ -85,5 +86,18 @@ export default class Boot extends Phaser.Scene {
     frameRate: 10 ,
     repeat: 0});
     this.anims.create({key: 'jumpfinal', frames: [{ key: 'characterScroll', frame: 'jump-43.png'}], duration: -1});
+    
+    
+  //Enemy BrainMole
+   this.anims.create({
+    key:'mole',
+    frames: this.anims.generateFrameNames('brainmole',{start: 7, end: 10, prefix: 'attack-', suffix: '.png'}),
+    frameRate:10,
+    repeat: -1
+
+
+  })
   }
+
+   
 }
