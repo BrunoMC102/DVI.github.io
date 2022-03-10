@@ -56,11 +56,34 @@ export default class Boot extends Phaser.Scene {
   create() {
     //Para probar enemigo descomentar esto y comentar el de abajo
     //this.scene.start('lebel');
-
+    this.createAnimations();
     //Para jugar en el modo vista lateral descomentar level
     this.scene.start('levelTopDown', {coordinates: {x: 0, y: 500}, playerData: {vSpeed: 300, speed: 300, health:6, jumpSpeed: -400}});
     //this.scene.start('levelScroll', {coordinates: {x: 0, y: 500}});
     //this.scene.start('level');
   }
 
+    createAnimations() {
+    //Idle
+    this.anims.create({key: 'idle-side', frames: [{ key: 'character', frame: 'idle1.png'}], duration: -1});
+    this.anims.create({key: 'idle-down', frames: [{ key: 'character', frame: 'idle2.png'}], duration: -1});
+    this.anims.create({key: 'idle-up', frames: [{ key: 'character', frame: 'idle3.png'}], duration: -1});
+
+    this.anims.create({key: 'stand', frames: [{ key: 'characterScroll', frame: 'walk-143.png'}], duration: -1});
+
+    //Walk
+    this.anims.create({
+    key: 'walk', 
+    frames: this.anims.generateFrameNames('characterScroll',{ start: 143, end: 151 ,prefix: 'walk-',suffix: '.png'}),
+    frameRate: 15,
+    repeat: -1});
+
+    //Jump
+    this.anims.create({
+    key: 'jump', 
+    frames: this.anims.generateFrameNames('characterScroll',{ start: 39, end: 45 ,prefix: 'jump-',suffix: '.png'}),
+    frameRate: 10 ,
+    repeat: 0});
+    this.anims.create({key: 'jumpfinal', frames: [{ key: 'characterScroll', frame: 'jump-43.png'}], duration: -1});
+  }
 }
