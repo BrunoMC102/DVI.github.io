@@ -20,6 +20,7 @@ export default class ShootingEnemyParent extends EnemyParent{
     this.projectilesE = this.scene.physics.add.group({
       classType: this.cl,
     })
+    
   }
 
 
@@ -65,7 +66,7 @@ export default class ShootingEnemyParent extends EnemyParent{
   }
 
   creador(){
-    this.projectileE = new Basic_projectile(this.scene,this.x,this.y,'flecha');
+    this.projectileE = new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha');
   }
 
   attack(d,dt){
@@ -87,5 +88,11 @@ export default class ShootingEnemyParent extends EnemyParent{
 
   move(){
 
+  }
+  centerX(){
+    return this.x + this.sprite.width/2
+  }
+  centerY(){
+    return this.y + this.sprite.height/2
   }
 }

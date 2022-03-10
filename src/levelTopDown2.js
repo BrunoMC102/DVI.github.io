@@ -6,6 +6,7 @@ import Enemy3 from './enemy3.js';
 import Enemy4 from './enemy4.js';
 import Enemy5 from './enemy5.js';
 import Spectral from './objetos_recogibles/pasivos/spectral.js';
+import Enemy7 from './enemies/enemy7.js';
 
 export default class LevelTopDown2 extends Phaser.Scene {
   /**
@@ -33,18 +34,18 @@ export default class LevelTopDown2 extends Phaser.Scene {
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y);
     this.player.setPlayerData(this.playerData);
 
-    this.a = new Enemy(this, this.player, 450, 200);
-    this.b = new Enemy5(this, this.player, 600, 200);
+    //this.a = new Enemy(this, this.player, 450, 200);
+    this.b = new Enemy7(this, this.player, 600, 200);
     new Spectral(this, this.player, 450, 200);
 
-    this.enemies = [this.a, this.b];
+    this.enemies = [this.b];
     this.layers = [wallLayer];
     
     this.physics.add.collider(this.player, wallLayer);
     this.physics.add.collider(this.player, voidLayer);
 
-    this.physics.add.collider(this.a, wallLayer,()=>this.a.isCol());
-    this.physics.add.collider(this.a, voidLayer,()=>this.a.isCol());
+    //this.physics.add.collider(this.a, wallLayer,()=>this.a.isCol());
+    //this.physics.add.collider(this.a, voidLayer,()=>this.a.isCol());
 
     this.physics.add.collider(this.b, wallLayer,()=>this.b.isCol());
     this.physics.add.collider(this.b, voidLayer,()=>this.b.isCol());
