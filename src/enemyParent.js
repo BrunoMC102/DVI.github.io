@@ -33,6 +33,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     //this.body.setCollideWorldBounds();
     this.sprite = new Phaser.GameObjects.Sprite(scene,0,0, texture);
     this.add(this.sprite);
+    //this.scene.add.existing(this.sprite);
     this.body.setSize(this.sprite.width,this.sprite.height);
     this.sprite.x = this.sprite.width/2;
     this.sprite.y = this.sprite.height/2;
@@ -69,7 +70,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
       this.destroy();
       this.spawnLoot();
     }
-
+F
   }
 
   spawnLoot(){
