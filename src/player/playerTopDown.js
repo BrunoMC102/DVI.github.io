@@ -191,7 +191,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
         this.projectile = new PlayerProyectile(this.scene,this.x,this.y,vx,vy);
         this.playerData.projectileGroups.forEach(element => {
-            element().add(this.projectile);
+            element().grupo.add(this.projectile);
         });
         
 
@@ -201,9 +201,14 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       
 
       setSpectral(){
-        this.playerData.projectileGroups = this.playerData.projectileGroups.filter((a)=>{a() != this.WallCollGroup});
+        this.playerData.setSpectral();
       }
       
+      setBouncy(){
+        
+        this.playerData.setBouncy();
+      }
+
       getDirectionX(){
         if(this.body.facing == Phaser.Physics.Arcade.FACING_RIGHT)
           return 1;
@@ -237,11 +242,14 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       displayColor(){}
       createGroups(){
         this.WallCollGroup = this.scene.add.group();
-        this.scene.physics.add.collider(this.WallCollGroup, this.scene.wallLayer, (o1,o2) => {o1.dest();});
+        this.scene.physics.add.collider(this.WallCollGroup, this.scene.wallLayer, (o1,o2) => {o1.dest()});
         this.EnemiesCollGroup = this.scene.add.group();
         this.scene.physics.add.overlap(this.EnemiesCollGroup, this.scene.enemies, (o1,o2) => {o1.dest();
            o2.hurt(this.playerData.damage);
-            this.playerData.projectileEffects.forEach(element => {element(o2)})});
+           this.playerData.projectileEffects.forEach(element => {element(o2)})});
+
+        this.WallCollGroup_noEff = this.scene.add.group();
+        this.scene.physics.add.collider(this.WallCollGroup_noEff, this.scene.wallLayer, ()=>{});
       }
 }
   

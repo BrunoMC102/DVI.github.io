@@ -4,6 +4,8 @@ import PowerUp from './objetos_recogibles/powerUp.js';
 import Coin from './objetos_recogibles/consumibles/coin.js';
 import Health from './objetos_recogibles/consumibles/health.js';
 import Arrow from './objetos_recogibles/consumibles/arrow.js';
+import Bouncy from './objetos_recogibles/pasivos/bouncy.js';
+
 
 export default class LevelTopDown extends Phaser.Scene {
 
@@ -26,11 +28,13 @@ export default class LevelTopDown extends Phaser.Scene {
 
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
-    this.bases = this.add.group();
-
+    
+    this.enemies = this.add.group();
     
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
     
+    new Bouncy(this, this.player, 450, 300);
+
     this.physics.add.collider(this.player, this.wallLayer);
     this.physics.add.collider(this.player, this.voidLayer);
     new Coin(this, this.player, 450, 200);
