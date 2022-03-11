@@ -32,8 +32,8 @@ export default class LevelTopDown3 extends Phaser.Scene {
 
     this.layers = [wallLayer];
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
-    this.player.life = this.currentLife;
-    this.player.setPlayerData(this.playerData);
+    
+    
 
     this.a = new Enemy2(this, this.player, 600, 400);
     this.enemies = [this.a];

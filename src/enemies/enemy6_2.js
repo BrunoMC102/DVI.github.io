@@ -1,5 +1,6 @@
 import ShootingEnemyParent from '../shootingEnemyParent.js';
-import Homing_p from '../homing_p.js';
+import Homing_p from '../proyectile/homing_p.js';
+import Basic_projectile from '../proyectile/basic_projectile.js';
 
 
 /**
@@ -27,10 +28,11 @@ export default class Enemy6_2 extends ShootingEnemyParent{
     
   }*/
 
-  setInitialVelocity(){
-        this.projectileE.body.setVelocity(this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv);
-    }
-    
+
+  creador(){
+    this.projectileE = new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha',this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv);
+  }
+  
     attack(d,dt){
 
         if (this.cont === 0){

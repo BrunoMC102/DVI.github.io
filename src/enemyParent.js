@@ -26,6 +26,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, false);
     this.body.allowGravity = false;
+    
     this.v = 150;
     this.scene.physics.add.collider(this, this.player, () => this.doDamage());
     this.health = 30;

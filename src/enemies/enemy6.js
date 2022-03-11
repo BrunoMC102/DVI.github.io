@@ -1,5 +1,5 @@
 import ShootingEnemyParent from '../shootingEnemyParent.js';
-import Homing_p from '../homing_p.js';
+import Homing_p from '../proyectile/homing_p.js';
 
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
@@ -15,12 +15,9 @@ export default class Enemy6 extends ShootingEnemyParent{
     //this.shootTime = 1;
   }
   creador(){
-    this.projectileE = new Homing_p(this.scene,this.x,this.y);
+    this.projectileE = new Homing_p(this.scene,this.x,this.y,this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv);
   }
 
-  setInitialVelocity(){
-        this.projectileE.body.setVelocity(this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv);
-    }
     
     fire(){
         for (let i = 0; i < 8; i++){

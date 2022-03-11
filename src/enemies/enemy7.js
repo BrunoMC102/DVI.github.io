@@ -1,5 +1,5 @@
 import ShootingEnemyParent from '../shootingEnemyParent.js';
-
+import Basic_projectile from '../proyectile/basic_projectile.js';
 
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
@@ -14,14 +14,14 @@ export default class Enemy7 extends ShootingEnemyParent{
     this.fireDirection = new Phaser.Math.Vector2(0,1);
     this.arrows = Math.floor(Math.random()*7+3);
     this.circun = Math.random()/5;
-    
   }
  
 
-  setInitialVelocity(){
-        this.projectileE.body.setVelocity(this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv);
-    }
-    
+  creador(){
+    this.projectileE = new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha',this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv);
+  }
+
+  
     fire(){
         this.fireDirection.x = this.player.x - this.centerX();
         this.fireDirection.y = this.player.y - this.centerY();

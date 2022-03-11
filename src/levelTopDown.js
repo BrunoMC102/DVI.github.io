@@ -21,18 +21,18 @@ export default class LevelTopDown extends Phaser.Scene {
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
 
     const groundLayer = map.createLayer('Ground', tileset);
-    const voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
-    const wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
+    this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
+    this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
 
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
     this.bases = this.add.group();
 
-    this.layers = [wallLayer];
+    
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
     
-    this.physics.add.collider(this.player, wallLayer);
-    this.physics.add.collider(this.player, voidLayer);
+    this.physics.add.collider(this.player, this.wallLayer);
+    this.physics.add.collider(this.player, this.voidLayer);
     new Coin(this, this.player, 450, 200);
     new HealthPotion(this, this.player, 600, 200);
     new Health(this, this.player, 750, 200);

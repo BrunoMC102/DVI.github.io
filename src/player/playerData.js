@@ -19,13 +19,9 @@ export default class PlayerData{
       this.flickerTime = 0;
 
       this.player = null;
+      this.projectileGroups = [() => {return this.player.WallCollGroup},() => {return this.player.EnemiesCollGroup}];
+      //this.projectileGroups = [];
     }
 
-    wallColl(){
-        if (this.player.scene.layers != undefined){
-          this.player.scene.layers.forEach( a => {this.player.scene.physics.add.collider(this.player.projectile, a, (o1,o2) => {
-            o1.destroy();
-            })});
-        }
-    }
+    
 }
