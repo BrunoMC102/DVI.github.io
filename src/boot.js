@@ -66,14 +66,23 @@ export default class Boot extends Phaser.Scene {
   }
 
     createAnimations() {
+    //Top Down
     //Idle
     this.anims.create({key: 'idle-side', frames: [{ key: 'character', frame: 'idle1.png'}], duration: -1});
     this.anims.create({key: 'idle-down', frames: [{ key: 'character', frame: 'idle2.png'}], duration: -1});
     this.anims.create({key: 'idle-up', frames: [{ key: 'character', frame: 'idle3.png'}], duration: -1});
 
-    this.anims.create({key: 'stand', frames: [{ key: 'characterScroll', frame: 'walk-143.png'}], duration: -1});
-
     //Walk
+    this.anims.create({
+      key: 'walk-side',
+      frames: this.anims.generateFrameNames('character', {start: 1, end: 9, prefix: 'walk-side', suffix: '.png'}),
+      frameRate: 15,
+      repeat: -1
+    });
+
+    //Lateral
+    this.anims.create({key: 'stand', frames: [{ key: 'characterScroll', frame: 'walk-143.png'}], duration: -1});
+    //Walk 
     this.anims.create({
     key: 'walk', 
     frames: this.anims.generateFrameNames('characterScroll',{ start: 143, end: 151 ,prefix: 'walk-',suffix: '.png'}),

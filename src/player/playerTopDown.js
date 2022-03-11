@@ -19,7 +19,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.body.allowGravity = false;
       this.immunity = 0;
 
-      //this.createAnimations();
       this.playerData = data;
       this.playerData.player = this;
       this.body.offset.x = -23;
@@ -29,6 +28,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       })
       this.sprite = new Phaser.GameObjects.Sprite(scene,0, 0,'character','idle1.png');
       this.add(this.sprite);
+      //this.scene.add.existing(this.sprite);
       this.body.setSize(this.body.width * 0.75, this.body.height * 1.2);
       
       //Informacion del jugador por pantalla
@@ -89,15 +89,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       }
       if (this.cursors.left.isDown) {
         this.body.setVelocityX(-this.playerData.speed);
-        this.sprite.anims.play('idle-side');
-        this.sprite.scaleX = 1;
-        //this.body.offset.x = 25;
+        this.sprite.anims.play('walk-side');
+        this.sprite.scaleX = -1;
       }
       else if (this.cursors.right.isDown) {
         this.body.setVelocityX(this.playerData.speed);
-        this.sprite.anims.play('idle-side');
-        this.sprite.scaleX = -1;
-        //this.body.offset.x = 70;
+        this.sprite.anims.play('walk-side');
+        this.sprite.scaleX = 1;
       }
       else {
         this.body.setVelocityX(0);
