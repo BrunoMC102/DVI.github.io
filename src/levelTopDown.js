@@ -4,6 +4,8 @@ import PowerUp from './objetos_recogibles/powerUp.js';
 import Coin from './objetos_recogibles/consumibles/coin.js';
 import Health from './objetos_recogibles/consumibles/health.js';
 import Arrow from './objetos_recogibles/consumibles/arrow.js';
+import Bouncy from './objetos_recogibles/pasivos/bouncy.js';
+
 
 export default class LevelTopDown extends Phaser.Scene {
 
@@ -21,18 +23,20 @@ export default class LevelTopDown extends Phaser.Scene {
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
 
     const groundLayer = map.createLayer('Ground', tileset);
-    const voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
-    const wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
+    this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
+    this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
 
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
-    this.bases = this.add.group();
-
-    this.layers = [wallLayer];
+    
+    this.enemies = this.add.group();
+    
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
     
-    this.physics.add.collider(this.player, wallLayer);
-    this.physics.add.collider(this.player, voidLayer);
+    new Bouncy(this, this.player, 450, 300);
+
+    this.physics.add.collider(this.player, this.wallLayer);
+    this.physics.add.collider(this.player, this.voidLayer);
     new Coin(this, this.player, 450, 200);
     new HealthPotion(this, this.player, 600, 200);
     new Health(this, this.player, 750, 200);

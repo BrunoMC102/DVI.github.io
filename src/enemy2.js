@@ -9,9 +9,10 @@ export default class Enemy2 extends EnemyParent{
  
   
   constructor(scene, player, x, y) {
-    super(scene,player,x,y,'brainmole', 'attack-7.png');
+    super(scene,player,x,y,'moleStand');
     this.a = 1000;
     this.v = 50;
+    
   }
 
 

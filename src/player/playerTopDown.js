@@ -1,4 +1,4 @@
-
+import PlayerProyectile from "../proyectile/playerProyectile.js";
 import ProjectileBar from "../projectileBar.js";
 
 export default class PlayerTopDown extends Phaser.GameObjects.Container {
@@ -23,9 +23,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.playerData.player = this;
       this.body.offset.x = -23;
       this.body.offset.y = -27;
-      this.projectiles = this.scene.physics.add.group({
-        classType: Phaser.Physics.Arcade.Image
-      })
+      this.createGroups();
       this.sprite = new Phaser.GameObjects.Sprite(scene,0, 0,'character','idle1.png');
       this.add(this.sprite);
       //this.scene.add.existing(this.sprite);
@@ -45,33 +43,11 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       
       this.projectileCharging = false;
       this.origTint = this.sprite.tint;
-      this.setPlayerData();
-    }
-
-    setPlayerData(playerData) {
-      this.speed = 300;
-      this.vSpeed = 300;
-      this.jumpSpeed = -400;
-      this.health = 6;
-      this.damage = 10;
-      
-      
-      this.money = 0; // dinero del jugador
-      this.healthPotions = 0; // pociones de vida
-      this.manaPotions = 0; // pociones de mana
-
-      //Informacion proyectiles
-      this.projectileBaseSpeed = 500;
-      this.projectileSpeed = this.projectileBaseSpeed;
-      this.projectileMaxSpeed = 1000;
-      this.arrows = 100;
       this.flickerTime = 0;
     }
     
     
-    updateHealth() {
-      this.label.text = 'Health: ' + this.playerData.health;
-    }
+   
     preUpdate(t,dt) {
 
 
@@ -114,10 +90,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         this.displayColor = () => {};
       
       //Handle shooting keyboard
-      if(this.arrows > 0){
+      if(this.playerData.arrows > 0){
         if(this.cursors.space.isDown){
           if (this.playerData.projectileSpeed < this.playerData.projectileMaxSpeed)
-          this.playerData.projectileSpeed += dt/2
+            this.playerData.projectileSpeed += dt/2
           else{
             this.playerData.projectileSpeed = this.playerData.projectileMaxSpeed
           }
@@ -131,10 +107,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           this.playerData.arrows--
         }
 
-        this.displayColor();
-        this.flickerTime +=dt;
       }
 
+        this.displayColor();
+        this.flickerTime +=dt;
       //Handle shooting controller
       if(pad != undefined){
         if(this.playerData.arrows > 0){
@@ -186,56 +162,51 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     }*/
 
     fire(){
-      
-        this.projectile = this.projectiles.get(this.x,this.y,'flecha');
+        let vx,vy;
         
-        if (this.scene.enemies != undefined){
-          this.scene.enemies.forEach( a => {this.scene.physics.add.overlap(this.projectile, a, (o1, o2) => {
-            o1.destroy();
-            o2.hurt(this.damage)})});
-        }
+        
+        
 
-        this.playerData.wallColl();
-        
-        
-        this.projectile.setCollideWorldBounds(true);
-        this.projectile.body.onWorldBounds = true;
-        this.projectile.body.world.on('worldbounds', (o1) => {
-          o1.destroy();
-          o1.gameObject.destroy();
-        },this);
-
-        const dimension = Math.min(this.projectile.body.width,this.projectile.body.height);
-        this.projectile.body.setSize(dimension,dimension);
-
-        this.projectile.body.allowGravity = false;
-        
         let v = this.body.velocity.normalize().scale(this.playerData.projectileSpeed);
         if (v.x == 0 && v.y == 0){
-          this.body.facing;
-          this.projectile.setVelocity(this.playerData.projectileSpeed,0);
-          this.projectile.setVelocity(this.getDirectionX() * this.playerData.projectileSpeed, this.getDirectionY() * this.playerData.projectileSpeed);
+          
+          vx = this.getDirectionX() * this.playerData.projectileSpeed
+          vy = this.getDirectionY() * this.playerData.projectileSpeed
         }
-        else
-          this.projectile.setVelocity(v.x,v.y);
-          let pad = this.scene.input.gamepad.getPad(0);
-
-        
+        else{
+          vx = v.x
+          vy = v.y
+        }
+        let pad = this.scene.input.gamepad.getPad(0);
         if(pad != undefined){
           const dir = new Phaser.Math.Vector2(pad.rightStick.x,pad.rightStick.y);
-          if (dir.x != 0 || dir.y != 0)
-            this.projectile.setVelocity(dir.normalize().scale(this.playerData.projectileSpeed).x,dir.normalize().scale(this.playerData.projectileSpeed).y);
+          if (dir.x != 0 || dir.y != 0){
+            vx = dir.normalize().scale(this.playerData.projectileSpeed).x;
+            vy = dir.normalize().scale(this.playerData.projectileSpeed).y;
+          }
         }
-        this.projectile.setRotation(this.projectile.body.velocity.angle());
+
+
+        this.projectile = new PlayerProyectile(this.scene,this.x,this.y,vx,vy);
+        this.playerData.projectileGroups.forEach(element => {
+            element().grupo.add(this.projectile);
+        });
+        
+
       }
       
           
       
 
       setSpectral(){
-        this.playerData.wallColl = ()=>{};
+        this.playerData.setSpectral();
       }
       
+      setBouncy(){
+        
+        this.playerData.setBouncy();
+      }
+
       getDirectionX(){
         if(this.body.facing == Phaser.Physics.Arcade.FACING_RIGHT)
           return 1;
@@ -267,5 +238,16 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       }
 
       displayColor(){}
+      createGroups(){
+        this.WallCollGroup = this.scene.add.group();
+        this.scene.physics.add.collider(this.WallCollGroup, this.scene.wallLayer, (o1,o2) => {o1.dest()});
+        this.EnemiesCollGroup = this.scene.add.group();
+        this.scene.physics.add.overlap(this.EnemiesCollGroup, this.scene.enemies, (o1,o2) => {o1.dest();
+           o2.hurt(this.playerData.damage);
+           this.playerData.projectileEffects.forEach(element => {element(o2)})});
+
+        this.WallCollGroup_noEff = this.scene.add.group();
+        this.scene.physics.add.collider(this.WallCollGroup_noEff, this.scene.wallLayer, ()=>{});
+      }
 }
   

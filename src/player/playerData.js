@@ -19,13 +19,17 @@ export default class PlayerData{
       this.flickerTime = 0;
 
       this.player = null;
+      this.projectileGroups = [() => {return {id: 'nWall', grupo: this.player.WallCollGroup}}, () => {return {id:"enemiesColl", grupo: this.player.EnemiesCollGroup}}];
+      //this.projectileGroups = [];
+      this.projectileEffects = [(enemy) => {enemy.freeze()}];
     }
 
-    wallColl(){
-        if (this.player.scene.layers != undefined){
-          this.player.scene.layers.forEach( a => {this.player.scene.physics.add.collider(this.player.projectile, a, (o1,o2) => {
-            o1.destroy();
-            })});
-        }
+    setBouncy(){
+      this.projectileGroups = this.projectileGroups.filter((a)=> a().id != 'nWall');
+      this.projectileGroups.push(() => {return {id: "bouncy", grupo:this.player.WallCollGroup_noEff}});
+    }
+
+    setSpectral(){
+      this.projectileGroups = this.projectileGroups.filter(a=>a().id != 'nWall');
     }
 }

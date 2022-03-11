@@ -1,5 +1,5 @@
 import ShootingEnemyParent from './shootingEnemyParent.js';
-import Homing_p from './homing_p.js';
+import Homing_p from './proyectile/homing_p.js';
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
  * Cada plataforma es responsable de crear la base que aparece sobre ella y en la 

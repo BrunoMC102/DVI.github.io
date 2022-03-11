@@ -1,6 +1,6 @@
 export default class Basic_projectile extends Phaser.GameObjects.Image{
 
-    constructor(scene,x,y,texture){
+    constructor(scene,x,y,texture,vx,vy){
         super(scene,x,y,texture);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, false);
@@ -15,7 +15,7 @@ export default class Basic_projectile extends Phaser.GameObjects.Image{
         
         const dimension = Math.min(this.body.width,this.body.height);
         this.body.setSize(dimension,dimension);
-        
+        this.body.setVelocity(vx,vy);
     }
 
 
@@ -26,6 +26,10 @@ export default class Basic_projectile extends Phaser.GameObjects.Image{
         }
         if(this.time_left <= 0) this.destroy();
         this.time_left -= dt/1000;
+    }
+
+    dest(){
+        this.destroy();
     }
 
 }

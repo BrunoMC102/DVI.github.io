@@ -3,8 +3,8 @@ import Basic_projectile from "./basic_projectile.js";
 
 export default class Homing_p extends Basic_projectile{
 
-    constructor(scene,x,y){
-        super(scene,x,y,'flecha');
+    constructor(scene,x,y,vx,vy){
+        super(scene,x,y,'flecha',vx,vy);
         this.body.setMaxSpeed(300);
     }
 

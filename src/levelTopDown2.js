@@ -28,26 +28,32 @@ export default class LevelTopDown2 extends Phaser.Scene {
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
 
     const groundLayer = map.createLayer('Ground', tileset);
-    const voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
-    const wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
+    this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
+    this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
 
-   this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
+    this.enemies = this.add.group();
 
     //this.a = new Enemy(this, this.player, 450, 200);
+    this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
     this.b = new Enemy7(this, this.player, 600, 200);
     new Spectral(this, this.player, 450, 200);
-
-    this.enemies = [this.b];
-    this.layers = [wallLayer];
     
-    this.physics.add.collider(this.player, wallLayer);
-    this.physics.add.collider(this.player, voidLayer);
+    
+    
+    this.enemies.add(this.b);
+
+    //this.layers = [wallLayer];
+    
+    
+
+    this.physics.add.collider(this.player, this.wallLayer);
+    this.physics.add.collider(this.player, this.voidLayer);
 
     //this.physics.add.collider(this.a, wallLayer,()=>this.a.isCol());
     //this.physics.add.collider(this.a, voidLayer,()=>this.a.isCol());
 
-    this.physics.add.collider(this.b, wallLayer,()=>this.b.isCol());
-    this.physics.add.collider(this.b, voidLayer,()=>this.b.isCol());
+    //this.physics.add.collider(this.b, this.wallLayer,()=>this.b.isCol());
+    //this.physics.add.collider(this.b, this.voidLayer,()=>this.b.isCol());
 
     //Hitbox que contiene fisicas para ver si solapa con el player (puede ser un array para tener varias hitbox)
     this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(30, 510, 60, 122)];

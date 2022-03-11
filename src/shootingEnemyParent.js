@@ -1,4 +1,4 @@
-import Basic_projectile from './basic_projectile.js';
+import Basic_projectile from './proyectile/basic_projectile.js';
 import EnemyParent from './enemyParent.js';
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
@@ -47,8 +47,6 @@ export default class ShootingEnemyParent extends EnemyParent{
     this.projectileE.body.world.on('worldbounds', () => {
         this.projectileE.destroy();
         },this);*/
-    
-    this.setInitialVelocity();
     //this.projectileE.rotation =   Math.atan2(dx/t,dy/t) + 180;
     }
   
@@ -66,7 +64,11 @@ export default class ShootingEnemyParent extends EnemyParent{
   }
 
   creador(){
-    this.projectileE = new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha');
+    let dx = this.player.x - this.x;
+    let dy = this.player.y - this.y;
+    let t = Math.abs(dx)+Math.abs(dy);
+    
+    this.projectileE = new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha',dx*this.Pv/t,dy*this.Pv/t);
   }
 
   attack(d,dt){
@@ -79,12 +81,8 @@ export default class ShootingEnemyParent extends EnemyParent{
       }
    }
   
-   setInitialVelocity(){
-    let dx = this.player.x - this.x;
-    let dy = this.player.y - this.y;
-    let t = Math.abs(dx)+Math.abs(dy);
-     this.projectileE.body.setVelocity(dx*this.Pv/t,dy*this.Pv/t)
-    }
+  
+   
 
   move(){
 
