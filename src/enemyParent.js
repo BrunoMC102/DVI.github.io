@@ -37,7 +37,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     this.sprite.x = this.sprite.width/2;
     this.sprite.y = this.sprite.height/2;
 
-    
+    this.origTint = this.sprite.tint;
     
     const consumibles = [()=>new Coin(scene,player,this.x,this.y), ()=>new Health(scene,player,this.x,this.y),()=>new Arrow(scene,player,this.x,this.y)]
     this.consumible = consumibles[Math.floor(Math.random()*consumibles.length)];
@@ -75,6 +75,17 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
   spawnLoot(){
     if(Math.random() < 0.8){
       this.consumible();
+    }
+  }
+
+  freeze(){
+    if(this.health > 0){
+      this.sprite.tint = 0x9265ff
+     
+      let aux = this.preUpdate;
+      this.preUpdate = () =>{};
+      this.scene.time.delayedCall(5000, ()=>{this.sprite.tint = this.origTint; this.preUpdate = aux});
+
     }
   }
 

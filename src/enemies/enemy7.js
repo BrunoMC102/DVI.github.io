@@ -14,6 +14,7 @@ export default class Enemy7 extends ShootingEnemyParent{
     this.fireDirection = new Phaser.Math.Vector2(0,1);
     this.arrows = Math.floor(Math.random()*7+3);
     this.circun = Math.random()/5;
+    this.shootTime = 2;
   }
  
 

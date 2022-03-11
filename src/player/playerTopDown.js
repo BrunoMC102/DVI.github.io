@@ -201,7 +201,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       
 
       setSpectral(){
-        this.playerData.projectileGroups.filter((a)=>{a() == this.WallCollGroup});
+        this.playerData.projectileGroups = this.playerData.projectileGroups.filter((a)=>{a() != this.WallCollGroup});
       }
       
       getDirectionX(){
@@ -239,7 +239,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         this.WallCollGroup = this.scene.add.group();
         this.scene.physics.add.collider(this.WallCollGroup, this.scene.wallLayer, (o1,o2) => {o1.dest();});
         this.EnemiesCollGroup = this.scene.add.group();
-        this.scene.physics.add.overlap(this.EnemiesCollGroup, this.scene.enemies, (o1,o2) => {o1.dest(); o2.hurt(this.playerData.damage)});
+        this.scene.physics.add.overlap(this.EnemiesCollGroup, this.scene.enemies, (o1,o2) => {o1.dest();
+           o2.hurt(this.playerData.damage);
+            this.playerData.projectileEffects.forEach(element => {element(o2)})});
       }
 }
   

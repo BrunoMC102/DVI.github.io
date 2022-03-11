@@ -21,6 +21,7 @@ export default class PlayerData{
       this.player = null;
       this.projectileGroups = [() => {return this.player.WallCollGroup},() => {return this.player.EnemiesCollGroup}];
       //this.projectileGroups = [];
+      this.projectileEffects = [(enemy) => {enemy.freeze()}];
     }
 
     
