@@ -70,7 +70,6 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
       this.destroy();
       this.spawnLoot();
     }
-F
   }
 
   spawnLoot(){
