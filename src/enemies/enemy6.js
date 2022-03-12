@@ -1,4 +1,4 @@
-import ShootingEnemyParent from '../shootingEnemyParent.js';
+import ShootingEnemyParent from './shootingEnemyParent.js';
 import Homing_p from '../proyectile/homing_p.js';
 
 /**

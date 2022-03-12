@@ -1,12 +1,12 @@
-import EnemyParent from './enemyParent.js';
-import PlayerTopDown from './player/playerTopDown.js';
-import Enemy from './enemy.js';
-import Enemy2 from './enemy2.js';
-import Enemy3 from './enemy3.js';
-import Enemy4 from './enemy4.js';
-import Enemy5 from './enemy5.js';
-import Spectral from './objetos_recogibles/pasivos/spectral.js';
-import Enemy7 from './enemies/enemy7.js';
+import EnemyParent from '../../enemies/enemyParent.js';
+import PlayerTopDown from '../../player/playerTopDown.js';
+import Enemy from '../../enemies/enemy.js';
+import Enemy2 from '../../enemies/enemy2.js';
+import Enemy3 from '../../enemies/enemy3.js';
+import Enemy4 from '../../enemies/enemy4.js';
+import Enemy5 from '../../enemies/enemy5.js';
+import Spectral from '../../objetos_recogibles/pasivos/spectral.js';
+import Enemy7 from '../../enemies/enemy7.js';
 
 export default class LevelTopDown2 extends Phaser.Scene {
   /**

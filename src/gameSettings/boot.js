@@ -1,4 +1,4 @@
-import PlayerData from "./player/playerData.js";
+import PlayerData from "../player/playerData.js";
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 

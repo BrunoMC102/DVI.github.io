@@ -1,11 +1,11 @@
 import Boot from './boot.js';
-import End from './end.js';
-import Level from './level.js';
-import LevelTopDown from './levelTopDown.js';
-import LevelTopDown2 from './levelTopDown2.js';
-import LevelTopDown3 from './levelTopDown3.js';
-import LevelTopDown4 from './levelTopDown4.js';
-import LevelScroll from './levelScroll.js';
+import End from '../end.js';
+import Level from '../levels/levelsTopDown/level.js';
+import LevelTopDown from '../levels/levelsTopDown/levelTopDown.js';
+import LevelTopDown2 from '../levels/levelsTopDown/levelTopDown2.js';
+import LevelTopDown3 from '../levels/levelsTopDown/levelTopDown3.js';
+import LevelTopDown4 from '../levels/levelsTopDown/levelTopDown4.js';
+import LevelScroll from '../levels/levelsScroll/levelScroll.js';
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos

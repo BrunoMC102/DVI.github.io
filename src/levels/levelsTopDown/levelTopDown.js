@@ -1,11 +1,10 @@
-import HealthPotion from './healthPotion.js';
-import PlayerTopDown from './player/playerTopDown.js';
-import PowerUp from './objetos_recogibles/powerUp.js';
-import Coin from './objetos_recogibles/consumibles/coin.js';
-import Health from './objetos_recogibles/consumibles/health.js';
-import Arrow from './objetos_recogibles/consumibles/arrow.js';
-import Bouncy from './objetos_recogibles/pasivos/bouncy.js';
-
+import HealthPotion from '../../objetos_recogibles/consumibles/healthPotion.js';
+import PlayerTopDown from '../../player/playerTopDown.js';
+import PowerUp from '../../objetos_recogibles/powerUp.js';
+import Coin from '../../objetos_recogibles/consumibles/coin.js';
+import Health from '../../objetos_recogibles/consumibles/health.js';
+import Arrow from '../../objetos_recogibles/consumibles/arrow.js';
+import Bouncy from '../../objetos_recogibles/pasivos/bouncy.js';
 
 export default class LevelTopDown extends Phaser.Scene {
 

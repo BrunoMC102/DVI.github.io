@@ -1,3 +1,5 @@
+import PowerUp from "./objetos_recogibles/powerUp";
+
 export default class ManaPotion extends Phaser.GameObjects.Image{
 
     constructor(scene,player,x,y){

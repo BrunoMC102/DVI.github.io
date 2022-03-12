@@ -1,5 +1,5 @@
 import PlayerProyectile from "../proyectile/playerProyectile.js";
-import ProjectileBar from "../projectileBar.js";
+import ProjectileBar from "./projectileBar.js";
 
 export default class PlayerTopDown extends Phaser.GameObjects.Container {
   
@@ -238,6 +238,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       }
 
       displayColor(){}
+      
       createGroups(){
         this.WallCollGroup = this.scene.add.group();
         this.scene.physics.add.collider(this.WallCollGroup, this.scene.wallLayer, (o1,o2) => {o1.dest()});

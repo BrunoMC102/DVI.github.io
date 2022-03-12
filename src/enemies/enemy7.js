@@ -1,4 +1,4 @@
-import ShootingEnemyParent from '../shootingEnemyParent.js';
+import ShootingEnemyParent from './shootingEnemyParent.js';
 import Basic_projectile from '../proyectile/basic_projectile.js';
 
 /**

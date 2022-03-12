@@ -1,4 +1,4 @@
-import ProjectileBar from "../projectileBar.js";
+import ProjectileBar from "./projectileBar.js";
 export default class PlayerData{
     constructor(){
       this.speed = 300;

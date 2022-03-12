@@ -1,6 +1,6 @@
 
-import HealthPotion from './healthPotion.js';
-import Player from './player.js';
+import HealthPotion from '../../objetos_recogibles/consumibles/healthPotion.js';
+import Player from '../../player/player.js';
 
 /**
  .

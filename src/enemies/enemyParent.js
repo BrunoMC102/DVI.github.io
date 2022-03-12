@@ -1,6 +1,6 @@
-import Arrow from "./objetos_recogibles/consumibles/arrow.js";
-import Coin from "./objetos_recogibles/consumibles/coin.js";
-import Health from "./objetos_recogibles/consumibles/health.js";
+import Arrow from "../objetos_recogibles/consumibles/arrow.js";
+import Coin from "../objetos_recogibles/consumibles/coin.js";
+import Health from "../objetos_recogibles/consumibles/health.js";
 
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.

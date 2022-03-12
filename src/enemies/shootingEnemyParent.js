@@ -1,4 +1,4 @@
-import Basic_projectile from './proyectile/basic_projectile.js';
+import Basic_projectile from '../proyectile/basic_projectile.js';
 import EnemyParent from './enemyParent.js';
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
