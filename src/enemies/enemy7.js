@@ -19,7 +19,7 @@ export default class Enemy7 extends ShootingEnemyParent{
  
 
   creador(){
-    this.projectileE = new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha',this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv);
+    return new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha',this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv);
   }
 
   

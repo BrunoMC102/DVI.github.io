@@ -34,8 +34,7 @@ export default class LevelTopDown extends Phaser.Scene {
     
     new Bouncy(this, this.player, 450, 300);
 
-    this.physics.add.collider(this.player, this.wallLayer);
-    this.physics.add.collider(this.player, this.voidLayer);
+    
     new Coin(this, this.player, 450, 200);
     new HealthPotion(this, this.player, 600, 200);
     new Health(this, this.player, 750, 200);

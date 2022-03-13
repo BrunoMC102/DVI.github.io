@@ -46,8 +46,7 @@ export default class LevelTopDown2 extends Phaser.Scene {
     
     
 
-    this.physics.add.collider(this.player, this.wallLayer);
-    this.physics.add.collider(this.player, this.voidLayer);
+    
 
     //this.physics.add.collider(this.a, wallLayer,()=>this.a.isCol());
     //this.physics.add.collider(this.a, voidLayer,()=>this.a.isCol());

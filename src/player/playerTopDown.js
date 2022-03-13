@@ -24,6 +24,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.body.offset.x = -23;
       this.body.offset.y = -27;
       this.createGroups();
+      this.WallCollGroup_noEff.add(this);
+      this.VoidCollGroup_noEff.add(this);
+
+      
       this.sprite = new Phaser.GameObjects.Sprite(scene,0, 0,'character','idle1.png');
       this.add(this.sprite);
       //this.scene.add.existing(this.sprite);
@@ -249,6 +253,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
         this.WallCollGroup_noEff = this.scene.add.group();
         this.scene.physics.add.collider(this.WallCollGroup_noEff, this.scene.wallLayer, ()=>{});
+        this.VoidCollGroup_noEff = this.scene.add.group();
+        this.scene.physics.add.collider(this.VoidCollGroup_noEff, this.scene.voidLayer, ()=>{});
       }
 }
   

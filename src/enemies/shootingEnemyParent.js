@@ -9,7 +9,6 @@ export default class ShootingEnemyParent extends EnemyParent{
   
   constructor(scene, player, x, y) {
     super(scene,player,x,y,'enemy');
-    this.projectileE;
     this.cont = 0;
     
     //this.projectilesE = this.scene.physics.add.group({
@@ -17,48 +16,17 @@ export default class ShootingEnemyParent extends EnemyParent{
     //})
     this.shootTime = 5;
     this.Pv = 1000; //Projectile speed
-    this.projectilesE = this.scene.physics.add.group({
-      classType: this.cl,
-    })
+    this.createGropus();
     
   }
-
-
-
- 
 
 
   fire(){
-    
-
-    //this.projectileE = this.projectilesE.get(this.x,this.y,'flecha');
-
-
-    this.creador();
-    this.scene.physics.add.collider(this.projectileE, this.player, (o1,o2) => {
-    o1.destroy();
-    this.player.hurt(this.damage)
-    });
-
-    this.wallColl();
-
-    /*this.projectileE.setCollideWorldBounds(true);
-    this.projectileE.body.onWorldBounds = true;
-    this.projectileE.body.world.on('worldbounds', () => {
-        this.projectileE.destroy();
-        },this);*/
-    //this.projectileE.rotation =   Math.atan2(dx/t,dy/t) + 180;
+    const disparo = this.creador();
+    this.addtoGroups(disparo);
     }
   
-  wallColl(){
-    
-    if (this.scene.layers != undefined){
-        this.scene.layers.forEach( a => {this.scene.physics.add.collider(this.projectileE, a, (o1,o2) => {
-            o1.destroy();
-            })});
-    }
-  }
-
+  
   moveU(d,dt){
     this.attack(d,dt);
   }
@@ -67,8 +35,13 @@ export default class ShootingEnemyParent extends EnemyParent{
     let dx = this.player.x - this.x;
     let dy = this.player.y - this.y;
     let t = Math.abs(dx)+Math.abs(dy);
-    
-    this.projectileE = new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha',dx*this.Pv/t,dy*this.Pv/t);
+    return new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha',dx*this.Pv/t,dy*this.Pv/t);
+  }
+
+
+  addtoGroups(disparo){
+    this.wallCollGroup.add(disparo);
+    this.playerCollGroup.add(disparo);
   }
 
   attack(d,dt){
@@ -81,9 +54,6 @@ export default class ShootingEnemyParent extends EnemyParent{
       }
    }
   
-  
-   
-
   move(){
 
   }
@@ -92,5 +62,17 @@ export default class ShootingEnemyParent extends EnemyParent{
   }
   centerY(){
     return this.y + this.sprite.height/2
+  }
+  createGropus(){
+    this.wallCollGroup = this.scene.add.group();
+    this.scene.physics.add.collider(this.wallCollGroup, this.scene.wallLayer, (o1,o2) => {
+      o1.destroy();
+      });
+
+    this.playerCollGroup = this.scene.add.group();
+    this.scene.physics.add.collider(this.playerCollGroup, this.player, (o1,o2) => {
+      o1.destroy();
+      o2.hurt(this.damage);
+      });
   }
 }

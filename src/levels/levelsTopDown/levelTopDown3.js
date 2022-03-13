@@ -23,27 +23,26 @@ export default class LevelTopDown3 extends Phaser.Scene {
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
 
     const groundLayer = map.createLayer('Ground', tileset);
-    const voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
-    const wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
+    this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
+    this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
 
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
-    this.bases = this.add.group();
+    
+    this.enemies = this.add.group();
 
-    this.layers = [wallLayer];
+    
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
     
     
 
     this.a = new Enemy2(this, this.player, 600, 400);
-    this.enemies = [this.a];
-    this.layers = [wallLayer];
+    
+    this.enemies.add(this.a);
 
-    this.physics.add.collider(this.player, wallLayer);
-    this.physics.add.collider(this.player, voidLayer);
+    
 
-    this.physics.add.collider(this.a, wallLayer,()=>this.a.isCol());
-    this.physics.add.collider(this.a, voidLayer,()=>this.a.isCol());
+    
 
     this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(30, 510, 60, 122)];
     this.physics.world.enable(this.sceneChange);
