@@ -45,7 +45,11 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     const consumibles = [()=>new Coin(scene,player,this.x,this.y), ()=>new Health(scene,player,this.x,this.y),()=>new Arrow(scene,player,this.x,this.y)]
     this.consumible = consumibles[Math.floor(Math.random()*consumibles.length)];
     this.freezing = false;
-    this.knocking = false;
+    this.knockbackinfo = {
+      move: ()=>{},
+      knocking:false,
+      knockEvent:null
+    }
   }
 
   
@@ -102,27 +106,31 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
   }
 
   knockback(x,y,p){
-    if(!this.knocking){
-      this.knocking = true;
-      if(this.health > 0){
-        this.body.setBounce(0,0);
-        const bounce = this.body.bounce
-        const dir = new Phaser.Math.Vector2(x,y).normalize().scale(p);
-        this.body.setVelocity(dir.x,dir.y);
-        this.body.setAcceleration(0,0);
-        this.body.setDrag(0.003);
-        let aux = this.moveU;
-        this.moveU = () =>{};
-        this.scene.time.delayedCall(300, ()=>{this.moveU = aux; 
-          this.knocking = false;
-          if(this.body != undefined){
-            this.body.setVelocity(0,0);
-            this.body.setDrag(1); 
-            this.body.setBounce(bounce.x,bounce.y)
-          }
-          });
-      }
-    }
-  }
+    
+    if(this.health <= 0)
+      return;
 
+    if(this.knockbackinfo.knocking)
+      this.knockbackinfo.knockEvent.remove()
+    else
+      this.knockbackinfo.move = this.moveU;
+
+    this.knockbackinfo.knocking = true;
+    this.body.setBounce(0,0);
+    const bounce = this.body.bounce
+    const dir = new Phaser.Math.Vector2(x,y).normalize().scale(p);
+    this.body.setVelocity(dir.x,dir.y);
+    this.body.setAcceleration(0,0);
+    this.body.setDrag(0.003);
+    this.moveU = () =>{};
+    this.knockbackinfo.knockEvent = this.scene.time.delayedCall(300, ()=>{this.moveU = this.knockbackinfo.move; 
+      this.knockbackinfo.knocking = false;
+      if(this.body != undefined){
+        this.body.setVelocity(0,0);
+        this.body.setDrag(1); 
+        this.body.setBounce(bounce.x,bounce.y)
+      }
+    });
+  }
+  
 }
