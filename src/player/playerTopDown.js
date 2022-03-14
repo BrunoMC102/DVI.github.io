@@ -249,7 +249,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         this.EnemiesCollGroup = this.scene.add.group();
         this.scene.physics.add.overlap(this.EnemiesCollGroup, this.scene.enemies, (o1,o2) => {
            o2.hurt(this.playerData.damage);
-           o2.knockback(o1.body.velocity.x,o1.body.velocity.y,300);
+           o2.knockback(o1.body.velocity.x,o1.body.velocity.y,400);
            o1.dest();
            this.playerData.projectileEffects.forEach(element => {element(o2)})});
 

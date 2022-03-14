@@ -28,6 +28,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     this.body.allowGravity = false;
     this.scene.physics.add.collider(this, this.scene.wallLayer,()=>this.isCol());
     this.scene.physics.add.collider(this, this.scene.voidLayer,()=>this.isCol());
+    this.body.useDamping = true;
     this.v = 150;
     this.scene.physics.add.collider(this, this.player, () => this.doDamage());
     this.health = 30;
@@ -108,10 +109,11 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
         const bounce = this.body.bounce
         const dir = new Phaser.Math.Vector2(x,y).normalize().scale(p);
         this.body.setVelocity(dir.x,dir.y);
-        this.body.setAcceleration(-dir.x,-dir.y);
+        this.body.setAcceleration(0,0);
+        this.body.setDrag(0.003);
         let aux = this.moveU;
         this.moveU = () =>{};
-        this.scene.time.delayedCall(1000, ()=>{this.moveU = aux; this.body.setVelocity(0,0); this.body.setAcceleration(0,0); this.knocking = false; this.body.setBounce(bounce.x,bounce.y)});
+        this.scene.time.delayedCall(300, ()=>{this.moveU = aux; this.body.setVelocity(0,0); this.body.setDrag(1); this.knocking = false; this.body.setBounce(bounce.x,bounce.y)});
       }
     }
   }
