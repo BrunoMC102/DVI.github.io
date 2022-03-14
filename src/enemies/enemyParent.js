@@ -43,6 +43,8 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     
     const consumibles = [()=>new Coin(scene,player,this.x,this.y), ()=>new Health(scene,player,this.x,this.y),()=>new Arrow(scene,player,this.x,this.y)]
     this.consumible = consumibles[Math.floor(Math.random()*consumibles.length)];
+    this.freezing = false;
+    this.knocking = false;
   }
 
   
@@ -80,18 +82,37 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
   }
 
   freeze(){
-    if(this.health > 0){
-      const v_x = this.body.velocity.x;
-      const v_y = this.body.velocity.y;
-      const a_x = this.body.acceleration.x;
-      const a_y = this.body.acceleration.y; 
-      this.sprite.tint = 0x9265ff
-      this.body.setVelocity(0,0);
-      this.body.setAcceleration(0,0);
-      let aux = this.preUpdate;
-      this.preUpdate = () =>{};
-      this.scene.time.delayedCall(5000, ()=>{this.sprite.tint = this.origTint; this.preUpdate = aux; this.body.setVelocity(v_x,v_y); this.body.setAcceleration(a_x,a_y)});
+    if(!this.freezing){
+      this.freezing = true;
+      if(this.health > 0){
+        const v_x = this.body.velocity.x;
+        const v_y = this.body.velocity.y;
+        const a_x = this.body.acceleration.x;
+        const a_y = this.body.acceleration.y; 
+        this.sprite.tint = 0x9265ff
+        this.body.setVelocity(0,0);
+        this.body.setAcceleration(0,0);
+        let aux = this.preUpdate;
+        this.preUpdate = () =>{};
+        this.scene.time.delayedCall(5000, ()=>{this.sprite.tint = this.origTint; this.preUpdate = aux; this.body.setVelocity(v_x,v_y); this.body.setAcceleration(a_x,a_y); this.freezing = false;});
 
+      }
+    }
+  }
+
+  knockback(x,y,p){
+    if(!this.knocking){
+      this.knocking = true;
+      if(this.health > 0){
+        this.body.setBounce(0,0);
+        const bounce = this.body.bounce
+        const dir = new Phaser.Math.Vector2(x,y).normalize().scale(p);
+        this.body.setVelocity(dir.x,dir.y);
+        this.body.setAcceleration(-dir.x,-dir.y);
+        let aux = this.moveU;
+        this.moveU = () =>{};
+        this.scene.time.delayedCall(1000, ()=>{this.moveU = aux; this.body.setVelocity(0,0); this.body.setAcceleration(0,0); this.knocking = false; this.body.setBounce(bounce.x,bounce.y)});
+      }
     }
   }
 

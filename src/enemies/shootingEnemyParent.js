@@ -26,8 +26,8 @@ export default class ShootingEnemyParent extends EnemyParent{
     this.addtoGroups(disparo);
     }
   
-  
-  moveU(d,dt){
+  preUpdate(d,dt){
+    this.moveU(d,dt);
     this.attack(d,dt);
   }
 

@@ -26,8 +26,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.createGroups();
       this.WallCollGroup_noEff.add(this);
       this.VoidCollGroup_noEff.add(this);
+      this.body.pushable = false;
 
-      
       this.sprite = new Phaser.GameObjects.Sprite(scene,0, 0,'character','idle1.png');
       this.add(this.sprite);
       //this.scene.add.existing(this.sprite);
@@ -247,8 +247,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         this.WallCollGroup = this.scene.add.group();
         this.scene.physics.add.collider(this.WallCollGroup, this.scene.wallLayer, (o1,o2) => {o1.dest()});
         this.EnemiesCollGroup = this.scene.add.group();
-        this.scene.physics.add.overlap(this.EnemiesCollGroup, this.scene.enemies, (o1,o2) => {o1.dest();
+        this.scene.physics.add.overlap(this.EnemiesCollGroup, this.scene.enemies, (o1,o2) => {
            o2.hurt(this.playerData.damage);
+           o2.knockback(o1.body.velocity.x,o1.body.velocity.y,300);
+           o1.dest();
            this.playerData.projectileEffects.forEach(element => {element(o2)})});
 
         this.WallCollGroup_noEff = this.scene.add.group();
