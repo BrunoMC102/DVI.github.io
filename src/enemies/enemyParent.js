@@ -113,7 +113,14 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
         this.body.setDrag(0.003);
         let aux = this.moveU;
         this.moveU = () =>{};
-        this.scene.time.delayedCall(300, ()=>{this.moveU = aux; this.body.setVelocity(0,0); this.body.setDrag(1); this.knocking = false; this.body.setBounce(bounce.x,bounce.y)});
+        this.scene.time.delayedCall(300, ()=>{this.moveU = aux; 
+          this.knocking = false;
+          if(this.body != undefined){
+            this.body.setVelocity(0,0);
+            this.body.setDrag(1); 
+            this.body.setBounce(bounce.x,bounce.y)
+          }
+          });
       }
     }
   }
