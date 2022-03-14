@@ -57,12 +57,7 @@ export default class ShootingEnemyParent extends EnemyParent{
   move(){
 
   }
-  centerX(){
-    return this.x + this.sprite.width/2
-  }
-  centerY(){
-    return this.y + this.sprite.height/2
-  }
+  
   createGropus(){
     this.wallCollGroup = this.scene.add.group();
     this.scene.physics.add.collider(this.wallCollGroup, this.scene.wallLayer, (o1,o2) => {

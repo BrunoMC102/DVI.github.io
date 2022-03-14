@@ -5,12 +5,12 @@ export default class PlayerData{
       this.vSpeed = 300;
       this.jumpSpeed = -400;
       this.health = 6;
-      this.damage = 1;
+      this.damage = 10;
       
       this.money = 0; // dinero del jugador
       this.healthPotions = 0; // pociones de vida
       this.manaPotions = 0; // pociones de mana
-
+      this.mana = 0;
       //Informacion proyectiles
       this.projectileBaseSpeed = 500;
       this.projectileSpeed = this.projectileBaseSpeed;

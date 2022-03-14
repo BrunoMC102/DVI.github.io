@@ -39,7 +39,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.arrow_label = this.scene.add.text(10, 50, "");
       this.hPotion_label = this.scene.add.text(10, 70, "");
       this.mPotion_label = this.scene.add.text(10, 90, "");
-
+      this.mana_label = this.scene.add.text(10, 110, "");
       //Barra proyectiles
       this.projectileBar = new ProjectileBar(scene,0,70);
       this.add(this.projectileBar);
@@ -144,6 +144,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.arrow_label.text = 'Arrows: ' + this.playerData.arrows;
       this.mPotion_label.text = 'Mana Potions: ' + this.playerData.manaPotions;
       this.hPotion_label.text = 'Health Potions: ' + this.playerData.healthPotions;
+      this.mana_label.text = 'Mana: ' + this.playerData.mana;
 
     }
 

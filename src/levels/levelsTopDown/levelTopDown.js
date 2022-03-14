@@ -6,6 +6,7 @@ import Health from '../../objetos_recogibles/consumibles/health.js';
 import Arrow from '../../objetos_recogibles/consumibles/arrow.js';
 import Bouncy from '../../objetos_recogibles/pasivos/bouncy.js';
 
+
 export default class LevelTopDown extends Phaser.Scene {
 
   constructor() {
@@ -39,7 +40,7 @@ export default class LevelTopDown extends Phaser.Scene {
     new HealthPotion(this, this.player, 600, 200);
     new Health(this, this.player, 750, 200);
     new Arrow(this, this.player, 900, 200);
-
+    
     this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(993,60,60,20)];
     this.physics.world.enable(this.sceneChange);
     this.sceneChange[0].body.setAllowGravity(false);

@@ -1,3 +1,4 @@
+import Mana from "../decoracion/mana.js";
 import Arrow from "../objetos_recogibles/consumibles/arrow.js";
 import Coin from "../objetos_recogibles/consumibles/coin.js";
 import Health from "../objetos_recogibles/consumibles/health.js";
@@ -75,8 +76,10 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
   hurt(damage){
     this.health -= damage;
     if(this.health <= 0){
+      this.spawnMana();
       this.destroy();
       this.spawnLoot();
+      
     }
   }
 
@@ -132,5 +135,21 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
       }
     });
   }
-  
+
+  centerX(){
+    return this.x + this.sprite.width/2
+  }
+  centerY(){
+    return this.y + this.sprite.height/2
+  }
+
+  spawnMana(){
+    let dir = new Phaser.Math.Vector2(1,0);
+    for (let i = 0; i < 6; i++) {
+      dir.rotate(Math.random()*2*Math.PI);
+      new Mana(this.scene,this.centerX(),this.centerY(),dir.x*400,dir.y*400);
+      
+    }
+    
+  }
 }
