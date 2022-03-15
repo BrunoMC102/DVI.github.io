@@ -147,7 +147,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     let dir = new Phaser.Math.Vector2(1,0);
     for (let i = 0; i < 6; i++) {
       dir.rotate(Math.random()*2*Math.PI);
-      new Mana(this.scene,this.centerX(),this.centerY(),dir.x*400,dir.y*400);
+      new Mana(this.scene,this.centerX(),this.centerY(),dir.x*450,dir.y*450);
       
     }
     
