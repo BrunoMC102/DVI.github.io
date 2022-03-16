@@ -17,8 +17,8 @@ export default class Enemy2 extends EnemyParent{
 
 
   
-  moveU(d,dt){
-    //this.scene.anims.play('mole');
+  preUpdate(d,dt){
+    this.sprite.play('mole', true);
     this.resbala();
   }
   

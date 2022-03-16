@@ -25,6 +25,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.body.setSize(this.body.width * 0.5, this.body.height * 0.8);
     this.body.offset.y = 20;
     this.body.offset.x = 25;
+    this.body.setBounce(0,0.15);
   }
 
   setPlayerData(playerData) {

@@ -34,7 +34,8 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     this.scene.physics.add.collider(this, this.player, () => this.doDamage());
     this.health = 30;
     //this.body.setCollideWorldBounds();
-    this.sprite = new Phaser.GameObjects.Sprite(scene,0,0, texture);
+    // this.sprite = new Phaser.GameObjects.Sprite(scene,0,0, texture);
+    this.sprite = scene.add.sprite(0,0, texture);
     this.add(this.sprite);
     //this.scene.add.existing(this.sprite);
     this.body.setSize(this.sprite.width,this.sprite.height);
@@ -55,11 +56,11 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
 
   
 
-  preUpdate(t,dt){
+  // preUpdate(t,dt){
     
-    this.moveU(t,dt);
+  //   this.moveU(t,dt);
     
-  }
+  // }
 
   moveU(){
     
@@ -103,8 +104,14 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
       this.body.setAcceleration(0,0);
       let aux = this.preUpdate;
       this.preUpdate = () =>{};
-      this.scene.time.delayedCall(5000, ()=>{this.sprite.tint = this.origTint; this.preUpdate = aux; this.body.setVelocity(v_x,v_y); this.body.setAcceleration(a_x,a_y); this.freezing = false;});
-    }
+      this.scene.time.delayedCall(5000, ()=>{
+        if(this.body != undefined){
+        this.sprite.tint = this.origTint; this.preUpdate = aux; this.body.setVelocity(v_x,v_y); this.body.setAcceleration(a_x,a_y); this.freezing = false;
+        }
+    });
+        
+      }
+    
     
   }
 
