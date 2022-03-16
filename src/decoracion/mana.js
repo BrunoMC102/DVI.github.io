@@ -8,7 +8,7 @@ export default class Mana extends Basic_projectile{
         this.body.setCollideWorldBounds(false);
         this.body.onWorldBounds = false;
         this.body.setMaxSpeed(500);
-        this.scene.physics.add.overlap(this, this.scene.player,(o1,o2)=>{o1.destroy(); o2.playerData.mana++});
+        this.scene.physics.add.overlap(this, this.scene.player,(o1,o2)=>{o1.destroy(); o2.giveMana()});
         this.a = 1300;
         this.body.setMaxSpeed(1000);
         this.setScale(0.5,0.5);

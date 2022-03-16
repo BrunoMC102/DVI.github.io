@@ -1,5 +1,6 @@
 import PlayerProyectile from "../proyectile/playerProyectile.js";
 import ProjectileBar from "./projectileBar.js";
+import ManaBar from "./manaBar.js";
 
 export default class PlayerTopDown extends Phaser.GameObjects.Container {
   
@@ -44,6 +45,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.projectileBar = new ProjectileBar(scene,0,70);
       this.add(this.projectileBar);
       this.projectileBar.setVisible(false);
+
+      //Barra mana
+      this.manaBar = new ManaBar(scene,115,140);
+      
       
       this.projectileCharging = false;
       this.origTint = this.sprite.tint;
@@ -145,6 +150,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.mPotion_label.text = 'Mana Potions: ' + this.playerData.manaPotions;
       this.hPotion_label.text = 'Health Potions: ' + this.playerData.healthPotions;
       this.mana_label.text = 'Mana: ' + this.playerData.mana;
+      this.manaBar.actualiza(this.playerData.mana, this.playerData.maxMana);
 
     }
 
@@ -259,5 +265,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         this.VoidCollGroup_noEff = this.scene.add.group();
         this.scene.physics.add.collider(this.VoidCollGroup_noEff, this.scene.voidLayer, ()=>{});
       }
+      giveMana(){
+        if(this.playerData.mana >= this.playerData.maxMana) return;
+
+        this.playerData.mana++;
+
+      }
+
 }
   

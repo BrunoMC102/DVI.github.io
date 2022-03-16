@@ -17,11 +17,12 @@ export default class PlayerData{
       this.projectileMaxSpeed = 1000;
       this.arrows = 100;
       this.flickerTime = 0;
-
+      this.maxMana = 100;
       this.player = null;
       this.projectileGroups = [() => {return {id: 'nWall', grupo: this.player.WallCollGroup}}, () => {return {id:"enemiesColl", grupo: this.player.EnemiesCollGroup}}];
       //this.projectileGroups = [];
       this.projectileEffects = [/*(enemy) => {enemy.freeze()}*/];
+
     }
 
     setBouncy(){
