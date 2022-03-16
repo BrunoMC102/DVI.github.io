@@ -90,28 +90,30 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
   }
 
   freeze(){
-    if(!this.freezing){
-      this.freezing = true;
-      if(this.health > 0){
-        const v_x = this.body.velocity.x;
-        const v_y = this.body.velocity.y;
-        const a_x = this.body.acceleration.x;
-        const a_y = this.body.acceleration.y; 
-        this.sprite.tint = 0x9265ff
-        this.body.setVelocity(0,0);
-        this.body.setAcceleration(0,0);
-        let aux = this.preUpdate;
-        this.preUpdate = () =>{};
-        this.scene.time.delayedCall(5000, ()=>{this.sprite.tint = this.origTint; this.preUpdate = aux; this.body.setVelocity(v_x,v_y); this.body.setAcceleration(a_x,a_y); this.freezing = false;});
+    if(this.freezing) return
 
-      }
+    this.freezing = true;
+    if(this.health > 0){
+      const v_x = this.body.velocity.x;
+      const v_y = this.body.velocity.y;
+      const a_x = this.body.acceleration.x;
+      const a_y = this.body.acceleration.y; 
+      this.sprite.tint = 0x9265ff
+      this.body.setVelocity(0,0);
+      this.body.setAcceleration(0,0);
+      let aux = this.preUpdate;
+      this.preUpdate = () =>{};
+      this.scene.time.delayedCall(5000, ()=>{this.sprite.tint = this.origTint; this.preUpdate = aux; this.body.setVelocity(v_x,v_y); this.body.setAcceleration(a_x,a_y); this.freezing = false;});
     }
+    
   }
 
   knockback(x,y,p){
     
     if(this.health <= 0)
       return;
+
+    if(this.freezing) return;  
 
     if(this.knockbackinfo.knocking)
       this.knockbackinfo.knockEvent.remove()
