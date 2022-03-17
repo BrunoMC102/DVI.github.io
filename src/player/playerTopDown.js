@@ -29,7 +29,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.VoidCollGroup_noEff.add(this);
       this.body.pushable = false;
 
-      this.sprite = new Phaser.GameObjects.Sprite(scene,0, 0,'character','idle1.png');
+      this.sprite = this.scene.add.sprite(0, 0,'character','idle1.png');
       this.add(this.sprite);
       //this.scene.add.existing(this.sprite);
       this.body.setSize(this.body.width * 0.60, this.body.height * 1);
