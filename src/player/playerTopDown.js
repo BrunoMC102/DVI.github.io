@@ -1,6 +1,7 @@
 import PlayerProyectile from "../proyectile/playerProyectile.js";
 import ProjectileBar from "./projectileBar.js";
 import ManaBar from "./manaBar.js";
+import SwordContainer from "./swordContainer.js";
 
 export default class PlayerTopDown extends Phaser.GameObjects.Container {
   
@@ -45,7 +46,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.projectileBar = new ProjectileBar(scene,0,70);
       this.add(this.projectileBar);
       this.projectileBar.setVisible(false);
-
+      this.sword = new SwordContainer(scene,0,0,this);
+      this.add(this.sword);
       //Barra mana
       this.manaBar = new ManaBar(scene,115,140);
       
@@ -85,7 +87,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       else {
         this.body.setVelocityX(0);
       }
-
+      
       //Handle movement controller
       const pad = this.scene.input.gamepad.getPad(0);
       if(pad != undefined){
@@ -100,7 +102,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       
       //Handle shooting keyboard
       if(this.playerData.arrows > 0){
-        if(this.cursors.space.isDown){
+        /*if(this.cursors.space.isDown){
           if (this.playerData.projectileSpeed < this.playerData.projectileMaxSpeed)
             this.playerData.projectileSpeed += dt/2
           else{
@@ -108,12 +110,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           }
           this.projectileBar.actualiza((this.playerData.projectileSpeed-this.playerData.projectileBaseSpeed)*100/(this.playerData.projectileMaxSpeed-this.playerData.projectileBaseSpeed));
           this.projectileBar.setVisible(true);
-        }
+        }*/
         if(Phaser.Input.Keyboard.JustUp(this.cursors.space)){
-          this.fire();
+          /*this.fire();
           this.playerData.projectileSpeed = this.playerData.projectileBaseSpeed;
           this.projectileBar.setVisible(false);
-          this.playerData.arrows--
+          this.playerData.arrows--*/
+          this.sword.attack();
         }
 
       }
@@ -174,10 +177,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
     fire(){
         let vx,vy;
-        
-        
-        
-
         let v = this.body.velocity.normalize().scale(this.playerData.projectileSpeed);
         if (v.x == 0 && v.y == 0){
           
@@ -256,9 +255,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         this.EnemiesCollGroup = this.scene.add.group();
         this.scene.physics.add.overlap(this.EnemiesCollGroup, this.scene.enemies, (o1,o2) => {
            o2.hurt(this.playerData.damage);
+           this.playerData.projectileEffects.forEach(element => {element(o2)});
            o2.knockback(o1.body.velocity.x,o1.body.velocity.y,400);
-           o1.dest();
-           this.playerData.projectileEffects.forEach(element => {element(o2)})});
+           o1.dest()});
 
         this.WallCollGroup_noEff = this.scene.add.group();
         this.scene.physics.add.collider(this.WallCollGroup_noEff, this.scene.wallLayer, ()=>{});
@@ -267,7 +266,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       }
       giveMana(){
         if(this.playerData.mana >= this.playerData.maxMana) return;
-
         this.playerData.mana++;
 
       }

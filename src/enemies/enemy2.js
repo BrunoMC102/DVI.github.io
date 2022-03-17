@@ -13,12 +13,14 @@ export default class Enemy2 extends EnemyParent{
     this.a = 1000;
     this.v = 50;
     
+    
   }
 
-
+ 
   
-  moveU(d,dt){
-    //this.scene.anims.play('mole');
+  moveU(t,dt){
+    this.sprite.play("mole",true);
+    this.sprite.preUpdate(t,dt);
     this.resbala();
   }
   
@@ -33,9 +35,6 @@ export default class Enemy2 extends EnemyParent{
     this.body.setAcceleration(dx*this.a/t+x*this.a,dy*this.a/t+y*this.a);    
     this.body.setMaxVelocity(400,400);
     this.body.setBounce(1,1);
-        
-      
-
   }
 
   prediceA(ti,dt){

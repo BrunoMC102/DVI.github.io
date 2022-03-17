@@ -5,7 +5,7 @@ export default class PlayerData{
       this.vSpeed = 300;
       this.jumpSpeed = -400;
       this.health = 6;
-      this.damage = 10;
+      this.damage = 0.5;
       
       this.money = 0; // dinero del jugador
       this.healthPotions = 0; // pociones de vida
@@ -22,7 +22,7 @@ export default class PlayerData{
       this.projectileGroups = [() => {return {id: 'nWall', grupo: this.player.WallCollGroup}}, () => {return {id:"enemiesColl", grupo: this.player.EnemiesCollGroup}}];
       //this.projectileGroups = [];
       this.projectileEffects = [(enemy) => {
-        if(Math.random() < 0.25)
+        if(Math.random() < 0.25) 
         enemy.freeze()}];
 
     }
