@@ -26,11 +26,6 @@ export default class ShootingEnemyParent extends EnemyParent{
     this.addtoGroups(disparo);
     }
   
-  preUpdate(d,dt){
-    this.moveU(d,dt);
-    this.attack(d,dt);
-  }
-
   creador(){
     let dx = this.player.x - this.x;
     let dy = this.player.y - this.y;
@@ -67,6 +62,11 @@ export default class ShootingEnemyParent extends EnemyParent{
     this.playerCollGroup = this.scene.add.group();
     this.scene.physics.add.overlap(this.playerCollGroup, this.player, (o1,o2) => {
       o1.destroy();
+      o2.hurt(this.damage);
+      });
+
+    this.playerOverlapGroup = this.scene.add.group();
+    this.scene.physics.add.overlap(this.playerOverlapGroup, this.player, (o1,o2) => {
       o2.hurt(this.damage);
       });
   }
