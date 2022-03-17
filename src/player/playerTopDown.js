@@ -32,7 +32,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
       this.sprite = this.scene.add.sprite(0, 0,'character','idle1.png');
       this.add(this.sprite);
-      //this.scene.add.existing(this.sprite);
       this.body.setSize(this.body.width * 0.60, this.body.height * 1);
       
       //Informacion del jugador por pantalla
