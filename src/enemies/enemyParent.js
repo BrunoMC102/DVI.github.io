@@ -61,8 +61,6 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
   preUpdate(d,dt){
     if(this.freezing) return;
 
-
-
     if(this.knockbackinfo.knocking){
       this.attack(d,dt);
       return;
