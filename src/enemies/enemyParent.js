@@ -34,7 +34,8 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     this.scene.physics.add.collider(this, this.player, () => this.doDamage());
     this.health = 30;
     //this.body.setCollideWorldBounds();
-    this.sprite = new Phaser.GameObjects.Sprite(scene,0,0, texture);
+    // this.sprite = new Phaser.GameObjects.Sprite(scene,0,0, texture);
+    this.sprite = scene.add.sprite(0,0, texture);
     this.add(this.sprite);
     
     //this.scene.add.existing(this.sprite);
@@ -56,8 +57,11 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
 
   
 
+
   preUpdate(d,dt){
     if(this.freezing) return;
+
+
 
     if(this.knockbackinfo.knocking){
       this.attack(d,dt);
@@ -124,6 +128,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
         this.freezing = false;
       }
     });
+
   }
     
   
