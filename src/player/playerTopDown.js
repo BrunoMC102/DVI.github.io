@@ -22,8 +22,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
       this.playerData = data;
       this.playerData.player = this;
-      this.body.offset.x = -23;
-      this.body.offset.y = -27;
+      this.body.offset.x = -20;
+      this.body.offset.y = -20;
       this.createGroups();
       this.WallCollGroup_noEff.add(this);
       this.VoidCollGroup_noEff.add(this);
@@ -32,7 +32,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.sprite = new Phaser.GameObjects.Sprite(scene,0, 0,'character','idle1.png');
       this.add(this.sprite);
       //this.scene.add.existing(this.sprite);
-      this.body.setSize(this.body.width * 0.75, this.body.height * 1.2);
+      this.body.setSize(this.body.width * 0.60, this.body.height * 1);
       
       //Informacion del jugador por pantalla
       this.health_label = this.scene.add.text(10, 10, "");
@@ -63,27 +63,28 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       
       if (this.cursors.up.isDown) {
         this.body.setVelocityY(-this.playerData.vSpeed);
-        this.sprite.anims.play('idle-up');
+        this.sprite.anims.play('idle-up',true);
       }
       else if (this.cursors.down.isDown) {
         this.body.setVelocityY(this.playerData.vSpeed);
-        this.sprite.anims.play('idle-down');
+        this.sprite.anims.play('idle-down',true);
       }
       else {
         this.body.setVelocityY(0);
       }
       if (this.cursors.left.isDown) {
         this.body.setVelocityX(-this.playerData.speed);
-        this.sprite.anims.play('walk-side');
+        this.sprite.anims.play('walk-side',true);
         this.sprite.scaleX = -1;
       }
       else if (this.cursors.right.isDown) {
         this.body.setVelocityX(this.playerData.speed);
-        this.sprite.anims.play('walk-side');
+        this.sprite.anims.play('walk-side',true);
         this.sprite.scaleX = 1;
       }
       else {
         this.body.setVelocityX(0);
+        this.sprite.stop();
       }
 
       //Handle movement controller
