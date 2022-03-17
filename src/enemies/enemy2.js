@@ -33,6 +33,11 @@ export default class Enemy2 extends EnemyParent{
     this.body.setAcceleration(dx*this.a/t+x*this.a,dy*this.a/t+y*this.a);    
     this.body.setMaxVelocity(400,400);
     this.body.setBounce(1,1);
+    if(dx < 0){
+      this.scaleX = -1;
+    }else {
+      this.scaleX = 1;
+    }
         
       
 
