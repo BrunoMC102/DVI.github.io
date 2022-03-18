@@ -24,6 +24,7 @@ export default class PlayerData{
       this.projectileEffects = [(enemy) => {
         if(Math.random() < 0.25) 
         enemy.freeze()}];
+      this.control = false;
 
     }
 

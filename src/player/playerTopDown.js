@@ -55,6 +55,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.projectileCharging = false;
       this.origTint = this.sprite.tint;
       this.flickerTime = 0;
+      this.handleControls();
+      if(this.playerData.control) this.controls = this.padControls;
+      else this.controls = this.keyboardControls;
+      scene.input.keyboard.on('keydown',  () => { this.controls = this.keyboardControls; this.playerData.control = false});
+      
+      scene.input.gamepad.on(Phaser.Input.Gamepad.Events.BUTTON_DOWN, () => {this.controls = this.padControls; this.playerData.control = true});
     }
     
     
@@ -62,40 +68,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     preUpdate(t,dt) {
 
 
-      
-      if (this.cursors.up.isDown) {
-        this.body.setVelocityY(-this.playerData.vSpeed);
-        this.sprite.anims.play('idle-up',true);
-      }
-      else if (this.cursors.down.isDown) {
-        this.body.setVelocityY(this.playerData.vSpeed);
-        this.sprite.anims.play('idle-down',true);
-      }
-      else {
-        this.body.setVelocityY(0);
-      }
-      if (this.cursors.left.isDown) {
-        this.body.setVelocityX(-this.playerData.speed);
-        this.sprite.anims.play('walk-side',true);
-        this.sprite.scaleX = -1;
-      }
-      else if (this.cursors.right.isDown) {
-        this.body.setVelocityX(this.playerData.speed);
-        this.sprite.anims.play('walk-side',true);
-        this.sprite.scaleX = 1;
-      }
-      else {
-        this.body.setVelocityX(0);
-        this.sprite.stop();
-      }
+      this.controls.movementcontrol();
       
       //Handle movement controller
-      const pad = this.scene.input.gamepad.getPad(0);
-      if(pad != undefined){
-        const dir = new Phaser.Math.Vector2(pad.leftStick.x,pad.leftStick.y);
-        this.body.setVelocity(dir.normalize().scale(this.speed).x,dir.normalize().scale(this.playerData.speed).y);
-      }
-
+      
       if (this.immunity > 0)
         this.immunity -= dt;
       else
@@ -103,49 +79,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       
       //Handle shooting keyboard
       if(this.playerData.arrows > 0){
-        /*if(this.cursors.space.isDown){
-          if (this.playerData.projectileSpeed < this.playerData.projectileMaxSpeed)
-            this.playerData.projectileSpeed += dt/2
-          else{
-            this.playerData.projectileSpeed = this.playerData.projectileMaxSpeed
-          }
-          this.projectileBar.actualiza((this.playerData.projectileSpeed-this.playerData.projectileBaseSpeed)*100/(this.playerData.projectileMaxSpeed-this.playerData.projectileBaseSpeed));
-          this.projectileBar.setVisible(true);
-        }*/
-        if(Phaser.Input.Keyboard.JustUp(this.cursors.space)){
-          /*this.fire();
-          this.playerData.projectileSpeed = this.playerData.projectileBaseSpeed;
-          this.projectileBar.setVisible(false);
-          this.playerData.arrows--*/
-          this.sword.attack();
-        }
-
+        this.controls.projectileControl(dt);
       }
 
         this.displayColor();
         this.flickerTime +=dt;
-      //Handle shooting controller
-      if(pad != undefined){
-        if(this.playerData.arrows > 0){
-          if(pad.R2 > 0){
-            if (this.playerData.projectileSpeed < this.playerData.projectileMaxSpeed)
-            this.playerData.projectileSpeed += dt/2
-            else{
-              this.playerData.projectileSpeed = this.playerData.projectileMaxSpeed
-            }
-            this.projectileBar.actualiza((this.playerData.projectileSpeed-this.playerData.projectileBaseSpeed)*100/(this.playerData.projectileMaxSpeed-this.playerData.projectileBaseSpeed));
-            this.projectileBar.setVisible(true);
-            this.projectileCharging = true;
-          }
-          if(this.projectileCharging && pad.R2 == 0){
-            this.fire();
-            this.playerData.projectileSpeed = this.playerData.projectileBaseSpeed;
-            this.projectileBar.setVisible(false);
-            this.playerData.arrows--
-            this.projectileCharging = false;
-          }
-        }
-      }
+      
       
       //Actualizacion informacion en pantalla
       this.health_label.text = 'Health: ' + this.playerData.health;
@@ -269,6 +208,103 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         if(this.playerData.mana >= this.playerData.maxMana) return;
         this.playerData.mana++;
 
+      }
+
+      handleControls(){
+        this.keyboardControls = {
+          projectile: "spacebar",
+          movementcontrol: () => {
+            if (this.cursors.up.isDown) {
+              this.body.setVelocityY(-this.playerData.vSpeed);
+              this.sprite.anims.play('idle-up',true);
+            }
+            else if (this.cursors.down.isDown) {
+              this.body.setVelocityY(this.playerData.vSpeed);
+              this.sprite.anims.play('idle-down',true);
+            }
+            else {
+              this.body.setVelocityY(0);
+            }
+            if (this.cursors.left.isDown) {
+              this.body.setVelocityX(-this.playerData.speed);
+              this.sprite.anims.play('walk-side',true);
+              this.sprite.scaleX = -1;
+            }
+            else if (this.cursors.right.isDown) {
+              this.body.setVelocityX(this.playerData.speed);
+              this.sprite.anims.play('walk-side',true);
+              this.sprite.scaleX = 1;
+            }
+            else {
+              this.body.setVelocityX(0);
+              this.sprite.stop();
+            }    
+          },
+          projectileControl: (dt) => {
+            if(this.cursors.space.isDown){
+              if (this.playerData.projectileSpeed < this.playerData.projectileMaxSpeed)
+                this.playerData.projectileSpeed += dt/2
+              else{
+                this.playerData.projectileSpeed = this.playerData.projectileMaxSpeed
+              }
+              this.projectileBar.actualiza((this.playerData.projectileSpeed-this.playerData.projectileBaseSpeed)*100/(this.playerData.projectileMaxSpeed-this.playerData.projectileBaseSpeed));
+              this.projectileBar.setVisible(true);
+            }
+            if(Phaser.Input.Keyboard.JustUp(this.cursors.space)){
+              this.fire();
+              this.playerData.projectileSpeed = this.playerData.projectileBaseSpeed;
+              this.projectileBar.setVisible(false);
+              this.playerData.arrows--
+            }
+          }
+  
+        };
+        this.padControls = {
+
+          projectile: "R1",
+
+          movementcontrol: () => {
+            const pad = this.scene.input.gamepad.getPad(0);
+            if(pad == undefined) return;
+
+            const dir = new Phaser.Math.Vector2(pad.leftStick.x,pad.leftStick.y);
+            this.body.setVelocity(dir.normalize().scale(this.playerData.speed).x,dir.normalize().scale(this.playerData.speed).y);
+            if(dir.x == 0 && dir.y == 0){
+              this.sprite.stop();
+              return;
+            }
+            if(Math.abs(dir.x) > Math.abs(dir.y)){
+              this.sprite.anims.play('walk-side',true);
+              if (dir.x > 0) this.sprite.scaleX = 1;
+              else this.sprite.scaleX = -1;
+              return;
+            }
+            if (dir.y > 0) this.sprite.anims.play('idle-down',true);
+            else this.sprite.anims.play('idle-up',true);
+          },
+
+          projectileControl: (dt) =>{
+            const pad = this.scene.input.gamepad.getPad(0);
+            if(pad.R2 > 0){
+              if (this.playerData.projectileSpeed < this.playerData.projectileMaxSpeed)
+              this.playerData.projectileSpeed += dt/2
+              else{
+                this.playerData.projectileSpeed = this.playerData.projectileMaxSpeed
+              }
+              this.projectileBar.actualiza((this.playerData.projectileSpeed-this.playerData.projectileBaseSpeed)*100/(this.playerData.projectileMaxSpeed-this.playerData.projectileBaseSpeed));
+              this.projectileBar.setVisible(true);
+              this.projectileCharging = true;
+            }
+            if(this.projectileCharging && pad.R2 == 0){
+              this.fire();
+              this.playerData.projectileSpeed = this.playerData.projectileBaseSpeed;
+              this.projectileBar.setVisible(false);
+              this.playerData.arrows--
+              this.projectileCharging = false;
+            }
+          }
+
+        };
       }
 
 }

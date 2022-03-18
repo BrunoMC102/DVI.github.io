@@ -102,7 +102,8 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     if(this.freezing) return
     if(this.health <= 0) return;
     this.freezing = true;
-    let v_x, v_y, a_x, a_y
+    let v_x, v_y, a_x, a_y;
+    this.sprite.stop();
     if(!this.knockbackinfo.knocking){
       v_x = this.body.velocity.x;
       v_y = this.body.velocity.y;
