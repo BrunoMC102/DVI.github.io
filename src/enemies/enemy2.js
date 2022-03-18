@@ -15,8 +15,6 @@ export default class Enemy2 extends EnemyParent{
    
     
   }
-
- 
   
   moveU(t,dt){
   
