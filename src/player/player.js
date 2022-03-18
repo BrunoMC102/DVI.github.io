@@ -3,7 +3,7 @@ import Star from '../star.js';
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
  * También almacena la puntuación o número de estrellas que ha recogido hasta el momento.
  */
-export default class Player extends Phaser.GameObjects.Sprite {
+export default class Player extends Phaser.GameObjects.Container {
   
   /**
    * Constructor del jugador
@@ -14,8 +14,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
   
   
 
-  constructor(scene, x, y) {
-    super(scene, x, y, 'characterScroll', 'walk-143.png');
+  constructor(scene, x, y,data) {
+    super(scene, x, y);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     // Queremos que el jugador no se salga de los límites del mundo
@@ -26,29 +26,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.body.offset.y = 20;
     this.body.offset.x = 25;
     this.body.setBounce(0,0.15);
+    this.playerData = data;
+    this.playerData.player = this;
+    this.sprite = this.scene.add.sprite(0, 0,'characterScroll', 'walk-143.png');
+    this.add(this.sprite);
+    this.health_label = this.scene.add.text(10, 10, "Health");
   }
 
-  setPlayerData(playerData) {
-    this.speed = playerData.speed;
-    this.vSpeed = playerData.vSpeed;
-    this.jumpSpeed = playerData.jumpSpeed;
-    this.health = playerData.health;
-    this.label = this.scene.add.text(10, 10, "Health: " + this.health);
-    this.money = 0; // dinero del jugador
-    this.healthPotions = 0; // pociones de vida
-    this.manaPotions = 0; // pociones de mana
-  }
-
-  getPlayerData(){
-    return {speed:this.speed,vSpeed:this.vSpeed,health:this.health,jumpSpeed: this.jumpSpeed};
-  } 
   
-  /**
+  
+  /*
    * Actualiza la UI con la vida actual
    */
+  /*
   updateHealth() {
     this.label.text = 'Health ' + this.score;
   }
+  */
 
   /**
    * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
@@ -57,24 +51,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
    * @override
    */
   preUpdate(t,dt) {
-    super.preUpdate(t,dt);
     
     if(this.cursors.up.isDown){
     if ( this.body.onFloor()) {
       //this.anims.chain(['jump', 'jumpfinal']);
-      this.anims.play('jump');
-      this.body.setVelocityY(this.jumpSpeed);
+      this.sprite.play('jump',true);
+      this.body.setVelocityY(this.playerData.jumpSpeed);
       
     }
   }
     else {
      if (this.cursors.left.isDown) {
       if(this.body.onFloor()){
-      this.anims.play('walk', true);
+      this.sprite.play('walk', true);
       }else {
-        this.anims.play('jump',true);
+        this.sprite.play('jump',true);
       }
-      this.body.setVelocityX(-this.speed);
+      this.body.setVelocityX(-this.playerData.speed);
       this.scaleX = -1;
       this.body.offset.x = 95;
       
@@ -82,17 +75,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
     else if (this.cursors.right.isDown) {
        if(this.body.onFloor()){
-        this.anims.play('walk', true);
+        this.sprite.play('walk', true);
         }else {
-          this.anims.play('jump',true);
+          this.sprite.play('jump',true);
         }
-      this.body.setVelocityX(this.speed);
+      this.body.setVelocityX(this.playerData.speed);
       this.scaleX = 1;
       this.body.offset.x = 35;
     }
     else {
       this.body.setVelocityX(0);
-       this.anims.play('stand');
+       this.sprite.play('stand');
     }
   }
   }

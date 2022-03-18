@@ -30,8 +30,7 @@ export default class LevelScroll extends Phaser.Scene {
 
  
     const wallLayer = map.createLayer('BottomLayer', [tileset,tileset2,tileset3]).setCollisionByProperty({ collides: true }).setScrollFactor(0,0);
-    this.player = new Player(this, 200, 500);
-    this.player.setPlayerData(this.playerData);
+    this.player = new Player(this, this.coordinates.x, this.coordinates.y, this.playerData);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setBounds(0,0,3840,960);
    
@@ -62,16 +61,16 @@ export default class LevelScroll extends Phaser.Scene {
   update() {
     //Esto es mejor porque solo revisa si se encuentra en la hitbox
     if (this.physics.overlap(this.player, this.sceneChange[0])) {
-      this.scene.start('levelTopDown', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
+      this.scene.start('levelTopDown', {coordinates: {x: 100, y: 500},playerData:this.playerData});
     }
     if (this.physics.overlap(this.player, this.sceneChange[1])) {
-      this.scene.start('levelTopDown2', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
+      this.scene.start('levelTopDown2', {coordinates: {x: 100, y: 500},playerData:this.playerData});
     }
     if (this.physics.overlap(this.player, this.sceneChange[2])) {
-      this.scene.start('levelTopDown3', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
+      this.scene.start('levelTopDown3', {coordinates: {x: 100, y: 500},playerData:this.playerData});
     }
     if (this.physics.overlap(this.player, this.sceneChange[3])) {
-      this.scene.start('levelTopDown4', {coordinates: {x: 100, y: 500}, playerData:this.player.getPlayerData()});
+      this.scene.start('levelTopDown4', {coordinates: {x: 100, y: 500}, playerData:this.playerData});
     }
   
   }
