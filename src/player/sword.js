@@ -6,6 +6,7 @@ export default class Sword extends Phaser.GameObjects.Container{
         this.sprite = new Phaser.GameObjects.Sprite(scene, 0, 0, 'enemy');
         this.sprite.x = this.sprite.width/2-5;
         this.sprite.y = this.sprite.height/2-10;
+        
         this.add(this.sprite);
         let h  = this.sprite.height;
         this.player = player;

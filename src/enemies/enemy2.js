@@ -37,9 +37,9 @@ export default class Enemy2 extends EnemyParent{
     this.body.setMaxVelocity(400,400);
     this.body.setBounce(1,1);
     if(dx < 0){
-      this.scaleX = -1;
+      this.sprite.flipX = true;
     }else {
-      this.scaleX = 1;
+      this.sprite.flipX = false;
     }
         
       

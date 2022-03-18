@@ -19,6 +19,7 @@ export default class PlayerData{
       this.flickerTime = 0;
       this.maxMana = 100;
       this.player = null;
+      this.weapon = 0;
       this.projectileGroups = [() => {return {id: 'nWall', grupo: this.player.WallCollGroup}}, () => {return {id:"enemiesColl", grupo: this.player.EnemiesCollGroup}}];
       //this.projectileGroups = [];
       this.projectileEffects = [(enemy) => {

@@ -60,6 +60,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       scene.input.keyboard.on('keydown',  () => { this.controls = this.keyboardControls; this.playerData.control = false});
       
       scene.input.gamepad.on(Phaser.Input.Gamepad.Events.BUTTON_DOWN, () => {this.controls = this.padControls; this.playerData.control = true});
+      this.R2_pressed = false;
     }
     
     
@@ -76,13 +77,18 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       else
         this.displayColor = () => {};
       
+      if(this.playerData.weapon == 0){
+        this.controls.swordControl();
+      }
       //Handle shooting keyboard
-      if(this.playerData.arrows > 0){
-        this.controls.projectileControl(dt);
+      if(this.playerData.weapon == 1){
+        if(this.playerData.arrows > 0){
+          this.controls.projectileControl(dt);
+        }
       }
 
-        this.displayColor();
-        this.flickerTime +=dt;
+      this.displayColor();
+      this.flickerTime +=dt;
       
       
       //Actualizacion informacion en pantalla
@@ -255,13 +261,17 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
               this.projectileBar.setVisible(false);
               this.playerData.arrows--
             }
+          },
+          swordControl:() =>{
+            if(Phaser.Input.Keyboard.JustDown(this.cursors.space)){
+              this.sword.attack();
+            }
           }
-  
         };
         this.padControls = {
 
           projectile: "R1",
-
+        
           movementcontrol: () => {
             const pad = this.scene.input.gamepad.getPad(0);
             if(pad == undefined) return;
@@ -300,6 +310,17 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
               this.projectileBar.setVisible(false);
               this.playerData.arrows--
               this.projectileCharging = false;
+            }
+          },
+          swordControl:()=>{
+            if(pad.R2 > 0){
+              if(this.R2_pressed) return;
+              this.sword.attack();
+              this.R2_pressed = true;
+            }
+            else{
+              if(!this.R2_pressed) return;
+              this.R2_pressed = false
             }
           }
 
