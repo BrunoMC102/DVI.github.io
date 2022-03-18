@@ -111,21 +111,21 @@ export default class Boot extends Phaser.Scene {
   // goblinKing animations
   this.anims.create({
     key:'goblinKing_idle',
-    frames: this.anims.generateFrameNames('goblinKing_idle',{start: 1, end: 4, prefix: 'idle-', suffix: '.png'}),
+    frames: this.anims.generateFrameNames('goblinKing',{start: 1, end: 4, prefix: 'idle-', suffix: '.png'}),
     frameRate:10,
     repeat: -1    
   })
 
   this.anims.create({
     key:'goblinKing_walking',
-    frames: this.anims.generateFrameNames('goblinKing_walking',{start: 1, end: 6, prefix: 'walking-', suffix: '.png'}),
+    frames: this.anims.generateFrameNames('goblinKing',{start: 1, end: 6, prefix: 'walking-', suffix: '.png'}),
     frameRate:10,
     repeat: -1    
   })
 
   this.anims.create({
     key:'goblinKing_attack',
-    frames: this.anims.generateFrameNames('goblinKing_attack',{start: 1, end: 13, prefix: 'attack-', suffix: '.png'}),
+    frames: this.anims.generateFrameNames('goblinKing',{start: 1, end: 13, prefix: 'attack-', suffix: '.png'}),
     frameRate:10,
     repeat: -1    
   })

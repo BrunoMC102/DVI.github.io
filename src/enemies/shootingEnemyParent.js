@@ -7,8 +7,8 @@ import EnemyParent from './enemyParent.js';
  */
 export default class ShootingEnemyParent extends EnemyParent{
   
-  constructor(scene, player, x, y) {
-    super(scene,player,x,y,'enemy');
+  constructor(scene, player, x, y, texture) {
+    super(scene,player,x,y, texture);
     this.cont = 0;
     
     //this.projectilesE = this.scene.physics.add.group({
@@ -49,9 +49,6 @@ export default class ShootingEnemyParent extends EnemyParent{
       }
    }
   
-  move(){
-
-  }
   
   createGropus(){
     this.wallCollGroup = this.scene.add.group();

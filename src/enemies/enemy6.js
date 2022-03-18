@@ -19,16 +19,36 @@ export default class Enemy6 extends ShootingEnemyParent{
   }
 
     
+  attack(d,dt){
+    if (this.cont === 0){
+      this.fire();
+    }
+    this.cont+=dt;
+    if(this.cont >= (this.shootTime-1)*1000){
+      this.sprite.play("goblinKing_attack", true);
+    }
+    if(this.cont >= this.shootTime*1000){
+          this.cont = 0;
+    }
+ }
+
   fire(){
+    
       for (let i = 0; i < 8; i++){
           super.fire();
           this.fireDirection.rotate(Math.PI/4);
       }
+    this.scene.time.delayedCall(100, () => {this.sprite.play("goblinKing_idle", true);})
   }
 
   moveU(){
     // animación de ataque
-    this.sprite.play("goblinKing_attack", true);
-    this.sprite.play("goblinKing_idle", true);
+    let dx = this.player.x - this.x;
+    if(dx < 0){
+      this.sprite.flipX = true;
+    }else {
+      this.sprite.flipX = false;
+    }
+    //this.sprite.play("goblinKing_idle", true);
   }
 }
