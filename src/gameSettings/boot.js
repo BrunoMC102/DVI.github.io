@@ -34,7 +34,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('scroll2', 'castle_tileset_part2.png');
     this.load.image('scroll3', 'castle_tileset_part3.png');
     this.load.image('moleStand', 'attack-7.png');
-    this.load.image('goblinKingStand', 'idle-1');
+    this.load.image('goblinKingStand', 'idle-1.png');
     this.load.image('dungeon', 'Dungeon64.png');
     this.load.image('mana', 'mana.png');
 
@@ -101,14 +101,6 @@ export default class Boot extends Phaser.Scene {
       repeat: -1
     });
 
-    //Death
-    this.anims.create({
-      key: 'death',
-      frames: this.anims.generateFrameNames('character', {start: 1, end: 4, prefix: 'death-', suffix: '.png'}),
-      frameRate: 1,
-      duration: -1
-    });
-
     //ScrollLateral
     this.anims.create({key: 'stand', frames: [{ key: 'characterScroll', frame: 'walk-143.png'}], duration: -1});
     //Walk 
@@ -161,7 +153,7 @@ export default class Boot extends Phaser.Scene {
     key:'goblinKing_death',
     frames: this.anims.generateFrameNames('goblinKing',{start: 1, end: 11, prefix: 'death-', suffix: '.png'}),
     frameRate:10,
-    repeat: -1    
+    repeat: 0    
   })
   }
 

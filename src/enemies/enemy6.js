@@ -15,7 +15,8 @@ export default class Enemy6 extends ShootingEnemyParent{
     this.sprite.play("goblinKing_idle", true);
     //this.shootTime = 1;
     this.cont = 1;
-    
+    this.body.pushaable = false;
+    this.body.setDrag(0);
   }
   creador(){
     return new Homing_p(this.scene,this.x,this.y,this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv);
@@ -36,22 +37,31 @@ export default class Enemy6 extends ShootingEnemyParent{
  }
 
   fire(){
-    
       for (let i = 0; i < 8; i++){
           super.fire();
           this.fireDirection.rotate(Math.PI/4);
       }
-    this.scene.time.delayedCall(350, () => {this.sprite.play("goblinKing_idle", true);})
+      this.scene.time.delayedCall(350, () => {
+        if(this.sprite != undefined && !this.dead){
+        this.sprite.play("goblinKing_idle", true);}
+      }
+    )
   }
 
   hurt(damage){
     this.health -= damage;
-    if(this.health <= 0){
-      this.sprite.play("goblinKing_death",true);
-      this.spawnMana();
-      this.destroy();
-      this.spawnLoot();
-      
+      if(this.health <= 0 && !this.dead){
+        if(this.sprite != undefined){
+          this.sprite.play("goblinKing_death",true);
+        }
+
+        this.scene.time.delayedCall(1500, () => {
+          this.spawnMana();
+          this.spawnLoot(); 
+          this.destroy();
+      })
+      this.dead = true;
+      this.preUpdate = () =>{};
     }
   }
 
@@ -60,13 +70,14 @@ export default class Enemy6 extends ShootingEnemyParent{
     if(this.health <= 15){
       this.shootTime = 2;
     }
-    // animación de ataque
+      
     let dx = this.player.x - this.x;
     if(dx < 0){
       this.sprite.flipX = true;
     }else {
       this.sprite.flipX = false;
     }
+
     //this.sprite.play("goblinKing_idle", true);
   }
 }
