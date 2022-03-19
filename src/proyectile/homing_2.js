@@ -1,8 +1,8 @@
 import Basic_projectile from "./basic_projectile.js";
 
 export default class Homing_2 extends Basic_projectile{
-    constructor(scene,x,y,vx,vy){
-        super(scene,x,y,'flecha',vx,vy);
+    constructor(scene,x,y,vx,vy,time){
+        super(scene,x,y,'flecha',vx,vy,time);
         this.cont = 4000;
     }
 

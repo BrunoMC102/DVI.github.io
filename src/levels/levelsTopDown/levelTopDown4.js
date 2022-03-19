@@ -5,9 +5,9 @@ import Enemy2 from '../../enemies/enemy2.js';
 import Enemy3 from '../../enemies/enemy3.js';
 import Enemy4 from '../../enemies/enemy4.js';
 import Enemy5 from '../../enemies/enemy5.js';
-import Enemy6 from '../../enemies/enemy6.js';
+import GoblinKing from '../../enemies/goblinKing.js';
 import Spectral from '../../objetos_recogibles/pasivos/spectral.js';
-import Enemy6_2 from '../../enemies/enemy6_2.js';
+import Enemy6_2 from '../../enemies/Enemy6_2.js';
 
 export default class LevelTopDown4 extends Phaser.Scene {
 
@@ -36,7 +36,7 @@ export default class LevelTopDown4 extends Phaser.Scene {
    
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
 
-    this.a = new Enemy6(this, this.player, 500, 300);
+    this.a = new GoblinKing(this, this.player, 500, 300);
     this.b = new Enemy6_2(this, this.player, 700, 300);
     this.enemies.add(this.a);
     this.enemies.add(this.b);
