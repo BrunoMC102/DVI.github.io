@@ -220,23 +220,31 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         this.keyboardControls = {
           projectile: "spacebar",
           movementcontrol: () => {
-            if (this.cursors.up.isDown) {
-              this.body.setVelocityY(-this.playerData.vSpeed);
-              this.sprite.anims.play('walk-up',true);
-            }
-            else if (this.cursors.down.isDown) {
-              this.body.setVelocityY(this.playerData.vSpeed);
-              this.sprite.anims.play('walk-down',true);
-            }
-            else if (this.cursors.left.isDown) {
-              this.body.setVelocityX(-this.playerData.speed);
-              this.sprite.anims.play('walk-side',true);
-              this.sprite.scaleX = -1;
-            }
-            else if (this.cursors.right.isDown) {
-              this.body.setVelocityX(this.playerData.speed);
-              this.sprite.anims.play('walk-side',true);
-              this.sprite.scaleX = 1;
+            if (this.cursors.up.isDown || this.cursors.down.isDown || this.cursors.left.isDown || this.cursors.right.isDown) {
+              if (this.cursors.up.isDown) {
+                this.body.setVelocityY(-this.playerData.vSpeed);
+                this.sprite.anims.play('walk-up',true);
+              }
+              else if (this.cursors.down.isDown) {
+                this.body.setVelocityY(this.playerData.vSpeed);
+                this.sprite.anims.play('walk-down',true);
+              }
+              else {
+                this.body.setVelocityY(0);
+              }
+              if (this.cursors.left.isDown) {
+                this.body.setVelocityX(-this.playerData.speed);
+                this.sprite.anims.play('walk-side',true);
+                this.sprite.scaleX = -1;
+              }
+              else if (this.cursors.right.isDown) {
+                this.body.setVelocityX(this.playerData.speed);
+                this.sprite.anims.play('walk-side',true);
+                this.sprite.scaleX = 1;
+              }
+              else {
+                this.body.setVelocityX(0);
+              }
             }
             else {
               this.body.setVelocityX(0);
