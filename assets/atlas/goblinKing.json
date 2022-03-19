@@ -144,7 +144,7 @@
         "y": 0.5
       }
     },
-    "death-9.png": {
+    "death-10.png": {
       "frame": {
         "x": 50,
         "y": 310,
@@ -312,7 +312,7 @@
         "y": 0.5
       }
     },
-    "death-10.png": {
+    "death-11.png": {
       "frame": {
         "x": 200,
         "y": 84,
@@ -384,7 +384,7 @@
         "y": 0.5
       }
     },
-    "death-11.png": {
+    "death-9.png": {
       "frame": {
         "x": 122,
         "y": 306,
@@ -1632,34 +1632,10 @@
         "y": 0.5
       }
     },
-    "death-5.png": {
-      "frame": {
-        "x": 0,
-        "y": 1562,
-        "w": 68,
-        "h": 70
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 30,
-        "y": 58,
-        "w": 68,
-        "h": 70
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
     "attack-13.png": {
       "frame": {
         "x": 0,
-        "y": 1632,
+        "y": 1562,
         "w": 68,
         "h": 70
       },
@@ -1681,6 +1657,30 @@
       }
     },
     "attack-3.png": {
+      "frame": {
+        "x": 0,
+        "y": 1632,
+        "w": 68,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 30,
+        "y": 58,
+        "w": 68,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "death-5.png": {
       "frame": {
         "x": 0,
         "y": 1702,
@@ -1728,7 +1728,7 @@
         "y": 0.5
       }
     },
-    "death-4.png": {
+    "attack-4.png": {
       "frame": {
         "x": 0,
         "y": 1840,
@@ -1752,7 +1752,7 @@
         "y": 0.5
       }
     },
-    "attack-4.png": {
+    "death-4.png": {
       "frame": {
         "x": 0,
         "y": 1908,
@@ -4056,30 +4056,6 @@
         "y": 0.5
       }
     },
-    "death-1.png": {
-      "frame": {
-        "x": 0,
-        "y": 852,
-        "w": 68,
-        "h": 82
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 30,
-        "y": 46,
-        "w": 68,
-        "h": 82
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
     "128.png": {
       "frame": {
         "x": 0,
@@ -4105,6 +4081,30 @@
       }
     },
     "attack-1.png": {
+      "frame": {
+        "x": 0,
+        "y": 852,
+        "w": 68,
+        "h": 82
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 30,
+        "y": 46,
+        "w": 68,
+        "h": 82
+      },
+      "sourceSize": {
+        "w": 128,
+        "h": 128
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "death-1.png": {
       "frame": {
         "x": 0,
         "y": 852,
@@ -4228,7 +4228,7 @@
   "meta": {
     "app": "http://free-tex-packer.com",
     "version": "0.6.7",
-    "image": "texture.png",
+    "image": "goblinKing.png",
     "format": "RGBA8888",
     "size": {
       "w": 492,

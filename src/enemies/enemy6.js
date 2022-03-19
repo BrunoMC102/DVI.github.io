@@ -47,10 +47,11 @@ export default class Enemy6 extends ShootingEnemyParent{
   hurt(damage){
     this.health -= damage;
     if(this.health <= 0){
-      this.sprite.play("goblinKing_death", true);
+      this.sprite.play("goblinKing_death",true);
       this.spawnMana();
       this.destroy();
       this.spawnLoot();
+      
     }
   }
 
