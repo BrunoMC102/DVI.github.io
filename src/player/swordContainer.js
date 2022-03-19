@@ -27,9 +27,8 @@ export default class SwordContainer extends Phaser.GameObjects.Container{
     preUpdate(t,dt){ //Llamar despues en clases hijos
 
         if (!this.attacking){
-            let v = this.player.body.velocity;
-            if(v.x != 0 || v.y != 0){
-                let posEsp = new Phaser.Math.Vector2(this.player.body.velocity.x,this.player.body.velocity.y);
+            let posEsp = this.player.controls.swordAngle();
+            if(posEsp.x != 0 || posEsp.y != 0){
                 let ang = posEsp.angle();
                 this.rotation = ang;
             }
