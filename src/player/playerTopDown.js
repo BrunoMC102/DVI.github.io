@@ -297,8 +297,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
               else this.sprite.scaleX = -1;
               return;
             }
-            if (dir.y > 0) this.sprite.anims.play('idle-down',true);
-            else this.sprite.anims.play('idle-up',true);
+            if (dir.y > 0) this.sprite.anims.play('walk-down',true);
+            else this.sprite.anims.play('walk-up',true);
           },
 
           projectileControl: (dt) =>{
@@ -322,6 +322,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
             }
           },
           swordControl:()=>{
+            const pad = this.scene.input.gamepad.getPad(0);
             if(pad.R2 > 0){
               if(this.R2_pressed) return;
               this.sword.attack();
