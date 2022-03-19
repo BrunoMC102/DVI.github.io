@@ -281,6 +281,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
             if(Phaser.Input.Keyboard.JustDown(this.cursors.space)){
               this.sword.attack();
             }
+          },
+          swordAngle: ()=>{
+            return new Phaser.Math.Vector2(this.body.velocity.x,this.body.velocity.y);
           }
         };
         this.padControls = {
@@ -303,8 +306,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
               else this.sprite.scaleX = -1;
               return;
             }
-            if (dir.y > 0) this.sprite.anims.play('idle-down',true);
-            else this.sprite.anims.play('idle-up',true);
+            if (dir.y > 0) this.sprite.anims.play('walk-down',true);
+            else this.sprite.anims.play('walk-up',true);
           },
 
           projectileControl: (dt) =>{
@@ -328,6 +331,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
             }
           },
           swordControl:()=>{
+            const pad = this.scene.input.gamepad.getPad(0);
+            if(pad == undefined) return
             if(pad.R2 > 0){
               if(this.R2_pressed) return;
               this.sword.attack();
@@ -337,6 +342,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
               if(!this.R2_pressed) return;
               this.R2_pressed = false
             }
+          },
+          swordAngle: () =>{
+            const pad = this.scene.input.gamepad.getPad(0);
+            if(pad == undefined) return new Phaser.Math.Vector2(0,0);
+            const dir = new Phaser.Math.Vector2(pad.rightStick.x,pad.rightStick.y);
+            return dir;
+            
           }
 
         };
