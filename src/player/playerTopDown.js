@@ -29,6 +29,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.WallCollGroup_noEff.add(this);
       this.VoidCollGroup_noEff.add(this);
       this.body.pushable = false;
+      this.isDead = false;
 
       this.sprite = this.scene.add.sprite(0, 0,'character','idle-side.png');
       this.add(this.sprite);
@@ -70,7 +71,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
 
       this.controls.movementcontrol();
-      
       //Handle movement controller
       
       if (this.immunity > 0)
@@ -101,6 +101,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.mana_label.text = 'Mana: ' + this.playerData.mana;
       this.manaBar.actualiza(this.playerData.mana, this.playerData.maxMana);
 
+      if (this.playerData.health <= 0 && !this.isDead) {
+        this.isDead = true;
+        this.sprite.anims.play('death');
+      }
     }
 
     
@@ -249,9 +253,11 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
             else {
               this.body.setVelocityX(0);
               this.body.setVelocityY(0);
-              const parts = this.sprite.anims.currentAnim.key.split('-');
-              parts[0] = 'idle';
-              this.sprite.anims.play(parts.join('-'));
+              if (this.playerData.health > 0) {
+                const parts = this.sprite.anims.currentAnim.key.split('-');
+                parts[0] = 'idle';
+                this.sprite.anims.play(parts.join('-'));
+              }
             }    
           },
           projectileControl: (dt) => {

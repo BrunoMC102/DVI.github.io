@@ -623,6 +623,78 @@
         "x": 0.5,
         "y": 0.5
       }
+    },
+    "death-1.png": {
+      "frame": {
+        "x": 43.5,
+        "y": 975,
+        "w": 52.5,
+        "h": 63
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 33,
+        "w": 52.5,
+        "h": 63
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "death-2.png": {
+      "frame": {
+        "x": 43.5,
+        "y": 1038,
+        "w": 52.5,
+        "h": 57
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 39,
+        "w": 52.5,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "death-3.png": {
+      "frame": {
+        "x": 43.5,
+        "y": 1095,
+        "w": 51,
+        "h": 54
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 27,
+        "y": 42,
+        "w": 51,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 96,
+        "h": 96
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
     }
   },
   "meta": {
