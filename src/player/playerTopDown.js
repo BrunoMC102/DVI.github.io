@@ -34,6 +34,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.add(this.sprite);
       this.sprite.anims.play('idle-side');
       this.body.setSize(this.body.width * 0.60, this.body.height * 1);
+      let isDead = false;
       
       //Informacion del jugador por pantalla
       this.health_label = this.scene.add.text(10, 10, "");
@@ -100,7 +101,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.mana_label.text = 'Mana: ' + this.playerData.mana;
       this.manaBar.actualiza(this.playerData.mana, this.playerData.maxMana);
 
-      if (this.playerData.health <= 0) {
+      if (this.playerData.health <= 0 && !this.isDead) {
+        this.isDead = true;
         this.sprite.anims.play('death');
       }
     }
@@ -251,7 +253,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
             else {
               this.body.setVelocityX(0);
               this.body.setVelocityY(0);
-              if (this.playerData.health > 0) {
+              if (this.playerData.health > 0 && !this.isDead) {
                 const parts = this.sprite.anims.currentAnim.key.split('-');
                 parts[0] = 'idle';
                 this.sprite.anims.play(parts.join('-'));
