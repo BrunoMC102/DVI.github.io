@@ -9,10 +9,13 @@ import Homing_p from '../proyectile/homing_p.js';
 export default class Enemy6 extends ShootingEnemyParent{
   
   constructor(scene, player, x, y) {
-    super(scene,player,x,y,'goblinKingStand');
+    super(scene,player,x,y,'');
     this.Pv = 300;
     this.fireDirection = new Phaser.Math.Vector2(0,1);
+    this.sprite.play("goblinKing_idle", true);
     //this.shootTime = 1;
+    this.cont = 1;
+    
   }
   creador(){
     return new Homing_p(this.scene,this.x,this.y,this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv);
@@ -38,10 +41,14 @@ export default class Enemy6 extends ShootingEnemyParent{
           super.fire();
           this.fireDirection.rotate(Math.PI/4);
       }
-    this.scene.time.delayedCall(100, () => {this.sprite.play("goblinKing_idle", true);})
+    this.scene.time.delayedCall(350, () => {this.sprite.play("goblinKing_idle", true);})
   }
 
   moveU(){
+
+    if(this.health <= 15){
+      this.shootTime = 2;
+    }
     // animación de ataque
     let dx = this.player.x - this.x;
     if(dx < 0){
