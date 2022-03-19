@@ -16,7 +16,8 @@ export default class Enemy6 extends ShootingEnemyParent{
     //this.shootTime = 1;
     this.cont = 1;
     this.body.pushaable = false;
-    this.body.setDrag(0);
+    this.origDrag = 0.001;
+    this.body.setDrag(0.001);
   }
   creador(){
     return new Homing_p(this.scene,this.x,this.y,this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv);

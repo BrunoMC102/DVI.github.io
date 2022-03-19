@@ -45,6 +45,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     this.sprite.y = this.sprite.height/2;
 
     this.origTint = this.sprite.tint;
+    this.origDrag = 1;
     
     const consumibles = [()=>new Coin(scene,player,this.x,this.y), ()=>new Health(scene,player,this.x,this.y),()=>new Arrow(scene,player,this.x,this.y)]
     this.consumible = consumibles[Math.floor(Math.random()*consumibles.length)];
@@ -152,7 +153,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
       this.knockbackinfo.knocking = false;
       if(this.body != undefined){
         this.body.setVelocity(0,0);
-        this.body.setDrag(1); 
+        this.body.setDrag(this.origDrag); 
         this.body.setBounce(bounce.x,bounce.y)
       }
     });
