@@ -47,10 +47,13 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('tilemap5', 'Dungeon5.json');
 
     this.load.setPath('assets/atlas/');
+    //knight
     this.load.atlas('character', 'atlas.png', 'atlas.json');
+    this.load.atlas('characterScroll', 'movement.png', 'movement.json');
+    // enemies
     this.load.atlas('brainmole', 'brainmole.png', 'brainmole.json');
     this.load.atlas('goblinKing', 'goblinKing.png', 'goblinKing.json');
-    this.load.atlas('characterScroll', 'movement.png', 'movement.json');
+
   }
 
   /**
@@ -67,7 +70,7 @@ export default class Boot extends Phaser.Scene {
     //this.scene.start('level');
   }
 
-    createAnimations() {
+  createAnimations() {
     //Top Down
     //Idle
     this.anims.create({key: 'idle-side', frames: [{ key: 'character', frame: 'idle-side.png'}], duration: -1});
@@ -117,7 +120,7 @@ export default class Boot extends Phaser.Scene {
     
     
   //BrainMole animations
-   this.anims.create({
+    this.anims.create({
     key:'mole',
     frames: this.anims.generateFrameNames('brainmole',{start: 7, end: 10, prefix: 'attack-', suffix: '.png'}),
     frameRate:10,
@@ -145,7 +148,14 @@ export default class Boot extends Phaser.Scene {
     frameRate:10,
     repeat: -1    
   })
+
+  this.anims.create({
+    key:'goblinKing_death',
+    frames: this.anims.generateFrameNames('goblinKing',{start: 1, end: 11, prefix: 'death-', suffix: '.png'}),
+    frameRate:10,
+    repeat: -1    
+  })
   }
 
-   
 }
+

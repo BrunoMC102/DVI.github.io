@@ -44,6 +44,16 @@ export default class Enemy6 extends ShootingEnemyParent{
     this.scene.time.delayedCall(350, () => {this.sprite.play("goblinKing_idle", true);})
   }
 
+  hurt(damage){
+    this.health -= damage;
+    if(this.health <= 0){
+      this.sprite.play("goblinKing_death", true);
+      this.spawnMana();
+      this.destroy();
+      this.spawnLoot();
+    }
+  }
+
   moveU(){
 
     if(this.health <= 15){
