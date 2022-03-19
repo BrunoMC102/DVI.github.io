@@ -30,8 +30,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.VoidCollGroup_noEff.add(this);
       this.body.pushable = false;
 
-      this.sprite = this.scene.add.sprite(0, 0,'character','idle1.png');
+      this.sprite = this.scene.add.sprite(0, 0,'character','idle-side.png');
       this.add(this.sprite);
+      this.sprite.anims.play('idle-side');
       this.body.setSize(this.body.width * 0.60, this.body.height * 1);
       
       //Informacion del jugador por pantalla
@@ -227,11 +228,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
               this.body.setVelocityY(this.playerData.vSpeed);
               this.sprite.anims.play('walk-down',true);
             }
-            else {
-              this.body.setVelocityY(0);
-              
-            }
-            if (this.cursors.left.isDown) {
+            else if (this.cursors.left.isDown) {
               this.body.setVelocityX(-this.playerData.speed);
               this.sprite.anims.play('walk-side',true);
               this.sprite.scaleX = -1;
@@ -243,6 +240,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
             }
             else {
               this.body.setVelocityX(0);
+              this.body.setVelocityY(0);
+              const parts = this.sprite.anims.currentAnim.key.split('-');
+              parts[0] = 'idle';
+              this.sprite.anims.play(parts.join('-'));
             }    
           },
           projectileControl: (dt) => {

@@ -70,14 +70,14 @@ export default class Boot extends Phaser.Scene {
     createAnimations() {
     //Top Down
     //Idle
-    this.anims.create({key: 'idle-side', frames: [{ key: 'character', frame: 'idle1.png'}], duration: -1});
-    this.anims.create({key: 'idle-down', frames: [{ key: 'character', frame: 'idle2.png'}], duration: -1});
-    this.anims.create({key: 'idle-up', frames: [{ key: 'character', frame: 'idle3.png'}], duration: -1});
+    this.anims.create({key: 'idle-side', frames: [{ key: 'character', frame: 'idle-side.png'}], duration: -1});
+    this.anims.create({key: 'idle-down', frames: [{ key: 'character', frame: 'idle-down.png'}], duration: -1});
+    this.anims.create({key: 'idle-up', frames: [{ key: 'character', frame: 'idle-up.png'}], duration: -1});
 
     //WalkSide
     this.anims.create({
       key: 'walk-side',
-      frames: this.anims.generateFrameNames('character', {start: 1, end: 9, prefix: 'walk-side', suffix: '.png'}),
+      frames: this.anims.generateFrameNames('character', {start: 1, end: 9, prefix: 'walk-side-', suffix: '.png'}),
       frameRate: 12,
       repeat: -1
     });
@@ -85,7 +85,7 @@ export default class Boot extends Phaser.Scene {
     //WalkDown
     this.anims.create({
       key: 'walk-down',
-      frames: this.anims.generateFrameNames('character', {start: 1, end: 7, prefix: 'walk-down', suffix: '.png'}),
+      frames: this.anims.generateFrameNames('character', {start: 1, end: 7, prefix: 'walk-down-', suffix: '.png'}),
       frameRate: 10,
       repeat: -1
     });
@@ -93,7 +93,7 @@ export default class Boot extends Phaser.Scene {
     //WalkUp
     this.anims.create({
       key: 'walk-up',
-      frames: this.anims.generateFrameNames('character', {start: 1, end: 7, prefix: 'walk-up', suffix: '.png'}),
+      frames: this.anims.generateFrameNames('character', {start: 1, end: 7, prefix: 'walk-up-', suffix: '.png'}),
       frameRate: 10,
       repeat: -1
     });
