@@ -5,7 +5,7 @@ import Coin from '../../objetos_recogibles/consumibles/coin.js';
 import Health from '../../objetos_recogibles/consumibles/health.js';
 import Arrow from '../../objetos_recogibles/consumibles/arrow.js';
 import Bouncy from '../../objetos_recogibles/pasivos/bouncy.js';
-import GoblinKing from '../../enemies/GoblinKing.js';
+import GoblinKing from '../../enemies/goblinKing.js';
 
 
 export default class LevelTopDown extends Phaser.Scene {

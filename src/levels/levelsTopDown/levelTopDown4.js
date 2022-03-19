@@ -7,7 +7,7 @@ import Enemy4 from '../../enemies/enemy4.js';
 import Enemy5 from '../../enemies/enemy5.js';
 import GoblinKing from '../../enemies/goblinKing.js';
 import Spectral from '../../objetos_recogibles/pasivos/spectral.js';
-import Enemy6_2 from '../../enemies/Enemy6_2.js';
+import Enemy6_2 from '../../enemies/enemy6_2.js';
 
 export default class LevelTopDown4 extends Phaser.Scene {
 
