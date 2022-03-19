@@ -119,11 +119,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       }
     }
 
-    /*pColliders(){
-      if (this.scene.enemies != undefined){
-        this.scene.enemies.forEach( a => {this.scene.physics.add.collider(this.projectiles, a, () => {this.hurt(-100)})});
-      }
-    }*/
+   
 
     fire(){
         let vx,vy;

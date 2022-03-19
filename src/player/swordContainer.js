@@ -58,6 +58,7 @@ export default class SwordContainer extends Phaser.GameObjects.Container{
     attack(){
         if(this.espera) return;
         this.attacking = true;
+        this.sword.activateHitbox();
         this.espera = true;
         this.fase = 0;
         this.scene.time.delayedCall(this.timeAttack*1/5, ()=>{this.fase = 1});
@@ -77,7 +78,7 @@ export default class SwordContainer extends Phaser.GameObjects.Container{
             this.interiorContainer.rotation = this.noAttackrotation; 
             this.sword.rotation = this.swordNoAttackRotation; 
             this.fase = -1; 
-            
+            this.sword.removeHitbox();
         })
         this.scene.time.delayedCall(this.AttackSpeed, ()=> {this.espera = false})
     }

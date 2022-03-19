@@ -6,7 +6,7 @@ export default class Sword extends Phaser.GameObjects.Container{
         this.sprite = new Phaser.GameObjects.Sprite(scene, 0, 0, 'enemy');
         this.sprite.x = this.sprite.width/2-5;
         this.sprite.y = this.sprite.height/2-10;
-        
+        this.hitBoxes = [];
         this.add(this.sprite);
         let h  = this.sprite.height;
         this.player = player;
@@ -17,8 +17,8 @@ export default class Sword extends Phaser.GameObjects.Container{
             this.scene.physics.add.existing(a, false);
             a.body.pushable = false;
             a.body.allowGravity = false;
-            this.EnemiesCollGroup.add(a);
             this.add(a);
+            this.hitBoxes.push(a);
         }
         
        
@@ -31,6 +31,12 @@ export default class Sword extends Phaser.GameObjects.Container{
         this.scene.physics.add.overlap(this.EnemiesCollGroup, this.scene.enemies, (o1,o2) => {
            o2.hurt(this.player.playerData.damage);
            o2.knockback(o2.x - this.player.x, o2.y - this.player.y ,400)});
+    }
+    activateHitbox(){
+        this.hitBoxes.forEach( a => {this.EnemiesCollGroup.add(a)})
+    }
+    removeHitbox(){
+        this.hitBoxes.forEach(a => this.EnemiesCollGroup.remove(a))
     }
 
     
