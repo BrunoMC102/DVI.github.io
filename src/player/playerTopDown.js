@@ -21,6 +21,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.cursors = this.scene.input.keyboard.createCursorKeys();
     this.key1 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
     this.key2 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
+    this.keyC = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
+    
     this.body.allowGravity = false;
     this.immunity = 0;
 
@@ -31,6 +33,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.createGroups();
     this.WallCollGroup_noEff.add(this);
     this.VoidCollGroup_noEff.add(this);
+    this.playerWithProjectilesCollider.add(this);
     this.body.pushable = false;
 
     this.sprite = this.scene.add.sprite(0, 0, 'character', 'idle-side.png');
@@ -68,6 +71,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.projectileCharging = false;
     this.origTint = this.sprite.tint;
     this.flickerTime = 0;
+    this.dashing = false;
+    this.inDashDelay = false;
     this.handleControls();
     if (this.playerData.control) this.controls = this.padControls;
     else this.controls = this.keyboardControls;
@@ -75,36 +80,45 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
     scene.input.gamepad.on(Phaser.Input.Gamepad.Events.BUTTON_DOWN, () => { this.controls = this.padControls; this.playerData.control = true });
     this.R2_pressed = false;
+    this.lastVelocity = new Phaser.Math.Vector2(0,0);
   }
 
 
 
   preUpdate(t, dt) {
 
+    if(!this.dashing){
 
-    this.controls.movementcontrol();
-    //Handle movement controller
+      this.controls.movementcontrol();
 
+      if (this.playerData.weapon == 0) {
+        this.controls.swordControl();
+      }
+      
+      if (this.playerData.weapon == 1) {
+        if (this.playerData.arrows > 0) {
+          this.controls.projectileControl(dt);
+        }
+      }
+      this.controls.dashControl();
+    }
+    else
+      this.dash();
+    
     if (this.immunity > 0)
       this.immunity -= dt;
     else
-      this.displayColor = () => { };
+      this.displayColor = () => {};
 
-    if (this.playerData.weapon == 0) {
-      this.controls.swordControl();
-    }
-    //Handle shooting keyboard
-    if (this.playerData.weapon == 1) {
-      if (this.playerData.arrows > 0) {
-        this.controls.projectileControl(dt);
-      }
-    }
-
+    
     this.controls.selectWeapon();
     this.displayColor();
     this.flickerTime += dt;
 
 
+    if(this.body.velocity.x != 0 || this.body.velocity.y != 0){
+      this.lastVelocity = new Phaser.Math.Vector2(this.body.velocity.x, this.body.velocity.y);
+    }
     //Actualizacion informacion en pantalla
     this.health_label.text = 'Health: ' + this.playerData.health;
     this.money_label.text = 'Money: ' + this.playerData.money;
@@ -135,15 +149,35 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
 
   fire() {
-    const proj_ang = this.controls.projectileAngle();
-    this.projectile = new PlayerProyectile(this.scene, this.x, this.y, proj_ang.x, proj_ang.y);
+    const projectileVector = this.controls.projectileAngle();
+    this.projectile = new PlayerProyectile(this.scene, this.x, this.y, projectileVector.x, projectileVector.y);
     this.playerData.projectileGroups.forEach(element => {
       element().grupo.add(this.projectile);
     });
   }
 
+  dash(){
+    if(this.dashing){
+      this.body.velocity = this.dashVelocity;
+    }
+  }
 
-
+  initiateDash(){
+    this.dashVelocity = this.lastVelocity;
+    this.dashVelocity.normalize().scale(this.playerData.dashSpeed);
+    this.dashing = true;
+    this.inDashDelay = true;
+    this.playerWithProjectilesCollider.remove(this);
+    this.scene.time.delayedCall(100, ()=>{
+      this.playerWithProjectilesCollider.remove(this);
+      this.dashing = false; 
+    })
+    this.scene.time.delayedCall(400, ()=>{
+      this.playerWithProjectilesCollider.add(this);
+      this.inDashDelay = false; 
+    })
+    
+  }
 
   setSpectral() {
     this.playerData.setSpectral();
@@ -201,7 +235,14 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.scene.physics.add.collider(this.WallCollGroup_noEff, this.scene.wallLayer, () => { });
     this.VoidCollGroup_noEff = this.scene.add.group();
     this.scene.physics.add.collider(this.VoidCollGroup_noEff, this.scene.voidLayer, () => { });
+    this.playerWithProjectilesCollider = this.scene.add.group();
+    this.scene.physics.add.overlap(this.playerWithProjectilesCollider, this.scene.projectiles, (o1,o2) => {
+      o1.hurt(o2.damage);
+      o2.destroy();
+      });
   }
+ 
+
   giveMana() {
     if (this.playerData.mana >= this.playerData.maxMana) return;
     this.playerData.mana++;
@@ -293,6 +334,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         
         else 
           return v
+      },
+      dashControl: () =>{
+        if(this.inDashDelay) return;
+        if(Phaser.Input.Keyboard.JustDown(this.keyC)){
+          this.initiateDash();
+        }
       }
     };
     this.padControls = {

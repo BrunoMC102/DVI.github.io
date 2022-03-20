@@ -22,7 +22,7 @@ export default class GoblinKing extends ShootingEnemyParent {
     this.reinicioMov = true;
   }
   creador() {
-    return new Homing_p(this.scene, this.x, this.y, this.fireDirection.x * this.Pv, this.fireDirection.y * this.Pv, 5);
+    return new Homing_p(this.scene, this.x, this.y, this.fireDirection.x * this.Pv, this.fireDirection.y * this.Pv, 5, this.projectileDamage);
   }
 
 

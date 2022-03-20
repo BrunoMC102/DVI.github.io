@@ -8,12 +8,15 @@ import Homing_p from '../proyectile/homing_p.js';
 export default class Enemy4 extends ShootingEnemyParent{
   
   constructor(scene, player, x, y) {
-    super(scene,player,x,y,'enemy');
+    super(scene,player,x,y,'enemy', 10, this.projectileDamage);
     this.Pv = 300;
     this.shootTime = 2;
   }
   
   creador(){
-    return new Homing_p(this.scene,this.x,this.y);
+    let dx = this.player.x - this.x;
+    let dy = this.player.y - this.y;
+    let t = Math.abs(dx)+Math.abs(dy);
+    return new Homing_p(this.scene,this.x,this.y,dx*this.Pv/t,dy*this.Pv/t, 10, this.projectileDamage);
   }
 }

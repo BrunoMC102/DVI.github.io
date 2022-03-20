@@ -33,7 +33,7 @@ export default class LevelTopDown4 extends Phaser.Scene {
    
 
     this.enemies = this.add.group();
-   
+    this.projectiles = this.add.group();
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
 
     this.a = new GoblinKing(this, this.player, 500, 300);

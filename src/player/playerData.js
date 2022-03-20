@@ -26,7 +26,7 @@ export default class PlayerData{
         if(Math.random() < 0.25) 
         enemy.freeze()}];
       this.control = false;
-
+      this.dashSpeed = 1200;
     }
 
     setBouncy(){

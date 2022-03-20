@@ -33,6 +33,7 @@ export default class LevelTopDown2 extends Phaser.Scene {
     this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
 
     this.enemies = this.add.group();
+    this.projectiles = this.add.group();
 
     //this.a = new Enemy(this, this.player, 450, 200);
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
