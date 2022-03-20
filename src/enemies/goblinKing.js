@@ -31,7 +31,6 @@ export default class GoblinKing extends ShootingEnemyParent {
       this.fire();
       this.scene.time.delayedCall(350, () => {
         if (this.sprite != undefined && !this.dead) {
-          this.sprite.play("goblinKing_idle", true);
           this.attacking = false;
         }
       });
