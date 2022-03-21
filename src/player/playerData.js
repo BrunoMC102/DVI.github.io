@@ -5,7 +5,7 @@ export default class PlayerData{
       this.vSpeed = 300;
       this.jumpSpeed = -400;
       this.health = 6;
-      this.damage = 50;
+      this.damage = 20;
       
       this.money = 0; // dinero del jugador
       this.healthPotions = 0; // pociones de vida
@@ -26,7 +26,8 @@ export default class PlayerData{
         if(Math.random() < 0.25) 
         enemy.freeze()}];
       this.control = false;
-      this.dashSpeed = 1200;
+      this.dashSpeed = 900;
+      this.dashInvincibilityPower = false;
     }
 
     setBouncy(){

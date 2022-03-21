@@ -167,9 +167,11 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.dashVelocity.normalize().scale(this.playerData.dashSpeed);
     this.dashing = true;
     this.inDashDelay = true;
-    this.playerWithProjectilesCollider.remove(this);
-    this.scene.time.delayedCall(100, ()=>{
+    if (this.playerData.dashInvincibilityPower)
       this.playerWithProjectilesCollider.remove(this);
+    this.scene.time.delayedCall(130, ()=>{
+      if(this.playerData.dashInvincibilityPower)
+        this.playerWithProjectilesCollider.remove(this);
       this.dashing = false; 
     })
     this.scene.time.delayedCall(400, ()=>{
