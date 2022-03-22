@@ -168,6 +168,12 @@ export default class Boot extends Phaser.Scene {
       frameRate:15,
       repeat: 0    
     })
+    this.anims.create({
+      key:'minotaurPrepare',
+      frames: this.anims.generateFrameNames('minotaur',{start: 1, end: 5, prefix: 'Prepare_', suffix: '.png'}),
+      frameRate:7,
+      repeat: 0    
+    })
     }
 }
 

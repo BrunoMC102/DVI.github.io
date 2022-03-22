@@ -9,12 +9,11 @@ import Basic_projectile from '../proyectile/basic_projectile.js';
  */
 export default class Minotaur extends ShootingEnemyParent {
 
-  constructor(scene, player, x, y) {
+
+  constructor(scene, player, x, y) {
     super(scene,player,x,y,'');
     this.Pv = 400;
     this.fireDirection = new Phaser.Math.Vector2(1,0);
-    //this.shootTime = 1;
-    
     this.dispMax = 15;  //Numero de proyectiles disparado cada ataque
     this.dispCont = this.dispMax;
     this.dispTime = 0.02;  //Tiempo entre proyectiles de un mismo ataque
