@@ -1,5 +1,6 @@
 import ShootingEnemyParent from './shootingEnemyParent.js';
 import Homing_p from '../proyectile/homing_p.js';
+import Basic_projectile from '../proyectile/basic_projectile.js';
 
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
@@ -8,98 +9,80 @@ import Homing_p from '../proyectile/homing_p.js';
  */
 export default class Minotaur extends ShootingEnemyParent {
 
-  constructor(scene, player, x, y) {
-    super(scene, player, x, y, '');
-    this.Pv = 300;
-    this.fireDirection = new Phaser.Math.Vector2(0, 1);
-    //this.sprite.play("minotaurSpinAttack", true);
+  constructor(scene, player, x, y) {
+    super(scene,player,x,y,'');
+    this.Pv = 400;
+    this.fireDirection = new Phaser.Math.Vector2(1,0);
     //this.shootTime = 1;
-    this.cont = 1;
-    this.body.pushaable = false;
-    this.origDrag = 0.001;
-    this.body.setDrag(0.001);
+    
+    this.dispMax = 15;  //Numero de proyectiles disparado cada ataque
+    this.dispCont = this.dispMax;
+    this.dispTime = 0.02;  //Tiempo entre proyectiles de un mismo ataque
+    this.actDispTime = 0;  
+    this.nVueltas = 1;  //Numero de vueltas que dan los proyectles en un ataque (puede ser menor a 1)
+    this.shootTime = 3; //Tiempo entre ataques
+    this.shootTime += this.dispMax*this.dispTime; //Suma el tiempo que dura un ataque al tiempo entre ataques
     this.attacking = false;
-    this.reinicioMov = true;
+    this.attackingPreparing = false;
+    this.cont = 1;
   }
-  creador() {
-    return new Homing_p(this.scene, this.x, this.y, this.fireDirection.x * this.Pv, this.fireDirection.y * this.Pv, 5);
-  }
+  /*creador(){
+    this.projectileE = new Homing_p(this.scene,this.x,this.y);
+    
+  }*/
 
 
-  attack(d, dt) {
-    if (this.cont === 0) {
-      this.fire();
-      this.scene.time.delayedCall(350, () => {
-        if (this.sprite != undefined && !this.dead) {
-          this.sprite.play("minotaurSpinAttack", true);
-          this.attacking = false;
+  creador(){
+    return new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha',this.fireDirection.x*this.Pv,this.fireDirection.y*this.Pv, 10, this.projectileDamage);
+  }
+  
+    attack(d,dt){
+
+        if (this.cont === 0){
+            this.attack_aux = () => {this.fire()};
+            this.dispCont = 0;
+            this.attacking = true;
         }
-      });
-    }
-    this.cont += dt;
-    if (this.cont >= (this.shootTime - 1) * 1000) {
-      this.reinicioMov = true;
-      this.attacking = true;
-      this.sprite.play("minotaurSpinAttack", true);
-    }
-    if (this.cont >= this.shootTime * 1000) {
-      this.cont = 0;
+        this.cont+=dt;
+        this.actDispTime+=dt;
 
+        if(this.cont >= (this.shootTime-0.3)*1000){
+          this.attackingPreparing = true;
+        }
+
+        if(this.cont >= this.shootTime*1000){
+            this.cont = 0;
+        }
+        if(this.actDispTime >= this.dispTime*1000){
+            this.attack_aux();
+            this.dispCont++;
+            this.actDispTime = 0;
+        }
+        if(this.dispCont >= this.dispMax){
+            this.attack_aux = () => {};
+            if (this.attacking){
+              this.attacking = false;
+              this.scene.time.delayedCall(500, () => {this.attackingPreparing = false;})
+              
+            }
+            
+        }
+        if(this.attackingPreparing){
+          this.sprite.play('minotaurSpinAttack',true);
+        }
     }
-  }
 
-  fire() {
-    for (let i = 0; i < 8; i++) {
-      super.fire();
-      this.fireDirection.rotate(Math.PI / 4);
+    attack_aux(){
+        this.fire();
     }
-  }
 
-  hurt(damage) {
-    this.health -= damage;
-    if (this.health <= 0 && !this.dead) {
-      if (this.sprite != undefined) {
-        this.sprite.play("minotaurSpinAttack", true);
-      }
-
-      this.scene.time.delayedCall(1500, () => {
-        this.spawnMana();
-        this.spawnLoot();
-        this.destroy();
-      })
-      this.dead = true;
-      this.preUpdate = () => { };
+    fire(){
+        super.fire();
+        this.fireDirection.rotate(Math.PI*2*this.nVueltas/this.dispMax);
     }
-  }
-
-  moveU() {
-    if (!this.attacking) {
-      if (this.reinicioMov) {
-        this.mov_dir = new Phaser.Math.Vector2(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize();
-        this.mov_dir.scale(this.v);
-        this.reinicioMov = false;
-      }
-      this.sprite.play("minotaurWalk", true);
-      this.body.setVelocity(this.mov_dir.x, this.mov_dir.y);
-      if (this.mov_dir.x > 0) {
-        this.sprite.flipX = false;
-      }
-      else {
-        this.sprite.flipX = true;
+    moveU(){
+      if(!this.attackingPreparing){
+        this.sprite.play('minotaurWalk',true);
       }
     }
-    else {
-      this.body.setVelocity(0, 0);
-      let dx = this.player.x - this.x;
-      if (dx < 0) {
-        this.sprite.flipX = true;
-      } else {
-        this.sprite.flipX = false;
-      }
-    }
-
-  }
-  isCol() {
-    this.reinicioMov = true;
-  }
 }
