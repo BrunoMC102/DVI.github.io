@@ -48,9 +48,57 @@
         "y": 0.5
       }
     },
-    "Spin-Attack_7.png": {
+    "Prepare_5.png": {
       "frame": {
         "x": 211.5,
+        "y": 0,
+        "w": 87,
+        "h": 61.5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 6,
+        "w": 87,
+        "h": 61.5
+      },
+      "sourceSize": {
+        "w": 97.5,
+        "h": 72
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Prepare_4.png": {
+      "frame": {
+        "x": 298.5,
+        "y": 0,
+        "w": 84,
+        "h": 61.5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 7.5,
+        "y": 7.5,
+        "w": 84,
+        "h": 61.5
+      },
+      "sourceSize": {
+        "w": 94.5,
+        "h": 73.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Spin-Attack_7.png": {
+      "frame": {
+        "x": 382.5,
         "y": 0,
         "w": 82.5,
         "h": 69
@@ -120,10 +168,58 @@
         "y": 0.5
       }
     },
+    "Prepare_2.png": {
+      "frame": {
+        "x": 190.5,
+        "y": 61.5,
+        "w": 78,
+        "h": 61.5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4.5,
+        "y": 7.5,
+        "w": 78,
+        "h": 61.5
+      },
+      "sourceSize": {
+        "w": 87,
+        "h": 72
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Prepare_3.png": {
+      "frame": {
+        "x": 81,
+        "y": 121.5,
+        "w": 78,
+        "h": 61.5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 6,
+        "w": 78,
+        "h": 61.5
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 70.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
     "Spin-Attack_1.png": {
       "frame": {
-        "x": 294,
-        "y": 0,
+        "x": 0,
+        "y": 129,
         "w": 78,
         "h": 61.5
       },
@@ -146,8 +242,8 @@
     },
     "Walk_3.png": {
       "frame": {
-        "x": 372,
-        "y": 0,
+        "x": 268.5,
+        "y": 61.5,
         "w": 78,
         "h": 61.5
       },
@@ -170,7 +266,7 @@
     },
     "Walk_4.png": {
       "frame": {
-        "x": 450,
+        "x": 465,
         "y": 0,
         "w": 78,
         "h": 61.5
@@ -194,7 +290,7 @@
     },
     "Walk_5.png": {
       "frame": {
-        "x": 528,
+        "x": 543,
         "y": 0,
         "w": 78,
         "h": 61.5
@@ -218,7 +314,7 @@
     },
     "Walk_7.png": {
       "frame": {
-        "x": 606,
+        "x": 621,
         "y": 0,
         "w": 78,
         "h": 61.5
@@ -242,7 +338,7 @@
     },
     "Walk_8.png": {
       "frame": {
-        "x": 684,
+        "x": 699,
         "y": 0,
         "w": 78,
         "h": 61.5
@@ -264,9 +360,33 @@
         "y": 0.5
       }
     },
+    "Prepare_1.png": {
+      "frame": {
+        "x": 777,
+        "y": 0,
+        "w": 78,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 7.5,
+        "y": 7.5,
+        "w": 78,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 72
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
     "Walk_1.png": {
       "frame": {
-        "x": 762,
+        "x": 855,
         "y": 0,
         "w": 78,
         "h": 60
@@ -290,7 +410,7 @@
     },
     "Walk_2.png": {
       "frame": {
-        "x": 840,
+        "x": 933,
         "y": 0,
         "w": 78,
         "h": 60
@@ -314,7 +434,7 @@
     },
     "Walk_6.png": {
       "frame": {
-        "x": 918,
+        "x": 1011,
         "y": 0,
         "w": 78,
         "h": 60
@@ -338,7 +458,7 @@
     },
     "Spin-Attack_5.png": {
       "frame": {
-        "x": 996,
+        "x": 1089,
         "y": 0,
         "w": 72,
         "h": 61.5
@@ -362,7 +482,7 @@
     },
     "Spin-Attack_8.png": {
       "frame": {
-        "x": 762,
+        "x": 777,
         "y": 60,
         "w": 69,
         "h": 69
@@ -386,7 +506,7 @@
     },
     "Spin-Attack_9.png": {
       "frame": {
-        "x": 831,
+        "x": 846,
         "y": 60,
         "w": 69,
         "h": 69
@@ -415,8 +535,8 @@
     "image": "minotaur.png",
     "format": "RGBA8888",
     "size": {
-      "w": 1068,
-      "h": 129
+      "w": 1161,
+      "h": 191
     },
     "scale": 1.5
   }

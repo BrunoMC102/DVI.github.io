@@ -12,7 +12,6 @@ export default class Minotaur extends ShootingEnemyParent {
     super(scene, player, x, y, '');
     this.Pv = 300;
     this.fireDirection = new Phaser.Math.Vector2(0, 1);
-    //this.sprite.play("minotaurSpinAttack", true);
     //this.shootTime = 1;
     this.cont = 1;
     this.body.pushaable = false;
