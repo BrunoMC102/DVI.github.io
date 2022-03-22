@@ -30,7 +30,7 @@ export default class LevelTopDown3 extends Phaser.Scene {
     //this.showHitbox(wallLayer);
     
     this.enemies = this.add.group();
-
+    this.projectiles = this.add.group();
     
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
     

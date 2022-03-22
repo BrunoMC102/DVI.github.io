@@ -17,7 +17,7 @@ export default class ShootingEnemyParent extends EnemyParent{
     this.shootTime = 5;
     this.Pv = 1000; //Projectile speed
     this.createGropus();
-    
+    this.projectileDamage = 1
   }
 
 
@@ -30,13 +30,13 @@ export default class ShootingEnemyParent extends EnemyParent{
     let dx = this.player.x - this.x;
     let dy = this.player.y - this.y;
     let t = Math.abs(dx)+Math.abs(dy);
-    return new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha',dx*this.Pv/t,dy*this.Pv/t);
+    return new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha',dx*this.Pv/t,dy*this.Pv/t, 10, this.projectileDamage);
   }
 
 
   addtoGroups(disparo){
     this.wallCollGroup.add(disparo);
-    this.playerCollGroup.add(disparo);
+    this.scene.projectiles.add(disparo);
   }
 
   attack(d,dt){
@@ -54,12 +54,6 @@ export default class ShootingEnemyParent extends EnemyParent{
     this.wallCollGroup = this.scene.add.group();
     this.scene.physics.add.collider(this.wallCollGroup, this.scene.wallLayer, (o1,o2) => {
       o1.destroy();
-      });
-
-    this.playerCollGroup = this.scene.add.group();
-    this.scene.physics.add.overlap(this.playerCollGroup, this.player, (o1,o2) => {
-      o1.destroy();
-      o2.hurt(this.damage);
       });
 
     this.playerOverlapGroup = this.scene.add.group();

@@ -22,7 +22,7 @@ export default class GoblinKing extends ShootingEnemyParent {
     this.reinicioMov = true;
   }
   creador() {
-    return new Homing_p(this.scene, this.x, this.y, this.fireDirection.x * this.Pv, this.fireDirection.y * this.Pv, 5);
+    return new Homing_p(this.scene, this.x, this.y, this.fireDirection.x * this.Pv, this.fireDirection.y * this.Pv, 5, this.projectileDamage);
   }
 
 
@@ -31,7 +31,6 @@ export default class GoblinKing extends ShootingEnemyParent {
       this.fire();
       this.scene.time.delayedCall(350, () => {
         if (this.sprite != undefined && !this.dead) {
-          this.sprite.play("goblinKing_idle", true);
           this.attacking = false;
         }
       });

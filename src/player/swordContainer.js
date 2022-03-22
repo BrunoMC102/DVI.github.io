@@ -5,9 +5,8 @@ export default class SwordContainer extends Phaser.GameObjects.Container{
     constructor(scene,x,y,player){
         super(scene,x,y);
         this.scene.add.existing(this);
-        this.scene.physics.add.existing(this, false);
-        this.body.allowGravity = false;
-        this.setVisible(true);
+       
+        this.setVisible(false);
         this.interiorContainer = new Phaser.GameObjects.Container(scene, 10, 0);
         this.add(this.interiorContainer);
         this.sword = new Sword(scene, 40, 0, player);

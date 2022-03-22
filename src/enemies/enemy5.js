@@ -12,6 +12,6 @@ export default class Enemy5 extends ShootingEnemyParent{
     this.Pv = 300;
   }
   creador(){
-    return new Homing_2(this.scene,this.x,this.y);
+    return new Homing_2(this.scene,this.x,this.y, 10, this.projectileDamage);
   }
 }
