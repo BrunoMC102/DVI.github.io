@@ -1,0 +1,231 @@
+{
+  "frames": {
+    "Spin-Attack_6.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 109.5,
+        "h": 69
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 6,
+        "w": 109.5,
+        "h": 69
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 79.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Spin-Attack_4.png": {
+      "frame": {
+        "x": 109.5,
+        "y": 0,
+        "w": 102,
+        "h": 61.5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 7.5,
+        "y": 7.5,
+        "w": 102,
+        "h": 61.5
+      },
+      "sourceSize": {
+        "w": 114,
+        "h": 76.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Spin-Attack_7.png": {
+      "frame": {
+        "x": 211.5,
+        "y": 0,
+        "w": 82.5,
+        "h": 69
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 6,
+        "w": 82.5,
+        "h": 69
+      },
+      "sourceSize": {
+        "w": 93,
+        "h": 81
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Spin-Attack_2.png": {
+      "frame": {
+        "x": 109.5,
+        "y": 61.5,
+        "w": 81,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 7.5,
+        "y": 7.5,
+        "w": 81,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 73.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Spin-Attack_3.png": {
+      "frame": {
+        "x": 0,
+        "y": 69,
+        "w": 81,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 7.5,
+        "w": 81,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 91.5,
+        "h": 73.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Spin-Attack_1.png": {
+      "frame": {
+        "x": 294,
+        "y": 0,
+        "w": 78,
+        "h": 61.5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 9,
+        "w": 78,
+        "h": 61.5
+      },
+      "sourceSize": {
+        "w": 85.5,
+        "h": 73.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Spin-Attack_5.png": {
+      "frame": {
+        "x": 372,
+        "y": 0,
+        "w": 72,
+        "h": 61.5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 6,
+        "w": 72,
+        "h": 61.5
+      },
+      "sourceSize": {
+        "w": 82.5,
+        "h": 70.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Spin-Attack_8.png": {
+      "frame": {
+        "x": 444,
+        "y": 0,
+        "w": 69,
+        "h": 69
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 7.5,
+        "y": 9,
+        "w": 69,
+        "h": 69
+      },
+      "sourceSize": {
+        "w": 81,
+        "h": 81
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Spin-Attack_9.png": {
+      "frame": {
+        "x": 294,
+        "y": 61.5,
+        "w": 69,
+        "h": 69
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 4.5,
+        "w": 69,
+        "h": 69
+      },
+      "sourceSize": {
+        "w": 79.5,
+        "h": 78
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "minotaur.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 513,
+      "h": 131
+    },
+    "scale": 1.5
+  }
+}

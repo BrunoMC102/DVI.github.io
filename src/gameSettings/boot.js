@@ -53,7 +53,7 @@ export default class Boot extends Phaser.Scene {
     // enemies
     this.load.atlas('brainmole', 'brainmole.png', 'brainmole.json');
     this.load.atlas('goblinKing', 'goblinKing.png', 'goblinKing.json');
-
+    this.load.atlas('minotaur', 'minotaur.png', 'minotaur.json');
   }
 
   /**
@@ -155,7 +155,13 @@ export default class Boot extends Phaser.Scene {
     frameRate:10,
     repeat: 0    
   })
-  }
-
+    //Minotaur
+    this.anims.create({
+      key:'minotaurSpinAttack',
+      frames: this.anims.generateFrameNames('minotaur',{start: 1, end: 9, prefix: 'Spin-Attack_', suffix: '.png'}),
+      frameRate:10,
+      repeat: 0    
+    })
+    }
 }
 
