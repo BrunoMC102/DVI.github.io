@@ -79,7 +79,7 @@ export default class Minotaur extends ShootingEnemyParent {
         this.mov_dir.scale(this.v);
         this.reinicioMov = false;
       }
-      this.sprite.play("minotaurSpinAttack", true);
+      this.sprite.play("minotaurWalk", true);
       this.body.setVelocity(this.mov_dir.x, this.mov_dir.y);
       if (this.mov_dir.x > 0) {
         this.sprite.flipX = false;
