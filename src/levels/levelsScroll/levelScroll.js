@@ -67,7 +67,7 @@ export default class LevelScroll extends Phaser.Scene {
       this.scene.start('levelTopDown2', {coordinates: {x: 100, y: 500},playerData:this.playerData});
     }
     if (this.physics.overlap(this.player, this.sceneChange[2])) {
-      this.scene.start('levelTopDown3', {coordinates: {x: 100, y: 500},playerData:this.playerData});
+      this.scene.start('beginningVillage', {coordinates: {x: 100, y: 500},playerData:this.playerData});
     }
     if (this.physics.overlap(this.player, this.sceneChange[3])) {
       this.scene.start('levelTopDown4', {coordinates: {x: 100, y: 500}, playerData:this.playerData});
