@@ -16,7 +16,7 @@ export default class Enemy extends EnemyParent{
   }
 
   constructor(scene, player, x, y) {
-    super(scene,player,x,y,'enemy');
+    super(scene,player,x,y,'');
     this.dist = 600;
   }
 
@@ -25,21 +25,31 @@ export default class Enemy extends EnemyParent{
     
     let dx = this.player.x - this.x;
     let dy = this.player.y - this.y;
-    let t = Math.abs(dx)+Math.abs(dy);
+    let t = new Phaser.Math.Vector2(dx,dy).normalize();
+
+    
 
 
     if(this.atack.ready){
-      if (this.atack.wait < 200){
+      if (this.atack.wait < 400){
         this.body.setVelocity(0,0);
+        this.sprite.play('minotaurPrepare',true)
         this.atack.wait++
-        if (this.atack.wait == 200){
-          this.atack.x = dx/t * this.v * 5;
-          this.atack.y = dy/t * this.v * 5;
+        if (t.x > 0) {
+          this.sprite.flipX = false;
+        }
+        else {
+          this.sprite.flipX = true;
+        }
+        if (this.atack.wait == 400){
+          this.atack.x = t.x * this.v * 5;
+          this.atack.y = t.y * this.v * 5;
         }
         
       }
       else{
         this.body.setVelocity(this.atack.x,this.atack.y);
+        this.sprite.play('minotaurfastWalk',true)
         //this.move(this.atack.x,this.atack.y);
         
         if (this.c){
@@ -59,13 +69,21 @@ export default class Enemy extends EnemyParent{
         }
         else{
         //this.scene.physics.moveToObject(this,this.player,this.v); tambien es valido esta forma de perseguir al jugador
-        this.body.setVelocity(dx*this.v/t,dy*this.v/t);
+        this.sprite.play('minotaurWalk',true)
+        this.body.setVelocity(t.x*this.v,t.y*this.v);
+        if (t.x > 0) {
+          this.sprite.flipX = false;
+        }
+        else {
+          this.sprite.flipX = true;
+        }
         this.atack.charge++;
         } 
       }
     else{
-    this.body.setVelocity(0,0);
-    this.atack.charge = 0;
+      this.sprite.stop();
+      this.body.setVelocity(0,0);
+      this.atack.charge = 0;
     
     
     }

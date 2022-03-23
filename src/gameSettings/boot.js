@@ -174,6 +174,12 @@ export default class Boot extends Phaser.Scene {
       frameRate:7,
       repeat: 0    
     })
+    this.anims.create({
+      key:'minotaurfastWalk',
+      frames: this.anims.generateFrameNames('minotaur',{start: 1, end: 8, prefix: 'Walk_', suffix: '.png'}),
+      frameRate:25,
+      repeat: 0    
+    })
     }
 }
 

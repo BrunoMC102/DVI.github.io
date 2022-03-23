@@ -7,6 +7,7 @@ import Arrow from '../../objetos_recogibles/consumibles/arrow.js';
 import Bouncy from '../../objetos_recogibles/pasivos/bouncy.js';
 import GoblinKing from '../../enemies/GoblinKing.js';
 import Minotaur from '../../enemies/minotaur.js';
+import Enemy from '../../enemies/enemy.js';
 
 
 export default class LevelTopDown extends Phaser.Scene {
@@ -44,7 +45,8 @@ export default class LevelTopDown extends Phaser.Scene {
     new Arrow(this, this.player, 900, 200);
 
     //this.enemies.add(new GoblinKing(this, this.player, 500, 500));
-    this.enemies.add(new Minotaur(this, this.player, 500, 500));
+    //this.enemies.add(new Minotaur(this, this.player, 500, 500));
+    this.enemies.add(new Enemy(this, this.player, 500, 500));
     
     this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(993,60,60,20)];
     this.physics.world.enable(this.sceneChange);
