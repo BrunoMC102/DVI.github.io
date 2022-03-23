@@ -63,7 +63,6 @@ export default class Enemy extends EnemyParent{
     }
     else if ((Math.abs(dx)< this.dist) && (Math.abs(dy) < this.dist)){
         if(this.atack.charge > 1000){
-            
             this.atack.ready = true;
             this.atack.charge = 0;
         }
@@ -77,7 +76,7 @@ export default class Enemy extends EnemyParent{
         else {
           this.sprite.flipX = true;
         }
-        this.atack.charge++;
+          this.atack.charge++;
         } 
       }
     else{
