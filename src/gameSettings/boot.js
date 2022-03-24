@@ -107,6 +107,14 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
+    
+    //Death
+    this.anims.create({
+      key: 'death',
+      frames: this.anims.generateFrameNames('character', {start: 1, end: 4, prefix: 'death-', suffix: '.png'}),
+      frameRate: 1,
+      duration: -1
+    });
 
     //ScrollLateral
     this.anims.create({key: 'stand', frames: [{ key: 'characterScroll', frame: 'walk-143.png'}], duration: -1});
