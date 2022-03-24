@@ -27,7 +27,7 @@ export default class PlayerData{
         enemy.freeze()}];
       this.control = false;
       this.dashSpeed = 900;
-      this.dashInvincibilityPower = false;
+      this.dashInvincibilityPower = true;
     }
 
     setBouncy(){
