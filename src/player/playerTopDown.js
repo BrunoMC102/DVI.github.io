@@ -3,6 +3,7 @@ import ProjectileBar from "./projectileBar.js";
 import ManaBar from "./manaBar.js";
 import SwordContainer from "./swordContainer.js";
 import Bow from "./bow.js";
+import Spell from "../proyectile/spell.js";
 
 export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
@@ -21,6 +22,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.cursors = this.scene.input.keyboard.createCursorKeys();
     this.key1 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
     this.key2 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
+    this.key3 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
     this.keyC = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
     
     this.body.allowGravity = false;
@@ -100,7 +102,14 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           this.controls.projectileControl(dt);
         }
       }
+
+      if(this.playerData.weapon == 2){
+        if(this.playerData.currentManaCost <= this.playerData.mana){
+          this.controls.spellControl();
+        }
+      }
       this.controls.dashControl();
+
     }
     else
       this.dash();
@@ -132,6 +141,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.isDead = true;
       this.sprite.anims.play('death');
     }
+    
   }
 
 
@@ -154,6 +164,11 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.playerData.projectileGroups.forEach(element => {
       element().grupo.add(this.projectile);
     });
+  }
+
+  spellFire(){
+    const projectileVector = this.controls.projectileAngle();
+    this.projectile = new Spell(this.scene, this.x, this.y, projectileVector.x, projectileVector.y,10, this.playerData.damage);
   }
 
   dash(){
@@ -327,6 +342,11 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           this.sword.setVisible(false);
           this.bow.setVisible(true);
         }
+        if (Phaser.Input.Keyboard.JustDown(this.key3)) {
+          this.playerData.weapon = 2;
+          this.sword.setVisible(false);
+          this.bow.setVisible(false);
+        }
       },
       projectileAngle: () => {
         
@@ -341,6 +361,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         if(this.inDashDelay) return;
         if(Phaser.Input.Keyboard.JustDown(this.keyC)){
           this.initiateDash();
+        }
+      },
+      spellControl: () => {
+        if (Phaser.Input.Keyboard.JustDown(this.cursors.space)) {
+          this.spellFire();
+          this.playerData.mana -= this.playerData.currentManaCost;
         }
       }
     };

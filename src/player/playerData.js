@@ -22,12 +22,14 @@ export default class PlayerData{
       this.weapon = 0;
       this.projectileGroups = [() => {return {id: 'nWall', grupo: this.player.WallCollGroup}}, () => {return {id:"enemiesColl", grupo: this.player.EnemiesCollGroup}}];
       //this.projectileGroups = [];
+    
       this.projectileEffects = [(enemy) => {
         if(Math.random() < 0.25) 
         enemy.freeze()}];
       this.control = false;
       this.dashSpeed = 900;
       this.dashInvincibilityPower = true;
+      this.currentManaCost = 5;
     }
 
     setBouncy(){
