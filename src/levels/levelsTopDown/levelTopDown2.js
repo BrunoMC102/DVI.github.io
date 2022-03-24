@@ -62,6 +62,12 @@ export default class LevelTopDown2 extends Phaser.Scene {
     //Hitbox que contiene fisicas para ver si solapa con el player (puede ser un array para tener varias hitbox)
     this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(30, 510, 60, 122)];
     this.physics.world.enable(this.sceneChange);
+    this.zoneGroup = this.add.group();
+    this.zoneGroup.add(this.sceneChange[0]);
+    this.zoneGroup.add(this.sceneChange[1]);
+    this.physics.add.collider(this.enemies,this.zoneGroup);
+    this.sceneChange[0].body.setImmovable(true);
+    this.sceneChange[1].body.setImmovable(true);
     this.sceneChange[0].body.setAllowGravity(false);
     this.sceneChange[1].body.setAllowGravity(false);
   }

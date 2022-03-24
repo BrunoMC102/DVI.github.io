@@ -50,6 +50,10 @@ export default class LevelTopDown extends Phaser.Scene {
     this.enemies.add(new Trabuquero(this, this.player, 500, 500));
     
     this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(993,60,60,20)];
+    this.zoneGroup = this.add.group();
+    this.zoneGroup.add(this.sceneChange[0]);
+    this.zoneGroup.add(this.sceneChange[1]);
+    this.physics.add.collider(this.enemies,this.zoneGroup);
     this.physics.world.enable(this.sceneChange);
     this.sceneChange[0].body.setAllowGravity(false);
     this.sceneChange[1].body.setAllowGravity(false);
