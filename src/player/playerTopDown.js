@@ -40,7 +40,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.add(this.sprite);
     this.sprite.anims.play('idle-side');
     this.body.setSize(this.body.width * 0.60, this.body.height * 1);
-    let isDead = false;
+    this.isDead = false;
 
     //Informacion del jugador por pantalla
     this.health_label = this.scene.add.text(10, 10, "");
