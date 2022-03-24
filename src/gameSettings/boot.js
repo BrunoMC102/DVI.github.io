@@ -33,6 +33,12 @@ export default class Boot extends Phaser.Scene {
     this.load.image('scroll1', 'castle_tileset_part1.png');
     this.load.image('scroll2', 'castle_tileset_part2.png');
     this.load.image('scroll3', 'castle_tileset_part3.png');
+    this.load.image('cottages', 'cottageFinal.png');
+    this.load.image('decorationMedieval', "decorations-medieval.png");
+    this.load.image('fenceMedieval', "fence_medieval.png");
+    this.load.image('terreno', "terrain-v7.png");
+    this.load.image('trees', "trees-pale.png");
+    this.load.image('roofNormal', "thatched-roofFinal2.png");
     this.load.image('moleStand', 'attack-7.png');
     this.load.image('goblinKingStand', 'idle-1.png');
     this.load.image('dungeon', 'Dungeon64.png');
@@ -45,6 +51,7 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('tilemap3', 'Dungeon3.json');
     this.load.tilemapTiledJSON('tilemap4', 'Dungeon4.json');
     this.load.tilemapTiledJSON('tilemap5', 'Dungeon5.json');
+    this.load.tilemapTiledJSON('tilemapVillage', 'PruebaPoblado.json');
 
     this.load.setPath('assets/atlas/');
     //knight
@@ -99,6 +106,14 @@ export default class Boot extends Phaser.Scene {
       frames: this.anims.generateFrameNames('character', {start: 1, end: 7, prefix: 'walk-up-', suffix: '.png'}),
       frameRate: 10,
       repeat: -1
+    });
+    
+    //Death
+    this.anims.create({
+      key: 'death',
+      frames: this.anims.generateFrameNames('character', {start: 1, end: 4, prefix: 'death-', suffix: '.png'}),
+      frameRate: 1,
+      duration: -1
     });
 
     //ScrollLateral

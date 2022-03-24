@@ -6,6 +6,7 @@ import LevelTopDown2 from '../levels/levelsTopDown/levelTopDown2.js';
 import LevelTopDown3 from '../levels/levelsTopDown/levelTopDown3.js';
 import LevelTopDown4 from '../levels/levelsTopDown/levelTopDown4.js';
 import LevelScroll from '../levels/levelsScroll/levelScroll.js';
+import BeginningVillage from '../levels/beginningVillage.js';
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
@@ -23,7 +24,7 @@ let config = {
     input: {
         gamepad: true
     },
-    scene: [Boot, Level, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelScroll, End],
+    scene: [Boot, Level, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelScroll,BeginningVillage,  End],
     physics: {
         default: 'arcade',
         arcade: {
