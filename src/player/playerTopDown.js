@@ -274,9 +274,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
   }
 
-  givePasivoPowerUp(texture) {
+  givePasivoPowerUp(texture, titleString) {
     const objectPicked = new Phaser.GameObjects.Image(this.scene,0,-50,texture);
-    const title = this.scene.add.text(this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY, "Hola", {fontSize: 50, backgroundColor: '#0'});
+    const title = this.scene.add.text(this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY, titleString, {fontSize: 50, backgroundColor: '#0'});
     title.x -= title.width/2;
     //this.scene.add(objectPicked);
     this.add(objectPicked);

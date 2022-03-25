@@ -9,6 +9,7 @@ import GoblinKing from '../../enemies/GoblinKing.js';
 import Minotaur from '../../enemies/minotaur.js';
 import Enemy from '../../enemies/enemy.js';
 import Trabuquero from '../../enemies/trabuquero.js';
+import Chest from '../../objetos_recogibles/chest.js';
 
 
 export default class LevelTopDown extends Phaser.Scene {
@@ -37,7 +38,7 @@ export default class LevelTopDown extends Phaser.Scene {
     this.projectiles = this.add.group();
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
     
-    new Bouncy(this, this.player, 450, 300);
+    new Chest(this, this.player, 450, 300);
 
     
     new Coin(this, this.player, 450, 200);

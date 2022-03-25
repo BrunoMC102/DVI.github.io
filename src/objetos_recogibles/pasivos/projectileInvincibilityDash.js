@@ -1,13 +1,14 @@
 import Pasivo from "./pasivo.js";
 
-export default class Bouncy extends Pasivo{
+export default class ProjectileInvincibilityDash extends Pasivo{
 
     constructor(scene,player,x,y){
         super(scene,player,x,y,'flecha');
+        this.title = 'Spectral Dash';
     }
     
     givePower(){
-        givePower.super()
+        super.givePower()
         this.player.playerData.dashInvincibilityPower = true;
     }
 }
