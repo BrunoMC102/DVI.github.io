@@ -33,7 +33,7 @@ export default class Trabuquero extends ShootingEnemyParent {
     attack(d, dt) {
 
         if (this.cont === 0) {
-            this.knockback(-(this.player.x - this.centerX()), -(this.player.y - this.centerY()), 400);
+            
             this.attack_aux = this.normalAttack 
             this.dispCont = 0;
             this.attacking = true;
@@ -92,6 +92,7 @@ export default class Trabuquero extends ShootingEnemyParent {
         this.fireDirection.normalize();
 
         this.fireDirection.rotate((Math.random() * 2 - 1) * 2 * Math.PI * this.nVueltas / 2);
+        this.knockback(-this.fireDirection.x, -this.fireDirection.y, 200);
         this.fire();
     }
 }

@@ -5,7 +5,7 @@ export default class PlayerData{
       this.vSpeed = 300;
       this.jumpSpeed = -400;
       this.health = 6;
-      this.damage = 20;
+      this.damage = 5;
       
       this.money = 0; // dinero del jugador
       this.healthPotions = 0; // pociones de vida
@@ -23,17 +23,15 @@ export default class PlayerData{
       this.projectileGroups = [() => {return {id: 'nWall', grupo: this.player.WallCollGroup}}, () => {return {id:"enemiesColl", grupo: this.player.EnemiesCollGroup}}];
       //this.projectileGroups = [];
     
-      this.projectileEffects = [(enemy) => {
-        if(Math.random() < 0.25) 
-        enemy.freeze()}];
-      this.control = false;
+      this.projectileEffects = [];
+      this.isPadControlling = false;
       this.dashSpeed = 900;
       this.dashInvincibilityPower = true;
       this.currentManaCost = 5;
     }
 
     setBouncy(){
-      this.projectileGroups = this.projectileGroups.filter((a)=> a().id != 'nWall');
+      this.projectileGroups = this.projectileGroups.filter((a) => a().id != 'nWall');
       this.projectileGroups.push(() => {return {id: "bouncy", grupo:this.player.WallCollGroup_noEff}});
     }
 

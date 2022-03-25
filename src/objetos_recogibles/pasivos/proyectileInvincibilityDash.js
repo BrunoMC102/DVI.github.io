@@ -1,4 +1,3 @@
-import PowerUp from "../powerUp.js";
 import Pasivo from "./pasivo.js";
 
 export default class Bouncy extends Pasivo{
@@ -8,7 +7,9 @@ export default class Bouncy extends Pasivo{
     }
     
     givePower(){
-        super.givePower();
-        this.player.setBouncy();
+        givePower.super()
+        this.player.playerData.projectileEffects.push((enemy) => {
+            if(Math.random() < 0.25) 
+            enemy.freeze()});
     }
 }

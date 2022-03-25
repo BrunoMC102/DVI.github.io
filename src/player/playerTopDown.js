@@ -76,7 +76,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.dashing = false;
     this.inDashDelay = false;
     this.handleControls();
-    if (this.playerData.control) this.controls = this.padControls;
+    if (this.playerData.isPadControlling) this.controls = this.padControls;
     else this.controls = this.keyboardControls;
     scene.input.keyboard.on('keydown', () => { this.controls = this.keyboardControls; this.playerData.control = false });
 
@@ -264,6 +264,15 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     if (this.playerData.mana >= this.playerData.maxMana) return;
     this.playerData.mana++;
 
+  }
+
+  givePasivoPowerUp(texture) {
+    const objectPicked = new Phaser.GameObjects.Image(this.scene,0,-50,texture);
+    const title = this.scene.add.text(this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY, "Hola", {fontSize: 50, backgroundColor: '#0'});
+    title.x -= title.width/2;
+    //this.scene.add(objectPicked);
+    this.add(objectPicked);
+    this.scene.time.delayedCall(2000, () => {objectPicked.destroy(), title.destroy()}); 
   }
 
   handleControls() {

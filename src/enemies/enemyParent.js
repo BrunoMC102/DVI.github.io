@@ -187,4 +187,6 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
       dir.rotate(2*Math.PI/8);
     }
   }
+
+  onCollisionWithPlayer(){}
 }
