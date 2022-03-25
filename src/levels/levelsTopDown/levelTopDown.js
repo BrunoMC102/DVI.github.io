@@ -69,6 +69,10 @@ export default class LevelTopDown extends Phaser.Scene {
     }
   }
 
+  finishGame(){
+    this.scene.start("end", {coordinates: {x: 100, y: 500}, playerData:this.playerData});
+  }
+
   showHitbox(layer) {
     const debugGraphics = this.add.graphics().setAlpha(0.7);
 
