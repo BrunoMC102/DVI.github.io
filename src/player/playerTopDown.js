@@ -87,6 +87,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
 
 
+
   preUpdate(t, dt) {
 
     if(!this.dashing){
@@ -147,7 +148,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
 
   hurt(damage) {
-    if (this.immunity <= 0) {
+    if(this.playerData.health <= 0){
+      
+      this.scene.finishGame();
+      
+
+    }else if (this.immunity <= 0) {
       this.playerData.health -= damage;
       this.immunity = 1500;
       this.displayColor = this.flickering;

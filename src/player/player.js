@@ -30,7 +30,7 @@ export default class Player extends Phaser.GameObjects.Container {
     this.playerData.player = this;
     this.sprite = this.scene.add.sprite(0, 0,'characterScroll', 'walk-143.png');
     this.add(this.sprite);
-    this.health_label = this.scene.add.text(10, 10, "Health");
+    this.health_label = this.scene.add.text(this.scene.cameras.x, this.scene.cameras.y, "Health");
   }
 
   
@@ -50,6 +50,8 @@ export default class Player extends Phaser.GameObjects.Container {
    * ya son gestionadas por la estrella (no gestionar las colisiones dos veces)
    * @override
    */
+
+  
   preUpdate(t,dt) {
     
     if(this.cursors.up.isDown){
