@@ -38,6 +38,7 @@ export default class BeginningVillage extends Phaser.Scene {
     
     
     const midLayer = map.createLayer('MidLayer', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6]).setCollisionByProperty({ collides: true });
+     this.enemies = this.add.group();
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setBounds(0,0,3840,1920);
@@ -48,7 +49,7 @@ export default class BeginningVillage extends Phaser.Scene {
 
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
-    this.bases = this.add.group();
+   
     this.sceneChange =  [this.add.zone(3800,950,60,600)];
     this.physics.world.enable(this.sceneChange); 
     this.sceneChange[0].body.setAllowGravity(false);

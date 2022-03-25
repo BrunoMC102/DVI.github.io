@@ -8,8 +8,6 @@ export default class Bouncy extends Pasivo{
     
     givePower(){
         givePower.super()
-        this.player.playerData.projectileEffects.push((enemy) => {
-            if(Math.random() < 0.25) 
-            enemy.freeze()});
+        this.player.playerData.dashInvincibilityPower = true;
     }
 }

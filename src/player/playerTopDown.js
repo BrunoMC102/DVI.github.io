@@ -143,6 +143,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.sprite.anims.play('death');
     }
     
+
+    this.handlePlayerAnimation();
   }
 
 
@@ -281,6 +283,27 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.scene.time.delayedCall(2000, () => {objectPicked.destroy(), title.destroy()}); 
   }
 
+  handlePlayerAnimation(){
+    if(this.isDead){
+      this.sprite.anims.play('death', true);
+      return;
+    }
+    if (this.body.velocity.x == 0 && this.body.velocity.y == 0) {
+      const parts = this.sprite.anims.currentAnim.key.split('-');
+      parts[0] = 'idle';
+      this.sprite.anims.play(parts.join('-'));
+      return;
+    }
+    if (Math.abs(this.body.velocity.x) > Math.abs(this.body.velocity.y)) {
+      this.sprite.anims.play('walk-side', true);
+      if (this.body.velocity.x > 0) this.sprite.scaleX = 1;
+      else this.sprite.scaleX = -1;
+      return;
+    }
+    if (this.body.velocity.y > 0) this.sprite.anims.play('walk-down', true);
+    else this.sprite.anims.play('walk-up', true);
+  }
+
   handleControls() {
     this.keyboardControls = {
       projectile: "spacebar",
@@ -288,24 +311,21 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         if (this.cursors.up.isDown || this.cursors.down.isDown || this.cursors.left.isDown || this.cursors.right.isDown) {
           if (this.cursors.up.isDown) {
             this.body.setVelocityY(-this.playerData.vSpeed);
-            this.sprite.anims.play('walk-up', true);
+           
           }
           else if (this.cursors.down.isDown) {
             this.body.setVelocityY(this.playerData.vSpeed);
-            this.sprite.anims.play('walk-down', true);
+            
           }
           else {
             this.body.setVelocityY(0);
           }
           if (this.cursors.left.isDown) {
             this.body.setVelocityX(-this.playerData.speed);
-            this.sprite.anims.play('walk-side', true);
-            this.sprite.scaleX = -1;
+            
           }
           else if (this.cursors.right.isDown) {
             this.body.setVelocityX(this.playerData.speed);
-            this.sprite.anims.play('walk-side', true);
-            this.sprite.scaleX = 1;
           }
           else {
             this.body.setVelocityX(0);
@@ -314,11 +334,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         else {
           this.body.setVelocityX(0);
           this.body.setVelocityY(0);
-          if (this.playerData.health > 0 && !this.isDead) {
-            const parts = this.sprite.anims.currentAnim.key.split('-');
-            parts[0] = 'idle';
-            this.sprite.anims.play(parts.join('-'));
-          }
         }
       },
       projectileControl: (dt) => {
@@ -392,22 +407,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       movementcontrol: () => {
         const pad = this.scene.input.gamepad.getPad(0);
         if (pad == undefined) return;
-
         const dir = new Phaser.Math.Vector2(pad.leftStick.x, pad.leftStick.y);
         this.body.setVelocity(dir.normalize().scale(this.playerData.speed).x, dir.normalize().scale(this.playerData.speed).y);
-        if (dir.x == 0 && dir.y == 0) {
-          this.sprite.stop();
-          return;
-        }
-        if (Math.abs(dir.x) > Math.abs(dir.y)) {
-          this.sprite.anims.play('walk-side', true);
-          if (dir.x > 0) this.sprite.scaleX = 1;
-          else this.sprite.scaleX = -1;
-          return;
-        }
-        if (dir.y > 0) this.sprite.anims.play('walk-down', true);
-        else this.sprite.anims.play('walk-up', true);
       },
+        
 
       projectileControl: (dt) => {
         const pad = this.scene.input.gamepad.getPad(0);
