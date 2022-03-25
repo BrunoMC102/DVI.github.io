@@ -20,6 +20,11 @@ export default class LevelTopDown4 extends Phaser.Scene {
     this.playerData = data.playerData;
   }
 
+  finishGame(){
+    this.sound.stopAll();
+    this.scene.start("end", {coordinates: {x: 100, y: 500}, playerData:this.playerData});
+  }
+
   create() {
     const map = this.make.tilemap({ key: 'tilemap4', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');

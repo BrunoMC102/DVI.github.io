@@ -61,6 +61,12 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('brainmole', 'brainmole.png', 'brainmole.json');
     this.load.atlas('goblinKing', 'goblinKing.png', 'goblinKing.json');
     this.load.atlas('minotaur', 'minotaur.png', 'minotaur.json');
+
+    //musica
+    this.load.setPath('assets/music/');
+    this.load.audio('tonedeath','NoHope.mp3');
+    this.load.audio('villagetheme', 'villagetheme.mp3');
+    this.load.audio('dungeontheme', 'dungeontheme.ogg');
   }
 
   /**

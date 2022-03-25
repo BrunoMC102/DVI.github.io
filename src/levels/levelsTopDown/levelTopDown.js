@@ -57,6 +57,8 @@ export default class LevelTopDown extends Phaser.Scene {
     this.physics.world.enable(this.sceneChange);
     this.sceneChange[0].body.setAllowGravity(false);
     this.sceneChange[1].body.setAllowGravity(false);
+    this.dungeonSound = this.sound.add("dungeontheme").play();
+
   }
 
   update() {
@@ -70,6 +72,7 @@ export default class LevelTopDown extends Phaser.Scene {
   }
 
   finishGame(){
+    this.sound.stopAll();
     this.scene.start("end", {coordinates: {x: 100, y: 500}, playerData:this.playerData});
   }
 
