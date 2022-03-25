@@ -45,12 +45,15 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.isDead = false;
 
     //Informacion del jugador por pantalla
-    this.health_label = this.scene.add.text(10, 10, "");
-    this.money_label = this.scene.add.text(10, 30, "");
-    this.arrow_label = this.scene.add.text(10, 50, "");
-    this.hPotion_label = this.scene.add.text(10, 70, "");
-    this.mPotion_label = this.scene.add.text(10, 90, "");
-    this.mana_label = this.scene.add.text(10, 110, "");
+    //this.health_label = this.scene.add.text(10, 10, "");
+    this.array_hearts = [];
+    this.separation = 0;
+    this.createUiBar();
+    this.money_label =this.scene.add.text(25,65,"x" + this.playerData.money);
+    this.arrow_label = this.scene.add.text(1235,65, "x" + this.playerData.arrows);
+    this.hPotion_label = this.scene.add.text(25,120,"x"+ this.playerData.healthPotions);
+    this.mPotion_label = this.scene.add.text(20, 150,"");
+    this.mana_label =  this.scene.add.text(20, 180,"");
     //Barra proyectiles
     this.projectileBar = new ProjectileBar(scene, 0, 70);
     this.add(this.projectileBar);
@@ -67,7 +70,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.bow.setVisible(true);
     }
     //Barra mana
-    this.manaBar = new ManaBar(scene, 115, 140);
+    this.manaBar = new ManaBar(scene, 115, 215);
 
 
     this.projectileCharging = false;
@@ -83,6 +86,23 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     scene.input.gamepad.on(Phaser.Input.Gamepad.Events.BUTTON_DOWN, () => { this.controls = this.padControls; this.playerData.control = true });
     this.R2_pressed = false;
     this.lastVelocity = new Phaser.Math.Vector2(0,0);
+  }
+
+  createUiBar(){
+    for (let i = 0; i < this.playerData.health; i++){
+      this.array_hearts[i] = this.scene.add.sprite(20 + this.separation ,20,'vida');
+      this.separation += 30;
+    }
+    this.scene.add.sprite(20,60,"monedas");
+  
+    this.scene.add.sprite(1230,60, "flecha");
+   
+
+    this.scene.add.sprite(20,120, "pocionVida");
+    
+    
+    
+
   }
 
 
@@ -130,32 +150,51 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.lastVelocity = new Phaser.Math.Vector2(this.body.velocity.x, this.body.velocity.y);
     }
     //Actualizacion informacion en pantalla
-    this.health_label.text = 'Health: ' + this.playerData.health;
-    this.money_label.text = 'Money: ' + this.playerData.money;
-    this.arrow_label.text = 'Arrows: ' + this.playerData.arrows;
+    //this.health_label.text = 'Health: ' + this.playerData.health;
+    this.updateUi();
+    this.money_label.text = 'x' + this.playerData.money;
+    this.arrow_label.text = 'x' + this.playerData.arrows;
     this.mPotion_label.text = 'Mana Potions: ' + this.playerData.manaPotions;
-    this.hPotion_label.text = 'Health Potions: ' + this.playerData.healthPotions;
+    this.hPotion_label.text = 'x' + this.playerData.healthPotions;
     this.mana_label.text = 'Mana: ' + this.playerData.mana;
     this.manaBar.actualiza(this.playerData.mana, this.playerData.maxMana);
 
     if (this.playerData.health <= 0 && !this.isDead) {
       this.isDead = true;
       this.sprite.anims.play('death');
+      this.scene.finishGame();
     }
     
 
     this.handlePlayerAnimation();
   }
 
+  updateUi(){
+    const j = this.array_hearts.length;
+
+    if(this.playerData.health != j){
+      if(this.playerData.health > j){
+
+       for (let i = j; i < this.playerData.health; i++){
+          this.array_hearts[i] = this.scene.add.sprite(20 + this.separation ,20,'vida');
+          this.separation += 30;
+          
+       }
+      }else {
+        for (let i = j; i > this.playerData.health; i--){
+          this.array_hearts[i-1].destroy();
+          this.array_hearts.pop();
+          this.separation -= 30;
+       }
+      }
+    }
+    
+  }
+
 
 
   hurt(damage) {
-    if(this.playerData.health <= 0){
-      
-      this.scene.finishGame();
-      
-
-    }else if (this.immunity <= 0) {
+   if (this.immunity <= 0) {
       this.playerData.health -= damage;
       this.immunity = 1500;
       this.displayColor = this.flickering;

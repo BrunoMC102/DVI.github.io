@@ -54,6 +54,11 @@ export default class LevelTopDown3 extends Phaser.Scene {
     this.sceneChange[1].body.setAllowGravity(false);
   }
 
+  finishGame(){
+    this.sound.stopAll();
+    this.scene.start("end", {coordinates: {x: 100, y: 500}, playerData:this.playerData});
+  }
+
   update() {
     //Esto es mejor porque solo revisa si se encuentra en la hitbox
     if (this.physics.overlap(this.player, this.sceneChange[0])) {
@@ -63,6 +68,7 @@ export default class LevelTopDown3 extends Phaser.Scene {
       this.scene.start('levelTopDown2', {coordinates: {x: 1170, y: 500}, playerData:this.playerData});
     }
   }
+  
 
   showHitbox(layer) {
     const debugGraphics = this.add.graphics().setAlpha(0.7);

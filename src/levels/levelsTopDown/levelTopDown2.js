@@ -72,6 +72,11 @@ export default class LevelTopDown2 extends Phaser.Scene {
     this.sceneChange[1].body.setAllowGravity(false);
   }
 
+  finishGame(){
+    this.sound.stopAll();
+    this.scene.start("end", {coordinates: {x: 100, y: 500}, playerData:this.playerData});
+  }
+
   update(d,dt){
     if (this.physics.overlap(this.player, this.sceneChange[0])) {
       this.scene.start('levelTopDown3', {coordinates: {x: 100, y: 500}, playerData: this.playerData});

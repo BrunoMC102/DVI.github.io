@@ -60,6 +60,8 @@ export default class BeginningVillage extends Phaser.Scene {
 
     this.physics.add.collider(this.player, midLayer);
     midLayer.setCollisionBetween(0,999);
+    this.villageSound = this.sound.add("villagetheme");
+    this.villageSound.play();
 
   
 
@@ -68,6 +70,7 @@ export default class BeginningVillage extends Phaser.Scene {
   update() {
     //Esto es mejor porque solo revisa si se encuentra en la hitbox
     if (this.physics.overlap(this.player, this.sceneChange[0])) {
+      this.sound.stopAll();
       this.scene.start('levelTopDown', {coordinates: {x: 100, y: 500},playerData:this.playerData});
     }
     /*
