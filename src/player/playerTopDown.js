@@ -59,13 +59,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.array_hearts = [];
     this.separation = 0;
     this.createUiBar();
-    this.money_label =this.scene.add.text(45,85,"x" + this.playerData.money);
-    this.arrow_label = this.scene.add.text(1235,65, "x" + this.playerData.arrows);
-    this.hPotion_label = this.scene.add.text(25,140,"x"+ this.playerData.healthPotions);
-    this.mPotion_label = this.scene.add.text(80, 140,"x" + this.playerData.manaPotions);
+    this.money_label =this.scene.add.text(45,85,"x" + this.playerData.money, {fontSize: "22px"});
+    this.arrow_label = this.scene.add.text(105,85, "x" + this.playerData.arrows, {fontSize: "22px"});
+    this.hPotion_label = this.scene.add.text(25,140,"x"+ this.playerData.healthPotions, {fontSize: "22px"});
+    this.mPotion_label = this.scene.add.text(80, 140,"x" + this.playerData.manaPotions, {fontSize: "22px"});
     //Barra mana
     this.manaBar = new ManaBar(scene, 105, 50);
-    this.mana_label =  this.scene.add.text(210 ,45,''+this.playerData.mana);
+    this.mana_label =  this.scene.add.text(210 ,40,''+this.playerData.mana, {fontSize: "22px"});
 
     
 
@@ -180,7 +180,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       }
       this.scene.add.sprite(40,85,"monedas");
     
-      this.scene.add.sprite(1230,60, "flecha");
+      this.scene.add.sprite(100,80, "flecha");
     
       this.scene.add.sprite(20,130, "pocionVida");
 
