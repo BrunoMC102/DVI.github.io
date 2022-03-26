@@ -44,7 +44,7 @@ export default class End extends Phaser.Scene {
 onEvent(){
     this.input.keyboard.on('keydown', function (event) { 
       this.sound.stopAll();
-      this.scene.start('beginningVillage', {coordinates: {x: 325, y: 300}, playerData:this.playerData});
+      this.scene.start('beginningVillage', {coordinates: {x: 1350, y: 1045}, playerData:this.playerData});
     }, this);
   }
 

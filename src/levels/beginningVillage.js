@@ -24,33 +24,36 @@ export default class BeginningVillage extends Phaser.Scene {
    */
   create() {
     const map = this.make.tilemap({ key: 'tilemapVillage', tileWidth: 64, tileHeight: 64});
-    const tileset = map.addTilesetImage('cottageFinal', 'cottages');
+    const tileset = map.addTilesetImage('cottage', 'cottages');
     const tileset2 = map.addTilesetImage('decorations-medieval', 'decorationMedieval');
     const tileset3 = map.addTilesetImage('fence_medieval', 'fenceMedieval');
     const tileset4 = map.addTilesetImage('terrain-v7', 'terreno');
     const tileset5 = map.addTilesetImage('trees-pale', 'trees');
-    const tileset6 = map.addTilesetImage('thatched-roofFinal2', 'roofNormal');
+    const tileset6 = map.addTilesetImage('thatched-roof', 'roofNormal');
+    const tileset7 = map.addTilesetImage('doors', 'doors');
+    const tileset8 = map.addTilesetImage('windows', 'windows');
 
 
 
  
-    const bottomLayer = map.createLayer('BottomLayer', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6]).setCollisionByProperty({ collides: true });
+    const bottomLayer = map.createLayer('BottomLayer', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6,tileset7,tileset8]).setCollisionByProperty({ collides: true });
+    const bottomLayer2 = map.createLayer('BottomLayer2', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6,tileset7,tileset8]).setCollisionByProperty({ collides: true });
     
     
-    const midLayer = map.createLayer('MidLayer', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6]).setCollisionByProperty({ collides: true });
+    const midLayer = map.createLayer('MidLayer', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6,tileset7,tileset8]).setCollisionByProperty({ collides: true });
      this.enemies = this.add.group();
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
     this.cameras.main.startFollow(this.player);
-    this.cameras.main.setBounds(0,0,3840,1920);
+    this.cameras.main.setBounds(0,0,5120,3840);
     this.player.body.setCollideWorldBounds(false);
-    const topLayer = map.createLayer('TopLayer', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6]).setCollisionByProperty({ collides: true });
-    const Roofs = map.createLayer('Roofs', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6]).setCollisionByProperty({ collides: true });
+    const topLayer = map.createLayer('TopLayer', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6,tileset7,tileset8]).setCollisionByProperty({ collides: true });
+    const Roofs = map.createLayer('Roofs', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6,tileset7,tileset8]).setCollisionByProperty({ collides: true });
     
 
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
    
-    this.sceneChange =  [this.add.zone(3800,950,60,600)];
+    this.sceneChange =  [this.add.zone(4650,2000,60,450)];
     this.physics.world.enable(this.sceneChange); 
     this.sceneChange[0].body.setAllowGravity(false);
 

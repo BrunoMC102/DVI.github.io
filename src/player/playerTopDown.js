@@ -157,13 +157,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     //Actualizacion informacion en pantalla
     //this.health_label.text = 'Health: ' + this.playerData.health;
     this.updateUi();
-    this.money_label.text = 'x' + this.playerData.money;
-    this.arrow_label.text = 'x' + this.playerData.arrows;
-    this.mPotion_label.text = 'Mana Potions: ' + this.playerData.manaPotions;
-    this.hPotion_label.text = 'x' + this.playerData.healthPotions;
-    this.mana_label.text = 'Mana: ' + this.playerData.mana;
-    this.manaBar.actualiza(this.playerData.mana, this.playerData.maxMana);
-
     if (this.playerData.health <= 0 && !this.isDead) {
       this.isDead = true;
       this.sprite.anims.play('death');
@@ -210,6 +203,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
        }
       }
     }
+    this.money_label.text = 'x' + this.playerData.money;
+    this.arrow_label.text = 'x' + this.playerData.arrows;
+    this.mPotion_label.text = 'Mana Potions: ' + this.playerData.manaPotions;
+    this.hPotion_label.text = 'x' + this.playerData.healthPotions;
+    this.mana_label.text = 'Mana: ' + this.playerData.mana;
+    this.manaBar.actualiza(this.playerData.mana, this.playerData.maxMana);
     
   }
 
