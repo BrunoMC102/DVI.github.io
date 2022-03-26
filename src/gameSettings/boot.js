@@ -73,6 +73,12 @@ export default class Boot extends Phaser.Scene {
 
     //musica
     this.load.setPath('assets/music/');
+    this.load.audio('slide','golpeEspada.wav');
+    this.load.audio('hit', 'hit.mp3');
+    this.load.audio('upgrade', 'upgrade.mp3');
+    this.load.audio('disparoFlecha', 'disparoFlecha.mp3');
+    this.load.audio('potionAudio', 'potionAudio.mp3');
+    this.load.audio('splash', 'splash.wav');
     this.load.audio('tonedeath','NoHope.mp3');
     this.load.audio('villagetheme', 'villagetheme.mp3');
     this.load.audio('dungeontheme', 'dungeontheme.ogg');

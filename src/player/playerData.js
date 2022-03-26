@@ -9,7 +9,7 @@ export default class PlayerData{
       
       this.money = 0; // dinero del jugador
       this.healthPotions = 0; // pociones de vida
-      this.manaPotions = 0; // pociones de mana
+      this.manaPotions = 1; // pociones de mana
       this.mana = 0;
       //Informacion proyectiles
       this.projectileBaseSpeed = 500;

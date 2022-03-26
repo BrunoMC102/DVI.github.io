@@ -26,6 +26,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.key2 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
     this.key3 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
     this.keyC = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
+    this.keyF = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+    this.keyG = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.G);
 
     //Propiedades del body
     this.body.allowGravity = false;
@@ -119,6 +121,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     //Variables generales
     this.isDead = false;
 
+    //Audio
+    this.swordAudio = this.scene.sound.add("slide");
+    this.hit = this.scene.sound.add("hit");
+    this.upgradeAudio = this.scene.sound.add("upgrade");
+    this.flechaAudio = this.scene.sound.add("disparoFlecha");
+    this.healthPotionAudio = this.scene.sound.add("potionAudio");
+
   }
 
 
@@ -157,6 +166,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     if (this.body.velocity.x != 0 || this.body.velocity.y != 0) {
       this.lastVelocity = new Phaser.Math.Vector2(this.body.velocity.x, this.body.velocity.y);
     }
+    this.controls.healthRecovery();
+    this.controls.manaRecovery();
     //Actualizacion informacion en pantalla
     //this.health_label.text = 'Health: ' + this.playerData.health;
     this.updateUi();
@@ -221,6 +232,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
   hurt(damage) {
     if (this.immunity <= 0) {
+      this.hit.play();
       this.playerData.health -= damage;
       this.immunity = 1500;
       this.displayColor = this.flickering;
@@ -232,6 +244,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
   //Metodos disparo
   fire() {
+    this.flechaAudio.play();
     const projectileVector = this.controls.projectileAngle();
     this.projectile = new PlayerProyectile(this.scene, this.x, this.y, projectileVector.x, projectileVector.y);
     this.playerData.projectileGroups.forEach(element => {
@@ -279,6 +292,21 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   setBouncy() {
 
     this.playerData.setBouncy();
+  }
+
+  useHealthPotions(){
+    if(this.playerData.healthPotions> 0){
+    this.healthPotionAudio.play();
+    this.playerData.healthPotions--;
+    this.playerData.health++;
+    }
+  }
+  useManaPotions(){
+    if(this.playerData.manaPotions> 0){
+    this.healthPotionAudio.play();
+    this.playerData.manaPotions--;
+    this.playerData.mana+= 25;
+    }
   }
 
 
@@ -346,6 +374,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   }
 
   givePasivoPowerUp(texture, titleString) {
+    this.upgradeAudio.play();
     const objectPicked = new Phaser.GameObjects.Image(this.scene, 0, -50, texture);
     const background = new Phaser.GameObjects.Image(this.scene,this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, 'emptySign');
     background.scaleX = 2.5;
@@ -429,6 +458,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       },
       swordControl: () => {
         if (Phaser.Input.Keyboard.JustDown(this.cursors.space)) {
+          this.swordAudio.play();
           this.sword.attack();
         }
       },
@@ -465,6 +495,16 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         if (this.inDashDelay) return;
         if (Phaser.Input.Keyboard.JustDown(this.keyC)) {
           this.initiateDash();
+        }
+      },
+      healthRecovery: () => {
+        if (Phaser.Input.Keyboard.JustDown(this.keyF)) {
+          this.useHealthPotions();
+        }
+      },
+      manaRecovery: () => {
+        if (Phaser.Input.Keyboard.JustDown(this.keyG)) {
+          this.useManaPotions();
         }
       },
       spellControl: () => {
