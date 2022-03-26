@@ -347,11 +347,24 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
   givePasivoPowerUp(texture, titleString) {
     const objectPicked = new Phaser.GameObjects.Image(this.scene, 0, -50, texture);
-    const title = this.scene.add.text(this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY, titleString, { fontSize: 50, backgroundColor: '#0' });
+    const background = new Phaser.GameObjects.Image(this.scene,this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, 'emptySign');
+    background.scaleX = 2.5;
+    this.scene.add.existing(background);
+    //background.x -= background.width/2
+    const title = this.scene.add.text(this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, titleString, { fontSize: 50});
     title.x -= title.width / 2;
+    this.scene.tweens.add({
+      targets: [title,background],
+      y:this.scene.cameras.cameras[0].centerY - 430,
+      duration: 1000,
+      ease: 'Sine.easeInOut',
+      repeat: 0,
+      hold: 2000,
+      yoyo: true
+  })
     //this.scene.add(objectPicked);
     this.add(objectPicked);
-    this.scene.time.delayedCall(2000, () => { objectPicked.destroy(), title.destroy() });
+    this.scene.time.delayedCall(4000, () => { objectPicked.destroy(); title.destroy(); background.destroy()});
   }
 
   //Animacion player

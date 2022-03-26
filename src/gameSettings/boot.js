@@ -45,8 +45,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('goblinKingStand', 'idle-1.png');
     this.load.image('dungeon', 'Dungeon64.png');
     this.load.image('mana', 'mana.png');
-    this.load.image('chestUnopened', '77.png');
+    this.load.image('chestUnopened', 'chest.png');
     this.load.image('pocionMana', 'manaPotion.png');
+    this.load.image('emptySign', 'EmptySign.png');
 
     this.load.setPath('assets/json/');
     this.load.tilemapTiledJSON('tilemapJose', 'PruebaScrollJose.json');
