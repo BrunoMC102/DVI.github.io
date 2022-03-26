@@ -46,6 +46,17 @@ export default class BeginningVillage extends Phaser.Scene {
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setBounds(0,0,5120,3840);
     this.player.body.setCollideWorldBounds(false);
+    this.add.sprite(4193.94,2590.91,'general');
+    //const npcs = map.createFromObjects('npcs');
+    //for (const objeto of this.scene.map.getObjectLayer('npcs').objects) {
+      //if (objeto.type === 'blacksmith') {
+        //this.add.sprite(objeto.x, objeto.y,'blacksmith');
+      //}
+      //if (objeto.type === 'general') {
+      //  this.add.sprite(objeto.x, objeto.y,'general');
+    //  }
+      
+  //}
     const topLayer = map.createLayer('TopLayer', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6,tileset7,tileset8]).setCollisionByProperty({ collides: true });
     const Roofs = map.createLayer('Roofs', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6,tileset7,tileset8]).setCollisionByProperty({ collides: true });
     
@@ -53,7 +64,7 @@ export default class BeginningVillage extends Phaser.Scene {
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
    
-    this.sceneChange =  [this.add.zone(4650,2000,60,450)];
+    this.sceneChange =  [this.add.zone(2560,1256,400,400)];
     this.physics.world.enable(this.sceneChange); 
     this.sceneChange[0].body.setAllowGravity(false);
 
@@ -62,8 +73,8 @@ export default class BeginningVillage extends Phaser.Scene {
     // this.physics.add.collider(this.player, wallLayer);
 
     this.physics.add.collider(this.player, midLayer);
-    midLayer.setCollisionBetween(0,999);
-    this.villageSound = this.sound.add("villagetheme");
+    this.physics.add.collider(this.player,topLayer);
+    this.villageSound = this.sound.add("villagetheme", {loop: true});
     this.villageSound.play();
 
   
