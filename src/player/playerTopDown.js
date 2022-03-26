@@ -59,11 +59,15 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.array_hearts = [];
     this.separation = 0;
     this.createUiBar();
-    this.money_label =this.scene.add.text(25,65,"x" + this.playerData.money);
+    this.money_label =this.scene.add.text(45,85,"x" + this.playerData.money);
     this.arrow_label = this.scene.add.text(1235,65, "x" + this.playerData.arrows);
-    this.hPotion_label = this.scene.add.text(25,120,"x"+ this.playerData.healthPotions);
-    this.mPotion_label = this.scene.add.text(20, 150,"");
-    this.mana_label =  this.scene.add.text(20, 180,"");
+    this.hPotion_label = this.scene.add.text(25,140,"x"+ this.playerData.healthPotions);
+    this.mPotion_label = this.scene.add.text(80, 140,"x" + this.playerData.manaPotions);
+    //Barra mana
+    this.manaBar = new ManaBar(scene, 105, 50);
+    this.mana_label =  this.scene.add.text(210 ,45,''+this.playerData.mana);
+
+    
 
 
   
@@ -84,8 +88,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.add(this.projectileBar);
     this.projectileBar.setVisible(false);
 
-    //Barra mana
-    this.manaBar = new ManaBar(scene, 115, 215);
 
     //Creacion de controles 
     this.handleControls();
@@ -175,11 +177,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         this.array_hearts[i] = this.scene.add.sprite(20 + this.separation ,20,'vida');
         this.separation += 30;
       }
-      this.scene.add.sprite(20,60,"monedas");
+      this.scene.add.sprite(40,85,"monedas");
     
       this.scene.add.sprite(1230,60, "flecha");
     
-      this.scene.add.sprite(20,120, "pocionVida");
+      this.scene.add.sprite(20,130, "pocionVida");
+
+      this.scene.add.sprite(75,130,'pocionMana');
       
   }
 
@@ -205,9 +209,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     }
     this.money_label.text = 'x' + this.playerData.money;
     this.arrow_label.text = 'x' + this.playerData.arrows;
-    this.mPotion_label.text = 'Mana Potions: ' + this.playerData.manaPotions;
+    this.mPotion_label.text = 'x' + this.playerData.manaPotions;
     this.hPotion_label.text = 'x' + this.playerData.healthPotions;
-    this.mana_label.text = 'Mana: ' + this.playerData.mana;
+    this.mana_label.text = '' + this.playerData.mana;
     this.manaBar.actualiza(this.playerData.mana, this.playerData.maxMana);
     
   }
