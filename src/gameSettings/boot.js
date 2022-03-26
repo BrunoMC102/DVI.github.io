@@ -45,6 +45,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('goblinKingStand', 'idle-1.png');
     this.load.image('dungeon', 'Dungeon64.png');
     this.load.image('mana', 'mana.png');
+    this.load.image('chestUnopened', '77.png');
 
     this.load.setPath('assets/json/');
     this.load.tilemapTiledJSON('tilemapJose', 'PruebaScrollJose.json');
@@ -64,11 +65,17 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('goblinKing', 'goblinKing.png', 'goblinKing.json');
     this.load.atlas('minotaur', 'minotaur.png', 'minotaur.json');
 
+
+    this.load.atlas('chest', 'chest.png', 'chest.json')
+
+
     //musica
     this.load.setPath('assets/music/');
     this.load.audio('tonedeath','NoHope.mp3');
     this.load.audio('villagetheme', 'villagetheme.mp3');
     this.load.audio('dungeontheme', 'dungeontheme.ogg');
+
+    
   }
 
   /**
@@ -201,6 +208,12 @@ export default class Boot extends Phaser.Scene {
       key:'minotaurfastWalk',
       frames: this.anims.generateFrameNames('minotaur',{start: 1, end: 8, prefix: 'Walk_', suffix: '.png'}),
       frameRate:25,
+      repeat: 0    
+    })
+    this.anims.create({
+      key:'openChest',
+      frames: this.anims.generateFrameNames('chest',{start: 77, end: 81, suffix: '.png'}),
+      frameRate: 8,
       repeat: 0    
     })
     }
