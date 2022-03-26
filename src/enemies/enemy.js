@@ -91,4 +91,13 @@ export default class Enemy extends EnemyParent{
     if(this.atack.ready)
       this.c = true;
   }
+  die(){
+    this.sprite.play('minotaurDeath');
+    this.body.destroy();
+    this.scene.time.delayedCall(1500, () => {
+      this.spawnMana();
+      this.destroy();
+      this.spawnLoot();
+    })
+  }
 }

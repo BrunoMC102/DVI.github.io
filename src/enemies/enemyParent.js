@@ -87,14 +87,15 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
   }
 
   hurt(damage){
+    if(this.dead) return;
     this.health -= damage;
     if(this.health <= 0){
+      this.dead = true;
       this.die();
     }
   }
 
   die(){
-    this.dead = true;
     this.spawnMana();
       this.destroy();
       this.spawnLoot();

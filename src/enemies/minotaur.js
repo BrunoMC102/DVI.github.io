@@ -82,4 +82,13 @@ export default class Minotaur extends ShootingEnemyParent {
         this.sprite.play('minotaurWalk',true);
       }
     }
+    die(){
+      this.sprite.play('minotaurDeath');
+      this.body.destroy();
+      this.scene.time.delayedCall(1500, () => {
+        this.spawnMana();
+        this.destroy();
+        this.spawnLoot();
+      })
+    }
 }

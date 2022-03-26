@@ -95,4 +95,14 @@ export default class Trabuquero extends ShootingEnemyParent {
         this.knockback(-this.fireDirection.x, -this.fireDirection.y, 200);
         this.fire();
     }
+    die(){
+        this.sprite.play('minotaurDeath');
+        this.body.destroy();
+        this.preUpdate = ()=>{};
+        this.scene.time.delayedCall(1500, () => {
+          this.spawnMana();
+          this.destroy();
+          this.spawnLoot();
+        })
+      }
 }
