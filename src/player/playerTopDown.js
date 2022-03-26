@@ -26,12 +26,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.key2 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
     this.key3 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
     this.keyC = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
-    
+
     //Propiedades del body
     this.body.allowGravity = false;
     this.body.pushable = false;
 
-    
+
     //Handle datos jugador
     this.playerData = data;
     this.playerData.player = this;
@@ -53,29 +53,32 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.sprite = this.scene.add.sprite(0, 0, 'character', 'idle-side.png');
     this.add(this.sprite);
     this.sprite.anims.play('idle-side');
-    
+
 
     //Creacion Informacion del jugador por pantalla
     this.array_hearts = [];
     this.separation = 0;
     this.createUiBar();
-    this.money_label =this.scene.add.text(25,65,"x" + this.playerData.money);
+    this.money_label =this.scene.add.text(45,85,"x" + this.playerData.money);
     this.arrow_label = this.scene.add.text(1235,65, "x" + this.playerData.arrows);
-    this.hPotion_label = this.scene.add.text(25,120,"x"+ this.playerData.healthPotions);
-    this.mPotion_label = this.scene.add.text(20, 150,"");
-    this.mana_label =  this.scene.add.text(20, 180,"");
+    this.hPotion_label = this.scene.add.text(25,140,"x"+ this.playerData.healthPotions);
+    this.mPotion_label = this.scene.add.text(80, 140,"x" + this.playerData.manaPotions);
+    //Barra mana
+    this.manaBar = new ManaBar(scene, 105, 50);
+    this.mana_label =  this.scene.add.text(210 ,45,''+this.playerData.mana);
+
+    
 
 
-  
     //Creacion armas del jugador
     this.sword = new SwordContainer(scene, 0, 0, this);
-    this.bow = new Bow(scene,0,0,this);
+    this.bow = new Bow(scene, 0, 0, this);
     this.add(this.sword);
     this.add(this.bow);
-    if(this.playerData.weapon == 0){
+    if (this.playerData.weapon == 0) {
       this.sword.setVisible(true);
     }
-    else if(this.playerData.weapon == 1){
+    else if (this.playerData.weapon == 1) {
       this.bow.setVisible(true);
     }
 
@@ -84,15 +87,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.add(this.projectileBar);
     this.projectileBar.setVisible(false);
 
-    //Barra mana
-    this.manaBar = new ManaBar(scene, 115, 215);
 
     //Creacion de controles 
     this.handleControls();
     if (this.playerData.isPadControlling) this.controls = this.padControls;
     else this.controls = this.keyboardControls;
-    scene.input.keyboard.on('keydown', () => { this.controls = this.keyboardControls; this.playerData.control = false });
-    scene.input.gamepad.on(Phaser.Input.Gamepad.Events.BUTTON_DOWN, () => { this.controls = this.padControls; this.playerData.control = true });
+    scene.input.keyboard.on('keydown', () => { this.controls = this.keyboardControls; this.playerData.isPadControlling = false });
+    scene.input.gamepad.on(Phaser.Input.Gamepad.Events.BUTTON_DOWN, () => { this.controls = this.padControls; this.playerData.isPadControlling = true });
 
 
     //---Variables usadas---
@@ -108,50 +109,52 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     //Variables Dash
     this.dashing = false;
     this.inDashDelay = false;
-    
+
     //Variables controles
     this.R2_pressed = false;
-    this.lastVelocity = new Phaser.Math.Vector2(0,0);
+    this.lastVelocity = new Phaser.Math.Vector2(0, 0);
+    this.trianglePressed = false;
+    this.L2Pressed = false;
 
     //Variables generales
     this.isDead = false;
 
   }
 
-  
+
   preUpdate(t, dt) {
 
-    if(!this.dashing){
+    if (!this.dashing) {
       this.controls.movementcontrol();
-      if (this.playerData.weapon == 0) 
+      if (this.playerData.weapon == 0)
         this.controls.swordControl();
-      
+
       if (this.playerData.weapon == 1) {
-        if (this.playerData.arrows > 0) 
+        if (this.playerData.arrows > 0)
           this.controls.projectileControl(dt);
       }
 
-      if(this.playerData.weapon == 2){
-        if(this.playerData.currentManaCost <= this.playerData.mana)
+      if (this.playerData.weapon == 2) {
+        if (this.playerData.currentManaCost <= this.playerData.mana)
           this.controls.spellControl();
       }
       this.controls.dashControl();
     }
     else
       this.dash();
-    
+
 
     if (this.immunity > 0)
       this.immunity -= dt;
     else
-      this.displayColor = () => {};
+      this.displayColor = () => { };
 
-    
+
     this.controls.selectWeapon();
     this.displayColor();
     this.flickerTime += dt;
 
-    if(this.body.velocity.x != 0 || this.body.velocity.y != 0){
+    if (this.body.velocity.x != 0 || this.body.velocity.y != 0) {
       this.lastVelocity = new Phaser.Math.Vector2(this.body.velocity.x, this.body.velocity.y);
     }
     //Actualizacion informacion en pantalla
@@ -162,7 +165,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.sprite.anims.play('death');
       this.scene.finishGame();
     }
-    
+
 
     this.handlePlayerAnimation();
   }
@@ -175,47 +178,49 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         this.array_hearts[i] = this.scene.add.sprite(20 + this.separation ,20,'vida');
         this.separation += 30;
       }
-      this.scene.add.sprite(20,60,"monedas");
+      this.scene.add.sprite(40,85,"monedas");
     
       this.scene.add.sprite(1230,60, "flecha");
     
-      this.scene.add.sprite(20,120, "pocionVida");
+      this.scene.add.sprite(20,130, "pocionVida");
+
+      this.scene.add.sprite(75,130,'pocionMana');
       
   }
 
-  updateUi(){
+  updateUi() {
     const j = this.array_hearts.length;
 
-    if(this.playerData.health != j){
-      if(this.playerData.health > j){
+    if (this.playerData.health != j) {
+      if (this.playerData.health > j) {
 
-       for (let i = j; i < this.playerData.health; i++){
-          this.array_hearts[i] = this.scene.add.sprite(20 + this.separation ,20,'vida');
+        for (let i = j; i < this.playerData.health; i++) {
+          this.array_hearts[i] = this.scene.add.sprite(20 + this.separation, 20, 'vida');
           this.separation += 30;
-          
-       }
+
+        }
       }
       else {
-        for (let i = j; i > this.playerData.health; i--){
-          this.array_hearts[i-1].destroy();
+        for (let i = j; i > this.playerData.health; i--) {
+          this.array_hearts[i - 1].destroy();
           this.array_hearts.pop();
           this.separation -= 30;
-       }
+        }
       }
     }
     this.money_label.text = 'x' + this.playerData.money;
     this.arrow_label.text = 'x' + this.playerData.arrows;
-    this.mPotion_label.text = 'Mana Potions: ' + this.playerData.manaPotions;
+    this.mPotion_label.text = 'x' + this.playerData.manaPotions;
     this.hPotion_label.text = 'x' + this.playerData.healthPotions;
-    this.mana_label.text = 'Mana: ' + this.playerData.mana;
+    this.mana_label.text = '' + this.playerData.mana;
     this.manaBar.actualiza(this.playerData.mana, this.playerData.maxMana);
-    
+
   }
 
 
 
   hurt(damage) {
-   if (this.immunity <= 0) {
+    if (this.immunity <= 0) {
       this.playerData.health -= damage;
       this.immunity = 1500;
       this.displayColor = this.flickering;
@@ -234,36 +239,36 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     });
   }
 
-  spellFire(){
+  spellFire() {
     const projectileVector = this.controls.projectileAngle();
-    this.projectile = new Spell(this.scene, this.x, this.y, projectileVector.x, projectileVector.y,10, this.playerData.damage);
+    this.projectile = new Spell(this.scene, this.x, this.y, projectileVector.x, projectileVector.y, 10, this.playerData.damage);
   }
 
 
   //Metodos Dash
-  dash(){
-    if(this.dashing){
+  dash() {
+    if (this.dashing) {
       this.body.velocity = this.dashVelocity;
     }
   }
 
-  initiateDash(){
+  initiateDash() {
     this.dashVelocity = this.lastVelocity;
     this.dashVelocity.normalize().scale(this.playerData.dashSpeed);
     this.dashing = true;
     this.inDashDelay = true;
     if (this.playerData.dashInvincibilityPower)
       this.playerWithProjectilesCollider.remove(this);
-    this.scene.time.delayedCall(130, ()=>{
-      if(this.playerData.dashInvincibilityPower)
+    this.scene.time.delayedCall(130, () => {
+      if (this.playerData.dashInvincibilityPower)
         this.playerWithProjectilesCollider.remove(this);
-      this.dashing = false; 
+      this.dashing = false;
     })
-    this.scene.time.delayedCall(400, ()=>{
+    this.scene.time.delayedCall(400, () => {
       this.playerWithProjectilesCollider.add(this);
-      this.inDashDelay = false; 
+      this.inDashDelay = false;
     })
-    
+
   }
 
   //Metodos PowerUp
@@ -313,7 +318,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   //Creacion Grupos
   createGroups() {
     this.WallCollGroup = this.scene.add.group();
-    this.scene.physics.add.collider(this.WallCollGroup, this.scene.wallLayer, (o1, o2) => {o1.dest()});
+    this.scene.physics.add.collider(this.WallCollGroup, this.scene.wallLayer, (o1, o2) => { o1.dest() });
     this.EnemiesCollGroup = this.scene.add.group();
     this.scene.physics.add.overlap(this.EnemiesCollGroup, this.scene.enemies, (o1, o2) => {
       o2.hurt(this.playerData.damage);
@@ -327,12 +332,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.VoidCollGroup_noEff = this.scene.add.group();
     this.scene.physics.add.collider(this.VoidCollGroup_noEff, this.scene.voidLayer, () => { });
     this.playerWithProjectilesCollider = this.scene.add.group();
-    this.scene.physics.add.overlap(this.playerWithProjectilesCollider, this.scene.projectiles, (o1,o2) => {
+    this.scene.physics.add.overlap(this.playerWithProjectilesCollider, this.scene.projectiles, (o1, o2) => {
       o1.hurt(o2.damage);
       o2.destroy();
-      });
+    });
   }
- 
+
 
   giveMana() {
     if (this.playerData.mana >= this.playerData.maxMana) return;
@@ -341,17 +346,17 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   }
 
   givePasivoPowerUp(texture, titleString) {
-    const objectPicked = new Phaser.GameObjects.Image(this.scene,0,-50,texture);
-    const title = this.scene.add.text(this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY, titleString, {fontSize: 50, backgroundColor: '#0'});
-    title.x -= title.width/2;
+    const objectPicked = new Phaser.GameObjects.Image(this.scene, 0, -50, texture);
+    const title = this.scene.add.text(this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY, titleString, { fontSize: 50, backgroundColor: '#0' });
+    title.x -= title.width / 2;
     //this.scene.add(objectPicked);
     this.add(objectPicked);
-    this.scene.time.delayedCall(2000, () => {objectPicked.destroy(), title.destroy()}); 
+    this.scene.time.delayedCall(2000, () => { objectPicked.destroy(), title.destroy() });
   }
 
   //Animacion player
-  handlePlayerAnimation(){
-    if(this.isDead){
+  handlePlayerAnimation() {
+    if (this.isDead) {
       this.sprite.anims.play('death', true);
       return;
     }
@@ -376,21 +381,21 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.keyboardControls = {
       projectile: "spacebar",
       movementcontrol: () => {
-          let velocityVector = new Phaser.Math.Vector2(0,0);
-          if (this.cursors.up.isDown) {
-            velocityVector.y -= 1;
-          }
-          if (this.cursors.down.isDown) {
-            velocityVector.y += 1;
-          }
-          if (this.cursors.left.isDown) {
-            velocityVector.x -= 1;
-          }
-          if (this.cursors.right.isDown) {
-            velocityVector.x += 1;
-          }
-          velocityVector.normalize().scale(this.playerData.speed);
-          this.body.setVelocity(velocityVector.x,velocityVector.y);
+        let velocityVector = new Phaser.Math.Vector2(0, 0);
+        if (this.cursors.up.isDown) {
+          velocityVector.y -= 1;
+        }
+        if (this.cursors.down.isDown) {
+          velocityVector.y += 1;
+        }
+        if (this.cursors.left.isDown) {
+          velocityVector.x -= 1;
+        }
+        if (this.cursors.right.isDown) {
+          velocityVector.x += 1;
+        }
+        velocityVector.normalize().scale(this.playerData.speed);
+        this.body.setVelocity(velocityVector.x, velocityVector.y);
       },
       projectileControl: (dt) => {
         if (this.cursors.space.isDown) {
@@ -435,17 +440,17 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         }
       },
       projectileAngle: () => {
-        
-        let v = new Phaser.Math.Vector2(this.body.velocity.x,this.body.velocity.y).normalize().scale(this.playerData.projectileSpeed);
-        if (v.x == 0 && v.y == 0) 
+
+        let v = new Phaser.Math.Vector2(this.body.velocity.x, this.body.velocity.y).normalize().scale(this.playerData.projectileSpeed);
+        if (v.x == 0 && v.y == 0)
           return new Phaser.Math.Vector2(this.getDirectionX() * this.playerData.projectileSpeed, this.getDirectionY() * this.playerData.projectileSpeed)
-        
-        else 
+
+        else
           return v
       },
-      dashControl: () =>{
-        if(this.inDashDelay) return;
-        if(Phaser.Input.Keyboard.JustDown(this.keyC)){
+      dashControl: () => {
+        if (this.inDashDelay) return;
+        if (Phaser.Input.Keyboard.JustDown(this.keyC)) {
           this.initiateDash();
         }
       },
@@ -466,7 +471,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         const dir = new Phaser.Math.Vector2(pad.leftStick.x, pad.leftStick.y);
         this.body.setVelocity(dir.normalize().scale(this.playerData.speed).x, dir.normalize().scale(this.playerData.speed).y);
       },
-        
+
 
       projectileControl: (dt) => {
         const pad = this.scene.input.gamepad.getPad(0);
@@ -509,7 +514,29 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
       },
       selectWeapon: () => {
-
+        const pad = this.scene.input.gamepad.getPad(0);
+        if (pad.Y) {
+          if (this.trianglePressed) return;
+          this.trianglePressed = true;
+          this.playerData.weapon = (this.playerData.weapon + 1) % 3;
+          let newWeapon = this.playerData.weapon;
+          if (newWeapon == 0) {
+            this.sword.setVisible(true);
+            this.bow.setVisible(false);
+          }
+          else if (newWeapon == 1) {
+            this.sword.setVisible(false);
+            this.bow.setVisible(true);
+          }
+          else {
+            this.sword.setVisible(false);
+            this.bow.setVisible(false);
+          }
+        }
+        else {
+          if (!this.trianglePressed) return;
+          this.trianglePressed = false;
+        }
       },
       projectileAngle: () => {
         let pad = this.scene.input.gamepad.getPad(0);
@@ -522,9 +549,35 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           return this.controls.lastProjectileUsed;
         }
       },
-
+      dashControl: () => {
+        const pad = this.scene.input.gamepad.getPad(0);
+        if (pad.L2 > 0) {
+          if(this.L2Pressed) return;
+          this.L2Pressed = true;
+          if (this.inDashDelay) return;
+          this.initiateDash();
+        }
+        else{
+          if(!this.L2Pressed) return;
+          this.L2Pressed = false;
+        }
+      },
+      spellControl: () => {
+        const pad = this.scene.input.gamepad.getPad(0);
+        if (pad.R2 > 0) {
+          if(this.R2_pressed) return;
+          this.R2_pressed = true;
+          this.spellFire();
+          this.playerData.mana -= this.playerData.currentManaCost;
+        }
+        else{
+          if(!this.R2_pressed) return;
+          this.R2_pressed = false;
+        }
+      },
       lastProjectileUsed: new Phaser.Math.Vector2(this.playerData.projectileSpeed, 0)
     };
+
   }
 
 }
