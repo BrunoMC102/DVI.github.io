@@ -205,11 +205,19 @@ export default class Boot extends Phaser.Scene {
       repeat: 0    
     })
     this.anims.create({
+      key:'minotaurDeath',
+      frames: this.anims.generateFrameNames('minotaur',{start: 1, end: 6, prefix: 'death_', suffix: '.png'}),
+      frameRate:10,
+      repeat: 0    
+    })
+    this.anims.create({key: 'minotaur_idle', frames: [{ key: 'minotaur', frame: 'idle.png'}], duration: -1});
+    this.anims.create({
       key:'minotaurfastWalk',
       frames: this.anims.generateFrameNames('minotaur',{start: 1, end: 8, prefix: 'Walk_', suffix: '.png'}),
       frameRate:25,
       repeat: 0    
     })
+    //Chest
     this.anims.create({
       key:'openChest',
       frames: this.anims.generateFrameNames('chest',{start: 77, end: 81, suffix: '.png'}),
