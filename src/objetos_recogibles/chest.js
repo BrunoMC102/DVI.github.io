@@ -9,7 +9,6 @@ export default class Chest extends Phaser.GameObjects.Sprite{
         this.scene.physics.add.existing(this, true);
         this.body.allowGravity = false;
         this.open = false;
-        this.setScale(4.5,4.5);
         this.scene.physics.add.collider(this, this.player, () => {
             if(this.open) return;
             this.open = true;
