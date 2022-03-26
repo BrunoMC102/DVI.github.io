@@ -19,33 +19,43 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     this.body.setCollideWorldBounds();
+
+    //Creacion de teclas
     this.cursors = this.scene.input.keyboard.createCursorKeys();
     this.key1 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
     this.key2 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
     this.key3 = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
     this.keyC = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
     
+    //Propiedades del body
     this.body.allowGravity = false;
-    this.immunity = 0;
+    this.body.pushable = false;
 
+    
+    //Handle datos jugador
     this.playerData = data;
     this.playerData.player = this;
+
+    //Ajustes collider
     this.body.offset.x = -20;
     this.body.offset.y = -20;
+    this.body.setSize(this.body.width * 0.60, this.body.height * 1);
+
+
+    //Creacion de grupos y colliders
     this.createGroups();
     this.WallCollGroup_noEff.add(this);
     this.VoidCollGroup_noEff.add(this);
     this.playerWithProjectilesCollider.add(this);
-    this.body.pushable = false;
 
+
+    //Handle Sprite del jugador
     this.sprite = this.scene.add.sprite(0, 0, 'character', 'idle-side.png');
     this.add(this.sprite);
     this.sprite.anims.play('idle-side');
-    this.body.setSize(this.body.width * 0.60, this.body.height * 1);
-    this.isDead = false;
+    
 
-    //Informacion del jugador por pantalla
-    //this.health_label = this.scene.add.text(10, 10, "");
+    //Creacion Informacion del jugador por pantalla
     this.array_hearts = [];
     this.separation = 0;
     this.createUiBar();
@@ -54,87 +64,83 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.hPotion_label = this.scene.add.text(25,120,"x"+ this.playerData.healthPotions);
     this.mPotion_label = this.scene.add.text(20, 150,"");
     this.mana_label =  this.scene.add.text(20, 180,"");
-    //Barra proyectiles
-    this.projectileBar = new ProjectileBar(scene, 0, 70);
-    this.add(this.projectileBar);
-    this.projectileBar.setVisible(false);
+
+
+  
+    //Creacion armas del jugador
     this.sword = new SwordContainer(scene, 0, 0, this);
     this.bow = new Bow(scene,0,0,this);
     this.add(this.sword);
     this.add(this.bow);
-
     if(this.playerData.weapon == 0){
       this.sword.setVisible(true);
     }
     else if(this.playerData.weapon == 1){
       this.bow.setVisible(true);
     }
+
+    //Barra proyectiles
+    this.projectileBar = new ProjectileBar(scene, 0, 70);
+    this.add(this.projectileBar);
+    this.projectileBar.setVisible(false);
+
     //Barra mana
     this.manaBar = new ManaBar(scene, 115, 215);
 
-
-    this.projectileCharging = false;
-    this.origTint = this.sprite.tint;
-    this.flickerTime = 0;
-    this.dashing = false;
-    this.inDashDelay = false;
+    //Creacion de controles 
     this.handleControls();
     if (this.playerData.isPadControlling) this.controls = this.padControls;
     else this.controls = this.keyboardControls;
     scene.input.keyboard.on('keydown', () => { this.controls = this.keyboardControls; this.playerData.control = false });
-
     scene.input.gamepad.on(Phaser.Input.Gamepad.Events.BUTTON_DOWN, () => { this.controls = this.padControls; this.playerData.control = true });
+
+
+    //---Variables usadas---
+
+    //Variables en proyectiles disparados
+    this.projectileCharging = false;
+
+    //Variables inmunidad
+    this.immunity = 0;
+    this.origTint = this.sprite.tint;
+    this.flickerTime = 0;
+
+    //Variables Dash
+    this.dashing = false;
+    this.inDashDelay = false;
+    
+    //Variables controles
     this.R2_pressed = false;
     this.lastVelocity = new Phaser.Math.Vector2(0,0);
+
+    //Variables generales
+    this.isDead = false;
+
   }
 
-  createUiBar(){
-    for (let i = 0; i < this.playerData.health; i++){
-      this.array_hearts[i] = this.scene.add.sprite(20 + this.separation ,20,'vida');
-      this.separation += 30;
-    }
-    this.scene.add.sprite(20,60,"monedas");
   
-    this.scene.add.sprite(1230,60, "flecha");
-   
-
-    this.scene.add.sprite(20,120, "pocionVida");
-    
-    
-    
-
-  }
-
-
-
-
   preUpdate(t, dt) {
 
     if(!this.dashing){
-
       this.controls.movementcontrol();
-
-      if (this.playerData.weapon == 0) {
+      if (this.playerData.weapon == 0) 
         this.controls.swordControl();
-      }
       
       if (this.playerData.weapon == 1) {
-        if (this.playerData.arrows > 0) {
+        if (this.playerData.arrows > 0) 
           this.controls.projectileControl(dt);
-        }
       }
 
       if(this.playerData.weapon == 2){
-        if(this.playerData.currentManaCost <= this.playerData.mana){
+        if(this.playerData.currentManaCost <= this.playerData.mana)
           this.controls.spellControl();
-        }
       }
       this.controls.dashControl();
-
     }
     else
       this.dash();
     
+
     if (this.immunity > 0)
       this.immunity -= dt;
     else
@@ -144,7 +150,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.controls.selectWeapon();
     this.displayColor();
     this.flickerTime += dt;
-
 
     if(this.body.velocity.x != 0 || this.body.velocity.y != 0){
       this.lastVelocity = new Phaser.Math.Vector2(this.body.velocity.x, this.body.velocity.y);
@@ -169,6 +174,22 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.handlePlayerAnimation();
   }
 
+
+
+  //Metodos UI
+  createUiBar(){
+      for (let i = 0; i < this.playerData.health; i++){
+        this.array_hearts[i] = this.scene.add.sprite(20 + this.separation ,20,'vida');
+        this.separation += 30;
+      }
+      this.scene.add.sprite(20,60,"monedas");
+    
+      this.scene.add.sprite(1230,60, "flecha");
+    
+      this.scene.add.sprite(20,120, "pocionVida");
+      
+  }
+
   updateUi(){
     const j = this.array_hearts.length;
 
@@ -180,7 +201,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           this.separation += 30;
           
        }
-      }else {
+      }
+      else {
         for (let i = j; i > this.playerData.health; i--){
           this.array_hearts[i-1].destroy();
           this.array_hearts.pop();
@@ -204,7 +226,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   }
 
 
-
+  //Metodos disparo
   fire() {
     const projectileVector = this.controls.projectileAngle();
     this.projectile = new PlayerProyectile(this.scene, this.x, this.y, projectileVector.x, projectileVector.y);
@@ -218,6 +240,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.projectile = new Spell(this.scene, this.x, this.y, projectileVector.x, projectileVector.y,10, this.playerData.damage);
   }
 
+
+  //Metodos Dash
   dash(){
     if(this.dashing){
       this.body.velocity = this.dashVelocity;
@@ -243,6 +267,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     
   }
 
+  //Metodos PowerUp
   setSpectral() {
     this.playerData.setSpectral();
   }
@@ -251,6 +276,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
     this.playerData.setBouncy();
   }
+
 
   getDirectionX() {
     if (this.body.facing == Phaser.Physics.Arcade.FACING_RIGHT)
@@ -268,6 +294,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     return 0;
   }
 
+  //Metodos parpadeo inmunidad
   flickering() {
     if (this.flickerTime >= 0) {
       if (this.flickerTime < 200) {
@@ -284,6 +311,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
   displayColor() { }
 
+  //Creacion Grupos
   createGroups() {
     this.WallCollGroup = this.scene.add.group();
     this.scene.physics.add.collider(this.WallCollGroup, this.scene.wallLayer, (o1, o2) => {o1.dest()});
@@ -322,6 +350,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.scene.time.delayedCall(2000, () => {objectPicked.destroy(), title.destroy()}); 
   }
 
+  //Animacion player
   handlePlayerAnimation(){
     if(this.isDead){
       this.sprite.anims.play('death', true);
@@ -343,6 +372,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     else this.sprite.anims.play('walk-up', true);
   }
 
+  //Controles player
   handleControls() {
     this.keyboardControls = {
       projectile: "spacebar",
