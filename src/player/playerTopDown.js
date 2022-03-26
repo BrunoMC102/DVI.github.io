@@ -361,7 +361,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.sprite.anims.play(parts.join('-'));
       return;
     }
-    if (Math.abs(this.body.velocity.x) > Math.abs(this.body.velocity.y)) {
+    if (Math.abs(this.body.velocity.x) >= Math.abs(this.body.velocity.y)) {
       this.sprite.anims.play('walk-side', true);
       if (this.body.velocity.x > 0) this.sprite.scaleX = 1;
       else this.sprite.scaleX = -1;
