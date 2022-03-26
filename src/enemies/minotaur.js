@@ -62,9 +62,7 @@ export default class Minotaur extends ShootingEnemyParent {
             if (this.attacking){
               this.attacking = false;
               this.scene.time.delayedCall(500, () => {this.attackingPreparing = false;})
-              
             }
-            
         }
         if(this.attackingPreparing){
           this.sprite.play('minotaurSpinAttack',true);
