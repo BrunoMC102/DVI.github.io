@@ -64,7 +64,7 @@ export default class BeginningVillage extends Phaser.Scene {
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
    
-    this.sceneChange =  [this.add.zone(4650,2000,60,450)];
+    this.sceneChange =  [this.add.zone(2560,1256,400,400)];
     this.physics.world.enable(this.sceneChange); 
     this.sceneChange[0].body.setAllowGravity(false);
 
