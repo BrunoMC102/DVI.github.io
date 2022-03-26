@@ -57,6 +57,7 @@ export default class SwordContainer extends Phaser.GameObjects.Container{
     attack(){
         if(this.espera) return;
         this.attacking = true;
+        this.player.swordAudio.play();
         this.sword.activateHitbox();
         this.espera = true;
         this.fase = 0;

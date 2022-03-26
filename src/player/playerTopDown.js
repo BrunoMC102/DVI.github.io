@@ -458,7 +458,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       },
       swordControl: () => {
         if (Phaser.Input.Keyboard.JustDown(this.cursors.space)) {
-          this.swordAudio.play();
           this.sword.attack();
         }
       },
