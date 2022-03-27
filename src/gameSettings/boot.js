@@ -69,6 +69,7 @@ export default class Boot extends Phaser.Scene {
 
 
     this.load.atlas('chest', 'chest.png', 'chest.json')
+    this.load.atlas('bot', 'bot.png', 'bot.json')
 
 
     //musica
@@ -230,6 +231,44 @@ export default class Boot extends Phaser.Scene {
       key:'openChest',
       frames: this.anims.generateFrameNames('chest',{start: 77, end: 81, suffix: '.png'}),
       frameRate: 8,
+      repeat: 0    
+    })
+    //Bot
+    this.anims.create({
+      key:'walking_bot',
+      frames: this.anims.generateFrameNames('bot',{start: 0, end: 7, suffix: '.png'}),
+      frameRate: 10,
+      repeat: 0    
+    })
+    this.anims.create({
+      key:'bot_fire',
+      frames: this.anims.generateFrameNames('bot',{start: 8, end: 11, suffix: '.png'}),
+      frameRate: 40,
+      repeat: 0    
+    })
+    
+    this.anims.create({
+      key:'bot_awake',
+      frames: this.anims.generateFrameNames('bot',{start: 12, end: 16, suffix: '.png'}),
+      frameRate: 10,
+      repeat: 0    
+    })
+    this.anims.create({
+      key:'bot_charging',
+      frames: this.anims.generateFrameNames('bot',{start: 17, end: 20, suffix: '.png'}),
+      frameRate: 10,
+      repeat: 0
+    })
+    this.anims.create({
+      key:'bot_dash',
+      frames: this.anims.generateFrameNames('bot',{start: 21, end: 27, suffix: '.png'}),
+      frameRate: 10,
+      repeat: 0
+    })
+    this.anims.create({
+      key:'bot_death',
+      frames: this.anims.generateFrameNames('bot',{start: 28, end: 33, suffix: '.png'}),
+      frameRate: 10,
       repeat: 0    
     })
     }

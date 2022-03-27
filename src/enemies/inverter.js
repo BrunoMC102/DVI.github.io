@@ -11,7 +11,7 @@ export default class Inverter extends ShootingEnemyParent {
         this.fireDirection = new Phaser.Math.Vector2(0, 1);
         this.arrows = 5;
         this.circun = 0.2;
-        this.shootTime = 2;
+        this.shootTime = 4;
     }
 
 

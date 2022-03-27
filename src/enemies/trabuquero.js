@@ -19,11 +19,9 @@ export default class Trabuquero extends ShootingEnemyParent {
         this.attackingPreparing = false;
         this.cont = 1;
         this.charging = false;
+        this.sprite.scale = 3;
     }
-    /*creador(){
-      this.projectileE = new Homing_p(this.scene,this.x,this.y);
-      
-    }*/
+   
 
 
     creador() {
@@ -45,7 +43,7 @@ export default class Trabuquero extends ShootingEnemyParent {
         if(this.cont >= (this.shootTime - 2) * 1000)
             this.charging = true;
 
-        if (this.cont >= (this.shootTime - 0.3) * 1000) {
+        if (this.cont >= (this.shootTime - 0.005) * 1000) {
             this.attackingPreparing = true;
             this.charging = false;
         }
@@ -59,16 +57,18 @@ export default class Trabuquero extends ShootingEnemyParent {
             this.actDispTime = 0;
         }
         if (this.dispCont >= this.dispMax) {
-            this.attack_aux = () => { };
+            this.attack_aux = () => {};
             if (this.attacking) {
                 this.attacking = false;
-                this.scene.time.delayedCall(500, () => { this.attackingPreparing = false; })
+                this.scene.time.delayedCall(100, () => { this.attackingPreparing = false; })
             }
 
         }
         if (this.attackingPreparing) {
-            this.sprite.play('minotaurSpinAttack', true);
+            this.sprite.play('bot_fire', true);
         }
+        
+            
     }
 
     attack_aux() {
@@ -79,11 +79,19 @@ export default class Trabuquero extends ShootingEnemyParent {
     moveU() {
         
         if (!this.attackingPreparing && !this.charging) {
-            this.sprite.play('minotaurWalk', true);
+            this.sprite.play('walking_bot', true);
             this.scene.physics.moveToObject(this, this.player, 50);
         }
         if(this.charging){
+            this.sprite.play('bot_charging', true);
             this.body.setVelocity(0,0);
+        }
+
+        let dirx = this.player.x-this.x
+        if (dirx < 0) {
+            this.sprite.flipX = true;
+        } else {
+            this.sprite.flipX = false;
         }
     }
     normalAttack() {
@@ -96,7 +104,7 @@ export default class Trabuquero extends ShootingEnemyParent {
         this.fire();
     }
     die(){
-        this.sprite.play('minotaurDeath');
+        this.sprite.play('bot_death');
         this.body.destroy();
         this.preUpdate = ()=>{};
         this.scene.time.delayedCall(1500, () => {

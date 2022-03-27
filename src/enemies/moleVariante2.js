@@ -72,7 +72,7 @@ export default class moleVariante2 extends EnemyParent{
     
     this.body.setVelocity(t.x,t.y);
     
-    this.body.setMaxVelocity(300,300);
+    this.body.setMaxVelocity(230,230);
     this.body.setBounce(1,1);
     let dirx = this.player.x - this.x;
     if(dirx < 0){
