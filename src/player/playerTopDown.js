@@ -117,6 +117,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.lastVelocity = new Phaser.Math.Vector2(0, 0);
     this.trianglePressed = false;
     this.L2Pressed = false;
+    this.upPadPressed = false;
+    this.downPadPressed = false;
 
     //Variables generales
     this.isDead = false;
@@ -625,6 +627,29 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         else{
           if(!this.R2_pressed) return;
           this.R2_pressed = false;
+        }
+      },
+      manaRecovery: () => {
+        const pad = this.scene.input.gamepad.getPad(0);
+        if (pad.up) {
+          if(this.upPadPressed) return;
+          this.upPadPressed = true;
+          this.useManaPotions();
+        }
+        else{
+          this.upPadPressed = false;
+        }
+        
+      },
+      healthRecovery: () => {
+        const pad = this.scene.input.gamepad.getPad(0);
+        if (pad.down) {
+          if(this.downPadPressed) return;
+          this.downPadPressed = true;
+          this.useHealthPotions();
+        }
+        else{
+          this.downPadPressed = false;
         }
       },
       lastProjectileUsed: new Phaser.Math.Vector2(this.playerData.projectileSpeed, 0)

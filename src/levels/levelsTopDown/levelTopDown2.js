@@ -9,6 +9,7 @@ import Spectral from '../../objetos_recogibles/pasivos/spectral.js';
 import Enemy7 from '../../enemies/enemy7.js';
 import EnemyFire from '../../enemies/enemyFire.js';
 import Mosca from '../../enemies/mosca.js';
+import Inverter from '../../enemies/inverter.js';
 
 export default class LevelTopDown2 extends Phaser.Scene {
   /**
@@ -38,7 +39,7 @@ export default class LevelTopDown2 extends Phaser.Scene {
 
     //this.a = new Enemy(this, this.player, 450, 200);
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
-    this.b = new Enemy7(this, this.player, 600, 200);
+    this.b = new Inverter(this, this.player, 1170, 500);
     this.a = new Mosca(this, this.player, 800, 200);
     new Spectral(this, this.player, 450, 200);
     

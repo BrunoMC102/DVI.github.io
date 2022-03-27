@@ -6,6 +6,8 @@ import Enemy3 from '../../enemies/enemy3.js';
 import Enemy4 from '../../enemies/enemy4.js';
 import Enemy5 from '../../enemies/enemy5.js';
 import Spectral from '../../objetos_recogibles/pasivos/spectral.js';
+import moleVariante from '../../enemies/moleVariante.js';
+import moleVariante2 from '../../enemies/moleVariante2.js';
 
 export default class LevelTopDown3 extends Phaser.Scene {
 
@@ -36,7 +38,7 @@ export default class LevelTopDown3 extends Phaser.Scene {
     
     
 
-    this.a = new Enemy2(this, this.player, 600, 400);
+    this.a = new moleVariante2(this, this.player, 600, 400);
     
     this.enemies.add(this.a);
 

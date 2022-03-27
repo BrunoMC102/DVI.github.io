@@ -4,7 +4,7 @@ import EnemyParent from './enemyParent.js';
  * Cada plataforma es responsable de crear la base que aparece sobre ella y en la 
  * que, durante el juego, puede aparecer una estrella
  */
-export default class Enemy2 extends EnemyParent{
+export default class moleVariante extends EnemyParent{
   
  
   
@@ -12,7 +12,7 @@ export default class Enemy2 extends EnemyParent{
     super(scene,player,x,y,'moleStand');
     this.a = 1000;
     this.v = 50;
-   
+   this.sprite.tint = 0x00ff00
     
   }
   
@@ -20,7 +20,7 @@ export default class Enemy2 extends EnemyParent{
   
     this.sprite.play("mole",true);
     //this.sprite.preUpdate(t,dt);
-    this.resbala();
+    this.prediceA(t,dt)
   }
   
   
@@ -48,15 +48,16 @@ export default class Enemy2 extends EnemyParent{
     
     let dx = this.player.x+this.player.body.velocity.x*dt/10 - this.x;
     let dy = this.player.y+this.player.body.velocity.y*dt/10 - this.y;
-    let t = Math.abs(dx)+Math.abs(dy);
+
+    let t = new Phaser.Math.Vector2(dx,dy).normalize().scale(this.a);
     
     let x = -this.body.velocity.x/600;
     let y = -this.body.velocity.y/600;
-    this.body.setAcceleration(dx*this.a/t+x*this.a,dy*this.a/t+y*this.a);
-    
+    this.body.setAcceleration(t.x+x*this.a,t.y+y*this.a);
+    let dirx = this.player.x - this.x;
     this.body.setMaxVelocity(300,300);
     this.body.setBounce(1,1);
-    if(dx < 0){
+    if(dirx < 0){
       this.sprite.flipX = true;
     }else {
       this.sprite.flipX = false;
