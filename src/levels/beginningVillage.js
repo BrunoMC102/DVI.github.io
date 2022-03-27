@@ -46,7 +46,8 @@ export default class BeginningVillage extends Phaser.Scene {
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setBounds(0,0,5120,3840);
     this.player.body.setCollideWorldBounds(false);
-    this.add.sprite(4193.94,2590.91,'general');
+    this.general = this.add.sprite(4193.94,2590.91,"npcs","general_3.png");
+    this.blacksmith = this.add.sprite(3878, 1500, "npcs","herrero_3.png");
     //const npcs = map.createFromObjects('npcs');
     //for (const objeto of this.scene.map.getObjectLayer('npcs').objects) {
       //if (objeto.type === 'blacksmith') {
@@ -74,6 +75,8 @@ export default class BeginningVillage extends Phaser.Scene {
 
     this.physics.add.collider(this.player, midLayer);
     this.physics.add.collider(this.player,topLayer);
+    this.physics.add.collider(this.player, this.general);
+    this.physics.add.collider(this.player, this.blacksmith);
     this.villageSound = this.sound.add("villagetheme", {loop: true});
     this.villageSound.play();
 

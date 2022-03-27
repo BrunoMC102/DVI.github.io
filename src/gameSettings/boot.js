@@ -62,6 +62,8 @@ export default class Boot extends Phaser.Scene {
     //knight
     this.load.atlas('character', 'atlas.png', 'atlas.json');
     this.load.atlas('characterScroll', 'movement.png', 'movement.json');
+    //npcs
+    this.load.atlas('npcs', 'npc.png', 'npc.json');
     // enemies
     this.load.atlas('brainmole', 'brainmole.png', 'brainmole.json');
     this.load.atlas('goblinKing', 'goblinKing.png', 'goblinKing.json');
