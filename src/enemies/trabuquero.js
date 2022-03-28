@@ -20,6 +20,8 @@ export default class Trabuquero extends ShootingEnemyParent {
         this.cont = 1;
         this.charging = false;
         this.sprite.scale = 3;
+        this.body.offset.x = -15;
+        this.body.setSize(this.body.width * 1.3, this.body.height * 1.6);
     }
    
 

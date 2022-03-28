@@ -13,7 +13,9 @@ export default class moleVariante2 extends EnemyParent{
     this.a = 1000;
     this.v = 50;
    this.sprite.tint = 0xff0000
-    
+   this.body.offset.x = 15;
+   this.body.offset.y = 10;
+   this.body.setSize(this.body.width * 0.8, this.body.height * 0.8);
   }
   
   moveU(t,dt){

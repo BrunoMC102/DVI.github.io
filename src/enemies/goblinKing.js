@@ -20,6 +20,7 @@ export default class GoblinKing extends ShootingEnemyParent {
     this.body.setDrag(0.001);
     this.attacking = false;
     this.reinicioMov = true;
+    this.body.setSize(this.body.width * 1.2, this.body.height * 2.5);
   }
   creador() {
     return new Homing_p(this.scene, this.x, this.y, this.fireDirection.x * this.Pv, this.fireDirection.y * this.Pv, 5, this.projectileDamage);

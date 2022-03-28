@@ -8,6 +8,9 @@ import Bouncy from '../../objetos_recogibles/pasivos/bouncy.js';
 import Minotaur from '../../enemies/minotaur.js';
 import Enemy from '../../enemies/enemy.js';
 import Trabuquero from '../../enemies/trabuquero.js';
+import GoblinKing from '../../enemies/goblinKing.js';
+import Mole from '../../enemies/moleVariante.js';
+import Mole2 from '../../enemies/moleVariante2.js';
 import Chest from '../../objetos_recogibles/chest.js';
 
 
@@ -45,9 +48,9 @@ export default class LevelTopDown extends Phaser.Scene {
     new Health(this, this.player, 750, 200);
     new Arrow(this, this.player, 900, 200);
 
-    //this.enemies.add(new GoblinKing(this, this.player, 500, 500));
-    //this.enemies.add(new Minotaur(this, this.player, 500, 500));
-    this.enemies.add(new Trabuquero(this, this.player, 500, 500));
+    this.enemies.add(new Enemy(this, this.player, 500, 500));
+    //this.enemies.add(new Mole2(this, this.player, 500, 500));
+    //this.enemies.add(new Trabuquero(this, this.player, 500, 500));
     
     this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(993,60,60,20)];
     this.zoneGroup = this.add.group();
