@@ -1,0 +1,231 @@
+{
+  "frames": {
+    "bolt1.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 69,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 4.5,
+        "w": 69,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "bolt2.png": {
+      "frame": {
+        "x": 69,
+        "y": 0,
+        "w": 67.5,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4.5,
+        "y": 3,
+        "w": 67.5,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "bolt4.png": {
+      "frame": {
+        "x": 0,
+        "y": 36,
+        "w": 67.5,
+        "h": 25.5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4.5,
+        "y": 10.5,
+        "w": 67.5,
+        "h": 25.5
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "bolt3.png": {
+      "frame": {
+        "x": 136.5,
+        "y": 0,
+        "w": 66,
+        "h": 31.5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4.5,
+        "y": 4.5,
+        "w": 66,
+        "h": 31.5
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "hits-3-4.png": {
+      "frame": {
+        "x": 202.5,
+        "y": 0,
+        "w": 46.5,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1.5,
+        "y": 0,
+        "w": 46.5,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "hits-3-5.png": {
+      "frame": {
+        "x": 136.5,
+        "y": 31.5,
+        "w": 46.5,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1.5,
+        "y": 0,
+        "w": 46.5,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "hits-3-3.png": {
+      "frame": {
+        "x": 67.5,
+        "y": 48,
+        "w": 40.5,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4.5,
+        "y": 0,
+        "w": 40.5,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "hits-3-1.png": {
+      "frame": {
+        "x": 108,
+        "y": 48,
+        "w": 22.5,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 12,
+        "y": 10.5,
+        "w": 22.5,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "hits-3-2.png": {
+      "frame": {
+        "x": 0,
+        "y": 61.5,
+        "w": 31.5,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 4.5,
+        "w": 31.5,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "bolt.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 249,
+      "h": 98
+    },
+    "scale": 1.5
+  }
+}

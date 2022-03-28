@@ -1,0 +1,231 @@
+{
+  "frames": {
+    "waveform4.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 121.5,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 3,
+        "w": 121.5,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 142.5,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "waveform2.png": {
+      "frame": {
+        "x": 121.5,
+        "y": 0,
+        "w": 120,
+        "h": 40.5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 10.5,
+        "y": 3,
+        "w": 120,
+        "h": 40.5
+      },
+      "sourceSize": {
+        "w": 142.5,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "waveform3.png": {
+      "frame": {
+        "x": 0,
+        "y": 36,
+        "w": 112.5,
+        "h": 40.5
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 6,
+        "w": 112.5,
+        "h": 40.5
+      },
+      "sourceSize": {
+        "w": 142.5,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "waveform1.png": {
+      "frame": {
+        "x": 241.5,
+        "y": 0,
+        "w": 97.5,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 31.5,
+        "y": 9,
+        "w": 97.5,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 142.5,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "hits-3-4.png": {
+      "frame": {
+        "x": 339,
+        "y": 0,
+        "w": 46.5,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1.5,
+        "y": 0,
+        "w": 46.5,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "hits-3-5.png": {
+      "frame": {
+        "x": 241.5,
+        "y": 36,
+        "w": 46.5,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1.5,
+        "y": 0,
+        "w": 46.5,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "hits-3-3.png": {
+      "frame": {
+        "x": 288,
+        "y": 36,
+        "w": 40.5,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4.5,
+        "y": 0,
+        "w": 40.5,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "hits-3-2.png": {
+      "frame": {
+        "x": 112.5,
+        "y": 40.5,
+        "w": 31.5,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 4.5,
+        "w": 31.5,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "hits-3-1.png": {
+      "frame": {
+        "x": 144,
+        "y": 40.5,
+        "w": 22.5,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 12,
+        "y": 10.5,
+        "w": 22.5,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 48
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "wave.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 386,
+      "h": 84
+    },
+    "scale": 1.5
+  }
+}

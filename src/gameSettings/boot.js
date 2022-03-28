@@ -72,7 +72,9 @@ export default class Boot extends Phaser.Scene {
 
     this.load.atlas('chest', 'chest.png', 'chest.json')
     this.load.atlas('bot', 'bot.png', 'bot.json')
-
+    this.load.atlas('pulse', 'pulse.png', 'pulse.json')
+    this.load.atlas('wave', 'wave.png', 'wave.json')
+    this.load.atlas('bolt', 'bolt.png', 'bolt.json')
 
     //musica
     this.load.setPath('assets/music/');
@@ -272,6 +274,42 @@ export default class Boot extends Phaser.Scene {
       frames: this.anims.generateFrameNames('bot',{start: 28, end: 33, suffix: '.png'}),
       frameRate: 10,
       repeat: 0    
+    })
+    this.anims.create({
+      key:'pulseFire',
+      frames: this.anims.generateFrameNames('pulse',{start: 1, end: 4,prefix: 'pulse', suffix: '.png'}),
+      frameRate: 25,
+      repeat: -1    
+    })
+    this.anims.create({
+      key:'pulseDie',
+      frames: this.anims.generateFrameNames('pulse',{start: 1, end: 7,prefix: 'hits-5-', suffix: '.png'}),
+      frameRate: 10,
+      repeat: -1    
+    })
+    this.anims.create({
+      key:'waveFire',
+      frames: this.anims.generateFrameNames('wave',{start: 1, end: 4,prefix: 'waveform', suffix: '.png'}),
+      frameRate: 15,
+      repeat: -1    
+    })
+    this.anims.create({
+      key:'waveDie',
+      frames: this.anims.generateFrameNames('wave',{start: 1, end: 7,prefix: 'hits-3-', suffix: '.png'}),
+      frameRate: 10,
+      repeat: -1    
+    })
+    this.anims.create({
+      key:'boltFire',
+      frames: this.anims.generateFrameNames('bolt',{start: 1, end: 4,prefix: 'bolt', suffix: '.png'}),
+      frameRate: 15,
+      repeat: -1    
+    })
+    this.anims.create({
+      key:'boltDie',
+      frames: this.anims.generateFrameNames('bolt',{start: 1, end: 7,prefix: 'hits-3-', suffix: '.png'}),
+      frameRate: 10,
+      repeat: -1    
     })
     }
 }

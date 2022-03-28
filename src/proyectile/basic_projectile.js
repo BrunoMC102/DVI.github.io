@@ -1,4 +1,4 @@
-export default class Basic_projectile extends Phaser.GameObjects.Image{
+export default class Basic_projectile extends Phaser.GameObjects.Sprite{
 
     constructor(scene,x,y,texture,vx,vy, time, damage){
         super(scene,x,y,texture);
@@ -24,7 +24,7 @@ export default class Basic_projectile extends Phaser.GameObjects.Image{
 
 
     preUpdate(t,dt){ //Llamar despues en clases hijos
-
+        super.preUpdate(t,dt);
         if(this.body.velocity.length() != 0){
             this.setRotation(this.body.velocity.angle());
         }
