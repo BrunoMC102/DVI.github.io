@@ -49,12 +49,9 @@ export default class LevelScroll extends Phaser.Scene {
     this.sceneChange[2].body.setAllowGravity(false);
     this.sceneChange[3].body.setAllowGravity(false);
 
-
-    
     // this.physics.add.collider(this.player, wallLayer);
     this.physics.add.collider(this.player, voidLayer);
 
-  
 
   }
 
