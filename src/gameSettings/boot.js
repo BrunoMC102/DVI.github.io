@@ -51,6 +51,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('menuBackground', 'menuBackground.png');
     this.load.image('background', 'background.png');
     this.load.image('icono', 'icono.png');
+    this.load.image('bow','bow.png');
 
 
     this.load.setPath('assets/json/');
@@ -79,6 +80,8 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('pulse', 'pulse.png', 'pulse.json')
     this.load.atlas('wave', 'wave.png', 'wave.json')
     this.load.atlas('bolt', 'bolt.png', 'bolt.json')
+    this.load.atlas('archer', 'archer.png', 'archer.json')
+
 
     //musica
     this.load.setPath('assets/music/');
@@ -315,6 +318,37 @@ export default class Boot extends Phaser.Scene {
       frames: this.anims.generateFrameNames('bolt',{start: 1, end: 7,prefix: 'hits-3-', suffix: '.png'}),
       frameRate: 10,
       repeat: -1    
+    })
+    this.anims.create({
+      key:'archerMove',
+      frames: this.anims.generateFrameNames('archer',{start: 1, end: 6,prefix: 'run', suffix: '.png'}),
+      frameRate: 10,
+      repeat: -1    
+    })
+    this.anims.create({
+      key:'archerjump',
+      frames: this.anims.generateFrameNames('archer',{start: 1, end: 5,prefix: 'jump', suffix: '.png'}),
+      frameRate: 10,
+      repeat: 0    
+    })
+    this.anims.create({
+      key:'archeridle',
+      frames: this.anims.generateFrameNames('archer',{start: 1, end: 6,prefix: 'idle', suffix: '.png'}),
+      frameRate: 10,
+      repeat: -1    
+    })
+    this.anims.create({
+      key:'archerDie',
+      frames: this.anims.generateFrameNames('archer',{start: 1, end: 7,prefix: 'die', suffix: '.png'}),
+      frameRate: 10,
+      repeat: 0    
+    })
+    
+    this.anims.create({
+      key:'archerfire',
+      frames: this.anims.generateFrameNames('archer',{start: 1, end: 7,prefix: 'fire', suffix: '.png'}),
+      frameRate: 10,
+      repeat: 0    
     })
     }
 }

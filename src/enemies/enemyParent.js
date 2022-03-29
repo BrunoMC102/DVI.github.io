@@ -48,7 +48,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     this.origTint = this.sprite.tint;
     this.origDrag = 1;
     
-    const consumibles = [()=>new Coin(scene,player,this.x,this.y), ()=>new Health(scene,player,this.x,this.y),()=>new Arrow(scene,player,this.x,this.y)]
+    const consumibles = [()=>new Coin(scene,player,this.centerX(),this.centerY()), ()=>new Health(scene,player,this.centerX(),this.centerY()),()=>new Arrow(scene,player,this.centerX(),this.centerY())]
     this.consumible = consumibles[Math.floor(Math.random()*consumibles.length)];
     this.freezing = false;
     this.knockbackinfo = {
@@ -57,6 +57,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
       knockEvent:null
     }
     this.dead = false;
+    this.deadCenter = new Phaser.Math.Vector2(this.body.center.x, this.body.center.y);
   }
 
   
@@ -97,8 +98,8 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
 
   die(){
     this.spawnMana();
-      this.destroy();
-      this.spawnLoot();
+    this.spawnLoot();    
+    this.destroy();
   }
   spawnLoot(){
     if(Math.random() < 0.8){
@@ -166,10 +167,14 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
   }
 
   centerX(){
-    return this.x + this.sprite.width/2
+    if (this.body != undefined)
+      return this.body.center.x;
+    return this.deadCenter.x;
   }
   centerY(){
-    return this.y + this.sprite.height/2
+    if(this.body != undefined)
+      return this.body.center.y;
+    return this.deadCenter.y;
   }
 
   spawnMana(){
