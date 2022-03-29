@@ -207,17 +207,18 @@ export default class Archer extends ShootingEnemyParent {
                 this.atrapado = false;
                 this.sprite.tint = this.origTint;
                 this.atrapadoCont = 0;
+                this.cont = (this.shootTime - 1.5) * 1000;
             }
         }
         this.actVector = new Phaser.Math.Vector2(this.x, this.y);
-        if (this.actVector.distance(this.atrapadoVector) < 50) {
+        if (this.actVector.distance(this.atrapadoVector) < 20) {
             this.atrapadoCont += dt;
         }
         else {
             this.atrapadoCont = 0;
             this.atrapadoVector = new Phaser.Math.Vector2(this.x, this.y);
         }
-        if (this.atrapadoCont > 1000) {
+        if (this.atrapadoCont > 500) {
             this.atrapado = true;
         }
 
