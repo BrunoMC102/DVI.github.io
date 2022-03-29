@@ -26,11 +26,11 @@ export default class End extends Phaser.Scene {
     const {width, height} = this.sys.game.canvas;
     this.add.text(width/2, height/2, 'The Knightmares starts again\nPress any button to fight for your glory',{
       fontSize: "48px",
-      backgroundColor: '#D82727'
     })
+    
         .setOrigin(0.5, 0.5)  // Colocamos el pivote en el centro de cuadro de texto 
-        .setAlign('center');  // Centramos e texto dentro del cuadro de texto
-
+        .setAlign('center').setDepth(2);  // Centramos e texto dentro del cuadro de texto
+        this.add.image(0,0, 'menuBackground').setOrigin(0).setDepth(1);
         const timer = this.time.addEvent( {
           delay: 1000, 
           callback: this.onEvent,

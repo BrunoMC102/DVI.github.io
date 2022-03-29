@@ -48,6 +48,10 @@ export default class Boot extends Phaser.Scene {
     this.load.image('chestUnopened', 'chest.png');
     this.load.image('pocionMana', 'manaPotion.png');
     this.load.image('emptySign', 'EmptySign.png');
+    this.load.image('menuBackground', 'menuBackground.png');
+    this.load.image('background', 'background.png');
+    this.load.image('icono', 'icono.png');
+
 
     this.load.setPath('assets/json/');
     this.load.tilemapTiledJSON('tilemapJose', 'PruebaScrollJose.json');
@@ -87,6 +91,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('tonedeath','NoHope.mp3');
     this.load.audio('villagetheme', 'villagetheme.mp3');
     this.load.audio('dungeontheme', 'dungeontheme.ogg');
+    this.load.audio('mainMenuTrack', 'mainMenuTrack.ogg');
 
     
   }
@@ -100,8 +105,7 @@ export default class Boot extends Phaser.Scene {
     //this.scene.start('lebel');
     this.createAnimations();
     //Para jugar en el modo vista lateral descomentar level
-    //this.scene.start('beginningVillage', {coordinates: {x: 1312, y: 2708}, playerData: new PlayerData()});
-    this.scene.start('levelTopDown', {coordinates: {x: 0, y: 500}, playerData: new PlayerData()});
+    this.scene.start('mainMenu');
     //this.scene.start('levelScroll', {coordinates: {x: 0, y: 500}});
     //this.scene.start('level');
   }
