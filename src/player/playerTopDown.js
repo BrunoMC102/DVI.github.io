@@ -193,7 +193,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       }
       this.scene.add.sprite(40,85,"monedas");
     
-      this.scene.add.sprite(100,80, "flecha");
+      this.scene.add.sprite(120,80, "flecha");
     
       this.scene.add.sprite(20,130, "pocionVida");
 

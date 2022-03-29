@@ -23,12 +23,11 @@ import PlayerData from "./player/playerData.js";
     create() {
       this.mainMenuTrack = this.sound.add('mainMenuTrack');
       this.mainMenuTrack.play();
-      this.add.text(this.game.renderer.width / 2, this.game.renderer.height * 0.20, "KnightMares",
-       {fontSize: "64px"}).setOrigin().setDepth(2);
-       this.playButton = this.add.text(this.game.renderer.width / 2, this.game.renderer.height * 0.40, "Play", {fontSize: "64px"})
-       .setOrigin().setDepth(2);
-      this.optionsButton =  this.add.text(this.game.renderer.width / 2, this.game.renderer.height *0.50, "Options", {fontSize: "64px"}).
-       setOrigin().setDepth(2);
+      this.add.bitmapText(this.game.renderer.width / 2, this.game.renderer.height * 0.20,'atari', 'Knightmares',16).setOrigin().setDepth(2).setFontSize(48);
+       this.playButton = this.add.bitmapText(this.game.renderer.width / 2, this.game.renderer.height * 0.40,'atari', 'Play', 16).
+       setOrigin().setDepth(2).setFontSize(48);
+      this.optionsButton =  this.add.bitmapText(this.game.renderer.width / 2, this.game.renderer.height *0.50,'atari', 'Options', 16).
+       setOrigin().setDepth(2).setFontSize(48);
       this.add.image(0,0, 'background').setOrigin(0).setDepth(1);
       this.icono = this.add.sprite(100,100,"icono").setDepth(3);
       this.icono.setVisible(false);

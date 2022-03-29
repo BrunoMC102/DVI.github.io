@@ -24,14 +24,31 @@ En esta vista el personaje :
 
 Mecanicas del personaje principal(TopDown)
 En esta vista el personaje :
-   +Moverse, para avanzar a lo largo de la sala. 
+   +Moverse, para avanzar a lo largo de la sala.
+   +Esquivar, para evadir los ataques de los enemigos 
    +Atacar cuerpo a cuerpo, para poder eliminar a los enemigos que traten de acercarse al jugador
    +Atacar a distancia, para poder eliminar a los enemigos a la distancia
+   +Tendrá un bastón que podrá utilizar gastando maná
+
+Dinamicas:
+Gracias a las mejoras que se van otorgando el jugador podrá desarrollar nuevas dinámicas gracias a los cambios
+en el gameplay a través de las mejoras que se le otorguen:
+-Disparar a través de superficies
+-Mejorar el esquive para evitar flechas
+
+
+
+Menu inicial
+El menu inicial del juego tiene un diseño por ahora bastante basico donde se da la opción de jugar al juego 
+o de cambiar las opciones del juego donde para futuros hitos trataremos de mejorar implementado opciones como quitar 
+la música o reiniciar el juego.
+
 
 
 Stats del personaje:
 
 Vida
+Mana
 Velocidad
 Daño a melee
 Daño a distancia
@@ -56,11 +73,18 @@ Recursos del jugador:
 Personaje:
 -Caballero 
 
+NPCS(Non Player Character):
+Herrero(te permitirá realizar mejoras respecto a las armas)
+General del cuartel (hablará sobre tu historia)
+
 Enemigos:
 -Hormigas
 -Bandidos
 -Slime
 -Esqueletos
+-Minotauros
+-Goblins
+-Arqueros
 -Boss
 
 Controles
@@ -93,27 +117,25 @@ PLAN PARA HITOS RESTANTES
 
 De cara a futuros hitos, tenemos planeadas varias mejoras para implementar en el juego. Las más importantes, y que implementaremos 
 primero serán: 
--Ataque a meleé del player: Un ataque con una espada.
--Meter sonidos y animaciones al juego
--Crear menus del juego.
+-Meter más sonidos y animaciones al juego
+-Crear mejores menus del juego, incluyendo el menu principal y la interfaz del usuario en general.
 -Crear boss con varios ataques y fases.
 -Crear un tutorial.
--Crear una aldea o lobby: Una zona del juego con NPCs con los que poder interactuar, donde se empezará el juego. 
+-Dentro de la aldea crear nuevos sitios y NPCS que le den vida al juego 
 
 Desde aqui se podrá acceder al tutorial, y se podrán mejorar habilidades.
 -Crear diferentes tipos de salas: Tiendas/tesoro/desafio/secreta
--Un arbol de abilidades, que se podrá ir mejorando desde el lobby.
+-Un arbol de habilidades, que se podrá ir mejorando desde el lobby.
 
 Otras mejoras menos prioritarias que tambien tenemos planeado son:
 -Aumentar la cantidad de enemigos.
 -Aumentar la cantidad de objetos.
 -Crear zonas nuevas con estetica distinta, y enemigos distintos.
 
+-Para este hito hemos trabajado bastante para pulir bastante todo el tema relacionado con el topDown,
+para el hito final trabajaremos para tener un scrollLateral bien implementado.
 
 GDD más adelante:
-Dinamicas:
-
-Menu inicial
 
 Descripcion del proceso
 

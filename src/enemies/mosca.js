@@ -9,7 +9,7 @@ import Basic_projectile from '../proyectile/basic_projectile.js';
 export default class Mosca extends ShootingEnemyParent {
 
   constructor(scene, player, x, y) {
-    super(scene, player, x, y, '');
+    super(scene, player, x, y, 'iceStand');
     this.Pv = 300;
     this.fireDirection = new Phaser.Math.Vector2(0, 1);
     this.cont = 1;

@@ -52,6 +52,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('background', 'background.png');
     this.load.image('icono', 'icono.png');
     this.load.image('bow', 'bow.png');
+    this.load.image('iceStand', 'standIce.png');
 
 
     this.load.setPath('assets/json/');
@@ -96,7 +97,10 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('dungeontheme', 'dungeontheme.ogg');
     this.load.audio('mainMenuTrack', 'mainMenuTrack.ogg');
 
-
+    //fuentes
+    this.load.setPath('assets/fonts/');
+    this.load.bitmapFont('atari','atari.png', 'atari.xml');
+    
   }
 
   /**

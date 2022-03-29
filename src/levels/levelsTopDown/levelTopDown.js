@@ -63,6 +63,8 @@ export default class LevelTopDown extends Phaser.Scene {
     this.physics.world.enable(this.sceneChange);
     this.sceneChange[0].body.setAllowGravity(false);
     this.sceneChange[1].body.setAllowGravity(false);
+    this.sceneChange[0].body.setImmovable(true);
+    this.sceneChange[1].body.setImmovable(true);
     this.dungeonSound = this.sound.add("dungeontheme").play();
 
   }
