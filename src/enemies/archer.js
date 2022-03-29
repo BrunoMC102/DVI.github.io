@@ -36,6 +36,21 @@ export default class Archer extends ShootingEnemyParent {
     }
 
 
+
+    preUpdate(d,dt){
+        if(this.freezing) return;
+    
+        if(this.knockbackinfo.knocking){
+          this.attack(d,dt);
+          if(this.preCharging || this.charging) return;
+          this.checkatrapado(dt);
+          return;
+        }
+    
+        this.moveU(d,dt);
+        this.attack(d,dt);
+      }
+
     creador() {
         return new Basic_projectile(this.scene, this.body.center.x + this.dispOffset, this.body.center.y, 'flecha', this.fireDirection.x * this.Pv, this.fireDirection.y * this.Pv, 10, this.projectileDamage);
     }
@@ -168,16 +183,19 @@ export default class Archer extends ShootingEnemyParent {
 
     die() {
         this.sprite.play('archerDie');
+        this.deadCenter.x = this.centerX();
+        this.deadCenter.y = this.centerY();
         this.body.destroy();
         this.preUpdate = () => { };
         if (this.cambio != undefined)
             this.cambio.remove();
         if (this.escambio != undefined)
             this.escambio.remove();
+            
         this.scene.time.delayedCall(1500, () => {
             this.spawnMana();
-            this.destroy();
             this.spawnLoot();
+            this.destroy();
         })
     }
 

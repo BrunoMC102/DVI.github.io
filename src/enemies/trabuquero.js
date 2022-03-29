@@ -107,12 +107,14 @@ export default class Trabuquero extends ShootingEnemyParent {
     }
     die(){
         this.sprite.play('bot_death');
+        this.deadCenter.x = this.centerX();
+        this.deadCenter.y = this.centerY();
         this.body.destroy();
         this.preUpdate = ()=>{};
         this.scene.time.delayedCall(1500, () => {
           this.spawnMana();
-          this.destroy();
           this.spawnLoot();
+          this.destroy();
         })
       }
 }
