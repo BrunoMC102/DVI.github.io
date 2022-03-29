@@ -17,9 +17,10 @@ export default class Enemy extends EnemyParent{
 
   constructor(scene, player, x, y) {
     super(scene,player,x,y,'');
+    this.sprite.play('minotaur_idle');
     this.dist = 600;
     this.body.offset.y = -10;
-    this.body.setSize(this.body.width * 1.5, this.body.height * 1.8);
+    this.body.setSize(this.body.width * 1.2, this.body.height * 1.5);
   }
 
   

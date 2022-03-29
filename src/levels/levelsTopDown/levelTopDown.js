@@ -51,8 +51,8 @@ export default class LevelTopDown extends Phaser.Scene {
 
 
     //this.enemies.add(new GoblinKing(this, this.player, 500, 500));
-    //this.enemies.add(new Minotaur(this, this.player, 500, 500));
-    this.enemies.add(new Archer(this, this.player, 500, 500));
+    this.enemies.add(new Minotaur(this, this.player, 500, 500));
+    this.enemies.add(new Enemy(this, this.player, 700, 500));
 
     
     this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(993,60,60,20)];

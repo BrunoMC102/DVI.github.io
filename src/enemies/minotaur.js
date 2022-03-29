@@ -24,9 +24,9 @@ export default class Minotaur extends ShootingEnemyParent {
     this.attacking = false;
     this.attackingPreparing = false;
     this.cont = 1;
-    this.body.offset.x = -15;
+    //this.body.offset.x = -15;
     this.body.offset.y = -10;
-    this.body.setSize(this.body.width * 1.5, this.body.height * 1.8);
+    this.body.setSize(this.body.width * 1.2, this.body.height * 1.5);
   }
   /*creador(){
     this.projectileE = new Homing_p(this.scene,this.x,this.y);

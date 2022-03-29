@@ -24,7 +24,7 @@ export default class End extends Phaser.Scene {
     
     this.deathSound = this.sound.add("tonedeath").play();
     const {width, height} = this.sys.game.canvas;
-    this.add.text(width/2, height/2, 'The Knightmares starts again\nPress any button to fight for your glory',{
+    this.add.text(width/2, height/2, 'The Knightmares start again\nPress any button to fight for your glory',{
       fontSize: "48px",
     })
     
