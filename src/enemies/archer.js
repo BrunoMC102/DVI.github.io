@@ -32,6 +32,7 @@ export default class Archer extends ShootingEnemyParent {
         this.atrapadoVector = new Phaser.Math.Vector2(this.x, this.y);
         this.atrapado = false;
         this.atrapadoCont = 0;
+        this.escapingcont = 0;
     }
 
 
@@ -113,7 +114,7 @@ export default class Archer extends ShootingEnemyParent {
                 }
 
             }
-            else {
+            else if(dx.length() > 400){
                 if (this.escaping) {
                     this.changemoveVector();
                     this.escaping = false
@@ -134,6 +135,11 @@ export default class Archer extends ShootingEnemyParent {
                 else if (this.escaping) {
                     this.body.setVelocity(this.escapeVector.x, this.escapeVector.y);
                     this.sprite.play('archerMove', true);
+                    this.escapingcont += dt;
+                    if(this.escapingcont >= 1000){
+                        this.changeEscapeVector();
+                        this.escapingcont = 0;
+                    }
                 }
                 else {
                     this.body.setVelocity(this.moveVector.x / 2, this.moveVector.y / 2);
@@ -201,15 +207,12 @@ export default class Archer extends ShootingEnemyParent {
 
     changeEscapeVector() {
         const dx = new Phaser.Math.Vector2(-(this.player.x - this.x), -(this.player.y - this.y));
-        let ang = (Math.random() * 2 - 1) * 0.2 * Math.PI;
+        let ang = (Math.random() * 2 - 1) * 0.3 * Math.PI;
         dx.normalize().rotate(ang).scale(this.v);
         this.escapeVector = dx;
         if (this.escambio != undefined)
             this.escambio.remove();
-        this.escambio = this.scene.time.delayedCall(1000, () => {
-            if (this.dead) return;
-            this.changeEscapeVector();
-        });
+       
     }
     changemoveVector() {
         const dx = new Phaser.Math.Vector2(this.player.x - this.x, this.player.y - this.y);
