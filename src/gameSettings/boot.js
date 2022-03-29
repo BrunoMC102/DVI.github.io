@@ -25,8 +25,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('star', 'star.png');
     this.load.image('player', 'player.png');
     this.load.image('enemy', 'enemy_white.png');
-    this.load.image('flecha','flecha.png')
-    this.load.image('pocionVida','potion.png');
+    this.load.image('flecha', 'flecha.png')
+    this.load.image('pocionVida', 'potion.png');
     this.load.image('monedas', 'coins.png');
     this.load.image('vida', 'Fullheart.png');
     this.load.image('sword', 'sword.png');
@@ -39,8 +39,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('terreno', "terrain-v7.png");
     this.load.image('trees', "trees-pale.png");
     this.load.image('roofNormal', "thatched-roof.png");
-    this.load.image('windows','windows.png');
-    this.load.image('doors','doors.png');
+    this.load.image('windows', 'windows.png');
+    this.load.image('doors', 'doors.png');
     this.load.image('moleStand', 'attack-7.png');
     this.load.image('goblinKingStand', 'idle-1.png');
     this.load.image('dungeon', 'Dungeon64.png');
@@ -51,7 +51,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('menuBackground', 'menuBackground.png');
     this.load.image('background', 'background.png');
     this.load.image('icono', 'icono.png');
-    this.load.image('bow','bow.png');
+    this.load.image('bow', 'bow.png');
 
 
     this.load.setPath('assets/json/');
@@ -73,7 +73,7 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('brainmole', 'brainmole.png', 'brainmole.json');
     this.load.atlas('goblinKing', 'goblinKing.png', 'goblinKing.json');
     this.load.atlas('minotaur', 'minotaur.png', 'minotaur.json');
-
+    this.load.atlas('iceElemental', 'iceElemental.png', 'iceElemental.json');
 
     this.load.atlas('chest', 'chest.png', 'chest.json')
     this.load.atlas('bot', 'bot.png', 'bot.json')
@@ -85,18 +85,18 @@ export default class Boot extends Phaser.Scene {
 
     //musica
     this.load.setPath('assets/music/');
-    this.load.audio('slide','golpeEspada.wav');
+    this.load.audio('slide', 'golpeEspada.wav');
     this.load.audio('hit', 'hit.mp3');
     this.load.audio('upgrade', 'upgrade.mp3');
     this.load.audio('disparoFlecha', 'disparoFlecha.mp3');
     this.load.audio('potionAudio', 'potionAudio.mp3');
     this.load.audio('splash', 'splash.wav');
-    this.load.audio('tonedeath','NoHope.mp3');
+    this.load.audio('tonedeath', 'NoHope.mp3');
     this.load.audio('villagetheme', 'villagetheme.mp3');
     this.load.audio('dungeontheme', 'dungeontheme.ogg');
     this.load.audio('mainMenuTrack', 'mainMenuTrack.ogg');
 
-    
+
   }
 
   /**
@@ -116,14 +116,14 @@ export default class Boot extends Phaser.Scene {
   createAnimations() {
     //Top Down
     //Idle
-    this.anims.create({key: 'idle-side', frames: [{ key: 'character', frame: 'idle-side.png'}], duration: -1});
-    this.anims.create({key: 'idle-down', frames: [{ key: 'character', frame: 'idle-down.png'}], duration: -1});
-    this.anims.create({key: 'idle-up', frames: [{ key: 'character', frame: 'idle-up.png'}], duration: -1});
+    this.anims.create({ key: 'idle-side', frames: [{ key: 'character', frame: 'idle-side.png' }], duration: -1 });
+    this.anims.create({ key: 'idle-down', frames: [{ key: 'character', frame: 'idle-down.png' }], duration: -1 });
+    this.anims.create({ key: 'idle-up', frames: [{ key: 'character', frame: 'idle-up.png' }], duration: -1 });
 
     //WalkSide
     this.anims.create({
       key: 'walk-side',
-      frames: this.anims.generateFrameNames('character', {start: 1, end: 9, prefix: 'walk-side-', suffix: '.png'}),
+      frames: this.anims.generateFrameNames('character', { start: 1, end: 9, prefix: 'walk-side-', suffix: '.png' }),
       frameRate: 12,
       repeat: -1
     });
@@ -131,7 +131,7 @@ export default class Boot extends Phaser.Scene {
     //WalkDown
     this.anims.create({
       key: 'walk-down',
-      frames: this.anims.generateFrameNames('character', {start: 1, end: 7, prefix: 'walk-down-', suffix: '.png'}),
+      frames: this.anims.generateFrameNames('character', { start: 1, end: 7, prefix: 'walk-down-', suffix: '.png' }),
       frameRate: 10,
       repeat: -1
     });
@@ -139,217 +139,247 @@ export default class Boot extends Phaser.Scene {
     //WalkUp
     this.anims.create({
       key: 'walk-up',
-      frames: this.anims.generateFrameNames('character', {start: 1, end: 7, prefix: 'walk-up-', suffix: '.png'}),
+      frames: this.anims.generateFrameNames('character', { start: 1, end: 7, prefix: 'walk-up-', suffix: '.png' }),
       frameRate: 10,
       repeat: -1
     });
-    
+
     //Death
     this.anims.create({
       key: 'death',
-      frames: this.anims.generateFrameNames('character', {start: 1, end: 4, prefix: 'death-', suffix: '.png'}),
+      frames: this.anims.generateFrameNames('character', { start: 1, end: 4, prefix: 'death-', suffix: '.png' }),
       frameRate: 1,
       duration: -1
     });
 
     //ScrollLateral
-    this.anims.create({key: 'stand', frames: [{ key: 'characterScroll', frame: 'walk-143.png'}], duration: -1});
+    this.anims.create({ key: 'stand', frames: [{ key: 'characterScroll', frame: 'walk-143.png' }], duration: -1 });
     //Walk 
     this.anims.create({
-    key: 'walk', 
-    frames: this.anims.generateFrameNames('characterScroll',{ start: 143, end: 151 ,prefix: 'walk-',suffix: '.png'}),
-    frameRate: 15,
-    repeat: -1});
+      key: 'walk',
+      frames: this.anims.generateFrameNames('characterScroll', { start: 143, end: 151, prefix: 'walk-', suffix: '.png' }),
+      frameRate: 15,
+      repeat: -1
+    });
 
     //Jump
     this.anims.create({
-    key: 'jump', 
-    frames: this.anims.generateFrameNames('characterScroll',{ start: 39, end: 45 ,prefix: 'jump-',suffix: '.png'}),
-    frameRate: 10 ,
-    repeat: 0});
-    this.anims.create({key: 'jumpfinal', frames: [{ key: 'characterScroll', frame: 'jump-43.png'}], duration: -1});
-    
-    
-  //BrainMole animations
+      key: 'jump',
+      frames: this.anims.generateFrameNames('characterScroll', { start: 39, end: 45, prefix: 'jump-', suffix: '.png' }),
+      frameRate: 10,
+      repeat: 0
+    });
+    this.anims.create({ key: 'jumpfinal', frames: [{ key: 'characterScroll', frame: 'jump-43.png' }], duration: -1 });
+
+
+    //BrainMole animations
     this.anims.create({
-    key:'mole',
-    frames: this.anims.generateFrameNames('brainmole',{start: 7, end: 10, prefix: 'attack-', suffix: '.png'}),
-    frameRate:10,
-    repeat: -1    
-  })
+      key: 'mole',
+      frames: this.anims.generateFrameNames('brainmole', { start: 7, end: 10, prefix: 'attack-', suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
 
-  // goblinKing animations
-  this.anims.create({
-    key:'goblinKing_idle',
-    frames: this.anims.generateFrameNames('goblinKing',{start: 1, end: 4, prefix: 'idle-', suffix: '.png'}),
-    frameRate:10,
-    repeat: -1    
-  })
+    // goblinKing animations
+    this.anims.create({
+      key: 'goblinKing_idle',
+      frames: this.anims.generateFrameNames('goblinKing', { start: 1, end: 4, prefix: 'idle-', suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
 
-  this.anims.create({
-    key:'goblinKing_walking',
-    frames: this.anims.generateFrameNames('goblinKing',{start: 1, end: 6, prefix: 'walking-', suffix: '.png'}),
-    frameRate:10,
-    repeat: -1    
-  })
+    this.anims.create({
+      key: 'goblinKing_walking',
+      frames: this.anims.generateFrameNames('goblinKing', { start: 1, end: 6, prefix: 'walking-', suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
 
-  this.anims.create({
-    key:'goblinKing_attack',
-    frames: this.anims.generateFrameNames('goblinKing',{start: 1, end: 13, prefix: 'attack-', suffix: '.png'}),
-    frameRate:10,
-    repeat: -1    
-  })
+    this.anims.create({
+      key: 'goblinKing_attack',
+      frames: this.anims.generateFrameNames('goblinKing', { start: 1, end: 13, prefix: 'attack-', suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
 
-  this.anims.create({
-    key:'goblinKing_death',
-    frames: this.anims.generateFrameNames('goblinKing',{start: 1, end: 11, prefix: 'death-', suffix: '.png'}),
-    frameRate:10,
-    repeat: 0    
-  })
+    this.anims.create({
+      key: 'goblinKing_death',
+      frames: this.anims.generateFrameNames('goblinKing', { start: 1, end: 11, prefix: 'death-', suffix: '.png' }),
+      frameRate: 10,
+      repeat: 0
+    })
     //Minotaur
     this.anims.create({
-      key:'minotaurSpinAttack',
-      frames: this.anims.generateFrameNames('minotaur',{start: 1, end: 9, prefix: 'Spin-Attack_', suffix: '.png'}),
-      frameRate:10,
-      repeat: 0    
+      key: 'minotaurSpinAttack',
+      frames: this.anims.generateFrameNames('minotaur', { start: 1, end: 9, prefix: 'Spin-Attack_', suffix: '.png' }),
+      frameRate: 10,
+      repeat: 0
     })
     this.anims.create({
-      key:'minotaurWalk',
-      frames: this.anims.generateFrameNames('minotaur',{start: 1, end: 8, prefix: 'Walk_', suffix: '.png'}),
-      frameRate:15,
-      repeat: 0    
+      key: 'minotaurWalk',
+      frames: this.anims.generateFrameNames('minotaur', { start: 1, end: 8, prefix: 'Walk_', suffix: '.png' }),
+      frameRate: 15,
+      repeat: 0
     })
     this.anims.create({
-      key:'minotaurPrepare',
-      frames: this.anims.generateFrameNames('minotaur',{start: 1, end: 5, prefix: 'Prepare_', suffix: '.png'}),
-      frameRate:7,
-      repeat: 0    
+      key: 'minotaurPrepare',
+      frames: this.anims.generateFrameNames('minotaur', { start: 1, end: 5, prefix: 'Prepare_', suffix: '.png' }),
+      frameRate: 7,
+      repeat: 0
     })
     this.anims.create({
-      key:'minotaurDeath',
-      frames: this.anims.generateFrameNames('minotaur',{start: 1, end: 6, prefix: 'death_', suffix: '.png'}),
-      frameRate:10,
-      repeat: 0    
+      key: 'minotaurDeath',
+      frames: this.anims.generateFrameNames('minotaur', { start: 1, end: 6, prefix: 'death_', suffix: '.png' }),
+      frameRate: 10,
+      repeat: 0
     })
-    this.anims.create({key: 'minotaur_idle', frames: [{ key: 'minotaur', frame: 'idle.png'}], duration: -1});
+    this.anims.create({ key: 'minotaur_idle', frames: [{ key: 'minotaur', frame: 'idle.png' }], duration: -1 });
     this.anims.create({
-      key:'minotaurfastWalk',
-      frames: this.anims.generateFrameNames('minotaur',{start: 1, end: 8, prefix: 'Walk_', suffix: '.png'}),
-      frameRate:25,
-      repeat: 0    
+      key: 'minotaurfastWalk',
+      frames: this.anims.generateFrameNames('minotaur', { start: 1, end: 8, prefix: 'Walk_', suffix: '.png' }),
+      frameRate: 25,
+      repeat: 0
     })
     //Chest
     this.anims.create({
-      key:'openChest',
-      frames: this.anims.generateFrameNames('chest',{start: 77, end: 81, suffix: '.png'}),
+      key: 'openChest',
+      frames: this.anims.generateFrameNames('chest', { start: 77, end: 81, suffix: '.png' }),
       frameRate: 8,
-      repeat: 0    
+      repeat: 0
     })
     //Bot
     this.anims.create({
-      key:'walking_bot',
-      frames: this.anims.generateFrameNames('bot',{start: 0, end: 7, suffix: '.png'}),
+      key: 'walking_bot',
+      frames: this.anims.generateFrameNames('bot', { start: 0, end: 7, suffix: '.png' }),
       frameRate: 10,
-      repeat: 0    
+      repeat: 0
     })
     this.anims.create({
-      key:'bot_fire',
-      frames: this.anims.generateFrameNames('bot',{start: 8, end: 11, suffix: '.png'}),
+      key: 'bot_fire',
+      frames: this.anims.generateFrameNames('bot', { start: 8, end: 11, suffix: '.png' }),
       frameRate: 40,
-      repeat: 0    
+      repeat: 0
     })
-    
+
     this.anims.create({
-      key:'bot_awake',
-      frames: this.anims.generateFrameNames('bot',{start: 12, end: 16, suffix: '.png'}),
-      frameRate: 10,
-      repeat: 0    
-    })
-    this.anims.create({
-      key:'bot_charging',
-      frames: this.anims.generateFrameNames('bot',{start: 17, end: 20, suffix: '.png'}),
+      key: 'bot_awake',
+      frames: this.anims.generateFrameNames('bot', { start: 12, end: 16, suffix: '.png' }),
       frameRate: 10,
       repeat: 0
     })
     this.anims.create({
-      key:'bot_dash',
-      frames: this.anims.generateFrameNames('bot',{start: 21, end: 27, suffix: '.png'}),
+      key: 'bot_charging',
+      frames: this.anims.generateFrameNames('bot', { start: 17, end: 20, suffix: '.png' }),
       frameRate: 10,
       repeat: 0
     })
     this.anims.create({
-      key:'bot_death',
-      frames: this.anims.generateFrameNames('bot',{start: 28, end: 33, suffix: '.png'}),
+      key: 'bot_dash',
+      frames: this.anims.generateFrameNames('bot', { start: 21, end: 27, suffix: '.png' }),
       frameRate: 10,
-      repeat: 0    
+      repeat: 0
     })
     this.anims.create({
-      key:'pulseFire',
-      frames: this.anims.generateFrameNames('pulse',{start: 1, end: 4,prefix: 'pulse', suffix: '.png'}),
+      key: 'bot_death',
+      frames: this.anims.generateFrameNames('bot', { start: 28, end: 33, suffix: '.png' }),
+      frameRate: 10,
+      repeat: 0
+    })
+    this.anims.create({
+      key: 'pulseFire',
+      frames: this.anims.generateFrameNames('pulse', { start: 1, end: 4, prefix: 'pulse', suffix: '.png' }),
       frameRate: 25,
-      repeat: -1    
+      repeat: -1
     })
     this.anims.create({
-      key:'pulseDie',
-      frames: this.anims.generateFrameNames('pulse',{start: 1, end: 7,prefix: 'hits-5-', suffix: '.png'}),
+      key: 'pulseDie',
+      frames: this.anims.generateFrameNames('pulse', { start: 1, end: 7, prefix: 'hits-5-', suffix: '.png' }),
       frameRate: 10,
-      repeat: -1    
+      repeat: -1
     })
     this.anims.create({
-      key:'waveFire',
-      frames: this.anims.generateFrameNames('wave',{start: 1, end: 4,prefix: 'waveform', suffix: '.png'}),
+      key: 'waveFire',
+      frames: this.anims.generateFrameNames('wave', { start: 1, end: 4, prefix: 'waveform', suffix: '.png' }),
       frameRate: 15,
-      repeat: -1    
+      repeat: -1
     })
     this.anims.create({
-      key:'waveDie',
-      frames: this.anims.generateFrameNames('wave',{start: 1, end: 7,prefix: 'hits-3-', suffix: '.png'}),
+      key: 'waveDie',
+      frames: this.anims.generateFrameNames('wave', { start: 1, end: 7, prefix: 'hits-3-', suffix: '.png' }),
       frameRate: 10,
-      repeat: -1    
+      repeat: -1
     })
     this.anims.create({
-      key:'boltFire',
-      frames: this.anims.generateFrameNames('bolt',{start: 1, end: 4,prefix: 'bolt', suffix: '.png'}),
+      key: 'boltFire',
+      frames: this.anims.generateFrameNames('bolt', { start: 1, end: 4, prefix: 'bolt', suffix: '.png' }),
       frameRate: 15,
-      repeat: -1    
+      repeat: -1
     })
     this.anims.create({
-      key:'boltDie',
-      frames: this.anims.generateFrameNames('bolt',{start: 1, end: 7,prefix: 'hits-3-', suffix: '.png'}),
+      key: 'boltDie',
+      frames: this.anims.generateFrameNames('bolt', { start: 1, end: 7, prefix: 'hits-3-', suffix: '.png' }),
       frameRate: 10,
-      repeat: -1    
+      repeat: -1
     })
     this.anims.create({
-      key:'archerMove',
-      frames: this.anims.generateFrameNames('archer',{start: 1, end: 6,prefix: 'run', suffix: '.png'}),
+      key: 'archerMove',
+      frames: this.anims.generateFrameNames('archer', { start: 1, end: 6, prefix: 'run', suffix: '.png' }),
       frameRate: 10,
-      repeat: -1    
+      repeat: -1
     })
     this.anims.create({
-      key:'archerjump',
-      frames: this.anims.generateFrameNames('archer',{start: 1, end: 5,prefix: 'jump', suffix: '.png'}),
+      key: 'archerjump',
+      frames: this.anims.generateFrameNames('archer', { start: 1, end: 5, prefix: 'jump', suffix: '.png' }),
       frameRate: 10,
-      repeat: 0    
+      repeat: 0
     })
     this.anims.create({
-      key:'archeridle',
-      frames: this.anims.generateFrameNames('archer',{start: 1, end: 6,prefix: 'idle', suffix: '.png'}),
+      key: 'archeridle',
+      frames: this.anims.generateFrameNames('archer', { start: 1, end: 6, prefix: 'idle', suffix: '.png' }),
       frameRate: 10,
-      repeat: -1    
+      repeat: -1
     })
     this.anims.create({
-      key:'archerDie',
-      frames: this.anims.generateFrameNames('archer',{start: 1, end: 7,prefix: 'die', suffix: '.png'}),
+      key: 'archerDie',
+      frames: this.anims.generateFrameNames('archer', { start: 1, end: 7, prefix: 'die', suffix: '.png' }),
       frameRate: 10,
-      repeat: 0    
+      repeat: 0
     })
-    
+
     this.anims.create({
-      key:'archerfire',
-      frames: this.anims.generateFrameNames('archer',{start: 1, end: 7,prefix: 'fire', suffix: '.png'}),
+      key: 'archerfire',
+      frames: this.anims.generateFrameNames('archer', { start: 1, end: 7, prefix: 'fire', suffix: '.png' }),
       frameRate: 10,
-      repeat: 0    
+      repeat: 0
     })
-    }
+
+
+    // ice elemental animations
+    this.anims.create({
+      key: 'iceElemental_idle',
+      frames: this.anims.generateFrameNames('iceElemental', { start: 1, end: 5, suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'iceElemental_attack',
+      frames: this.anims.generateFrameNames('iceElemental', { start: 81, end: 97, suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'iceElemental_move',
+      frames: this.anims.generateFrameNames('iceElemental', { start: 9, end: 12, suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'iceElemental_death',
+      frames: this.anims.generateFrameNames('iceElemental', { start: 54, end: 61, suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+
+  }
 }
 
