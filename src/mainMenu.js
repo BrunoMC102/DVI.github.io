@@ -22,6 +22,7 @@ import PlayerData from "./player/playerData.js";
      */
     create() {
       this.mainMenuTrack = this.sound.add('mainMenuTrack');
+      this.sound.pauseOnBlur = false;
       this.mainMenuTrack.play();
       this.add.bitmapText(this.game.renderer.width / 2, this.game.renderer.height * 0.20,'atari', 'Knightmares',16).setOrigin().setDepth(2).setFontSize(48);
        this.playButton = this.add.bitmapText(this.game.renderer.width / 2, this.game.renderer.height * 0.40,'atari', 'Play', 16).
