@@ -26,7 +26,7 @@ export default class PlayerData{
       this.projectileEffects = [];
       this.isPadControlling = false;
       this.dashSpeed = 900;
-      this.dashInvincibilityPower = true;
+      this.dashInvincibilityPower = false;
       this.currentManaCost = 5;
     }
 

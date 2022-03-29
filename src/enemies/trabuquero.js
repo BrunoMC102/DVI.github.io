@@ -22,12 +22,13 @@ export default class Trabuquero extends ShootingEnemyParent {
         this.sprite.scale = 3;
         this.body.offset.x = -15;
         this.body.setSize(this.body.width * 1.3, this.body.height * 1.6);
+        this.dispOffset = 0;
     }
    
 
 
     creador() {
-        return new Basic_projectile(this.scene, this.centerX(), this.centerY(), 'flecha', this.fireDirection.x * this.Pv, this.fireDirection.y * this.Pv, 10, this.projectileDamage);
+        return new Basic_projectile(this.scene, this.centerX() + this.dispOffset, this.centerY(), 'flecha', this.fireDirection.x * this.Pv, this.fireDirection.y * this.Pv, 10, this.projectileDamage);
     }
 
     attack(d, dt) {
@@ -91,8 +92,10 @@ export default class Trabuquero extends ShootingEnemyParent {
 
         let dirx = this.player.x-this.x
         if (dirx < 0) {
+            this.dispOffset = -50;
             this.sprite.flipX = true;
         } else {
+            this.dispOffset = 50;
             this.sprite.flipX = false;
         }
     }

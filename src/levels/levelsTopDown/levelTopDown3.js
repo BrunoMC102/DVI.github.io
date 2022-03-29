@@ -38,9 +38,12 @@ export default class LevelTopDown3 extends Phaser.Scene {
     
     
 
-    this.a = new moleVariante2(this, this.player, 600, 400);
+    this.a = new Enemy2(this, this.player, 800, 400);
+    this.b = new moleVariante(this, this.player, 400, 400);
+    
     
     this.enemies.add(this.a);
+    this.enemies.add(this.b);
 
     
 
@@ -54,6 +57,8 @@ export default class LevelTopDown3 extends Phaser.Scene {
     this.physics.add.collider(this.enemies,this.zoneGroup);
     this.sceneChange[0].body.setAllowGravity(false);
     this.sceneChange[1].body.setAllowGravity(false);
+    this.sceneChange[0].body.setImmovable(true);
+    this.sceneChange[1].body.setImmovable(true);
   }
 
   finishGame(){

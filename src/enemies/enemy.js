@@ -83,7 +83,7 @@ export default class Enemy extends EnemyParent{
         } 
       }
     else{
-      this.sprite.stop();
+      this.sprite.play('minotaur_idle');
       this.body.setVelocity(0,0);
       this.atack.charge = 0;
     
@@ -96,11 +96,14 @@ export default class Enemy extends EnemyParent{
   }
   die(){
     this.sprite.play('minotaurDeath');
+    this.preUpdate = ()=>{};
+    this.deadCenter.x = this.centerX();
+    this.deadCenter.y = this.centerY();
     this.body.destroy();
     this.scene.time.delayedCall(1500, () => {
       this.spawnMana();
-      this.destroy();
       this.spawnLoot();
+      this.destroy();
     })
   }
 }

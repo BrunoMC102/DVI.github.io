@@ -8,6 +8,7 @@ import Enemy5 from '../../enemies/enemy5.js';
 import GoblinKing from '../../enemies/goblinKing.js';
 import Spectral from '../../objetos_recogibles/pasivos/spectral.js';
 import Enemy6_2 from '../../enemies/enemy6_2.js';
+import Trabuquero from '../../enemies/trabuquero.js';
 
 export default class LevelTopDown4 extends Phaser.Scene {
 
@@ -41,10 +42,10 @@ export default class LevelTopDown4 extends Phaser.Scene {
     this.projectiles = this.add.group();
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
 
-    this.a = new GoblinKing(this, this.player, 500, 300);
-    this.b = new Enemy6_2(this, this.player, 700, 300);
+    this.a = new Trabuquero(this, this.player, 500, 300);
+    
     this.enemies.add(this.a);
-    this.enemies.add(this.b);
+    
     
 
     //Hitbox que contiene fisicas para ver si solapa con el player (puede ser un array para tener varias hitbox)
@@ -56,6 +57,8 @@ export default class LevelTopDown4 extends Phaser.Scene {
     this.physics.add.collider(this.enemies,this.zoneGroup);
     this.sceneChange[0].body.setAllowGravity(false);
     this.sceneChange[1].body.setAllowGravity(false);
+    this.sceneChange[0].body.setImmovable(true);
+    this.sceneChange[1].body.setImmovable(true);
   }
 
   update() {

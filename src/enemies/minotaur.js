@@ -82,11 +82,12 @@ export default class Minotaur extends ShootingEnemyParent {
     }
     moveU(){
       if(!this.attackingPreparing){
-        this.sprite.play('minotaurWalk',true);
+        this.sprite.play('minotaur_idle',true);
       }
     }
     die(){
       this.sprite.play('minotaurDeath');
+      this.preUpdate = ()=>{};
       this.deadCenter.x = this.centerX();
       this.deadCenter.y = this.centerY();
       this.body.destroy();

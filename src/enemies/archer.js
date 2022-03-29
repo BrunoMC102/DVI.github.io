@@ -52,7 +52,7 @@ export default class Archer extends ShootingEnemyParent {
       }
 
     creador() {
-        return new Basic_projectile(this.scene, this.body.center.x + this.dispOffset, this.body.center.y, 'flecha', this.fireDirection.x * this.Pv, this.fireDirection.y * this.Pv, 10, this.projectileDamage);
+        return new Basic_projectile(this.scene, this.centerX() + this.dispOffset, this.centerY(), 'flecha', this.fireDirection.x * this.Pv, this.fireDirection.y * this.Pv, 10, this.projectileDamage);
     }
 
 
@@ -82,7 +82,7 @@ export default class Archer extends ShootingEnemyParent {
 
 
     moveU(t, dt) {
-        let xdir = this.player.x - this.x;
+        let xdir = this.player.x - this.centerX();
         if (xdir > 0) {
             this.sprite.flipX = false;
             this.dispOffset = 50;
@@ -251,7 +251,7 @@ export default class Archer extends ShootingEnemyParent {
 
     }
     fire() {
-        this.fireDirection.x = this.player.x - this.centerX();
+        this.fireDirection.x = this.player.x - (this.centerX()+this.dispOffset);
         this.fireDirection.y = this.player.y - this.centerY();
         this.fireDirection.normalize();
         if (this.arrows % 2 == 0)
