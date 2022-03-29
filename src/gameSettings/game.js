@@ -5,6 +5,7 @@ import LevelTopDown from '../levels/levelsTopDown/levelTopDown.js';
 import LevelTopDown2 from '../levels/levelsTopDown/levelTopDown2.js';
 import LevelTopDown3 from '../levels/levelsTopDown/levelTopDown3.js';
 import LevelTopDown4 from '../levels/levelsTopDown/levelTopDown4.js';
+import LevelTopDown5 from '../levels/levelsTopDown/levelTopDown5.js';
 import LevelScroll from '../levels/levelsScroll/levelScroll.js';
 import BeginningVillage from '../levels/beginningVillage.js';
 
@@ -24,7 +25,7 @@ let config = {
     input: {
         gamepad: true
     },
-    scene: [Boot, Level, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelScroll,BeginningVillage,  End],
+    scene: [Boot, Level, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelTopDown5, LevelScroll,BeginningVillage,  End],
     physics: {
         default: 'arcade',
         arcade: {
