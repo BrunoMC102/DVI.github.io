@@ -178,7 +178,7 @@ export default class Archer extends ShootingEnemyParent {
 
     freeze(){
         if(this.atrapado) return;
-        super.freeze(damage);
+        super.freeze();
     }
 
     die() {
