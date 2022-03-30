@@ -304,7 +304,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     }
   }
   useManaPotions(){
-    if(this.playerData.manaPotions> 0){
+    if(this.playerData.manaPotions> 0 && this.playerData.mana < 100){
     this.healthPotionAudio.play();
     this.playerData.manaPotions--;
     this.playerData.mana+= 25;
