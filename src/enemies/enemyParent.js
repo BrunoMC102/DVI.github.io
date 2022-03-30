@@ -128,12 +128,14 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     this.sprite.tint = 0x9265ff
     this.body.setVelocity(0,0);
     this.body.setAcceleration(0,0);
+    this.stopDelayedCalls();
     this.scene.time.delayedCall(5000, ()=>{
       if (this.body != undefined){
         this.sprite.tint = this.origTint; 
         this.body.setVelocity(v_x,v_y); 
         this.body.setAcceleration(a_x,a_y); 
         this.freezing = false;
+        this.startDelayedCalls();
       }
     });
 
@@ -195,4 +197,6 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
   }
 
   onCollisionWithPlayer(){}
+  stopDelayedCalls(){}
+  startDelayedCalls(){}
 }

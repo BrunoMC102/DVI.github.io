@@ -8,6 +8,7 @@ import Enemy5 from '../../enemies/enemy5.js';
 import Archer from '../../enemies/archer.js';
 import Spectral from '../../objetos_recogibles/pasivos/spectral.js';
 import Enemy6_2 from '../../enemies/enemy6_2.js';
+import ArcherVariante from '../../enemies/archerVariante.js';
 
 export default class LevelTopDown extends Phaser.Scene {
 
@@ -32,7 +33,7 @@ export default class LevelTopDown extends Phaser.Scene {
     this.projectiles = this.add.group();
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
 
-    this.enemies.add(new Archer(this, this.player, 500, 500));
+    this.enemies.add(new ArcherVariante(this, this.player, 500, 500));
     
     this.sceneChange = [this.add.zone(1250, 510, 60, 122), this.add.zone(30, 510, 60, 122)];
     this.zoneGroup = this.add.group();
