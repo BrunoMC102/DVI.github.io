@@ -1,4 +1,3 @@
-
 import Player from '../player/player.js';
 import PlayerTopDown from '../player/playerTopDown.js';
 
@@ -33,12 +32,8 @@ export default class BeginningVillage extends Phaser.Scene {
     const tileset7 = map.addTilesetImage('doors', 'doors');
     const tileset8 = map.addTilesetImage('windows', 'windows');
 
-
-
- 
     const bottomLayer = map.createLayer('BottomLayer', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6,tileset7,tileset8]).setCollisionByProperty({ collides: true });
     const bottomLayer2 = map.createLayer('BottomLayer2', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6,tileset7,tileset8]).setCollisionByProperty({ collides: true });
-    
     
     const midLayer = map.createLayer('MidLayer', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6,tileset7,tileset8]).setCollisionByProperty({ collides: true });
      this.enemies = this.add.group();
@@ -55,23 +50,16 @@ export default class BeginningVillage extends Phaser.Scene {
       //}
       //if (objeto.type === 'general') {
       //  this.add.sprite(objeto.x, objeto.y,'general');
-    //  }
+    //  
       
   //}
     const topLayer = map.createLayer('TopLayer', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6,tileset7,tileset8]).setCollisionByProperty({ collides: true });
     const Roofs = map.createLayer('Roofs', [tileset,tileset2,tileset3, tileset4, tileset5, tileset6,tileset7,tileset8]).setCollisionByProperty({ collides: true });
-    
-
-    //this.showHitbox(voidLayer);
-    //this.showHitbox(wallLayer);
    
     this.sceneChange =  [this.add.zone(2560,1225,300,320), this.add.zone(2565, 1250, 425, 225)];
     this.physics.world.enable(this.sceneChange); 
     this.sceneChange[0].body.setAllowGravity(false);
     this.sceneChange[1].body.setAllowGravity(false);
-
-    
-    // this.physics.add.collider(this.player, wallLayer);
 
     this.physics.add.collider(this.player, midLayer);
     this.physics.add.collider(this.player,topLayer);
@@ -93,17 +81,6 @@ export default class BeginningVillage extends Phaser.Scene {
         });
       }
     }
-    /*
-    if (this.physics.overlap(this.player, this.sceneChange[1])) {
-      this.scene.start('levelTopDown2', {coordinates: {x: 100, y: 500},playerData:this.playerData});
-    }
-    if (this.physics.overlap(this.player, this.sceneChange[2])) {
-      this.scene.start('levelTopDown3', {coordinates: {x: 100, y: 500},playerData:this.playerData});
-    }
-    if (this.physics.overlap(this.player, this.sceneChange[3])) {
-      this.scene.start('levelTopDown4', {coordinates: {x: 100, y: 500}, playerData:this.playerData});
-    }*/
-  
     
   showHitbox(layer) {
     const debugGraphics = this.add.graphics().setAlpha(0.7);
