@@ -65,10 +65,10 @@ export default class BeginningVillage extends Phaser.Scene {
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
    
-    this.sceneChange =  [this.add.zone(2560,1256,400,400)];
+    this.sceneChange =  [this.add.zone(2560,1225,300,320), this.add.zone(2565, 1250, 425, 225)];
     this.physics.world.enable(this.sceneChange); 
     this.sceneChange[0].body.setAllowGravity(false);
-
+    this.sceneChange[1].body.setAllowGravity(false);
 
     
     // this.physics.add.collider(this.player, wallLayer);
@@ -79,16 +79,19 @@ export default class BeginningVillage extends Phaser.Scene {
     this.physics.add.collider(this.player, this.blacksmith);
     this.villageSound = this.sound.add("villagetheme", {loop: true});
     this.villageSound.play();
-
-  
-
+    this.changingScene = false;
+    this.cameras.main.fadeIn(1000);
   }
 
-  update() {
-    //Esto es mejor porque solo revisa si se encuentra en la hitbox
-    if (this.physics.overlap(this.player, this.sceneChange[0])) {
-      this.sound.stopAll();
-      this.scene.start('levelTopDown', {coordinates: {x: 100, y: 500},playerData:this.playerData});
+  update(d, dt) {
+      if ((this.physics.overlap(this.player, this.sceneChange[0]) || this.physics.overlap(this.player, this.sceneChange[1])) && this.changingScene == false) {
+        this.changingScene = true;
+        this.sound.stopAll();
+        this.cameras.main.fadeOut(1000);
+        this.time.delayedCall(1450, () => {
+          this.scene.start('levelTopDown', {coordinates: {x: 100, y: 500},playerData:this.playerData});
+        });
+      }
     }
     /*
     if (this.physics.overlap(this.player, this.sceneChange[1])) {
@@ -101,8 +104,7 @@ export default class BeginningVillage extends Phaser.Scene {
       this.scene.start('levelTopDown4', {coordinates: {x: 100, y: 500}, playerData:this.playerData});
     }*/
   
-  }
-
+    
   showHitbox(layer) {
     const debugGraphics = this.add.graphics().setAlpha(0.7);
 
@@ -112,6 +114,4 @@ export default class BeginningVillage extends Phaser.Scene {
       faceColor: new Phaser.Display.Color(40,39,37,255)
     });
   }
-
-  
 }
