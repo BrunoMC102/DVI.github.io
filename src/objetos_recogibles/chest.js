@@ -19,6 +19,6 @@ export default class Chest extends Phaser.GameObjects.Sprite{
     }
 
     spawnPoweUp(){
-        PasivePowerUpList.extractPowerUp()(this.scene, this.player, this.x, this.y-30);
+        new this.scene.poweUpList.extractPowerUp(this.scene, this.player, this.x, this.y-30);
     }
 }

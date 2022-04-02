@@ -17,6 +17,7 @@ export default class BeginningVillage extends Phaser.Scene {
   init(data) {
     this.coordinates = data.coordinates;
     this.playerData = data.playerData;
+    this.powerUpList = data.powerUpList;
   }
 
   /**
@@ -88,7 +89,7 @@ export default class BeginningVillage extends Phaser.Scene {
     //Esto es mejor porque solo revisa si se encuentra en la hitbox
     if (this.physics.overlap(this.player, this.sceneChange[0])) {
       this.sound.stopAll();
-      this.scene.start('levelTopDown', {coordinates: {x: 100, y: 500},playerData:this.playerData});
+      this.scene.start('initialLevel', {coordinates: {x: 100, y: 500},playerData:this.playerData, powerUpList: this.powerUpList});
     }
     /*
     if (this.physics.overlap(this.player, this.sceneChange[1])) {

@@ -111,7 +111,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     //Variables Dash
     this.dashing = false;
     this.inDashDelay = false;
-
+    
     //Variables controles
     this.R2_pressed = false;
     this.lastVelocity = new Phaser.Math.Vector2(0, 0);
@@ -372,7 +372,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   giveMana() {
     if (this.playerData.mana >= this.playerData.maxMana) return;
     this.playerData.mana++;
-
   }
 
   givePasivoPowerUp(texture, titleString) {

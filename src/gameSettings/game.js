@@ -9,11 +9,22 @@ import LevelTopDown5 from '../levels/levelsTopDown/levelTopDown5.js';
 import LevelScroll from '../levels/levelsScroll/levelScroll.js';
 import BeginningVillage from '../levels/beginningVillage.js';
 import MainMenu from '../mainMenu.js';
+import LevelPrueba1 from '../levels/levelsTopDown/levelPrueba1.js';
+import LevelPrueba2 from '../levels/levelsTopDown/levelPrueba2.js';
+import InitialLevel from '../levels/levelsTopDown/initialLevel.js';
+import SceneManager from '../managers/sceneManager.js';
+import Minimap from '../managers/minimap.js';
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
  */
+let creadorMapas = new SceneManager()
+
+let a = [Boot, Level, LevelScroll,BeginningVillage,MainMenu , End];
+creadorMapas.finalLevels[0].setLevels(creadorMapas.finalLevels);
+let c = a.concat(creadorMapas.finalLevels);
+//creadorMapas.finalLevels.push();
 let config = {
     type: Phaser.AUTO,
     width: 1280,
@@ -26,12 +37,13 @@ let config = {
     input: {
         gamepad: true
     },
-    scene: [Boot, Level, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelTopDown5, LevelScroll,BeginningVillage,MainMenu , End],
+
+    scene: c,
     physics: {
         default: 'arcade',
         arcade: {
             gravity: { y: 400},
-            debug: false
+            debug: true
         }
     }
 };
