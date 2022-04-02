@@ -61,13 +61,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.array_hearts = [];
     this.separation = 0;
     this.createUiBar();
-    this.money_label =this.scene.add.text(45,85,"x" + this.playerData.money, {fontSize: "22px"});
-    this.arrow_label = this.scene.add.text(105,85, "x" + this.playerData.arrows, {fontSize: "22px"});
-    this.hPotion_label = this.scene.add.text(25,140,"x"+ this.playerData.healthPotions, {fontSize: "22px"});
-    this.mPotion_label = this.scene.add.text(80, 140,"x" + this.playerData.manaPotions, {fontSize: "22px"});
-    //Barra mana
-    this.manaBar = new ManaBar(scene, 105, 50);
-    this.mana_label =  this.scene.add.text(210 ,40,''+this.playerData.mana, {fontSize: "22px"});
+     //Barra mana
+     this.manaBar = new ManaBar(scene, 105, 50);
+   
 
     
 
@@ -188,16 +184,23 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   //Metodos UI
   createUiBar(){
       for (let i = 0; i < this.playerData.health; i++){
-        this.array_hearts[i] = this.scene.add.sprite(20 + this.separation ,20,'vida');
+        this.array_hearts[i] = this.scene.add.sprite(20 + this.separation ,20,'vida').setScrollFactor(0).setDepth(4);
         this.separation += 30;
       }
-      this.scene.add.sprite(40,85,"monedas");
-    
-      this.scene.add.sprite(120,80, "flecha");
-    
-      this.scene.add.sprite(20,130, "pocionVida");
 
-      this.scene.add.sprite(75,130,'pocionMana');
+      this.money_label =this.scene.add.text(45,85,"x" + this.playerData.money, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
+      this.arrow_label = this.scene.add.text(105,85, "x" + this.playerData.arrows, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
+      this.hPotion_label = this.scene.add.text(25,140,"x"+ this.playerData.healthPotions, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
+      this.mPotion_label = this.scene.add.text(80, 140,"x" + this.playerData.manaPotions, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
+     
+      this.mana_label =  this.scene.add.text(210 ,40,''+this.playerData.mana, {fontSize: "22px"}).setScrollFactor(0).setDepth(4);
+      this.moneySprite = this.scene.add.sprite(40,85,"monedas").setScrollFactor(0).setDepth(4);
+    
+     this.flechaSprite =  this.scene.add.sprite(120,80, "flecha").setScrollFactor(0).setDepth(4);
+    
+      this.pocionesSprite = this.scene.add.sprite(20,130, "pocionVida").setScrollFactor(0).setDepth(4);
+
+      this.pocionesManaSprite =  this.scene.add.sprite(75,130,'pocionMana').setScrollFactor(0).setDepth(4);
       
   }
 
@@ -208,7 +211,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       if (this.playerData.health > j) {
 
         for (let i = j; i < this.playerData.health; i++) {
-          this.array_hearts[i] = this.scene.add.sprite(20 + this.separation, 20, 'vida');
+          this.array_hearts[i] = this.scene.add.sprite(20 + this.separation, 20, 'vida').setScrollFactor(0).setDepth(4);
           this.separation += 30;
 
         }
@@ -304,7 +307,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     }
   }
   useManaPotions(){
-    if(this.playerData.manaPotions> 0 && this.playerData.mana < 100){
+    const remainingMana = this.playerData.mana;
+    if(this.playerData.manaPotions> 0 && remainingMana < 100 && remainingMana + 25 <= 100){
     this.healthPotionAudio.play();
     this.playerData.manaPotions--;
     this.playerData.mana+= 25;
