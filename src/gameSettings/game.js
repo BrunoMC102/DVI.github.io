@@ -22,7 +22,7 @@ import Minimap from '../managers/minimap.js';
 let creadorMapas = new SceneManager()
 
 let a = [Boot, Level, LevelScroll,BeginningVillage,MainMenu , End];
-creadorMapas.finalLevels[0].setLevels(creadorMapas.finalLevels);
+creadorMapas.finalLevels[0].setLevels(creadorMapas.finalLevels.map(e => {return {grid:e.grid, doors: e.doors, iden: e.iden}}));
 let c = a.concat(creadorMapas.finalLevels);
 //creadorMapas.finalLevels.push();
 let config = {
