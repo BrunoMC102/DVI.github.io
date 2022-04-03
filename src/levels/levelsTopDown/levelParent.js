@@ -48,7 +48,7 @@ export default class LevelParent extends Phaser.Scene {
   
 
   create() {
-    
+    this.changingScene = false;
     //this.showHitbox(voidLayer);
     //this.showHitbox(wallLayer);
 
@@ -57,13 +57,22 @@ export default class LevelParent extends Phaser.Scene {
     this.projectiles = this.add.group();
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
 
+    this.cameras.main.fadeIn(800);
+
     const enemiesCreated = this.createEnemies();
     enemiesCreated.forEach(e => this.enemies.add(e));
     this.sceneChange = []
     if (this.doors.north) {
       this.northdoorGroup = this.add.group();
       this.physics.add.overlap(this.northdoorGroup, this.player, () => {
-        this.scene.start(this.changeSceneManager.north, { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
+        if (!this.changingScene) {
+          this.cameras.main.fadeOut(800);
+          this.changingScene = true;
+          this.time.delayedCall(1200, () => {
+            //this.changingScene = false;
+            this.scene.start(this.changeSceneManager.north, { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
+          });
+        }
       })
       this.northDoor = this.add.zone(this.doorCoordinates.north.x, this.doorCoordinates.north.y, 60, 122)
       this.physics.add.existing(this.northDoor, true);
@@ -73,7 +82,14 @@ export default class LevelParent extends Phaser.Scene {
     if (this.doors.south) {
       this.southdoorGroup = this.add.group();
       this.physics.add.overlap(this.southdoorGroup, this.player, () => {
-        this.scene.start(this.changeSceneManager.south, { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
+        if (!this.changingScene) {
+          this.cameras.main.fadeOut(800);
+          this.changingScene = true;
+          this.time.delayedCall(1200, () => {
+            //this.changingScene = false;
+            this.scene.start(this.changeSceneManager.south, { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
+          });
+        }
       })
       this.southDoor = this.add.zone(this.doorCoordinates.south.x, this.doorCoordinates.south.y, 60, 122)
       this.physics.add.existing(this.southDoor, true);
@@ -83,7 +99,14 @@ export default class LevelParent extends Phaser.Scene {
     if (this.doors.east) {
       this.eastdoorGroup = this.add.group();
       this.physics.add.overlap(this.eastdoorGroup, this.player, () => {
-        this.scene.start(this.changeSceneManager.east, { coordinates: { x: 120, y: 500 }, playerData: this.playerData });
+        if (!this.changingScene) { 
+          this.cameras.main.fadeOut(800);
+          this.changingScene = true;
+          this.time.delayedCall(1200, () => {
+            //this.changingScene = false;
+            this.scene.start(this.changeSceneManager.east, { coordinates: { x: 120, y: 500 }, playerData: this.playerData });
+          });
+        }
       })
       this.eastDoor = this.add.zone(this.doorCoordinates.east.x, this.doorCoordinates.east.y, 60, 122)
       this.physics.add.existing(this.eastDoor, true);
@@ -93,7 +116,14 @@ export default class LevelParent extends Phaser.Scene {
     if (this.doors.west) {
       this.westdoorGroup = this.add.group();
       this.physics.add.overlap(this.westdoorGroup, this.player, () => {
-        this.scene.start(this.changeSceneManager.west, { coordinates: { x: 1170, y: 500 }, playerData: this.playerData });
+        if (!this.changingScene) { 
+          this.cameras.main.fadeOut(800);
+          this.changingScene = true;
+          this.time.delayedCall(1200, () => {
+            //this.changingScene = false;
+            this.scene.start(this.changeSceneManager.west, { coordinates: { x: 1170, y: 500 }, playerData: this.playerData });
+          });
+        }
       })
       this.westDoor = this.add.zone(this.doorCoordinates.west.x, this.doorCoordinates.west.y, 60, 122)
       this.physics.add.existing(this.westDoor, true);
