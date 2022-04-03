@@ -1,3 +1,5 @@
+import LevelParent from './levelParent.js';
+
 export default class LevelTopDownBN extends LevelParent {
 
     constructor(key) {
