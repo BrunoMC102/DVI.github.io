@@ -69,12 +69,11 @@ export default class LevelParent extends Phaser.Scene {
           this.cameras.main.fadeOut(800);
           this.changingScene = true;
           this.time.delayedCall(1200, () => {
-            //this.changingScene = false;
             this.scene.start(this.changeSceneManager.north, { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
           });
         }
       })
-      this.northDoor = this.add.zone(this.doorCoordinates.north.x, this.doorCoordinates.north.y, 60, 122)
+      this.northDoor = this.add.zone(this.doorCoordinates.north.x, this.doorCoordinates.north.y, 130, 60);
       this.physics.add.existing(this.northDoor, true);
       this.sceneChange.push(this.northDoor);
     }
@@ -86,12 +85,11 @@ export default class LevelParent extends Phaser.Scene {
           this.cameras.main.fadeOut(800);
           this.changingScene = true;
           this.time.delayedCall(1200, () => {
-            //this.changingScene = false;
             this.scene.start(this.changeSceneManager.south, { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
           });
         }
       })
-      this.southDoor = this.add.zone(this.doorCoordinates.south.x, this.doorCoordinates.south.y, 60, 122)
+      this.southDoor = this.add.zone(this.doorCoordinates.south.x, this.doorCoordinates.south.y, 132, 60);
       this.physics.add.existing(this.southDoor, true);
       this.sceneChange.push(this.southDoor);
     }
@@ -103,7 +101,6 @@ export default class LevelParent extends Phaser.Scene {
           this.cameras.main.fadeOut(800);
           this.changingScene = true;
           this.time.delayedCall(1200, () => {
-            //this.changingScene = false;
             this.scene.start(this.changeSceneManager.east, { coordinates: { x: 120, y: 500 }, playerData: this.playerData });
           });
         }
@@ -120,7 +117,6 @@ export default class LevelParent extends Phaser.Scene {
           this.cameras.main.fadeOut(800);
           this.changingScene = true;
           this.time.delayedCall(1200, () => {
-            //this.changingScene = false;
             this.scene.start(this.changeSceneManager.west, { coordinates: { x: 1170, y: 500 }, playerData: this.playerData });
           });
         }
@@ -176,8 +172,8 @@ export default class LevelParent extends Phaser.Scene {
 
   getDefaultCoordinates() {
     return {
-      north: { x: 0, y: 0 },
-      south: { x: 0, y: 0 },
+      north: { x: 575, y: 0 },
+      south: { x: 573, y: 898 },
       east: { x: 1250, y: 510 },
       west: { x: 30, y: 510 }
     }
