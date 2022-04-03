@@ -11,16 +11,10 @@ export default class InitialLevel extends LevelParent {
             west:true,
             east:true
         });
-        
-        
     }
-    create(){
-        super.create();
-        let m = new Minimap(this, 800, 500, this.levels);
-        
-    }
+   
     setLevels(par){
-        this.levels = par;
+        this.levelList = par;
     }
     setTileSet() {
         const map = this.make.tilemap({ key: 'tilemap1-4_Doors', tileWidth: 64, tileHeight: 64 });

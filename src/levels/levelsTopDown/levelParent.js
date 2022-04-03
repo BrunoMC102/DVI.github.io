@@ -13,6 +13,7 @@ import Mole from '../../enemies/moleVariante.js';
 import Mole2 from '../../enemies/moleVariante2.js';
 import Chest from '../../objetos_recogibles/chest.js';
 import Archer from '../../enemies/archer.js';
+import Minimap from '../../managers/minimap.js';
 
 
 export default class LevelParent extends Phaser.Scene {
@@ -43,6 +44,8 @@ export default class LevelParent extends Phaser.Scene {
     this.coordinates = data.coordinates;
     this.playerData = data.playerData;
     this.powerUpList = data.powerUpList;
+    if(data.levelList != undefined)
+      this.levelList = data.levelList;
   }
 
   
@@ -53,6 +56,7 @@ export default class LevelParent extends Phaser.Scene {
     //this.showHitbox(wallLayer);
 
     this.setTileSet();
+    let m = new Minimap(this, 800, 500, this.levelList, this.grid);
     this.enemies = this.add.group();
     this.projectiles = this.add.group();
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
@@ -69,7 +73,7 @@ export default class LevelParent extends Phaser.Scene {
           this.cameras.main.fadeOut(800);
           this.changingScene = true;
           this.time.delayedCall(1200, () => {
-            this.scene.start(this.changeSceneManager.north, { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
+            this.scene.start(this.changeSceneManager.north, { coordinates: { x: 100, y: 500 }, playerData: this.playerData, levelList:this.levelList });
           });
         }
       })
@@ -85,7 +89,7 @@ export default class LevelParent extends Phaser.Scene {
           this.cameras.main.fadeOut(800);
           this.changingScene = true;
           this.time.delayedCall(1200, () => {
-            this.scene.start(this.changeSceneManager.south, { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
+            this.scene.start(this.changeSceneManager.south, { coordinates: { x: 100, y: 500 }, playerData: this.playerData, levelList:this.levelList });
           });
         }
       })
@@ -101,7 +105,7 @@ export default class LevelParent extends Phaser.Scene {
           this.cameras.main.fadeOut(800);
           this.changingScene = true;
           this.time.delayedCall(1200, () => {
-            this.scene.start(this.changeSceneManager.east, { coordinates: { x: 120, y: 500 }, playerData: this.playerData });
+            this.scene.start(this.changeSceneManager.east, { coordinates: { x: 120, y: 500 }, playerData: this.playerData, levelList:this.levelList});
           });
         }
       })
@@ -117,7 +121,7 @@ export default class LevelParent extends Phaser.Scene {
           this.cameras.main.fadeOut(800);
           this.changingScene = true;
           this.time.delayedCall(1200, () => {
-            this.scene.start(this.changeSceneManager.west, { coordinates: { x: 1170, y: 500 }, playerData: this.playerData });
+            this.scene.start(this.changeSceneManager.west, { coordinates: { x: 1170, y: 500 }, playerData: this.playerData, levelList:this.levelList });
           });
         }
       })
@@ -149,7 +153,7 @@ export default class LevelParent extends Phaser.Scene {
 
   finishGame() {
     this.sound.stopAll();
-    this.scene.start("end", { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
+    this.scene.start("end", { coordinates: { x: 100, y: 500 }, playerData: this.playerData});
   }
 
   showHitbox(layer) {
