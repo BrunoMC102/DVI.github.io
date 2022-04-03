@@ -24,7 +24,7 @@ let creadorMapas = new SceneManager()
 let a = [Boot, Level, LevelScroll,BeginningVillage,MainMenu , End];
 creadorMapas.finalLevels[0].setLevels(creadorMapas.finalLevels.map(e => {return {grid:e.grid, doors: e.doors, iden: e.iden}}));
 let c = a.concat(creadorMapas.finalLevels);
-//creadorMapas.finalLevels.push();
+creadorMapas.finalLevels.push();
 let config = {
     type: Phaser.AUTO,
     width: 1280,
