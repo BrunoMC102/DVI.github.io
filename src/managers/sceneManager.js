@@ -12,6 +12,11 @@ import LevelPrueba1 from "../levels/levelsTopDown/levelPrueba1.js"
 import LevelPrueba2 from "../levels/levelsTopDown/levelPrueba2.js"
 import LevelTopDown from "../levels/levelsTopDown/levelTopDown.js"
 import LevelTopDown1A from "../levels/levelsTopDown/levelTopDown1A.js"
+import LevelTopDown1C_NE from "../levels/levelsTopDown/levelTopDown1C-NE.js"
+import LevelTopDown1C_NS from "../levels/levelsTopDown/levelTopDown1C-NS.js"
+import LevelTopDown1C_NW from "../levels/levelsTopDown/levelTopDown1C-NW.js"
+import LevelTopDown1C_SE from "../levels/levelsTopDown/levelTopDown1C-SE.js"
+import LevelTopDown1C_SW from "../levels/levelsTopDown/levelTopDown1C-SW.js"
 import LevelTopDown2 from "../levels/levelsTopDown/levelTopDown2.js"
 import LevelTopDown3 from "../levels/levelsTopDown/levelTopDown3.js"
 import LevelTopDown4 from "../levels/levelsTopDown/levelTopDown4.js"
@@ -23,7 +28,7 @@ export default class SceneManager {
 
 
     constructor() {
-        this.sceneList = [LevelPrueba1, LevelPrueba2, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelTopDown5, LevelTopDown1A];
+        this.sceneList = [LevelPrueba1, LevelPrueba2, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelTopDown5, LevelTopDown1A, LevelTopDown1C_NE, LevelTopDown1C_NS, LevelTopDown1C_NW, LevelTopDown1C_SE, LevelTopDown1C_SW];
         this.endSceneList = [LevelEnd,LevelEnd2,LevelEnd1, LevelEnd3];
         this.levelCont = 0;
         this.generateMap();
