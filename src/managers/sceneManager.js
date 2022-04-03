@@ -11,6 +11,7 @@ import LevelEnd3 from "../levels/levelsTopDown/LevelEnd3.js"
 import LevelPrueba1 from "../levels/levelsTopDown/levelPrueba1.js"
 import LevelPrueba2 from "../levels/levelsTopDown/levelPrueba2.js"
 import LevelTopDown from "../levels/levelsTopDown/levelTopDown.js"
+import LevelTopDown1A from "../levels/levelsTopDown/levelTopDown1A.js"
 import LevelTopDown2 from "../levels/levelsTopDown/levelTopDown2.js"
 import LevelTopDown3 from "../levels/levelsTopDown/levelTopDown3.js"
 import LevelTopDown4 from "../levels/levelsTopDown/levelTopDown4.js"
@@ -22,7 +23,7 @@ export default class SceneManager {
 
 
     constructor() {
-        this.sceneList = [LevelPrueba1, LevelPrueba2, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelTopDown5];
+        this.sceneList = [LevelPrueba1, LevelPrueba2, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelTopDown5, LevelTopDown1A];
         this.endSceneList = [LevelEnd,LevelEnd2,LevelEnd1, LevelEnd3];
         this.levelCont = 0;
         this.generateMap();
@@ -39,6 +40,8 @@ export default class SceneManager {
             this.finalLevels.push(escenaPadre);
             this.addLevel(1, 0, 0, false, 1);
             this.addLevel(-1,0,0, false, 3);
+            this.addLevel(0, 1, 0, false, 2);
+            this.addLevel(0,-1,0, false, 0);
         
 
     }

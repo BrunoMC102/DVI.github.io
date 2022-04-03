@@ -16,12 +16,12 @@ import Archer from '../../enemies/archer.js';
 import LevelParent from './levelParent.js';
 
 
-export default class LevelTopDown extends LevelParent {
+export default class LevelTopDown1A extends LevelParent {
 
   constructor(key) {
     super(key, {
-      north: false,
-      south: false,
+      north: true,
+      south: true,
       west: true,
       east: true
     });

@@ -6,8 +6,8 @@ import LevelParent from "./levelParent.js";
 export default class InitialLevel extends LevelParent {
     constructor(){
         super('initialLevel',{
-            north:false,
-            south:false,
+            north:true,
+            south:true,
             west:true,
             east:true
         });
@@ -22,4 +22,11 @@ export default class InitialLevel extends LevelParent {
     setLevels(par){
         this.levels = par;
     }
+    setTileSet() {
+        const map = this.make.tilemap({ key: 'tilemap1-4_Doors', tileWidth: 64, tileHeight: 64 });
+        const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
+        this.groundLayer = map.createLayer('Ground', tileset);
+        this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
+        this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
+      }
 }
