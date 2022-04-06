@@ -56,11 +56,11 @@ export default class LevelParent extends Phaser.Scene {
     //this.showHitbox(wallLayer);
 
     this.setTileSet();
-    let m = new Minimap(this, 800, 500, this.levelList, this.grid);
+   
     this.enemies = this.add.group();
     this.projectiles = this.add.group();
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
-
+    let m = new Minimap(this, 1010, 20, this.levelList, this.grid);
     this.cameras.main.fadeIn(800);
 
     const enemiesCreated = this.createEnemies();

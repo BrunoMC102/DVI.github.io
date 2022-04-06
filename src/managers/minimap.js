@@ -3,16 +3,29 @@ export default class Minimap extends Phaser.GameObjects.Container{
         super(scene,x,y)
         this.rectSize = 30;
         this.offset = 10;
+        this.horizontalSize = 250;
+        this.verticalSize = 250;
         levels.forEach(element => {
             this.createRectangle(element.grid.x,element.grid.y, element.doors, element.iden, grid)
         });
         this.scene.add.existing(this);
+        this.scene.cameras.cameras[0].ignore(this);
+        let minimapCam = this.scene.cameras.add(x, y, this.horizontalSize, this.verticalSize);
+        this.x += this.horizontalSize/2;
+        this.y += this.verticalSize/2;
+        this.setDepth(6);
+        minimapCam.setScroll(x,y);
+        
         
     }
 
     createRectangle(x,y, doors, iden, grid){
         let color = 0x808080;
-        if(x == grid.x && y == grid.y) color = 0xffffff;
+        if(x == grid.x && y == grid.y){ 
+            color = 0xffffff;
+            this.x = this.x - x*(this.rectSize+this.offset);
+            this.y = this.y - y*(this.rectSize+this.offset);
+        }
         let rectangle = new Phaser.GameObjects.Rectangle(this.scene, x*(this.rectSize+this.offset),y*(this.rectSize+this.offset), this.rectSize, this.rectSize, color);
         this.add(rectangle);
         //let text = this.scene.add.text(x*(this.rectSize+this.offset),y*(this.rectSize+this.offset)-50, iden, {fontSize:20});

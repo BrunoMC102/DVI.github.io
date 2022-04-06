@@ -189,14 +189,18 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       }
 
       this.money_label =this.scene.add.text(45,85,"x" + this.playerData.money, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
+
       this.arrow_label = this.scene.add.text(105,85, "x" + this.playerData.arrows, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
+
       this.hPotion_label = this.scene.add.text(25,140,"x"+ this.playerData.healthPotions, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
+
       this.mPotion_label = this.scene.add.text(80, 140,"x" + this.playerData.manaPotions, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
      
       this.mana_label =  this.scene.add.text(210 ,40,''+this.playerData.mana, {fontSize: "22px"}).setScrollFactor(0).setDepth(4);
+      
       this.moneySprite = this.scene.add.sprite(40,85,"monedas").setScrollFactor(0).setDepth(4);
     
-     this.flechaSprite =  this.scene.add.sprite(120,80, "flecha").setScrollFactor(0).setDepth(4);
+      this.flechaSprite =  this.scene.add.sprite(120,80, "flecha").setScrollFactor(0).setDepth(4);
     
       this.pocionesSprite = this.scene.add.sprite(20,130, "pocionVida").setScrollFactor(0).setDepth(4);
 
