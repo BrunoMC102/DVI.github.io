@@ -19,12 +19,9 @@ import Minimap from '../managers/minimap.js';
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
  */
-let creadorMapas = new SceneManager()
 
 let a = [Boot, Level, LevelScroll,BeginningVillage,MainMenu , End];
-creadorMapas.finalLevels[0].setLevels(creadorMapas.finalLevels.map(e => {return {grid:e.grid, doors: e.doors, iden: e.iden}}));
-let c = a.concat(creadorMapas.finalLevels);
-creadorMapas.finalLevels.push();
+
 let config = {
     type: Phaser.AUTO,
     width: 1280,
@@ -38,7 +35,7 @@ let config = {
         gamepad: true
     },
 
-    scene: c,
+    scene: a,
     physics: {
         default: 'arcade',
         arcade: {

@@ -1,3 +1,4 @@
+import SceneManager from '../managers/sceneManager.js';
 import Player from '../player/player.js';
 import PlayerTopDown from '../player/playerTopDown.js';
 
@@ -81,6 +82,11 @@ export default class BeginningVillage extends Phaser.Scene {
     this.villageSound.play();
     this.changingScene = false;
     this.cameras.main.fadeIn(1000);
+    this.scene.manager.getScenes(false).forEach(s =>{
+      if(s.generated != undefined){
+        this.scene.manager.remove(s)
+      }
+    })
   }
 
 
@@ -90,9 +96,15 @@ export default class BeginningVillage extends Phaser.Scene {
         this.sound.stopAll();
         this.cameras.main.fadeOut(1000);
         this.time.delayedCall(1450, () => {
+          
+          let m = this.scene.manager.getScenes(false);
+          const creador = new SceneManager();
+          creador.generateMap(this.scene.manager);
           this.scene.start('initialLevel', {coordinates: {x: 100, y: 500},playerData:this.playerData});
         });
+          
       }
+      
 
     }
     /*

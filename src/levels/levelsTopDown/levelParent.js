@@ -37,7 +37,7 @@ export default class LevelParent extends Phaser.Scene {
     if (this.doors.south) this.doorNumbers++;
     if (this.doors.west) this.doorNumbers++;
     if (this.doors.east) this.doorNumbers++;
-    
+    this.generated = true;
   }
 
   init(data) {

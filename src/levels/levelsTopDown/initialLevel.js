@@ -11,11 +11,17 @@ export default class InitialLevel extends LevelParent {
             west:true,
             east:true
         });
+        this.levelList = [];
+
     }
    
-    setLevels(par){
-        this.levelList = par;
+    init(data){
+        super.init(data);
+        const m = this.scene.manager.getScenes(false);
+        const mapInfo = m.filter(s => {return (s.generated != undefined)})
+        this.levelList = mapInfo.map(e => {return {grid:e.grid, doors: e.doors, iden: e.iden}});
     }
+
     setTileSet() {
         const map = this.make.tilemap({ key: 'tilemap1-4_Doors', tileWidth: 64, tileHeight: 64 });
         const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
