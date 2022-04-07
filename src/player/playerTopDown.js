@@ -62,7 +62,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.separation = 0;
     this.createUiBar();
      //Barra mana
-     this.manaBar = new ManaBar(scene, 105, 50);
    
 
     
@@ -188,6 +187,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         this.separation += 30;
       }
 
+      this.manaBar = new ManaBar(this.scene, 105, 50);
+
       this.money_label =this.scene.add.text(45,85,"x" + this.playerData.money, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
 
       this.arrow_label = this.scene.add.text(105,85, "x" + this.playerData.arrows, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
@@ -197,7 +198,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.mPotion_label = this.scene.add.text(80, 140,"x" + this.playerData.manaPotions, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
      
       this.mana_label =  this.scene.add.text(210 ,40,''+this.playerData.mana, {fontSize: "22px"}).setScrollFactor(0).setDepth(4);
-      
+
       this.moneySprite = this.scene.add.sprite(40,85,"monedas").setScrollFactor(0).setDepth(4);
     
       this.flechaSprite =  this.scene.add.sprite(120,80, "flecha").setScrollFactor(0).setDepth(4);
@@ -205,7 +206,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.pocionesSprite = this.scene.add.sprite(20,130, "pocionVida").setScrollFactor(0).setDepth(4);
 
       this.pocionesManaSprite =  this.scene.add.sprite(75,130,'pocionMana').setScrollFactor(0).setDepth(4);
-      
+      if(this.scene.m != undefined){
+        this.UIarray = [this.money_label, this.arrow_label, this.hPotion_label, this.hPotion_label, this.mPotion_label, this.mana_label, this.moneySprite, this.flechaSprite, this.pocionesSprite, this.pocionesManaSprite, this.manaBar, this.manaBar.outline];
+        this.UIarray.forEach((e)=>{
+          this.scene.m.minimapCam.ignore(e);
+        })
+        this.array_hearts.forEach(e => this.scene.m.minimapCam.ignore(e));
+      }
   }
 
   updateUi() {
@@ -217,7 +224,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         for (let i = j; i < this.playerData.health; i++) {
           this.array_hearts[i] = this.scene.add.sprite(20 + this.separation, 20, 'vida').setScrollFactor(0).setDepth(4);
           this.separation += 30;
-
+          if(this.scene.m != undefined){
+            this.scene.m.minimapCam.ignore(this.array_hearts[i]);
+          }
         }
       }
       else {

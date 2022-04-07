@@ -38,6 +38,8 @@ export default class LevelParent extends Phaser.Scene {
     if (this.doors.west) this.doorNumbers++;
     if (this.doors.east) this.doorNumbers++;
     this.generated = true;
+    this.cleared = false;
+    this.open = false;
   }
 
   init(data) {
@@ -57,15 +59,20 @@ export default class LevelParent extends Phaser.Scene {
 
     this.setTileSet();
    
+    this.actMinimap();
+
+
     this.enemies = this.add.group();
     this.projectiles = this.add.group();
+    this.m = new Minimap(this, 1010, 20, this.levelList, this.grid, this.playerData.minimapUnlock);
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
-    let m = new Minimap(this, 1010, 20, this.levelList, this.grid);
+    
     this.cameras.main.fadeIn(800);
 
     const enemiesCreated = this.createEnemies();
+    this.createOthers();
     enemiesCreated.forEach(e => this.enemies.add(e));
-    this.sceneChange = []
+    this.sceneChange = [];
     if (this.doors.north) {
       this.northdoorGroup = this.add.group();
       this.physics.add.overlap(this.northdoorGroup, this.player, () => {
@@ -73,7 +80,7 @@ export default class LevelParent extends Phaser.Scene {
           this.cameras.main.fadeOut(800);
           this.changingScene = true;
           this.time.delayedCall(1200, () => {
-            this.scene.start(this.changeSceneManager.north, { coordinates: { x: 100, y: 500 }, playerData: this.playerData, levelList:this.levelList });
+            this.scene.start(this.changeSceneManager.north, { coordinates: { x: 640, y: 830 }, playerData: this.playerData, levelList:this.levelList, powerUpList: this.powerUpList });
           });
         }
       })
@@ -89,7 +96,7 @@ export default class LevelParent extends Phaser.Scene {
           this.cameras.main.fadeOut(800);
           this.changingScene = true;
           this.time.delayedCall(1200, () => {
-            this.scene.start(this.changeSceneManager.south, { coordinates: { x: 100, y: 500 }, playerData: this.playerData, levelList:this.levelList });
+            this.scene.start(this.changeSceneManager.south, { coordinates: { x: 640, y: 70 }, playerData: this.playerData, levelList:this.levelList, powerUpList: this.powerUpList });
           });
         }
       })
@@ -105,10 +112,11 @@ export default class LevelParent extends Phaser.Scene {
           this.cameras.main.fadeOut(800);
           this.changingScene = true;
           this.time.delayedCall(1200, () => {
-            this.scene.start(this.changeSceneManager.east, { coordinates: { x: 120, y: 500 }, playerData: this.playerData, levelList:this.levelList});
+            this.scene.start(this.changeSceneManager.east, { coordinates: { x: 120, y: 500 }, playerData: this.playerData, levelList:this.levelList, powerUpList: this.powerUpList});
           });
         }
       })
+
       this.eastDoor = this.add.zone(this.doorCoordinates.east.x, this.doorCoordinates.east.y, 60, 122)
       this.physics.add.existing(this.eastDoor, true);
       this.sceneChange.push(this.eastDoor);
@@ -121,7 +129,7 @@ export default class LevelParent extends Phaser.Scene {
           this.cameras.main.fadeOut(800);
           this.changingScene = true;
           this.time.delayedCall(1200, () => {
-            this.scene.start(this.changeSceneManager.west, { coordinates: { x: 1170, y: 500 }, playerData: this.playerData, levelList:this.levelList });
+            this.scene.start(this.changeSceneManager.west, { coordinates: { x: 1170, y: 500 }, playerData: this.playerData, levelList:this.levelList, powerUpList: this.powerUpList });
           });
         }
       })
@@ -141,14 +149,24 @@ export default class LevelParent extends Phaser.Scene {
       this.zoneGroup.add(e);
     })
 
-    this.activateDoors();
 
     this.dungeonSound = this.sound.add("dungeontheme").play();
 
   }
 
   update() {
-    
+    if(!this.cleared){
+      if(this.enemies.getLength() === 0){
+        this.cleared = true;
+        let a = this.levelList.find((e)=>{return (e.grid.x == this.grid.x && e.grid.y == this.grid.y)});
+        a.cleared = true;
+      }
+    }
+    if(!this.open){
+      if(this.cleared){
+        this.activateDoors();
+      }
+    }
   }
 
   finishGame() {
@@ -176,8 +194,8 @@ export default class LevelParent extends Phaser.Scene {
 
   getDefaultCoordinates() {
     return {
-      north: { x: 575, y: 0 },
-      south: { x: 573, y: 898 },
+      north: { x: 640, y: 0 },
+      south: { x: 640, y: 930 },
       east: { x: 1250, y: 510 },
       west: { x: 30, y: 510 }
     }
@@ -203,4 +221,22 @@ export default class LevelParent extends Phaser.Scene {
       this.westdoorGroup.add(this.westDoor)
   }
 
+  actMinimap(){
+    if(!this.cleared){
+      let a = this.levelList.find((e)=>{return (e.grid.x == this.grid.x && e.grid.y == this.grid.y)});
+      a.reached = true;
+      if(this.doors.north){
+        this.levelList.find((e)=>{return (e.grid.x == this.grid.x && e.grid.y == this.grid.y-1)}).reached = true;
+      }
+      if(this.doors.south){
+        this.levelList.find((e)=>{return (e.grid.x == this.grid.x && e.grid.y == this.grid.y+1)}).reached = true;
+      }
+      if(this.doors.east){
+        this.levelList.find((e)=>{return (e.grid.x == this.grid.x+1 && e.grid.y == this.grid.y)}).reached = true;
+      }
+      if(this.doors.west){
+        this.levelList.find((e)=>{return (e.grid.x == this.grid.x-1 && e.grid.y == this.grid.y)}).reached = true;
+      }
+    }
+  }
 }

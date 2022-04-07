@@ -11,15 +11,14 @@ export default class InitialLevel extends LevelParent {
             west:true,
             east:true
         });
-        this.levelList = [];
-
     }
    
     init(data){
         super.init(data);
         const m = this.scene.manager.getScenes(false);
         const mapInfo = m.filter(s => {return (s.generated != undefined)})
-        this.levelList = mapInfo.map(e => {return {grid:e.grid, doors: e.doors, iden: e.iden}});
+        if(this.levelList == undefined)
+            this.levelList = mapInfo.map(e => {return {grid:e.grid, doors: e.doors, iden: e.iden, reached: false, cleared:false}});
     }
 
     setTileSet() {

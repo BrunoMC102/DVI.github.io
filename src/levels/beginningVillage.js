@@ -1,5 +1,7 @@
 import SceneManager from '../managers/sceneManager.js';
+import PasivePowerUpList from '../objetos_recogibles/pasivos/pasivePowerUpList.js';
 import Player from '../player/player.js';
+import PlayerData from '../player/playerData.js';
 import PlayerTopDown from '../player/playerTopDown.js';
 
 /**
@@ -17,7 +19,6 @@ export default class BeginningVillage extends Phaser.Scene {
   init(data) {
     this.coordinates = data.coordinates;
     this.playerData = data.playerData;
-    this.powerUpList = data.powerUpList;
   }
 
   /**
@@ -99,10 +100,12 @@ export default class BeginningVillage extends Phaser.Scene {
           
           let m = this.scene.manager.getScenes(false);
           const creador = new SceneManager();
-          creador.generateMap(this.scene.manager);
-          this.scene.start('initialLevel', {coordinates: {x: 100, y: 500},playerData:this.playerData});
+          let newScenes = creador.generateMap();
+          newScenes.forEach(e=>{
+            this.scene.manager.add(e.levelkey, e);
+          })
+          this.scene.start('initialLevel', {coordinates: {x: 500, y: 500},playerData: new PlayerData(), powerUpList: new PasivePowerUpList()});
         });
-          
       }
       
 

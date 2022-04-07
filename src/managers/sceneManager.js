@@ -1,9 +1,5 @@
-import End from "../end.js"
-import Boot from "../gameSettings/boot.js"
-import BeginningVillage from "../levels/beginningVillage.js"
-import LevelScroll from "../levels/levelsScroll/levelScroll.js"
+
 import InitialLevel from "../levels/levelsTopDown/initialLevel.js"
-import Level from "../levels/levelsTopDown/level.js"
 import LevelEnd from "../levels/levelsTopDown/levelEnd.js"
 import LevelEnd1 from "../levels/levelsTopDown/levelEnd1.js"
 import LevelEnd2 from "../levels/levelsTopDown/levelEnd2.js"
@@ -25,7 +21,10 @@ import LevelTopDownBE from "../levels/levelsTopDown/levelTopDownBE.js"
 import LevelTopDownBN from "../levels/levelsTopDown/levelTopDownBN.js"
 import LevelTopDownBS from "../levels/levelsTopDown/levelTopDownBS.js"
 import LevelTopDownBW from "../levels/levelsTopDown/levelTopDownBW.js"
-import MainMenu from "../mainMenu.js"
+import ChestRoomE from "../levels/levelsTopDown/chestRoomE.js"
+import ChestRoomN from "../levels/levelsTopDown/chestRoomN.js"
+import ChestRoomS from "../levels/levelsTopDown/chestRoomS.js"
+import ChestRoomW from "../levels/levelsTopDown/chestRoomW.js"
 
 
 export default class SceneManager {
@@ -36,50 +35,44 @@ export default class SceneManager {
         this.profundidadMinima = 1;
         this.profundidadMaxima = 3;
         this.endSceneList = [LevelEnd, LevelEnd2, LevelEnd1, LevelEnd3];
+        this.chestLevelList = [ChestRoomE, ChestRoomN, ChestRoomS, ChestRoomW];
         this.levelCont = 0;
-        
-
     }
 
-    generateMap(manager) {
+    generateMap() {
         this.levelList = this.createRandomizedList(this.sceneList);
         this.endLevelList = this.createRandomizedList(this.endSceneList);
         this.finalLevels = [];
 
-        
         const escenaPadre = new InitialLevel();
         escenaPadre.grid = { x: 0, y: 0 };
         this.finalLevels.push(escenaPadre);
-        manager.add('initialLevel', escenaPadre);
-        this.addLevel(1, 0, 1, false, 1, manager);
-
-        const westLevel = this.finalLevels.find((e) => { return (e.grid.x == -1) && e.grid.y == 0});
+        this.addLevel(1, 0, 1, false, 1);
+        const westLevel = this.finalLevels.find((e) => {return (e.grid.x == -1) && e.grid.y == 0});
 
         if (westLevel == undefined) {
-            this.addLevel(-1, 0, 1, false, 3, manager);
+            this.addLevel(-1, 0, 1, false, 3);
         }
 
-        const southLevel = this.finalLevels.find((e) => { return (e.grid.x == 0 && e.grid.y == 1)});
+        const southLevel = this.finalLevels.find((e) => {return (e.grid.x == 0 && e.grid.y == 1)});
 
         if (southLevel == undefined) {
-            this.addLevel(0, 1, 1, false, 2, manager);
+            this.addLevel(0, 1, 1, false, 2);
         }
 
-        const nortLevel = this.finalLevels.find((e) => { return (e.grid.x == 0 && e.grid.y == -1) });
+        const nortLevel = this.finalLevels.find((e) => {return (e.grid.x == 0 && e.grid.y == -1)});
 
         if (nortLevel == undefined) {
-            this.addLevel(0, -1, 1, false, 0, manager);
+            this.addLevel(0, -1, 1, false, 0);
         }
 
-
-
-
-
+        this.finalLevels = this.addChestLevel(this.finalLevels);
 
         return this.finalLevels;
+
     }
 
-    addLevel(x, y, profundidad, finished, sentido, manager) {
+    addLevel(x, y, profundidad, finished, sentido) {
 
         let i = -1;
         let imposible = false;
@@ -90,7 +83,6 @@ export default class SceneManager {
             extractionList = this.endLevelList;
         let levelHijo = null;
         const thisKey = this.levelCont.toString();
-
 
         while (true) {
             if (!finished) {
@@ -150,7 +142,7 @@ export default class SceneManager {
             if (eastLevel != undefined) {
                 if (levelHijo.doors.east != eastLevel.doors.west) continue;
             }
-            const nortLevel = this.finalLevels.find((e) => { return e.grid.x == x && e.grid.y == (y - 1) });
+            const nortLevel = this.finalLevels.find((e) => { return e.grid.x == x && e.grid.y == (y - 1)});
             if (nortLevel != undefined) {
                 if (levelHijo.doors.north != nortLevel.doors.south) continue;
             }
@@ -173,7 +165,6 @@ export default class SceneManager {
         }
         this.levelCont += 1;
         this.finalLevels.push(levelHijo);
-        manager.add(thisKey, levelHijo);
         const westLevel = this.finalLevels.find((e) => { return (e.grid.x == (x - 1) && e.grid.y == y) });
         if (levelHijo.doors.west) {
             if (westLevel != undefined) {
@@ -181,7 +172,7 @@ export default class SceneManager {
                 westLevel.changeSceneManager.east = thisKey;
             }
             else {
-                this.addLevel(x - 1, y, profundidad + 1, finalizar, 3, manager);
+                this.addLevel(x - 1, y, profundidad + 1, finalizar, 3);
             }
         }
         const southLevel = this.finalLevels.find((e) => { return (e.grid.x == x && e.grid.y == (y + 1)) });
@@ -191,7 +182,7 @@ export default class SceneManager {
                 southLevel.changeSceneManager.north = thisKey;
             }
             else {
-                this.addLevel(x, y + 1, profundidad + 1, finalizar, 2, manager);
+                this.addLevel(x, y + 1, profundidad + 1, finalizar, 2);
             }
         }
         const eastLevel = this.finalLevels.find((e) => { return (e.grid.x == (x + 1) && e.grid.y == y) });
@@ -201,7 +192,7 @@ export default class SceneManager {
                 eastLevel.changeSceneManager.west = thisKey;
             }
             else {
-                this.addLevel(x + 1, y, profundidad + 1, finalizar, 1, manager);
+                this.addLevel(x + 1, y, profundidad + 1, finalizar, 1);
             }
         }
         const nortLevel = this.finalLevels.find((e) => { return (e.grid.x == x && e.grid.y == (y - 1)) });
@@ -211,7 +202,7 @@ export default class SceneManager {
                 nortLevel.changeSceneManager.south = thisKey;
             }
             else {
-                this.addLevel(x, y - 1, profundidad + 1, finalizar, 0, manager);
+                this.addLevel(x, y - 1, profundidad + 1, finalizar, 0);
             }
         }
     }
@@ -225,5 +216,32 @@ export default class SceneManager {
             auxList.splice(index, 1);
         }
         return randomList;
+    }
+
+
+    addChestLevel(list) {
+        const oneDoors = list.filter(e => { return e.doorNumbers == 1 });
+        const moreDoors = list.filter(e => { return e.doorNumbers != 1 });
+        const index = Math.floor(Math.random() * oneDoors.length);
+        let salaSustituir = oneDoors[index];
+        oneDoors.splice(index, 1);
+        const chestLevel = this.swapLevel(this.chestLevelList, salaSustituir);
+        oneDoors.push(chestLevel);
+        return moreDoors.concat(oneDoors);
+    }
+
+    swapLevel(list, salaSustituir){
+        const chestList = this.createRandomizedList(list);
+        let chestLevel
+        for(let i = 0; i < chestList.length; i++){
+            chestLevel = new chestList[i](salaSustituir.levelkey);
+            if(this.doorsEqual(chestLevel.doors,salaSustituir.doors)) break;
+        }
+        chestLevel.changeSceneManager = salaSustituir.changeSceneManager;
+        chestLevel.grid = salaSustituir.grid;
+        return chestLevel
+    }
+    doorsEqual(doors1, doors2){
+        return (doors1.north == doors2.north && doors1.south == doors2.south && doors1.west == doors2.west && doors1.east == doors2.east)
     }
 }

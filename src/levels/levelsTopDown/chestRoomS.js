@@ -1,16 +1,20 @@
-import Minotaur from "../../enemies/minotaur.js";
+import Chest from "../../objetos_recogibles/chest.js";
 import LevelParent from "./levelParent.js";
 
 
-export default class LevelEnd extends LevelParent {
+export default class ChestRoomS extends LevelParent {
     constructor(key){
         super(key,{
-            north:true,
-            south:false,
+            north:false,
+            south:true,
             west:false,
             east:false
         });
-        this.iden = 'E1';
+        this.iden = 'Chest';
+    }
+    createOthers(){
+        new Chest(this, this.player, 450, 300);
+        return [new Chest(this,this.player, 600, 400)];
     }
     setTileSet() {
         const map = this.make.tilemap({ key: 'tilemap1-4_Doors', tileWidth: 64, tileHeight: 64 });
@@ -19,5 +23,4 @@ export default class LevelEnd extends LevelParent {
         this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
         this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
       }
-   
 }
