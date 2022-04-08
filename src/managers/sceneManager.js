@@ -21,6 +21,7 @@ import LevelTopDownBE from "../levels/levelsTopDown/levelTopDownBE.js"
 import LevelTopDownBN from "../levels/levelsTopDown/levelTopDownBN.js"
 import LevelTopDownBS from "../levels/levelsTopDown/levelTopDownBS.js"
 import LevelTopDownBW from "../levels/levelsTopDown/levelTopDownBW.js"
+import LevelBig from "../levels/levelsTopDown/levelBig.js"
 import ChestRoomE from "../levels/levelsTopDown/chestRoomE.js"
 import ChestRoomN from "../levels/levelsTopDown/chestRoomN.js"
 import ChestRoomS from "../levels/levelsTopDown/chestRoomS.js"
@@ -31,7 +32,7 @@ export default class SceneManager {
 
 
     constructor() {
-        this.sceneList = [LevelPrueba1, LevelPrueba2, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelTopDown5, LevelTopDown1A, LevelTopDown1C_NE, LevelTopDown1C_NS, LevelTopDown1C_NW, LevelTopDown1C_SE, LevelTopDown1C_SW, LevelTopDownBW, LevelTopDownBS, LevelTopDownBN, LevelTopDownBE];
+        this.sceneList = [LevelPrueba1, LevelPrueba2, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelTopDown5, LevelTopDown1A, LevelTopDown1C_NE, LevelTopDown1C_NS, LevelTopDown1C_NW, LevelTopDown1C_SE, LevelTopDown1C_SW, LevelTopDownBW, LevelTopDownBS, LevelTopDownBN, LevelTopDownBE, LevelBig];
         this.profundidadMinima = 1;
         this.profundidadMaxima = 3;
         this.endSceneList = [LevelEnd, LevelEnd2, LevelEnd1, LevelEnd3];
