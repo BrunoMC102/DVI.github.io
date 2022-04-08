@@ -61,10 +61,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.array_hearts = [];
     this.separation = 0;
     this.createUiBar();
-     //Barra mana
-   
+    //Barra mana
 
-    
+
+
 
 
     //Creacion armas del jugador
@@ -106,7 +106,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     //Variables Dash
     this.dashing = false;
     this.inDashDelay = false;
-    
+
     //Variables controles
     this.R2_pressed = false;
     this.lastVelocity = new Phaser.Math.Vector2(0, 0);
@@ -181,38 +181,38 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
 
   //Metodos UI
-  createUiBar(){
-      for (let i = 0; i < this.playerData.health; i++){
-        this.array_hearts[i] = this.scene.add.sprite(20 + this.separation ,20,'vida').setScrollFactor(0).setDepth(4);
-        this.separation += 30;
-      }
+  createUiBar() {
+    for (let i = 0; i < this.playerData.health; i++) {
+      this.array_hearts[i] = this.scene.add.sprite(20 + this.separation, 20, 'vida').setScrollFactor(0).setDepth(4);
+      this.separation += 30;
+    }
 
-      this.manaBar = new ManaBar(this.scene, 105, 50);
+    this.manaBar = new ManaBar(this.scene, 105, 50);
 
-      this.money_label =this.scene.add.text(45,85,"x" + this.playerData.money, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
+    this.money_label = this.scene.add.text(45, 85, "x" + this.playerData.money, { fontSize: "22px" }).setScrollFactor(0).setDepth(5);
 
-      this.arrow_label = this.scene.add.text(105,85, "x" + this.playerData.arrows, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
+    this.arrow_label = this.scene.add.text(105, 85, "x" + this.playerData.arrows, { fontSize: "22px" }).setScrollFactor(0).setDepth(5);
 
-      this.hPotion_label = this.scene.add.text(25,140,"x"+ this.playerData.healthPotions, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
+    this.hPotion_label = this.scene.add.text(25, 140, "x" + this.playerData.healthPotions, { fontSize: "22px" }).setScrollFactor(0).setDepth(5);
 
-      this.mPotion_label = this.scene.add.text(80, 140,"x" + this.playerData.manaPotions, {fontSize: "22px"}).setScrollFactor(0).setDepth(5);
-     
-      this.mana_label =  this.scene.add.text(210 ,40,''+this.playerData.mana, {fontSize: "22px"}).setScrollFactor(0).setDepth(4);
+    this.mPotion_label = this.scene.add.text(80, 140, "x" + this.playerData.manaPotions, { fontSize: "22px" }).setScrollFactor(0).setDepth(5);
 
-      this.moneySprite = this.scene.add.sprite(40,85,"monedas").setScrollFactor(0).setDepth(4);
-    
-      this.flechaSprite =  this.scene.add.sprite(120,80, "flecha").setScrollFactor(0).setDepth(4);
-    
-      this.pocionesSprite = this.scene.add.sprite(20,130, "pocionVida").setScrollFactor(0).setDepth(4);
+    this.mana_label = this.scene.add.text(210, 40, '' + this.playerData.mana, { fontSize: "22px" }).setScrollFactor(0).setDepth(4);
 
-      this.pocionesManaSprite =  this.scene.add.sprite(75,130,'pocionMana').setScrollFactor(0).setDepth(4);
-      if(this.scene.m != undefined){
-        this.UIarray = [this.money_label, this.arrow_label, this.hPotion_label, this.hPotion_label, this.mPotion_label, this.mana_label, this.moneySprite, this.flechaSprite, this.pocionesSprite, this.pocionesManaSprite, this.manaBar, this.manaBar.outline];
-        this.UIarray.forEach((e)=>{
-          this.scene.m.minimapCam.ignore(e);
-        })
-        this.array_hearts.forEach(e => this.scene.m.minimapCam.ignore(e));
-      }
+    this.moneySprite = this.scene.add.sprite(40, 85, "monedas").setScrollFactor(0).setDepth(4);
+
+    this.flechaSprite = this.scene.add.sprite(120, 80, "flecha").setScrollFactor(0).setDepth(4);
+
+    this.pocionesSprite = this.scene.add.sprite(20, 130, "pocionVida").setScrollFactor(0).setDepth(4);
+
+    this.pocionesManaSprite = this.scene.add.sprite(75, 130, 'pocionMana').setScrollFactor(0).setDepth(4);
+    if (this.scene.m != undefined) {
+      this.UIarray = [this.money_label, this.arrow_label, this.hPotion_label, this.hPotion_label, this.mPotion_label, this.mana_label, this.moneySprite, this.flechaSprite, this.pocionesSprite, this.pocionesManaSprite, this.manaBar, this.manaBar.outline];
+      this.UIarray.forEach((e) => {
+        this.scene.m.minimapCam.ignore(e);
+      })
+      this.array_hearts.forEach(e => this.scene.m.minimapCam.ignore(e));
+    }
   }
 
   updateUi() {
@@ -224,7 +224,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         for (let i = j; i < this.playerData.health; i++) {
           this.array_hearts[i] = this.scene.add.sprite(20 + this.separation, 20, 'vida').setScrollFactor(0).setDepth(4);
           this.separation += 30;
-          if(this.scene.m != undefined){
+          if (this.scene.m != undefined) {
             this.scene.m.minimapCam.ignore(this.array_hearts[i]);
           }
         }
@@ -312,19 +312,19 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.playerData.setBouncy();
   }
 
-  useHealthPotions(){
-    if(this.playerData.healthPotions> 0){
-    this.healthPotionAudio.play();
-    this.playerData.healthPotions--;
-    this.playerData.health++;
+  useHealthPotions() {
+    if (this.playerData.healthPotions > 0) {
+      this.healthPotionAudio.play();
+      this.playerData.healthPotions--;
+      this.playerData.health++;
     }
   }
-  useManaPotions(){
+  useManaPotions() {
     const remainingMana = this.playerData.mana;
-    if(this.playerData.manaPotions> 0 && remainingMana < 100 && remainingMana + 25 <= 100){
-    this.healthPotionAudio.play();
-    this.playerData.manaPotions--;
-    this.playerData.mana+= 25;
+    if (this.playerData.manaPotions > 0 && remainingMana < 100 && remainingMana + 25 <= 100) {
+      this.healthPotionAudio.play();
+      this.playerData.manaPotions--;
+      this.playerData.mana += 25;
     }
   }
 
@@ -394,24 +394,24 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   givePasivoPowerUp(texture, titleString) {
     this.upgradeAudio.play();
     const objectPicked = new Phaser.GameObjects.Image(this.scene, 0, -50, texture);
-    const background = new Phaser.GameObjects.Image(this.scene,this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, 'emptySign');
+    const background = new Phaser.GameObjects.Image(this.scene, this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, 'emptySign');
     background.scaleX = 2.5;
     this.scene.add.existing(background);
     //background.x -= background.width/2
-    const title = this.scene.add.text(this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, titleString, { fontSize: 50});
+    const title = this.scene.add.text(this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, titleString, { fontSize: 50 });
     title.x -= title.width / 2;
     this.scene.tweens.add({
-      targets: [title,background],
-      y:this.scene.cameras.cameras[0].centerY - 430,
+      targets: [title, background],
+      y: this.scene.cameras.cameras[0].centerY - 430,
       duration: 1000,
       ease: 'Sine.easeInOut',
       repeat: 0,
       hold: 2000,
       yoyo: true
-  })
+    })
     //this.scene.add(objectPicked);
     this.add(objectPicked);
-    this.scene.time.delayedCall(4000, () => { objectPicked.destroy(); title.destroy(); background.destroy()});
+    this.scene.time.delayedCall(4000, () => { objectPicked.destroy(); title.destroy(); background.destroy() });
   }
 
   //Animacion player
@@ -622,49 +622,49 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       dashControl: () => {
         const pad = this.scene.input.gamepad.getPad(0);
         if (pad.L2 > 0) {
-          if(this.L2Pressed) return;
+          if (this.L2Pressed) return;
           this.L2Pressed = true;
           if (this.inDashDelay) return;
           this.initiateDash();
         }
-        else{
-          if(!this.L2Pressed) return;
+        else {
+          if (!this.L2Pressed) return;
           this.L2Pressed = false;
         }
       },
       spellControl: () => {
         const pad = this.scene.input.gamepad.getPad(0);
         if (pad.R2 > 0) {
-          if(this.R2_pressed) return;
+          if (this.R2_pressed) return;
           this.R2_pressed = true;
           this.spellFire();
           this.playerData.mana -= this.playerData.currentManaCost;
         }
-        else{
-          if(!this.R2_pressed) return;
+        else {
+          if (!this.R2_pressed) return;
           this.R2_pressed = false;
         }
       },
       manaRecovery: () => {
         const pad = this.scene.input.gamepad.getPad(0);
         if (pad.up) {
-          if(this.upPadPressed) return;
+          if (this.upPadPressed) return;
           this.upPadPressed = true;
           this.useManaPotions();
         }
-        else{
+        else {
           this.upPadPressed = false;
         }
-        
+
       },
       healthRecovery: () => {
         const pad = this.scene.input.gamepad.getPad(0);
         if (pad.down) {
-          if(this.downPadPressed) return;
+          if (this.downPadPressed) return;
           this.downPadPressed = true;
           this.useHealthPotions();
         }
-        else{
+        else {
           this.downPadPressed = false;
         }
       },

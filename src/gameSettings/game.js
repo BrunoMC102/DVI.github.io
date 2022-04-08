@@ -21,7 +21,6 @@ import Minimap from '../managers/minimap.js';
  */
 
 let a = [Boot, Level, LevelScroll,BeginningVillage,MainMenu , End];
-
 let config = {
     type: Phaser.AUTO,
     width: 1280,

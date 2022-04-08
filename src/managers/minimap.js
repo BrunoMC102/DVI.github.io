@@ -28,9 +28,13 @@ export default class Minimap extends Phaser.GameObjects.Container{
             color = 0xffffff;
             this.x = this.x - x*(this.rectSize+this.offset);
             this.y = this.y - y*(this.rectSize+this.offset);
+            if(iden == 'Chest'){
+                color = 0xffff00;
+            }
         }
         else if(iden == 'Chest'){
-            color = 0xffff00;
+            if(cleared)
+                color = 0xb0b000;
         }
         else if(cleared){
             color = 0x959595;
