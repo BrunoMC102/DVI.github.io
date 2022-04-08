@@ -63,6 +63,7 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('tilemap3', 'Dungeon3.json');
     this.load.tilemapTiledJSON('tilemap4', 'Dungeon4.json');
     this.load.tilemapTiledJSON('tilemap5', 'Dungeon5.json');
+    this.load.tilemapTiledJSON('tilemapBig', 'DungeonBig.json');
     this.load.tilemapTiledJSON('tilemapVillage', 'PruebaPoblado2.json');
 
     this.load.setPath('assets/atlas/');
