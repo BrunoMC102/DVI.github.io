@@ -13,7 +13,7 @@ export default class MimicChest extends EnemyParent{
     this.a = 1000;
     this.v = 50;
     this.active = false;
-    
+    this.body.pushable = false;
   }
   
   moveU(t,dt){
@@ -101,6 +101,17 @@ export default class MimicChest extends EnemyParent{
     }
   }
   onCollisionWithPlayer(){
-      this.active = true;
+    if(this.active){
+        super.onCollisionWithPlayer();
+        return;
+    }
+    if(this.awaking) return;
+    this.awaking = true;
+    this.sprite.play("mimicChestAttack");
+    this.scene.time.delayedCall(1000, ()=>{
+        this.active = true;
+        this.awaking = false;
+    })
+    
   }
 }

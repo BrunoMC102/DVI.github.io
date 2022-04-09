@@ -52,4 +52,10 @@ export default class Mosca extends ShootingEnemyParent {
   }
   knockback(){}
   
+  onCollisionWithPlayer(){
+    super.onCollisionWithPlayer();
+    let dirVector = new Phaser.Math.Vector2(this.centerX() - this.player.x,this.centerY() - this.player.y).normalize().scale(this.v);
+    this.body.setVelocity(dirVector.x,dirVector.y);
+  }
+
 }
