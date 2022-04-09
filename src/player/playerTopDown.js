@@ -18,7 +18,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     super(scene, x, y);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
-    this.body.setCollideWorldBounds();
+    
 
     //Creacion de teclas
     this.cursors = this.scene.input.keyboard.createCursorKeys();

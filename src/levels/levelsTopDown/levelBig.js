@@ -24,14 +24,18 @@ export default class LevelBig extends LevelParent {
       south: true,
       west: true,
       east: true
-    });
-    this.iden = 'TB';
-    this.doorCoordinates = {
+    },
+    {
       north: { x: 895, y: 0 },
       south: { x: 895, y: 704 },
       east: { x: 1856, y: 704 },
       west: { x: 895, y: 1566 }
-    };
+    });
+    this.iden = 'TB';
+    this.dimensions = {
+      x:2500,
+      y:1500
+    }
   }
 
  
@@ -44,13 +48,11 @@ export default class LevelBig extends LevelParent {
     new Arrow(this, this.player, 900, 200);
   }
 
-  createEnemies(){
-    return [new Minotaur(this, this.player, 500, 500), new Enemy(this, this.player, 700, 500)];
-  }
   
 
+
   setTileSet() {
-    const map = this.make.tilemap({ key: 'tilemap1', tileWidth: 64, tileHeight: 64 });
+    const map = this.make.tilemap({ key: 'tilemapBig', tileWidth: 64, tileHeight: 64 });
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
     this.groundLayer = map.createLayer('Ground', tileset);
     this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });

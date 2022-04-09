@@ -43,7 +43,10 @@ export default class LevelParent extends Phaser.Scene {
     this.halfWidth = 600;
     this.halfHeigh = 405;
     this.swipeTime = 120;
-    
+    this.dimensions ={
+      x: 1280,
+      y: 960
+    };
   }
 
   init(data) {
@@ -69,13 +72,16 @@ export default class LevelParent extends Phaser.Scene {
     
     this.initialSwipe();
     this.started = false;
-    //this.time.delayedCall(200,()=>{
+   
     this.started = true;
     this.enemies = this.add.group();
     this.projectiles = this.add.group();
     this.m = new Minimap(this, 1010, 20, this.levelList, this.grid, this.playerData.minimapUnlock);
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
     
+    this.time.delayedCall(this.swipeTime,()=>{
+      this.cameras.main.startFollow(this.player);
+       this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y)});
     
 
     const enemiesCreated = this.createEnemies();
@@ -253,6 +259,7 @@ export default class LevelParent extends Phaser.Scene {
 
 
   initialSwipe(){
+
     if(this.direction != undefined){
       let scroll = this.cameras.cameras[0].scrollX;
       if(this.direction == 0) {
@@ -275,6 +282,8 @@ export default class LevelParent extends Phaser.Scene {
   }
 
   swipeX(desfase){
+    this.cameras.main.stopFollow();
+    this.cameras.main.removeBounds();
     let mainCamera = this.cameras.cameras[0];
     this.tweens.add({
       targets: [mainCamera],
@@ -285,6 +294,8 @@ export default class LevelParent extends Phaser.Scene {
   })
   }
   swipeY(desfase){
+    this.cameras.main.stopFollow();
+    this.cameras.main.removeBounds();
     let mainCamera = this.cameras.cameras[0];
     this.tweens.add({
       targets: [mainCamera],
