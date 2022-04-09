@@ -26,6 +26,12 @@ export default class LevelBig extends LevelParent {
       east: true
     });
     this.iden = 'TB';
+    this.doorCoordinates = {
+      north: { x: 895, y: 0 },
+      south: { x: 895, y: 704 },
+      east: { x: 1856, y: 704 },
+      west: { x: 895, y: 1566 }
+    };
   }
 
  
