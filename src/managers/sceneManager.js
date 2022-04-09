@@ -35,6 +35,7 @@ export default class SceneManager {
         this.sceneList = [LevelPrueba1, LevelPrueba2, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelTopDown5, LevelTopDown1A, LevelTopDown1C_NE, LevelTopDown1C_NS, LevelTopDown1C_NW, LevelTopDown1C_SE, LevelTopDown1C_SW, LevelTopDownBW, LevelTopDownBS, LevelTopDownBN, LevelTopDownBE, LevelBig];
         this.profundidadMinima = 1;
         this.profundidadMaxima = 3;
+
         this.endSceneList = [LevelEnd, LevelEnd2, LevelEnd1, LevelEnd3];
         this.chestLevelList = [ChestRoomE, ChestRoomN, ChestRoomS, ChestRoomW];
         this.levelCont = 0;
@@ -223,14 +224,34 @@ export default class SceneManager {
     addChestLevel(list) {
         const oneDoors = list.filter(e => { return e.doorNumbers == 1 });
         const moreDoors = list.filter(e => { return e.doorNumbers != 1 });
-        const index = Math.floor(Math.random() * oneDoors.length);
+        let index = Math.floor(Math.random() * oneDoors.length);
         let salaSustituir = oneDoors[index];
         oneDoors.splice(index, 1);
-        const chestLevel = this.swapLevel(this.chestLevelList, salaSustituir);
+        const chestLevel = this.swapChestLevel(this.chestLevelList, salaSustituir, true);
+
+        if(oneDoors.length <= 0) return;
+
+        index = Math.floor(Math.random() * oneDoors.length);
+        salaSustituir = oneDoors[index];
+        oneDoors.splice(index, 1);
+        const mimicLevel = this.swapChestLevel(this.chestLevelList, salaSustituir, false);
+
         oneDoors.push(chestLevel);
+        oneDoors.push(mimicLevel);
         return moreDoors.concat(oneDoors);
     }
 
+    swapChestLevel(list, salaSustituir, isReal){
+        const chestList = this.createRandomizedList(list);
+        let chestLevel
+        for(let i = 0; i < chestList.length; i++){
+            chestLevel = new chestList[i](salaSustituir.levelkey, isReal);
+            if(this.doorsEqual(chestLevel.doors,salaSustituir.doors)) break;
+        }
+        chestLevel.changeSceneManager = salaSustituir.changeSceneManager;
+        chestLevel.grid = salaSustituir.grid;
+        return chestLevel
+    }
     swapLevel(list, salaSustituir){
         const chestList = this.createRandomizedList(list);
         let chestLevel

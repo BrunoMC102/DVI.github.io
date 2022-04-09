@@ -1,9 +1,10 @@
+import MimicChest from "../../enemies/mimicChest.js";
 import Chest from "../../objetos_recogibles/chest.js";
 import LevelParent from "./levelParent.js";
 
 
 export default class ChestRoomE extends LevelParent {
-    constructor(key){
+    constructor(key, isReal){
         super(key,{
             north:false,
             south:false,
@@ -11,10 +12,16 @@ export default class ChestRoomE extends LevelParent {
             east:true
         });
         this.iden = 'Chest';
+        this.isReal = isReal;
     }
     createOthers(){
-        new Chest(this, this.player, 450, 300);
-        return [new Chest(this,this.player, 600, 400)];
+        if(this.isReal)
+            return [new Chest(this,this.player, 640, 490)];
+    }
+    createEnemies(){
+        if(!this.isReal)
+            return [new MimicChest(this, this.player, 640, 490)];
+        return []
     }
     setTileSet() {
         const map = this.make.tilemap({ key: 'tilemap1-4_Doors', tileWidth: 64, tileHeight: 64 });

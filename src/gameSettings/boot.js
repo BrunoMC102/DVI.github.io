@@ -84,6 +84,7 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('wave', 'wave.png', 'wave.json')
     this.load.atlas('bolt', 'bolt.png', 'bolt.json')
     this.load.atlas('archer', 'archer.png', 'archer.json')
+    this.load.atlas('mimicChest', 'mimicChest.png', 'mimicChest.json')
 
 
     //musica
@@ -382,6 +383,30 @@ export default class Boot extends Phaser.Scene {
     this.anims.create({
       key: 'iceElemental_death',
       frames: this.anims.generateFrameNames('iceElemental', { start: 54, end: 61, suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'mimicChestAttack',
+      frames: this.anims.generateFrameNames('mimicChest', { start: 1, end: 4, suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'mimicChestIdle',
+      frames: this.anims.generateFrameNames('mimicChest', { start: 5, end: 8, suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'mimicChestSideAttack',
+      frames: this.anims.generateFrameNames('mimicChest', { start: 9, end: 12, suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'mimicChestDie',
+      frames: this.anims.generateFrameNames('mimicChest', { start: 13, end: 18, suffix: '.png' }),
       frameRate: 10,
       repeat: -1
     })
