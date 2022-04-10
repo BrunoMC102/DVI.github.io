@@ -7,7 +7,7 @@ export default class PlayerData{
       this.health = 6;
       this.damage = 5;
       
-      this.money = 0; // dinero del jugador
+      this.money = 5; // dinero del jugador
       this.healthPotions = 50; // pociones de vida
       this.manaPotions = 50; // pociones de mana
       this.mana = 0;
