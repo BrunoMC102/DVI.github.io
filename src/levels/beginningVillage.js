@@ -90,7 +90,11 @@ export default class BeginningVillage extends Phaser.Scene {
     })
 
     this.bg = this.add.rectangle(0,960,this.scale.width*2,600,"0x914f1d").setScrollFactor(0).setDepth(6);
-    this.bg.visible = false
+    this.bg.visible = false;
+    this.dialog = this.add.bitmapText(300,600 ,'atari', 'HELLO THERE LITTLE KNIGHT',16)
+    .setFontSize(48)// Colocamos el pivote en el centro de cuadro de texto 
+     .setDepth(8); 
+     this.dialog.visible = false;
   }
 
 
@@ -137,9 +141,7 @@ export default class BeginningVillage extends Phaser.Scene {
 
   startDialog(){
     this.bg.visible = true;
-    this.add.bitmapText(500, 500 ,'atari', 'HELLO THERE LITTLE KNIGHT',16)
-    .setFontSize(48).setOrigin()  // Colocamos el pivote en el centro de cuadro de texto 
-     .setDepth(8); 
+    this.dialog = true; 
 
   }
 
