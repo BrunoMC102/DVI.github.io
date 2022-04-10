@@ -34,6 +34,8 @@ import PlayerData from "./player/playerData.js";
         this.playButton.setInteractive();
         this.optionsButton.setInteractive();
 
+        
+
 
         this.playButton.on("pointerover", () =>{
           this.icono.setVisible(true);
@@ -61,6 +63,13 @@ import PlayerData from "./player/playerData.js";
           this.icono.setVisible(false);
          
           
+        })
+
+        this.optionsButton.on("pointerup", () =>{
+           //  this.scale.scaleMode = Phaser.Scale.FIT
+      this.scale.toggleFullscreen()
+     //
+       this.scale.width=this.scale.max
         })
 
         

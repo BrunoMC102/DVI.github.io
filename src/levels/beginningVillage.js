@@ -50,7 +50,11 @@ export default class BeginningVillage extends Phaser.Scene {
     this.npcs.add(this.blacksmith);
     this.npcs.add(this.general);
     this.physics.add.existing(this.general);
-    
+    this.zona = this.add.zone(4193, 2600, 200, 200);
+    this.physics.world.enable(this.zona);
+    this.zona.body.setAllowGravity(false)
+    this.zona.body.setImmovable(false);
+
     this.general.body.allowGravity = false;
     this.general.body.immovable = true;
     
@@ -74,11 +78,7 @@ export default class BeginningVillage extends Phaser.Scene {
 
     this.physics.add.collider(this.player, midLayer);
     this.physics.add.collider(this.player,topLayer);
-    this.physics.add.collider(this.player, this.npcs, (o2) => {
-      if(o2 === this.blacksmith){
-        this.startDialog();
-      }else this.startDialog();
-    });
+    this.physics.add.collider(this.player, this.general);
     this.villageSound = this.sound.add("villagetheme", {loop: true});
     this.villageSound.play();
     this.changingScene = false;
@@ -88,6 +88,9 @@ export default class BeginningVillage extends Phaser.Scene {
         this.scene.manager.remove(s)
       }
     })
+
+    this.bg = this.add.rectangle(0,960,this.scale.width*2,600,"0x914f1d").setScrollFactor(0).setDepth(6);
+    this.bg.visible = false
   }
 
 
@@ -107,6 +110,21 @@ export default class BeginningVillage extends Phaser.Scene {
           this.scene.start('initialLevel', {coordinates: {x: 500, y: 500},playerData: new PlayerData(), powerUpList: new PasivePowerUpList()});
         });
       }
+
+      if(this.physics.overlap(this.player, this.zona)){
+        this.startDialog();
+      }
+      else{
+        this.bg.visible = false;
+      }
+
+      // if(this.physics.collide(this.player, this.general)){
+      //   this.colliding = true;
+      // }else if(this.colliding){
+      //   this.colliding = false;
+      //   this.bg.visible = false;
+      // }
+
       
 
     }
@@ -118,8 +136,8 @@ export default class BeginningVillage extends Phaser.Scene {
   
 
   startDialog(){
-    const bg = this.add.rectangle(0,960,this.scale.width*2,600,"0x914f1d").setScrollFactor(0).setDepth(6);
-    this.add.bitmapText(this.game.renderer.width / 2, this.game.renderer.height * 0.5,'atari', 'HELLO THERE LITTLE KNIGHT',16)
+    this.bg.visible = true;
+    this.add.bitmapText(500, 500 ,'atari', 'HELLO THERE LITTLE KNIGHT',16)
     .setFontSize(48).setOrigin()  // Colocamos el pivote en el centro de cuadro de texto 
      .setDepth(8); 
 
