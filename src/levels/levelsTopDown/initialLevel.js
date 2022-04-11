@@ -1,4 +1,5 @@
 import Minotaur from "../../enemies/minotaur.js";
+import WizardBoss from "../../enemies/wizardBoss.js";
 import Minimap from "../../managers/minimap.js";
 import LevelParent from "./levelParent.js";
 
@@ -11,6 +12,10 @@ export default class InitialLevel extends LevelParent {
             west:true,
             east:true
         });
+    }
+
+    createEnemies(){
+        return [new WizardBoss(this, this.player, 500, 500)];
     }
    
     init(data){

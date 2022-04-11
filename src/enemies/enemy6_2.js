@@ -36,31 +36,33 @@ export default class Enemy6_2 extends ShootingEnemyParent{
     attack(d,dt){
 
         if (this.cont === 0){
-            this.attack_aux = () => {this.fire()};
-            this.dispCont = 0;
+          this.attack_aux = () => {
+            this.fire();
+          };
+          this.dispCont = 0;
         }
         this.cont+=dt;
         this.actDispTime+=dt;
         if(this.cont >= this.shootTime*1000){
-            this.cont = 0;
+          this.cont = 0;
         }
         if(this.actDispTime >= this.dispTime*1000){
-            this.attack_aux();
-            this.dispCont++;
-            this.actDispTime = 0;
+          this.attack_aux();
+          this.dispCont++;
+          this.actDispTime = 0;
         }
         if(this.dispCont >= this.dispMax){
-            this.attack_aux = () => {};
+          this.attack_aux = () => {};
         }
     }
 
     attack_aux(){
-        this.fire();
+      this.fire();
     }
 
     fire(){
-        super.fire();
-        this.fireDirection.rotate(Math.PI*2*this.nVueltas/this.dispMax);
+      super.fire();
+      this.fireDirection.rotate(Math.PI*2*this.nVueltas/this.dispMax);
     }
      
 }

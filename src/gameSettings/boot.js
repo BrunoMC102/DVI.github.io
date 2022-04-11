@@ -53,6 +53,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('icono', 'icono.png');
     this.load.image('bow', 'bow.png');
     this.load.image('iceStand', 'standIce.png');
+    this.load.image('shadow', 'shadow.png');
+
 
 
     this.load.setPath('assets/json/');
@@ -85,6 +87,8 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('bolt', 'bolt.png', 'bolt.json')
     this.load.atlas('archer', 'archer.png', 'archer.json')
     this.load.atlas('mimicChest', 'mimicChest.png', 'mimicChest.json')
+    this.load.atlas('wizardBoss', 'wizardBoss.png', 'wizardBoss.json')
+
 
 
     //musica
@@ -411,6 +415,42 @@ export default class Boot extends Phaser.Scene {
       repeat: -1
     })
 
+    this.anims.create({
+      key: 'wizardAttack1',
+      frames: this.anims.generateFrameNames('wizardBoss', { start: 0, end: 7, prefix: 'attack',  suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'wizardAttack2',
+      frames: this.anims.generateFrameNames('wizardBoss', { start: 0, end: 7, prefix: 'attack_2_', suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'wizardIdle',
+      frames: this.anims.generateFrameNames('wizardBoss', { start: 0, end: 5, prefix: 'idle', suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'wizardDie',
+      frames: this.anims.generateFrameNames('wizardBoss', { start: 0, end: 6, prefix: 'die', suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'wizardRun',
+      frames: this.anims.generateFrameNames('wizardBoss', { start: 0, end: 7, prefix: 'run', suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'wizardHit',
+      frames: this.anims.generateFrameNames('wizardBoss', { start: 0, end: 3, prefix: 'hit', suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
   }
 }
 
