@@ -11,7 +11,7 @@ export default class Meteor extends Phaser.GameObjects.Sprite{
         this.shadow = this.scene.add.image(x,targetY, 'shadow');
         this.scene.physics.add.existing(this.shadow, true);
         this.playerColl = this.scene.add.group();
-        this.scale = scale;
+        this.scale = scale*1.5;
         this.shadow.setSize(this.shadow.width*scale, this.shadow.height*scale);
         this.shadow.setScale(scale, scale);
         this.shadow.getCenter(this.shadow.body.center);
@@ -21,9 +21,9 @@ export default class Meteor extends Phaser.GameObjects.Sprite{
             o2.hurt(this.damage);
         })
         this.alcanzado = false;
-        this.rotation = -Math.PI/2;
-        this.scale = 2;
-        this.play('boltFire');
+        this.rotation = Math.PI/2;
+        
+        this.play('meteorAnimation');
     }
 
     preUpdate(t,dt){

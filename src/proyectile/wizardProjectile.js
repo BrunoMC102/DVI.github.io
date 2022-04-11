@@ -4,20 +4,20 @@ export default class wizardProjectile extends Basic_projectile{
     constructor(scene,x,y,vx,vy,time,damage, type, velocity){
         super(scene,x,y,'',vx,vy,time,damage);
         this.cont = 4000;
-        this.flipX = true;
+        
         this.velocity = velocity;
         if(type == 0){
             this.play('boltFire');
-            
+            this.tint = 0xff0000;
+            this.flipX = true;
         }
         if(type == 1){
             this.cont = -2000;
-            this.play('boltFire');
+            this.play('magicBallAnimation');
             this.doEffect = this.doHoming;
-            this.scale = 1.7;
-            this.body.scale *= 1.7;
+            
         }
-        this.tint = 0xff0000;
+        
     }
 
 

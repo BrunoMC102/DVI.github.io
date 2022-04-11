@@ -88,6 +88,10 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('archer', 'archer.png', 'archer.json')
     this.load.atlas('mimicChest', 'mimicChest.png', 'mimicChest.json')
     this.load.atlas('wizardBoss', 'wizardBoss.png', 'wizardBoss.json')
+    this.load.atlas('magicBall', 'magicBall.png', 'magicBall.json')
+    this.load.atlas('meteor', 'meteor.png', 'meteor.json')
+    this.load.atlas('fireBall', 'fireBall.png', 'fireBall.json')
+    this.load.atlas('fireColumn', 'fireColumn.png', 'fireColumn.json')
 
 
 
@@ -448,6 +452,42 @@ export default class Boot extends Phaser.Scene {
     this.anims.create({
       key: 'wizardHit',
       frames: this.anims.generateFrameNames('wizardBoss', { start: 0, end: 3, prefix: 'hit', suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'magicBallAnimation',
+      frames: this.anims.generateFrameNames('magicBall', { start: 1, end: 60, suffix: '.png' }),
+      frameRate: 40,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'meteorAnimation',
+      frames: this.anims.generateFrameNames('meteor', { start: 1, end: 60, suffix: '.png' }),
+      frameRate: 40,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'fireBallAnimation',
+      frames: this.anims.generateFrameNames('fireBall', { start: 1, end: 60, suffix: '.png' }),
+      frameRate: 40,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'fireColumnIdle',
+      frames: this.anims.generateFrameNames('fireColumn', { start: 4, end: 9, suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'fireColumnCreate',
+      frames: this.anims.generateFrameNames('magicBall', { start: 1, end: 9, suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'fireColumnDie',
+      frames: this.anims.generateFrameNames('magicBall', { start: 4, end: 14, prefix: 'fire_column_medium_' , suffix: '.png' }),
       frameRate: 10,
       repeat: -1
     })

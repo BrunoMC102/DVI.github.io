@@ -2,6 +2,7 @@ import ShootingEnemyParent from './shootingEnemyParent.js';
 import Basic_projectile from '../proyectile/basic_projectile.js';
 import wizardProjectile from '../proyectile/wizardProjectile.js';
 import Meteor from '../proyectile/meteor.js';
+import FireBall from '../proyectile/fireBall.js';
 
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
@@ -34,7 +35,10 @@ export default class WizardBoss extends ShootingEnemyParent{
       projectileTime: 0.05,
       nVueltas: 0.3
     }
-
+    this.interiorContainer = new Phaser.GameObjects.Container(this.scene, 0,0);
+    this.add(this.interiorContainer);
+    this.fireBalls = [];
+    this.setFire();
   }
  
 
@@ -44,7 +48,7 @@ export default class WizardBoss extends ShootingEnemyParent{
 
 
   attack(d,dt){
-    
+    this.interiorContainer.rotation += dt/1000;
     if(this.statusInfo.attack == 0){
       if(this.statusInfo.postPreparing){
         this.statusInfo.postPreparingCont += dt;
@@ -168,7 +172,7 @@ export default class WizardBoss extends ShootingEnemyParent{
   attack3(){
     let numMeteor = Math.floor(Math.random()*5+8);
     for(let i = 0; i < numMeteor; i++){
-      let velocidad = Math.floor(Math.random()*100+100);
+      let velocidad = Math.floor(Math.random()*400+75);
       let posX = Math.floor(Math.random()*1000+100);
       let target = Math.floor(Math.random()*500+300);
       this.meteorFire(posX,target,velocidad,1);
@@ -203,5 +207,11 @@ export default class WizardBoss extends ShootingEnemyParent{
   }
   meteorFire(x, targetY, velocity, damage){
     new Meteor(this.scene, x, targetY, velocity ,damage , 1);
+  }
+
+  setFire(){
+    let fireBall = new FireBall(this.scene, 100, 0, 1);
+    this.interiorContainer.add(fireBall);
+    this.fireBalls.push(fireBall);
   }
 }
