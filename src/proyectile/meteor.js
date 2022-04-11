@@ -1,6 +1,6 @@
 export default class Meteor extends Phaser.GameObjects.Sprite{
     constructor(scene,x, targetY, velocity, damage,scale){
-        super(scene,x,-10);
+        super(scene,x,-50);
         this.targetY = targetY;
         this.velocity = velocity;
         this.damage = damage;
