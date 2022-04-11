@@ -8,6 +8,27 @@ import PlayerTopDown from '../player/playerTopDown.js';
  .
  * @extends Phaser.Scene
  */
+const itemsData = [
+{
+  name: 'pocionVida',
+  price: 1,
+  x:3798,
+  y: 1555
+},
+{
+  name: 'pocionMana',
+  price: 1,
+  x:3876,
+  y: 1555
+},
+{
+  name: 'vida',
+  price: 1,
+  x:4000,
+  y: 1555
+}
+]
+
 export default class BeginningVillage extends Phaser.Scene {
   /**
    * Constructor de la escena
@@ -90,7 +111,114 @@ export default class BeginningVillage extends Phaser.Scene {
     })
 
     this.bg = this.add.rectangle(0,960,this.scale.width*2,600,"0x914f1d").setScrollFactor(0).setDepth(6);
-    this.bg.visible = false
+    this.bg.visible = false;
+    this.dialog = this.add.bitmapText(10,700 ,'atari', 'HELLO THERE LITTLE KNIGHT',16)
+    .setFontSize(48)
+     .setDepth(8).setScrollFactor(0); 
+
+     this.createShop();
+  }
+
+  createShop(){
+
+    this.bgshop = this.add.rectangle(0,960,this.scale.width*2,600,"0x914f1d").setScrollFactor(0).setDepth(6);
+    this.bgshop.visible = false;
+     this.dialog.visible = false;
+     this.shopDialog = this.add.bitmapText(10, 700,'atari','',16)
+    .setFontSize(48) 
+     .setDepth(8).setScrollFactor(0);
+     this.okText = this.add.bitmapText(1100,700 ,'atari', 'Sí!',16)
+     .setFontSize(48)
+      .setDepth(8).setScrollFactor(0);
+ 
+     this.noText = this.add.bitmapText(1100,800,'atari', 'No',16)
+     .setFontSize(48)
+      .setDepth(8).setScrollFactor(0);
+    this.infoText = this.add.bitmapText(10,850,'atari', 'Pulsa Y si quieres comprarlo o N para salir',16)
+     .setFontSize(48)
+      .setDepth(8).setScrollFactor(0);
+      this.yesKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Y);
+      this.noKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
+
+
+    this.items = [];
+    this.itemsPrice= [];
+    this.itemsZones=[];
+    let i = 0;
+    
+
+    itemsData.forEach(item => {
+      const {x,y,name,price} = item;
+        this.items[i]= this.physics.add.staticImage(x,y,name);
+        this.items[i].name = name;
+        this.itemsPrice[i] = price;
+        this.itemsZones[i] = this.add.zone(x, y, 50, 150);
+        this.physics.world.enable(this.itemsZones[i]);
+        this.itemsZones[i].body.setAllowGravity(false)
+        this.itemsZones[i].body.setImmovable(false);
+        i++;
+    })
+
+  }
+
+  createBoxShop(i){
+    const objeto = this.items[i].name;
+    const objetoPrecio = this.itemsPrice[i];
+    this.openShop();
+    let stringobjeto = "";
+    let stringmonedas ="";
+    switch(objeto){
+      case 'pocionVida': stringobjeto = "una Poción de vida";break;
+      case 'pocionMana': stringobjeto = "una Poción de maná"; break;
+      case 'vida': stringobjeto = "un corazón de vida";break;
+    }
+    if(objetoPrecio == 1) stringmonedas = "moneda";
+    else stringmonedas = "monedas";
+    this.shopDialog.setText('Quieres comprar '+stringobjeto+ '\npor el valor de ' +objetoPrecio+ ' '+ stringmonedas);
+
+    if (Phaser.Input.Keyboard.JustDown(this.yesKey)) { 
+      if(this.player.playerData.money >= objetoPrecio){
+      this.spentMoney(objeto,objetoPrecio);
+      }else {
+        this.infoText.setText('No tienes suficiente dinero\n vuelve más tarde caballero');
+      }
+    }
+    if (Phaser.Input.Keyboard.JustDown(this.noKey)) {
+      this.closeShop();
+    
+    }
+
+    
+
+    
+  
+
+  }
+
+  spentMoney(objeto,objetoPrecio){
+    this.player.playerData.money -= objetoPrecio;
+    switch(objeto){
+      case 'pocionVida': this.player.playerData.healthPotions++;break;
+      case 'pocionMana': this.player.playerData.manaPotions++;break;
+      case 'vida': this.player.playerData.health++;break;
+    }
+
+  } 
+
+  openShop(){
+    this.bgshop.visible = true;
+    this.shopDialog.visible= true;
+    this.okText.visible = true;
+    this.noText.visible = true;
+    this.infoText.visible = true;
+  }
+  closeShop(){
+    this.bgshop.visible= false;
+    this.shopDialog.visible = false;
+    this.okText.visible = false;
+    this.noText.visible = false;
+    this.infoText.visible = false;
+    this.infoText.setText('Pulsa Y si quieres comprarlo o N para salir');
   }
 
 
@@ -116,14 +244,22 @@ export default class BeginningVillage extends Phaser.Scene {
       }
       else{
         this.bg.visible = false;
+        this.dialog.visible = false;
+      }
+      if(this.physics.overlap(this.player, this.itemsZones[0])){
+        this.createBoxShop(0)
+      }
+      else if(this.physics.overlap(this.player, this.itemsZones[1])){
+        this.createBoxShop(1);
+      }
+      else if(this.physics.overlap(this.player, this.itemsZones[2])){
+        this.createBoxShop(2);
+
+      }else {
+        this.closeShop();
       }
 
-      // if(this.physics.collide(this.player, this.general)){
-      //   this.colliding = true;
-      // }else if(this.colliding){
-      //   this.colliding = false;
-      //   this.bg.visible = false;
-      // }
+   
 
       
 
@@ -137,9 +273,7 @@ export default class BeginningVillage extends Phaser.Scene {
 
   startDialog(){
     this.bg.visible = true;
-    this.add.bitmapText(500, 500 ,'atari', 'HELLO THERE LITTLE KNIGHT',16)
-    .setFontSize(48).setOrigin()  // Colocamos el pivote en el centro de cuadro de texto 
-     .setDepth(8); 
+    this.dialog.visible = true; 
 
   }
 
