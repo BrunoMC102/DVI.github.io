@@ -16,7 +16,7 @@ export default class FireBall extends Phaser.GameObjects.Sprite{
 
     preUpdate(t,dt){
         super.preUpdate(t,dt);
-        if(this.x >= this.targetX && this.y >= this.targetY){
+        if(Math.abs(this.x) >= Math.abs(this.targetX) && Math.abs(this.y) >= Math.abs(this.targetY)){
             this.body.setVelocity(0,0);
         }
     }

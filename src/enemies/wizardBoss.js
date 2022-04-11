@@ -87,6 +87,14 @@ export default class WizardBoss extends ShootingEnemyParent {
       this.changeToSecondFase();
       this.statusInfo.phase = 1;
     }
+    else if (this.statusInfo.phase == 1 && this.health <= this.maxHealth * 1 / 2) {
+      this.changeToSecondFase();
+      this.statusInfo.phase = 2;
+    }
+    else if (this.statusInfo.phase == 2 && this.health <= this.maxHealth * 1 / 4) {
+      this.changeToSecondFase();
+      this.statusInfo.phase = 3;
+    }
   }
 
   attack(d, dt) {
@@ -342,10 +350,29 @@ export default class WizardBoss extends ShootingEnemyParent {
 
 
   setFire() {
-    this.interiorContainer.rotation = 0;
-    let fireBall = new FireBall(this.scene, 200, 0, 1);
-    this.interiorContainer.add(fireBall);
-    this.fireBalls.push(fireBall);
+
+    let firePos = new Phaser.Math.Vector2(200,0);
+
+    if(this.fireBalls.length == 0){
+      
+      let fireBall = new FireBall(this.scene, firePos.x, firePos.y, 1);
+      this.interiorContainer.add(fireBall);
+      this.fireBalls.push(fireBall);
+    }
+    else if(this.fireBalls.length == 1){
+      
+      firePos.rotate(4/3*Math.PI)
+      let fireBall = new FireBall(this.scene, firePos.x, firePos.y, 1);
+      this.interiorContainer.add(fireBall);
+      this.fireBalls.push(fireBall);
+    }
+    else if(this.fireBalls.length == 2){
+      firePos.rotate(2/3*Math.PI)
+      //this.interiorContainer.rotation = Math.PI/3;
+      let fireBall = new FireBall(this.scene, firePos.x, firePos.y, 1);
+      this.interiorContainer.add(fireBall);
+      this.fireBalls.push(fireBall);
+    }
   }
 
 
