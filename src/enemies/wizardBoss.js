@@ -3,6 +3,7 @@ import Basic_projectile from '../proyectile/basic_projectile.js';
 import wizardProjectile from '../proyectile/wizardProjectile.js';
 import Meteor from '../proyectile/meteor.js';
 import FireBall from '../proyectile/fireBall.js';
+import FireColumn from '../proyectile/fireColumn.js';
 
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
@@ -36,6 +37,14 @@ export default class WizardBoss extends ShootingEnemyParent {
       projectileTime: 0.05,
       nVueltas: 0.3
     }
+
+    this.fireColumns = {
+      projectilesShooted: 0,
+      dispCont: 0,
+      projectiles: 5,
+      projectileTime: 1,
+    }
+
     this.interiorContainer = new Phaser.GameObjects.Container(this.scene, 0, 0);
     this.add(this.interiorContainer);
     this.fireBalls = [];
@@ -45,10 +54,11 @@ export default class WizardBoss extends ShootingEnemyParent {
     this.escaping = true;
     this.persecution = false;
     this.moving = false;
-    this.teleporting = false;
+    this.teleported = false;
     this.changeVectors();
     this.atrapadoVector = new Phaser.Math.Vector2(this.x, this.y);
     this.movingCont = 0;
+    this.finalFaseCont = 0;
   }
 
 
@@ -62,11 +72,11 @@ export default class WizardBoss extends ShootingEnemyParent {
   preUpdate(d, dt) {
 
     if (this.freezing) return;
-    if (this.changinPhase) return;
-    if(this.teleporting){
-      this.teleport();
+    if(this.changingFinalPhase){
+      this.changingToFinalPhase(dt);
       return;
     }
+    if (this.changinPhase) return;
     this.toUpdate(dt);
 
     if (this.knockbackinfo.knocking) {
@@ -83,18 +93,23 @@ export default class WizardBoss extends ShootingEnemyParent {
     this.fireBalls.forEach((e) => {
       e.rotation -= dt / 1000;
     })
-    if (this.statusInfo.phase == 0 && this.health <= this.maxHealth * 3 / 4) {
-      this.changeToSecondFase();
+    if (this.statusInfo.phase == 0 && this.health <= this.maxHealth * 4 / 5) {
+      this.changeFase(1);
       this.statusInfo.phase = 1;
     }
-    else if (this.statusInfo.phase == 1 && this.health <= this.maxHealth * 1 / 2) {
-      this.changeToSecondFase();
+    else if (this.statusInfo.phase == 1 && this.health <= this.maxHealth * 3 / 5) {
+      this.changeFase(2);
       this.statusInfo.phase = 2;
     }
-    else if (this.statusInfo.phase == 2 && this.health <= this.maxHealth * 1 / 4) {
-      this.changeToSecondFase();
+    else if (this.statusInfo.phase == 2 && this.health <= this.maxHealth * 2 / 5) {
+      this.changeFase(3);
       this.statusInfo.phase = 3;
     }
+    else if (this.statusInfo.phase == 3 && this.health <= this.maxHealth * 1 / 5) {
+      this.changeFase(4);
+      this.statusInfo.phase = 4;
+    }
+
   }
 
   attack(d, dt) {
@@ -184,7 +199,7 @@ export default class WizardBoss extends ShootingEnemyParent {
 
 
   moveU(d, dt) {
-   
+
 
     if (this.statusInfo.attack != 0 || this.statusInfo.postPreparing) {
       if (this.isPLayerRight()) {
@@ -196,69 +211,65 @@ export default class WizardBoss extends ShootingEnemyParent {
       this.body.setVelocity(0, 0);
       return;
     }
-    
+
     if (this.body.velocity.x >= 0) {
       this.sprite.flipX = false;
     }
     else {
       this.sprite.flipX = true;
     }
+
+    if (this.movingCont >= 1000) {
+      this.changeVectors();
+      this.movingCont = 0;
+    }
+    this.movingCont += dt;
+
+    const dx = new Phaser.Math.Vector2(this.player.x - this.centerX(), this.player.y - this.centerY());
+
+    if (dx.length() < 150) {
+      if (!this.escaping) {
+        this.changeEscapeVector();
+        this.escaping = true;
+        this.persecution = false;
+        this.moving = false;
+      }
+    }
+    else if (dx.length() < 400 && dx.length() > 200) {
+      if (!this.moving) {
+        this.changemoveVector();
+        this.escaping = false;
+        this.persecution = false;
+        this.moving = true;
+      }
+    }
+    else if (dx.length() > 450) {
+      if (!this.persecution) {
+        this.changePersecutorVector();
+        this.escaping = false;
+        this.persecution = true;
+        this.moving = false;
+      }
+    }
+
     
-      if(this.movingCont >= 1000){
-        this.changeVectors();
-        this.movingCont = 0;
-      }
-      this.movingCont += dt;
-
-      const dx = new Phaser.Math.Vector2(this.player.x - this.centerX(), this.player.y - this.centerY());
-
-      if (dx.length() < 150) {
-        if (!this.escaping) {
-          this.changeEscapeVector();
-          this.escaping = true;
-          this.persecution = false;
-          this.moving = false;
-        }
-      }
-      else if (dx.length() < 400 && dx.length() > 200) {
-        if (!this.moving) {
-          this.changemoveVector();
-          this.escaping = false;
-          this.persecution = false;
-          this.moving = true;
-        }
-      }
-      else if (dx.length() > 450) {
-        if(!this.persecution){
-          this.changePersecutorVector();
-          this.escaping = false;
-          this.persecution = true;
-          this.moving = false;
-        }
-      }
-
-      if (this.teleporting) {
-        this.sprite.play('archeridle', true);
-        this.body.setVelocity(0, 0);
-        this.sprite.tint = 0x00ff00;
-      }
-      else {
-        if (this.escaping) {
-          this.body.setVelocity(this.escapeVector.x, this.escapeVector.y);
-          this.sprite.play('wizardRun', true);
-          
-        }
-        else if(this.moving){
-          this.body.setVelocity(this.moveVector.x, this.moveVector.y);
-          this.sprite.play('wizardRun', true);
-        }
-        else if(this.persecution){
-          this.body.setVelocity(this.persecutionVector.x, this.persecutionVector.y);
-          this.sprite.play('wizardRun', true);
-        }
-      }
-      this.checkatrapado(dt);
     
+      if (this.escaping) {
+        this.body.setVelocity(this.escapeVector.x, this.escapeVector.y);
+        this.sprite.play('wizardRun', true);
+
+      }
+      else if (this.moving) {
+        this.body.setVelocity(this.moveVector.x, this.moveVector.y);
+        this.sprite.play('wizardRun', true);
+      }
+      else if (this.persecution) {
+        this.body.setVelocity(this.persecutionVector.x, this.persecutionVector.y);
+        this.sprite.play('wizardRun', true);
+      }
+    
+    this.checkatrapado(dt);
+
 
   }
 
@@ -327,47 +338,108 @@ export default class WizardBoss extends ShootingEnemyParent {
   }
 
 
-  changeToSecondFase() {
-    this.changinPhase = true;
-
-    this.attack2Info.projectiles = 6;
-    this.attack2Info.nVueltas = 0.5;
-    this.arrows = 5;
-    this.circun = 0.5;
-    this.sprite.play("wizardAttack1");
-    this.scene.time.delayedCall(400, _ => {
-      this.setFire();
-      this.sprite.play("wizardSpell")
-      this.scene.time.delayedCall(5000, _ => {
-        this.changinPhase = false;
-        this.sprite.play("wizardFinishSpell");
-        this.statusInfo.postPreparingTime = 350;
-        this.statusInfo.postPreparing = true;
+  changeFase(phase) {
+    
+    if (phase == 4) {
+      this.changingFinalPhase = true;
+    }
+    else if (phase == 1) {
+      this.attack2Info.projectiles = 6;
+      this.attack2Info.nVueltas = 0.5;
+      this.arrows = 5;
+      this.circun = 0.5;
+    }
+    if (phase <= 3) {
+      this.changinPhase = true;
+      this.sprite.play("wizardAttack1");
+      this.scene.time.delayedCall(400, _ => {
+        this.setFire();
+        this.sprite.play("wizardSpell")
+        this.scene.time.delayedCall(5000, _ => {
+          this.changinPhase = false;
+          this.sprite.play("wizardFinishSpell");
+          this.statusInfo.postPreparingTime = 350;
+          this.statusInfo.postPreparing = true;
+        });
       });
-    });
+    }
+    else{
+      this.sprite.play("wizardAttack1");
+      this.scene.time.delayedCall(400, _ => {
+        this.sprite.play("wizardSpell")
+      });
+    }
+
+
 
   }
 
 
+
+  changingToFinalPhase(dt){
+    if(!this.teleported){
+      if(this.finalFaseCont >= 1000){
+        this.x = 640;
+        this.y = 490;
+        this.teleported = true;
+      }
+    }
+    if(this.finalFaseCont >= 2000){
+        this.releaseFireColumns(dt);
+    }
+    
+    if(this.finalFaseCont >= 12000){
+      this.changingFinalPhase = false;
+      this.sprite.play("wizardFinishSpell");
+      this.statusInfo.postPreparingTime = 350;
+      this.statusInfo.postPreparing = true;
+    }
+    this.finalFaseCont += dt;
+  }
+
+
+  releaseFireColumns(dt){
+    if (this.fireColumns.dispCont == 0) {
+      this.fireFireColumn();
+      this.fireColumns.projectilesShooted++;
+    }
+    this.fireColumns.dispCont += dt / 1000;
+    if (this.fireColumns.dispCont >= this.fireColumns.projectileTime) {
+      this.fireColumns.dispCont = 0;
+    }
+  }
+
+  fireFireColumn(){
+    let velocidad = new Phaser.Math.Vector2(0, -Math.floor(Math.random() * 200 + 75));
+    let ang = (Math.random() * (Math.PI*3/10) + Math.PI/10)
+    let dir = Math.random();
+    if (dir < 0.5) {
+      ang = -ang;
+    }
+    velocidad.rotate(ang);
+    let target = Math.floor(Math.random() * 600 + 150);
+    new FireColumn(this.scene,this.centerX(),this.centerY(),target, velocidad.x,velocidad.y,90,1,1);
+  }
+
   setFire() {
 
-    let firePos = new Phaser.Math.Vector2(200,0);
+    let firePos = new Phaser.Math.Vector2(200, 0);
 
-    if(this.fireBalls.length == 0){
-      
+    if (this.fireBalls.length == 0) {
+
       let fireBall = new FireBall(this.scene, firePos.x, firePos.y, 1);
       this.interiorContainer.add(fireBall);
       this.fireBalls.push(fireBall);
     }
-    else if(this.fireBalls.length == 1){
-      
-      firePos.rotate(4/3*Math.PI)
+    else if (this.fireBalls.length == 1) {
+
+      firePos.rotate(4 / 3 * Math.PI)
       let fireBall = new FireBall(this.scene, firePos.x, firePos.y, 1);
       this.interiorContainer.add(fireBall);
       this.fireBalls.push(fireBall);
     }
-    else if(this.fireBalls.length == 2){
-      firePos.rotate(2/3*Math.PI)
+    else if (this.fireBalls.length == 2) {
+      firePos.rotate(2 / 3 * Math.PI)
       //this.interiorContainer.rotation = Math.PI/3;
       let fireBall = new FireBall(this.scene, firePos.x, firePos.y, 1);
       this.interiorContainer.add(fireBall);
@@ -406,7 +478,7 @@ export default class WizardBoss extends ShootingEnemyParent {
     let ang = (Math.random() * 2 - 1) * 0.3 * Math.PI;
     dx.normalize().rotate(ang).scale(this.v);
     this.escapeVector = dx;
-    
+
   }
 
   changePersecutorVector() {
@@ -427,7 +499,7 @@ export default class WizardBoss extends ShootingEnemyParent {
     this.moveVector = dx;
   }
 
-  changeVectors(){
+  changeVectors() {
     this.changeEscapeVector();
     this.changePersecutorVector();
     this.changemoveVector();
@@ -438,8 +510,6 @@ export default class WizardBoss extends ShootingEnemyParent {
   }
 
 
-  teleport(){
-    this.teleporting = false;
-  }
+  
 
 }

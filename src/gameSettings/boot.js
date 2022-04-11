@@ -487,21 +487,21 @@ export default class Boot extends Phaser.Scene {
     })
     this.anims.create({
       key: 'fireColumnIdle',
-      frames: this.anims.generateFrameNames('fireColumn', { start: 4, end: 9, suffix: '.png' }),
+      frames: this.anims.generateFrameNames('fireColumn', { start: 4, end: 9,prefix: 'fire_column_medium_', suffix: '.png' }),
       frameRate: 10,
       repeat: -1
     })
     this.anims.create({
       key: 'fireColumnCreate',
-      frames: this.anims.generateFrameNames('magicBall', { start: 1, end: 9, suffix: '.png' }),
+      frames: this.anims.generateFrameNames('fireColumn', { start: 1, end: 9,prefix: 'fire_column_medium_', suffix: '.png' }),
       frameRate: 10,
-      repeat: -1
+      repeat: 0
     })
     this.anims.create({
       key: 'fireColumnDie',
-      frames: this.anims.generateFrameNames('magicBall', { start: 4, end: 14, prefix: 'fire_column_medium_' , suffix: '.png' }),
+      frames: this.anims.generateFrameNames('fireColumn', { start: 4, end: 14, prefix: 'fire_column_medium_' , suffix: '.png' }),
       frameRate: 10,
-      repeat: -1
+      repeat: 0
     })
   }
 }
