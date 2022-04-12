@@ -20,4 +20,8 @@ export default class WizardBossHealth extends Phaser.GameObjects.Rectangle{
             this.fillColor = 0xff0000;
         }
     }
+    boom(){
+        this.outline.destroy();
+        this.destroy();
+    }
 }

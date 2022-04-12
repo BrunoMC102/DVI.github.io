@@ -707,5 +707,33 @@ export default class WizardBoss extends ShootingEnemyParent {
     return randomList;
 }
 
+die(){
+  this.sprite.play('wizardDie');
+  this.preUpdate = ()=>{};
+  this.deadCenter.x = this.centerX();
+  this.deadCenter.y = this.centerY();
+  this.body.destroy();
+  this.healthBar.boom();
+  this.scene.time.delayedCall(1500, () => {
+    this.spawnMana();
+    this.spawnLoot();
+    this.destroy();
+  })
+}
+
+hurt(damage){
+  if(this.changinPhase) return;
+  if(this.changingFinalPhase) return;
+  super.hurt(damage);
+}
+
+knockback(x,y,p){
+  if(this.changinPhase) return;
+  if(this.changingFinalPhase) return;
+  if(this.secondPhase) return;
+  super.knockback(x,y,p);
+}
+
+freeze(){}
 
 }

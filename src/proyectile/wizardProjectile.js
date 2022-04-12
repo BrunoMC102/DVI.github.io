@@ -18,7 +18,7 @@ export default class wizardProjectile extends Basic_projectile{
             
         }
         if(type == 3){
-            this.cont = -2000;
+            this.cont = -2500;
             this.play('magicBallAnimation');
             this.doEffect = this.doHomingOnce;
         }
