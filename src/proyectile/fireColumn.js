@@ -10,14 +10,14 @@ export default class FireColumn extends Phaser.GameObjects.Sprite{
         this.body.setVelocity(initialX, initialY);
         this.body.setAcceleration(0, aceleration);
         this.time = 30;
-        
+        this.tint = 0xff8080;
         this.scale = scale;
         
         
         this.rotation = Math.PI/2;
         
         this.play('fireBallAnimation');
-        this.scene.time.delayedCall(this.time*1000, () => this.destroy());
+        this.scene.time.delayedCall(this.time*1000, () => this.die());
     }
 
     preUpdate(t,dt){
@@ -32,11 +32,16 @@ export default class FireColumn extends Phaser.GameObjects.Sprite{
             })
             this.scale = this.scale*1.7;
             this.rotation = 0;
+            this.tint = 0xffffff;
             this.play('fireColumnCreate');
             this.anims.chain('fireColumnIdle');
             this.body.setVelocity(0,0);
             this.body.setAcceleration(0,0);
         }
+    }
+    die(){
+        this.play('fireColumnDie');
+        this.scene.time.delayedCall(1100, () => this.destroy());
     }
 
     

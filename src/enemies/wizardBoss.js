@@ -129,6 +129,8 @@ export default class WizardBoss extends ShootingEnemyParent {
 
   attack(d, dt) {
 
+    if(this.changinPhase) return;
+    if(this.changingFinalPhase) return;
 
     if (this.statusInfo.attack == 0) {
       if (this.statusInfo.postPreparing) {
@@ -243,7 +245,7 @@ export default class WizardBoss extends ShootingEnemyParent {
           this.statusInfo.attack = 0;
           this.meteor.projectilesShooted = 0;
           this.sprite.play("wizardFinishSpell", true)
-          this.statusInfo.postPreparingTime = 400;
+          this.statusInfo.postPreparingTime = 300;
           this.statusInfo.postPreparing = true;
         }
       }
@@ -264,7 +266,7 @@ export default class WizardBoss extends ShootingEnemyParent {
           this.statusInfo.attack = 0;
           this.fireColumns.projectilesShooted = 0;
           this.sprite.play("wizardFinishSpell", true);
-          this.statusInfo.postPreparingTime = 400;
+          this.statusInfo.postPreparingTime = 300;
           this.statusInfo.postPreparing = true;
         }
       }
@@ -283,12 +285,13 @@ export default class WizardBoss extends ShootingEnemyParent {
         this.sprite.play("wizardSpell", true)
         this.attack7(dt);
         this.movingFireCont += dt
-        if (this.movingFireCont >= 8000) {
+        if (this.movingFireCont >= 12000) {
           this.statusInfo.attack = 0;
           this.movingFireCont = 0;
           this.fireColumns.projectilesShooted = 0;
+          this.fireBalls.forEach(e=>e.finishMoving());
           this.sprite.play("wizardFinishSpell", true);
-          this.statusInfo.postPreparingTime = 400;
+          this.statusInfo.postPreparingTime = 300;
           this.statusInfo.postPreparing = true;
         }
       }
@@ -457,6 +460,7 @@ export default class WizardBoss extends ShootingEnemyParent {
 
   attack7(dt){
     this.interiorContainer.rotation += dt / 100;
+    this.fireBalls.forEach(e=>e.moveLocation(70));
   }
 
   setFireDirectionToPlayer() {
@@ -496,12 +500,24 @@ export default class WizardBoss extends ShootingEnemyParent {
       this.secondPhase = true;
       this.phaseAttacks = this.createRandomizedList(this.secondPhaseAttacks);
       this.moveU = this.moveUSecondPhase;
+      this.attack2Info.projectiles = 12;
+      this.attack2Info.nVueltas = 0.7;
     }
     else if (phase == 1) {
       this.attack2Info.projectiles = 6;
       this.attack2Info.nVueltas = 0.5;
       this.arrows = 5;
       this.circun = 0.5;
+    }
+    else if(phase == 2){
+      this.attack2Info.projectiles = 7;
+      this.arrows = 6;
+    }
+    else if(phase == 3){
+      this.attack2Info.projectiles = 8;
+      this.arrows = 7;
+      this.circun = 0.55;
+      this.attack2Info.nVueltas = 0.55;
     }
     if (phase <= 3) {
       this.changinPhase = true;
@@ -583,15 +599,15 @@ export default class WizardBoss extends ShootingEnemyParent {
   }
 
   fireFireColumn(){
-    let velocidad = new Phaser.Math.Vector2(0, -Math.floor(Math.random() * 200 + 75));
-    let ang = (Math.random() * (Math.PI*3/10) + Math.PI/10)
+    let velocidad = new Phaser.Math.Vector2(0, -Math.floor(Math.random() * 200 + 100));
+    let ang = (Math.random() * (Math.PI/4) + Math.PI/10)
     let dir = Math.random();
     if (dir < 0.5) {
       ang = -ang;
     }
     velocidad.rotate(ang);
     let target = Math.floor(Math.random() * 600 + 150);
-    new FireColumn(this.scene,this.centerX(),this.centerY(),target, velocidad.x,velocidad.y,90,1,1);
+    new FireColumn(this.scene,this.centerX(),this.centerY(),target, velocidad.x,velocidad.y,100,1,1);
   }
 
   setFire() {
