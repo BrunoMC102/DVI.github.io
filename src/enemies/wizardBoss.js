@@ -4,6 +4,7 @@ import wizardProjectile from '../proyectile/wizardProjectile.js';
 import Meteor from '../proyectile/meteor.js';
 import FireBall from '../proyectile/fireBall.js';
 import FireColumn from '../proyectile/fireColumn.js';
+import WizardBossHealth from './wizardBossHealth.js';
 
 /**
  * Clase que representa las plataformas que aparecen en el escenario de juego.
@@ -41,8 +42,14 @@ export default class WizardBoss extends ShootingEnemyParent {
     this.fireColumns = {
       projectilesShooted: 0,
       dispCont: 0,
-      projectiles: 5,
+      projectiles: 10,
       projectileTime: 1,
+    }
+    this.meteor = {
+      projectilesShooted: 0,
+      dispCont: 0,
+      projectiles: 33,
+      projectileTime: 0.3,
     }
 
     this.interiorContainer = new Phaser.GameObjects.Container(this.scene, 0, 0);
@@ -58,7 +65,15 @@ export default class WizardBoss extends ShootingEnemyParent {
     this.changeVectors();
     this.atrapadoVector = new Phaser.Math.Vector2(this.x, this.y);
     this.movingCont = 0;
-    this.finalFaseCont = 0;
+    this.finalFaseCont = -7000;
+    this.healCont = 0;
+    this.recovering = false;
+    this.secondPhase = false;
+    this.healthBar = new WizardBossHealth(this.scene,300,850);
+    this.movingFireCont = 0;
+    this.firstPhaseAttacks = [1,2,3];
+    this.secondPhaseAttacks = [2,4,5,6, 7];
+    this.phaseAttacks = [];
   }
 
 
@@ -70,7 +85,7 @@ export default class WizardBoss extends ShootingEnemyParent {
 
 
   preUpdate(d, dt) {
-
+    this.healthBar.actualiza(this.health, this.maxHealth, this.recovering);
     if (this.freezing) return;
     if(this.changingFinalPhase){
       this.changingToFinalPhase(dt);
@@ -126,10 +141,7 @@ export default class WizardBoss extends ShootingEnemyParent {
       this.cont += dt;
       if (this.cont >= this.shootTime * 1000) {
         this.cont = 0;
-        this.statusInfo.attack = this.statusInfo.lastattack + 1;
-        if (this.statusInfo.attack >= 4) {
-          this.statusInfo.attack = 1;
-        }
+        this.statusInfo.attack = this.extractAttack();
         this.statusInfo.lastattack = this.statusInfo.attack
         this.statusInfo.preparing = true;
       }
@@ -168,7 +180,7 @@ export default class WizardBoss extends ShootingEnemyParent {
       }
       else {
         this.attack2(dt);
-        this.attack2Info.cont += dt;
+        
         if (this.attack2Info.projectilesShooted >= this.attack2Info.projectiles) {
           this.statusInfo.attack = 0;
           this.attack2Info.projectilesShooted = 0;
@@ -192,6 +204,93 @@ export default class WizardBoss extends ShootingEnemyParent {
         this.statusInfo.attack = 0;
         this.statusInfo.postPreparingTime = 350;
         this.statusInfo.postPreparing = true;
+      }
+    }
+    else if (this.statusInfo.attack == 4) {
+      this.sprite.play("wizardAttack1", true)
+      if (this.statusInfo.preparing) {
+        this.statusInfo.preparingCont += dt;
+        if (this.statusInfo.preparingCont > 400) {
+          this.statusInfo.preparingCont = 0;
+          this.statusInfo.preparing = false;
+          this.projectileType = 3;
+          this.Pv = 150;
+        }
+      }
+      else {
+        this.attack4();
+        this.statusInfo.attack = 0;
+        this.statusInfo.postPreparingTime = 350;
+        this.statusInfo.postPreparing = true;
+      }
+
+    }
+
+    else if (this.statusInfo.attack == 5) {
+     
+      if (this.statusInfo.preparing) {
+        this.sprite.play("wizardAttack1", true);
+        this.statusInfo.preparingCont += dt;
+        if (this.statusInfo.preparingCont > 300) {
+          this.statusInfo.preparingCont = 0;
+          this.statusInfo.preparing = false;
+        }
+      }
+      else {
+        this.sprite.play("wizardSpell", true);
+        this.attack5(dt);
+        if (this.meteor.projectilesShooted >= this.meteor.projectiles) {
+          this.statusInfo.attack = 0;
+          this.meteor.projectilesShooted = 0;
+          this.sprite.play("wizardFinishSpell", true)
+          this.statusInfo.postPreparingTime = 400;
+          this.statusInfo.postPreparing = true;
+        }
+      }
+    }
+    else if (this.statusInfo.attack == 6) {
+      if (this.statusInfo.preparing) {
+        this.sprite.play("wizardAttack1", true);
+        this.statusInfo.preparingCont += dt;
+        if (this.statusInfo.preparingCont > 300) {
+          this.statusInfo.preparingCont = 0;
+          this.statusInfo.preparing = false;
+        }
+      }
+      else {
+        this.sprite.play("wizardSpell", true)
+        this.attack6(dt);
+        if (this.fireColumns.projectilesShooted >= this.fireColumns.projectiles) {
+          this.statusInfo.attack = 0;
+          this.fireColumns.projectilesShooted = 0;
+          this.sprite.play("wizardFinishSpell", true);
+          this.statusInfo.postPreparingTime = 400;
+          this.statusInfo.postPreparing = true;
+        }
+      }
+    }
+    else if (this.statusInfo.attack == 7) {
+      
+      if (this.statusInfo.preparing) {
+        this.sprite.play("wizardAttack1", true);
+        this.statusInfo.preparingCont += dt;
+        if (this.statusInfo.preparingCont > 300) {
+          this.statusInfo.preparingCont = 0;
+          this.statusInfo.preparing = false;
+        }
+      }
+      else {
+        this.sprite.play("wizardSpell", true)
+        this.attack7(dt);
+        this.movingFireCont += dt
+        if (this.movingFireCont >= 8000) {
+          this.statusInfo.attack = 0;
+          this.movingFireCont = 0;
+          this.fireColumns.projectilesShooted = 0;
+          this.sprite.play("wizardFinishSpell", true);
+          this.statusInfo.postPreparingTime = 400;
+          this.statusInfo.postPreparing = true;
+        }
       }
     }
 
@@ -273,6 +372,21 @@ export default class WizardBoss extends ShootingEnemyParent {
 
   }
 
+
+
+  moveUSecondPhase(d,dt){
+    if (this.isPLayerRight()) {
+      this.sprite.flipX = false;
+    }
+    else {
+      this.sprite.flipX = true;
+    } 
+    if(this.statusInfo.attack == 0 && !this.statusInfo.postPreparing){
+      this.sprite.play('wizardIdle', true);
+    }
+  }
+      
+    
   attack1() {
     this.setFireDirectionToPlayer();
     if (this.arrows % 2 == 0)
@@ -306,6 +420,43 @@ export default class WizardBoss extends ShootingEnemyParent {
       this.meteorFire(posX, target, velocidad, 1);
     }
 
+  }
+
+
+
+  attack4(){
+    let arrows = 10
+    this.setFireDirectionToPlayer();
+    if (arrows % 2 == 0)
+      this.fireDirection.rotate(2 * Math.PI / arrows * 1 / 2);
+    for (let i = 0; i < arrows; i++) {
+      this.fireDirection.rotate(2 * Math.PI / arrows * Math.floor((i + 1) / 2) * ((-1) ** i));
+      this.fire();
+      this.fireDirection.rotate(-2 * Math.PI / arrows * Math.floor((i + 1) / 2) * ((-1) ** i));
+      this.boo = 0;
+    }
+  }
+
+  attack5(dt) {
+    if (this.meteor.dispCont == 0) {
+      let velocidad = Math.floor(Math.random() * 400 + 75);
+      let posX = Math.floor(Math.random() * 1000 + 100);
+      let target = Math.floor(Math.random() * 500 + 300);
+      this.meteorFire(posX, target, velocidad, 1);
+      this.meteor.projectilesShooted++;
+    }
+    this.meteor.dispCont += dt / 1000;
+    if (this.meteor.dispCont >= this.meteor.projectileTime) {
+      this.meteor.dispCont = 0;
+    }
+  }
+
+  attack6(dt){
+    this.releaseFireColumns(dt);
+  }
+
+  attack7(dt){
+    this.interiorContainer.rotation += dt / 100;
   }
 
   setFireDirectionToPlayer() {
@@ -342,6 +493,9 @@ export default class WizardBoss extends ShootingEnemyParent {
     
     if (phase == 4) {
       this.changingFinalPhase = true;
+      this.secondPhase = true;
+      this.phaseAttacks = this.createRandomizedList(this.secondPhaseAttacks);
+      this.moveU = this.moveUSecondPhase;
     }
     else if (phase == 1) {
       this.attack2Info.projectiles = 6;
@@ -364,10 +518,8 @@ export default class WizardBoss extends ShootingEnemyParent {
       });
     }
     else{
-      this.sprite.play("wizardAttack1");
-      this.scene.time.delayedCall(400, _ => {
-        this.sprite.play("wizardSpell")
-      });
+      this.sprite.play("wizardDie");
+      
     }
 
 
@@ -377,8 +529,23 @@ export default class WizardBoss extends ShootingEnemyParent {
 
 
   changingToFinalPhase(dt){
+
+    if(this.finalFaseCont < 1000 && this.finalFaseCont >= -4500){
+      this.recovering = true;
+      this.sprite.tint = 0x00ff00;
+      if(this.healCont == 0)
+        this.heal();
+      this.healCont += dt
+      if(this.healCont >= 50){
+        this.healCont = 0;
+      }
+    }
     if(!this.teleported){
       if(this.finalFaseCont >= 1000){
+        this.sprite.play("wizardAttack1");
+        this.scene.time.delayedCall(400, _ => this.sprite.play("wizardSpell"))
+        this.sprite.tint = 0xffffff;
+        this.recovering = false;
         this.x = 640;
         this.y = 490;
         this.teleported = true;
@@ -393,10 +560,16 @@ export default class WizardBoss extends ShootingEnemyParent {
       this.sprite.play("wizardFinishSpell");
       this.statusInfo.postPreparingTime = 350;
       this.statusInfo.postPreparing = true;
+      this.fireColumns.projectilesShooted = 0;
     }
     this.finalFaseCont += dt;
   }
 
+
+  heal(){
+    if(this.health <= this.maxHealth)
+      this.health++;
+  }
 
   releaseFireColumns(dt){
     if (this.fireColumns.dispCont == 0) {
@@ -510,6 +683,29 @@ export default class WizardBoss extends ShootingEnemyParent {
   }
 
 
+  extractAttack(){
+    if(this.phaseAttacks.length <= 0){
+      if(this.secondPhase){
+        this.phaseAttacks = this.createRandomizedList(this.secondPhaseAttacks);
+      }
+      else{
+        this.phaseAttacks = this.createRandomizedList(this.firstPhaseAttacks);
+      }
+    }
+    return this.phaseAttacks.pop();
+  }
   
+
+  createRandomizedList(list) {
+    const auxList = list.slice();
+    let randomList = [];
+    while (auxList.length != 0) {
+        let index = Math.floor(Math.random() * auxList.length);
+        randomList.push(auxList[index]);
+        auxList.splice(index, 1);
+    }
+    return randomList;
+}
+
 
 }

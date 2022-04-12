@@ -453,7 +453,7 @@ export default class Boot extends Phaser.Scene {
       key: 'wizardDie',
       frames: this.anims.generateFrameNames('wizardBoss', { start: 0, end: 6, prefix: 'die', suffix: '.png' }),
       frameRate: 10,
-      repeat: -1
+      repeat: 0
     })
     this.anims.create({
       key: 'wizardRun',

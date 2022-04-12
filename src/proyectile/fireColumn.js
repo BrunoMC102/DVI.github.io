@@ -9,7 +9,7 @@ export default class FireColumn extends Phaser.GameObjects.Sprite{
         this.body.allowGravity = false; 
         this.body.setVelocity(initialX, initialY);
         this.body.setAcceleration(0, aceleration);
-        
+        this.time = 30;
         
         this.scale = scale;
         
@@ -17,6 +17,7 @@ export default class FireColumn extends Phaser.GameObjects.Sprite{
         this.rotation = Math.PI/2;
         
         this.play('fireBallAnimation');
+        this.scene.time.delayedCall(this.time*1000, () => this.destroy());
     }
 
     preUpdate(t,dt){
