@@ -4,23 +4,22 @@ import LevelEnd from "../levels/levelsTopDown/levelEnd.js"
 import LevelEnd1 from "../levels/levelsTopDown/levelEnd1.js"
 import LevelEnd2 from "../levels/levelsTopDown/levelEnd2.js"
 import LevelEnd3 from "../levels/levelsTopDown/LevelEnd3.js"
-import LevelPrueba1 from "../levels/levelsTopDown/levelPrueba1.js"
-import LevelPrueba2 from "../levels/levelsTopDown/levelPrueba2.js"
-import LevelTopDown from "../levels/levelsTopDown/levelTopDown.js"
-import LevelTopDown1A from "../levels/levelsTopDown/levelTopDown1A.js"
-import LevelTopDown1C_NE from "../levels/levelsTopDown/levelTopDown1C-NE.js"
-import LevelTopDown1C_NS from "../levels/levelsTopDown/levelTopDown1C-NS.js"
-import LevelTopDown1C_NW from "../levels/levelsTopDown/levelTopDown1C-NW.js"
-import LevelTopDown1C_SE from "../levels/levelsTopDown/levelTopDown1C-SE.js"
-import LevelTopDown1C_SW from "../levels/levelsTopDown/levelTopDown1C-SW.js"
-import LevelTopDown2 from "../levels/levelsTopDown/levelTopDown2.js"
-import LevelTopDown3 from "../levels/levelsTopDown/levelTopDown3.js"
-import LevelTopDown4 from "../levels/levelsTopDown/levelTopDown4.js"
-import LevelTopDown5 from "../levels/levelsTopDown/levelTopDown5.js"
-import LevelTopDownBE from "../levels/levelsTopDown/levelTopDownBE.js"
-import LevelTopDownBN from "../levels/levelsTopDown/levelTopDownBN.js"
-import LevelTopDownBS from "../levels/levelsTopDown/levelTopDownBS.js"
-import LevelTopDownBW from "../levels/levelsTopDown/levelTopDownBW.js"
+import LevelTopDown1A from "../levels/levelsTopDown/Dungeon 1/levelTopDown1A.js"
+import LevelTopDown1B_E from "../levels/levelsTopDown/Dungeon 1/levelTopDown1B-E.js"
+import LevelTopDown1B_N from "../levels/levelsTopDown/Dungeon 1/levelTopDown1B-N.js"
+import LevelTopDown1B_S from "../levels/levelsTopDown/Dungeon 1/levelTopDown1B-S.js"
+import LevelTopDown1B_O from "../levels/levelsTopDown/Dungeon 1/levelTopDown1B-O.js"
+import LevelTopDown1C_NE from "../levels/levelsTopDown/Dungeon 1/levelTopDown1C-NE.js"
+import LevelTopDown1C_NS from "../levels/levelsTopDown/Dungeon 1/levelTopDown1C-NS.js"
+import LevelTopDown1C_NO from "../levels/levelsTopDown/Dungeon 1/levelTopDown1C-NO.js"
+import LevelTopDown1C_SE from "../levels/levelsTopDown/Dungeon 1/levelTopDown1C-ES.js"
+import LevelTopDown1C_SO from "../levels/levelsTopDown/Dungeon 1/levelTopDown1C-SO.js"
+import LevelTopDown1C_EO from "../levels/levelsTopDown/Dungeon 1/levelTopDown1C-EO.js"
+import LevelTopDown1D_E from "../levels/levelsTopDown/Dungeon 1/levelTopDown1D-E.js"
+import LevelTopDown1D_N from "../levels/levelsTopDown/Dungeon 1/levelTopDown1D-N.js"
+import LevelTopDown1D_O from "../levels/levelsTopDown/Dungeon 1/levelTopDown1D-O.js"
+import LevelTopDown1D_S from "../levels/levelsTopDown/Dungeon 1/levelTopDown1D-S.js"
+
 import LevelBig from "../levels/levelsTopDown/levelBig.js"
 import ChestRoomE from "../levels/levelsTopDown/chestRoomE.js"
 import ChestRoomN from "../levels/levelsTopDown/chestRoomN.js"
@@ -32,7 +31,9 @@ export default class SceneManager {
 
 
     constructor() {
-        this.sceneList = [LevelPrueba1, LevelPrueba2, LevelTopDown, LevelTopDown2, LevelTopDown3, LevelTopDown4, LevelTopDown5, LevelTopDown1A, LevelTopDown1C_NE, LevelTopDown1C_NS, LevelTopDown1C_NW, LevelTopDown1C_SE, LevelTopDown1C_SW, LevelTopDownBW, LevelTopDownBS, LevelTopDownBN, LevelTopDownBE, LevelBig];
+        this.sceneList = [LevelTopDown1A, LevelTopDown1C_NE, LevelTopDown1B_E, LevelTopDown1B_N, LevelTopDown1B_O, LevelTopDown1B_S, LevelTopDown1C_NS, LevelTopDown1C_NO, LevelTopDown1C_SE, LevelTopDown1C_SO, LevelTopDown1C_EO, LevelTopDown1D_E, LevelTopDown1D_N, LevelTopDown1D_S, LevelTopDown1D_O, 
+                          
+                          LevelBig];
         this.profundidadMinima = 1;
         this.profundidadMaxima = 3;
 

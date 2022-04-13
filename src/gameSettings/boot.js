@@ -55,18 +55,95 @@ export default class Boot extends Phaser.Scene {
     this.load.image('iceStand', 'standIce.png');
     this.load.image('shadow', 'shadow.png');
 
-
-
     this.load.setPath('assets/json/');
     this.load.tilemapTiledJSON('tilemapJose', 'PruebaScrollJose.json');
-    this.load.tilemapTiledJSON('tilemap1', 'Dungeon1.json');
-    this.load.tilemapTiledJSON('tilemap1-4_Doors', 'Dungeon1-4_Doors.json');
-    this.load.tilemapTiledJSON('tilemap2', 'Dungeon2.json');
-    this.load.tilemapTiledJSON('tilemap3', 'Dungeon3.json');
-    this.load.tilemapTiledJSON('tilemap4', 'Dungeon4.json');
-    this.load.tilemapTiledJSON('tilemap5', 'Dungeon5.json');
     this.load.tilemapTiledJSON('tilemapBig', 'DungeonBig.json');
     this.load.tilemapTiledJSON('tilemapVillage', 'PruebaPoblado2.json');
+
+    this.load.setPath('assets/json/Dungeon 1');
+    this.load.tilemapTiledJSON('Dungeon1A', 'Dungeon1A.json');
+    this.load.tilemapTiledJSON('Dungeon1B-E', 'Dungeon1B-E.json');
+    this.load.tilemapTiledJSON('Dungeon1B-N', 'Dungeon1B-N.json');
+    this.load.tilemapTiledJSON('Dungeon1B-O', 'Dungeon1B-O.json');
+    this.load.tilemapTiledJSON('Dungeon1B-S', 'Dungeon1B-S.json');
+    this.load.tilemapTiledJSON('Dungeon1C-EO', 'Dungeon1C-EO.json');
+    this.load.tilemapTiledJSON('Dungeon1C-ES', 'Dungeon1C-ES.json');
+    this.load.tilemapTiledJSON('Dungeon1C-NE', 'Dungeon1C-NE.json');
+    this.load.tilemapTiledJSON('Dungeon1C-NO', 'Dungeon1C-NO.json');
+    this.load.tilemapTiledJSON('Dungeon1C-NS', 'Dungeon1C-NS.json');
+    this.load.tilemapTiledJSON('Dungeon1C-SO', 'Dungeon1C-SO.json');
+    this.load.tilemapTiledJSON('Dungeon1D-E', 'Dungeon1D-E.json');
+    this.load.tilemapTiledJSON('Dungeon1D-N', 'Dungeon1D-N.json');
+    this.load.tilemapTiledJSON('Dungeon1D-O', 'Dungeon1D-O.json');
+    this.load.tilemapTiledJSON('Dungeon1D-S', 'Dungeon1D-S.json');
+
+    this.load.setPath('assets/json/Dungeon 2');
+    this.load.tilemapTiledJSON('Dungeon2A', 'Dungeon2A.json');
+    this.load.tilemapTiledJSON('Dungeon2B-E', 'Dungeon2B-E.json');
+    this.load.tilemapTiledJSON('Dungeon2B-N', 'Dungeon2B-N.json');
+    this.load.tilemapTiledJSON('Dungeon2B-O', 'Dungeon2B-O.json');
+    this.load.tilemapTiledJSON('Dungeon2B-S', 'Dungeon2B-S.json');
+    this.load.tilemapTiledJSON('Dungeon2C-EO', 'Dungeon2C-EO.json');
+    this.load.tilemapTiledJSON('Dungeon2C-ES', 'Dungeon2C-ES.json');
+    this.load.tilemapTiledJSON('Dungeon2C-NE', 'Dungeon2C-NE.json');
+    this.load.tilemapTiledJSON('Dungeon2C-NO', 'Dungeon2C-NO.json');
+    this.load.tilemapTiledJSON('Dungeon2C-NS', 'Dungeon2C-NS.json');
+    this.load.tilemapTiledJSON('Dungeon2C-SO', 'Dungeon2C-SO.json');
+    this.load.tilemapTiledJSON('Dungeon2D-E', 'Dungeon2D-E.json');
+    this.load.tilemapTiledJSON('Dungeon2D-N', 'Dungeon2D-N.json');
+    this.load.tilemapTiledJSON('Dungeon2D-O', 'Dungeon2D-O.json');
+    this.load.tilemapTiledJSON('Dungeon2D-S', 'Dungeon2D-S.json');
+
+    this.load.setPath('assets/json/Dungeon 3');
+    this.load.tilemapTiledJSON('Dungeon3A', 'Dungeon3A.json');
+    this.load.tilemapTiledJSON('Dungeon3B-E', 'Dungeon3B-E.json');
+    this.load.tilemapTiledJSON('Dungeon3B-N', 'Dungeon3B-N.json');
+    this.load.tilemapTiledJSON('Dungeon3B-O', 'Dungeon3B-O.json');
+    this.load.tilemapTiledJSON('Dungeon3B-S', 'Dungeon3B-S.json');
+    this.load.tilemapTiledJSON('Dungeon3C-EO', 'Dungeon3C-EO.json');
+    this.load.tilemapTiledJSON('Dungeon3C-ES', 'Dungeon3C-ES.json');
+    this.load.tilemapTiledJSON('Dungeon3C-NE', 'Dungeon3C-NE.json');
+    this.load.tilemapTiledJSON('Dungeon3C-NO', 'Dungeon3C-NO.json');
+    this.load.tilemapTiledJSON('Dungeon3C-NS', 'Dungeon3C-NS.json');
+    this.load.tilemapTiledJSON('Dungeon3C-SO', 'Dungeon3C-SO.json');
+    this.load.tilemapTiledJSON('Dungeon3D-E', 'Dungeon3D-E.json');
+    this.load.tilemapTiledJSON('Dungeon3D-N', 'Dungeon3D-N.json');
+    this.load.tilemapTiledJSON('Dungeon3D-O', 'Dungeon3D-O.json');
+    this.load.tilemapTiledJSON('Dungeon3D-S', 'Dungeon3D-S.json');
+
+    this.load.setPath('assets/json/Dungeon 4');
+    this.load.tilemapTiledJSON('Dungeon4A', 'Dungeon4A.json');
+    this.load.tilemapTiledJSON('Dungeon4B-E', 'Dungeon4B-E.json');
+    this.load.tilemapTiledJSON('Dungeon4B-N', 'Dungeon4B-N.json');
+    this.load.tilemapTiledJSON('Dungeon4B-O', 'Dungeon4B-O.json');
+    this.load.tilemapTiledJSON('Dungeon4B-S', 'Dungeon4B-S.json');
+    this.load.tilemapTiledJSON('Dungeon4C-EO', 'Dungeon4C-EO.json');
+    this.load.tilemapTiledJSON('Dungeon4C-ES', 'Dungeon4C-ES.json');
+    this.load.tilemapTiledJSON('Dungeon4C-NE', 'Dungeon4C-NE.json');
+    this.load.tilemapTiledJSON('Dungeon4C-NO', 'Dungeon4C-NO.json');
+    this.load.tilemapTiledJSON('Dungeon4C-NS', 'Dungeon4C-NS.json');
+    this.load.tilemapTiledJSON('Dungeon4C-SO', 'Dungeon4C-SO.json');
+    this.load.tilemapTiledJSON('Dungeon4D-E', 'Dungeon4D-E.json');
+    this.load.tilemapTiledJSON('Dungeon4D-N', 'Dungeon4D-N.json');
+    this.load.tilemapTiledJSON('Dungeon4D-O', 'Dungeon4D-O.json');
+    this.load.tilemapTiledJSON('Dungeon4D-S', 'Dungeon4D-S.json');
+
+    this.load.setPath('assets/json/Dungeon 5');
+    this.load.tilemapTiledJSON('Dungeon5A', 'Dungeon5A.json');
+    this.load.tilemapTiledJSON('Dungeon5B-E', 'Dungeon5B-E.json');
+    this.load.tilemapTiledJSON('Dungeon5B-N', 'Dungeon5B-N.json');
+    this.load.tilemapTiledJSON('Dungeon5B-O', 'Dungeon5B-O.json');
+    this.load.tilemapTiledJSON('Dungeon5B-S', 'Dungeon5B-S.json');
+    this.load.tilemapTiledJSON('Dungeon5C-EO', 'Dungeon5C-EO.json');
+    this.load.tilemapTiledJSON('Dungeon5C-ES', 'Dungeon5C-ES.json');
+    this.load.tilemapTiledJSON('Dungeon5C-NE', 'Dungeon5C-NE.json');
+    this.load.tilemapTiledJSON('Dungeon5C-NO', 'Dungeon5C-NO.json');
+    this.load.tilemapTiledJSON('Dungeon5C-NS', 'Dungeon5C-NS.json');
+    this.load.tilemapTiledJSON('Dungeon5C-SO', 'Dungeon5C-SO.json');
+    this.load.tilemapTiledJSON('Dungeon5D-E', 'Dungeon5D-E.json');
+    this.load.tilemapTiledJSON('Dungeon5D-N', 'Dungeon5D-N.json');
+    this.load.tilemapTiledJSON('Dungeon5D-O', 'Dungeon5D-O.json');
+    this.load.tilemapTiledJSON('Dungeon5D-S', 'Dungeon5D-S.json');
 
     this.load.setPath('assets/atlas/');
     //knight
