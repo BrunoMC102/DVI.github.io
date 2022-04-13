@@ -53,6 +53,38 @@ import LevelTopDown3D_N from "../levels/levelsTopDown/Dungeon 3/levelTopDown3D-N
 import LevelTopDown3D_O from "../levels/levelsTopDown/Dungeon 3/levelTopDown3D-O.js"
 import LevelTopDown3D_S from "../levels/levelsTopDown/Dungeon 3/levelTopDown3D-S.js"
 
+import LevelTopDown4A from "../levels/levelsTopDown/Dungeon 4/levelTopDown4A.js"
+import LevelTopDown4B_E from "../levels/levelsTopDown/Dungeon 4/levelTopDown4B-E.js"
+import LevelTopDown4B_N from "../levels/levelsTopDown/Dungeon 4/levelTopDown4B-N.js"
+import LevelTopDown4B_S from "../levels/levelsTopDown/Dungeon 4/levelTopDown4B-S.js"
+import LevelTopDown4B_O from "../levels/levelsTopDown/Dungeon 4/levelTopDown4B-O.js"
+import LevelTopDown4C_NE from "../levels/levelsTopDown/Dungeon 4/levelTopDown4C-NE.js"
+import LevelTopDown4C_NS from "../levels/levelsTopDown/Dungeon 4/levelTopDown4C-NS.js"
+import LevelTopDown4C_NO from "../levels/levelsTopDown/Dungeon 4/levelTopDown4C-NO.js"
+import LevelTopDown4C_SE from "../levels/levelsTopDown/Dungeon 4/levelTopDown4C-ES.js"
+import LevelTopDown4C_SO from "../levels/levelsTopDown/Dungeon 4/levelTopDown4C-SO.js"
+import LevelTopDown4C_EO from "../levels/levelsTopDown/Dungeon 4/levelTopDown4C-EO.js"
+import LevelTopDown4D_E from "../levels/levelsTopDown/Dungeon 4/levelTopDown4D-E.js"
+import LevelTopDown4D_N from "../levels/levelsTopDown/Dungeon 4/levelTopDown4D-N.js"
+import LevelTopDown4D_O from "../levels/levelsTopDown/Dungeon 4/levelTopDown4D-O.js"
+import LevelTopDown4D_S from "../levels/levelsTopDown/Dungeon 4/levelTopDown4D-S.js"
+
+import LevelTopDown5A from "../levels/levelsTopDown/Dungeon 5/levelTopDown5A.js"
+import LevelTopDown5B_E from "../levels/levelsTopDown/Dungeon 5/levelTopDown5B-E.js"
+import LevelTopDown5B_N from "../levels/levelsTopDown/Dungeon 5/levelTopDown5B-N.js"
+import LevelTopDown5B_S from "../levels/levelsTopDown/Dungeon 5/levelTopDown5B-S.js"
+import LevelTopDown5B_O from "../levels/levelsTopDown/Dungeon 5/levelTopDown5B-O.js"
+import LevelTopDown5C_NE from "../levels/levelsTopDown/Dungeon 5/levelTopDown5C-NE.js"
+import LevelTopDown5C_NS from "../levels/levelsTopDown/Dungeon 5/levelTopDown5C-NS.js"
+import LevelTopDown5C_NO from "../levels/levelsTopDown/Dungeon 5/levelTopDown5C-NO.js"
+import LevelTopDown5C_SE from "../levels/levelsTopDown/Dungeon 5/levelTopDown5C-ES.js"
+import LevelTopDown5C_SO from "../levels/levelsTopDown/Dungeon 5/levelTopDown5C-SO.js"
+import LevelTopDown5C_EO from "../levels/levelsTopDown/Dungeon 5/levelTopDown5C-EO.js"
+import LevelTopDown5D_E from "../levels/levelsTopDown/Dungeon 5/levelTopDown5D-E.js"
+import LevelTopDown5D_N from "../levels/levelsTopDown/Dungeon 5/levelTopDown5D-N.js"
+import LevelTopDown5D_O from "../levels/levelsTopDown/Dungeon 5/levelTopDown5D-O.js"
+import LevelTopDown5D_S from "../levels/levelsTopDown/Dungeon 5/levelTopDown5D-S.js"
+
 import LevelBig from "../levels/levelsTopDown/levelBig.js"
 import ChestRoomE from "../levels/levelsTopDown/chestRoomE.js"
 import ChestRoomN from "../levels/levelsTopDown/chestRoomN.js"
@@ -64,14 +96,21 @@ export default class SceneManager {
 
 
     constructor() {
-        this.sceneList = [LevelTopDown1A, LevelTopDown1C_NE, LevelTopDown1B_E, LevelTopDown1B_N, LevelTopDown1B_O, LevelTopDown1B_S, LevelTopDown1C_NS, LevelTopDown1C_NO, LevelTopDown1C_SE, LevelTopDown1C_SO, LevelTopDown1C_EO, LevelTopDown1D_E, LevelTopDown1D_N, LevelTopDown1D_S, LevelTopDown1D_O, 
-                          LevelTopDown2A, LevelTopDown2C_NE, LevelTopDown2B_E, LevelTopDown2B_N, LevelTopDown2B_O, LevelTopDown2B_S, LevelTopDown2C_NS, LevelTopDown2C_NO, LevelTopDown2C_SE, LevelTopDown2C_SO, LevelTopDown2C_EO, LevelTopDown2D_E, LevelTopDown2D_N, LevelTopDown2D_S, LevelTopDown2D_O, 
-                          LevelTopDown3A, LevelTopDown3C_NE, LevelTopDown3B_E, LevelTopDown3B_N, LevelTopDown3B_O, LevelTopDown3B_S, LevelTopDown3C_NS, LevelTopDown3C_NO, LevelTopDown3C_SE, LevelTopDown3C_SO, LevelTopDown3C_EO, LevelTopDown3D_E, LevelTopDown3D_N, LevelTopDown3D_S, LevelTopDown3D_O, 
+        this.sceneList = [LevelTopDown1A, LevelTopDown1C_NE, LevelTopDown1B_E, LevelTopDown1B_N, LevelTopDown1B_O, LevelTopDown1B_S, LevelTopDown1C_NS, LevelTopDown1C_NO, LevelTopDown1C_SE, LevelTopDown1C_SO, LevelTopDown1C_EO, 
+                          LevelTopDown2A, LevelTopDown2C_NE, LevelTopDown2B_E, LevelTopDown2B_N, LevelTopDown2B_O, LevelTopDown2B_S, LevelTopDown2C_NS, LevelTopDown2C_NO, LevelTopDown2C_SE, LevelTopDown2C_SO, LevelTopDown2C_EO, 
+                          LevelTopDown3A, LevelTopDown3C_NE, LevelTopDown3B_E, LevelTopDown3B_N, LevelTopDown3B_O, LevelTopDown3B_S, LevelTopDown3C_NS, LevelTopDown3C_NO, LevelTopDown3C_SE, LevelTopDown3C_SO, LevelTopDown3C_EO, 
+                          LevelTopDown4A, LevelTopDown4C_NE, LevelTopDown4B_E, LevelTopDown4B_N, LevelTopDown4B_O, LevelTopDown4B_S, LevelTopDown4C_NS, LevelTopDown4C_NO, LevelTopDown4C_SE, LevelTopDown4C_SO, LevelTopDown4C_EO, 
+                          LevelTopDown5A, LevelTopDown5C_NE, LevelTopDown5B_E, LevelTopDown5B_N, LevelTopDown5B_O, LevelTopDown5B_S, LevelTopDown5C_NS, LevelTopDown5C_NO, LevelTopDown5C_SE, LevelTopDown5C_SO, LevelTopDown5C_EO, 
                           LevelBig];
         this.profundidadMinima = 1;
         this.profundidadMaxima = 3;
 
-        this.endSceneList = [LevelEnd, LevelEnd2, LevelEnd1, LevelEnd3];
+        this.endSceneList = [LevelTopDown1D_E, LevelTopDown1D_N, LevelTopDown1D_S, LevelTopDown1D_O,
+                             LevelTopDown2D_E, LevelTopDown2D_N, LevelTopDown2D_S, LevelTopDown2D_O, 
+                             LevelTopDown3D_E, LevelTopDown3D_N, LevelTopDown3D_S, LevelTopDown3D_O, 
+                             LevelTopDown4D_E, LevelTopDown4D_N, LevelTopDown4D_S, LevelTopDown4D_O, 
+                             LevelTopDown5D_E, LevelTopDown5D_N, LevelTopDown5D_S, LevelTopDown5D_O, 
+        ];
         this.chestLevelList = [ChestRoomE, ChestRoomN, ChestRoomS, ChestRoomW];
         this.levelCont = 0;
     }
