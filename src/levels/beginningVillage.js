@@ -176,17 +176,7 @@ export default class BeginningVillage extends Phaser.Scene {
     else stringmonedas = "monedas";
     this.shopDialog.setText('Quieres comprar '+stringobjeto+ '\npor el valor de ' +objetoPrecio+ ' '+ stringmonedas);
 
-    if (Phaser.Input.Keyboard.JustDown(this.yesKey)) { 
-      if(this.player.playerData.money >= objetoPrecio){
-      this.spentMoney(objeto,objetoPrecio);
-      }else {
-        this.infoText.setText('No tienes suficiente dinero\n vuelve más tarde caballero');
-      }
-    }
-    if (Phaser.Input.Keyboard.JustDown(this.noKey)) {
-      this.closeShop();
     
-    }
 
     
 
@@ -247,7 +237,26 @@ export default class BeginningVillage extends Phaser.Scene {
         this.dialog.visible = false;
       }
       if(this.physics.overlap(this.player, this.itemsZones[0])){
-        this.createBoxShop(0)
+        if(!this.created && Phaser.Input.Keyboard.JustDown(this.yesKey)){
+          this.createBoxShop(0);
+          this.created = true;
+          this.player.setBlocked(true);
+        }
+        if(this.created){
+          if (Phaser.Input.Keyboard.JustDown(this.yesKey)) { 
+            if(this.player.playerData.money >= this.itemsPrice[0]){
+            this.spentMoney(this.items[0].name,this.itemsPrice[0]);
+            }else {
+              this.infoText.setText('No tienes suficiente dinero\n vuelve más tarde caballero');
+            }
+          }
+          if (Phaser.Input.Keyboard.JustDown(this.noKey)) {
+            this.closeShop();
+            this.created = false;
+            this.player.setBlocked(false);
+          }
+        }
+
       }
       else if(this.physics.overlap(this.player, this.itemsZones[1])){
         this.createBoxShop(1);
@@ -257,6 +266,7 @@ export default class BeginningVillage extends Phaser.Scene {
 
       }else {
         this.closeShop();
+        this.created = false;
       }
 
    

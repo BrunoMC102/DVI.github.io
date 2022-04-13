@@ -117,6 +117,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
     //Variables generales
     this.isDead = false;
+    this.blocked = false;
 
     //Audio
     this.swordAudio = this.scene.sound.add("slide");
@@ -128,7 +129,19 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   }
 
 
+  setBlocked(cond){
+    this.body.setVelocity(0,0);
+    this.blocked = cond;
+  }
+
+  
+
   preUpdate(t, dt) {
+
+    if(this.blocked){
+      this.updateUi();
+      return;
+    } 
 
     if (!this.dashing) {
       this.controls.movementcontrol();

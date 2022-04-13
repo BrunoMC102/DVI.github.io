@@ -72,7 +72,7 @@ export default class WizardBoss extends ShootingEnemyParent {
     this.healthBar = new WizardBossHealth(this.scene,300,850);
     this.movingFireCont = 0;
     this.firstPhaseAttacks = [1,2,3];
-    this.secondPhaseAttacks = [2,4,5,6, 7];
+    this.secondPhaseAttacks = [2,4,5,6,7];
     this.phaseAttacks = [];
   }
 
@@ -426,7 +426,6 @@ export default class WizardBoss extends ShootingEnemyParent {
   }
 
 
-
   attack4(){
     let arrows = 10
     this.setFireDirectionToPlayer();
@@ -462,6 +461,7 @@ export default class WizardBoss extends ShootingEnemyParent {
     this.interiorContainer.rotation += dt / 100;
     this.fireBalls.forEach(e=>e.moveLocation(70));
   }
+
 
   setFireDirectionToPlayer() {
     this.fireDirection.x = this.player.x - this.centerX();
