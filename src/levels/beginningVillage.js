@@ -162,9 +162,12 @@ export default class BeginningVillage extends Phaser.Scene {
 
   }
 
-  createBoxShop(i){
+  createBoxShop(i,created){
     const objeto = this.items[i].name;
     const objetoPrecio = this.itemsPrice[i];
+    if(!created && Phaser.Input.Keyboard.JustDown(this.eKey)){
+    this.created = true;
+    this.player.setBlocked(true);
     this.openShop();
     let stringobjeto = "";
     let stringmonedas ="";
@@ -176,7 +179,8 @@ export default class BeginningVillage extends Phaser.Scene {
     if(objetoPrecio == 1) stringmonedas = "moneda";
     else stringmonedas = "monedas";
     this.shopDialog.setText('Quieres comprar '+stringobjeto+ '\npor el valor de ' +objetoPrecio+ ' '+ stringmonedas);
-
+    }
+  
     if (Phaser.Input.Keyboard.JustDown(this.yesKey)) { 
       if(this.player.playerData.money >= objetoPrecio){
       this.spentMoney(objeto,objetoPrecio);
@@ -187,9 +191,8 @@ export default class BeginningVillage extends Phaser.Scene {
     }
     if (Phaser.Input.Keyboard.JustDown(this.noKey)) {
       this.closeShop();
-    
-    
-  
+      this.created = false;
+      this.player.setBlocked(false);
     
   }
 
@@ -249,11 +252,14 @@ export default class BeginningVillage extends Phaser.Scene {
 
       
       if(this.physics.overlap(this.player, this.itemsZones[0])){
-        if(!this.created && Phaser.Input.Keyboard.JustDown(this.yesKey)){
+      
           this.createBoxShop(0);
+          
+          /*
           this.created = true;
           this.player.setBlocked(true);
         }
+        /*
         if(this.created){
           if (Phaser.Input.Keyboard.JustDown(this.yesKey)) { 
             if(this.player.playerData.money >= this.itemsPrice[0]){
@@ -267,9 +273,10 @@ export default class BeginningVillage extends Phaser.Scene {
             this.created = false;
             this.player.setBlocked(false);
           }
-        }
-
-      }
+        }*/
+        
+      
+    }
       else if(this.physics.overlap(this.player, this.itemsZones[1])){
         this.createBoxShop(1);
       }
