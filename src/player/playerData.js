@@ -1,13 +1,21 @@
 import ProjectileBar from "./projectileBar.js";
 export default class PlayerData{
     constructor(){
-      this.speed = 300;
-      this.vSpeed = 300;
-      this.jumpSpeed = -400;
+      this.speed = 500;
       this.health = 6;
       this.damage = 5;
       
+<<<<<<< Updated upstream
       this.money = 5; // dinero del jugador
+=======
+      // datos para el scroll lateral
+      // Aceleraciones vertical y horizontal 
+      this.vAcc = -1800;
+      this.hAcc = 2000;
+
+
+      this.money = 0; // dinero del jugador
+>>>>>>> Stashed changes
       this.healthPotions = 50; // pociones de vida
       this.manaPotions = 50; // pociones de mana
       this.mana = 0;

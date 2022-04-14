@@ -58,16 +58,16 @@ export default class LevelScroll extends Phaser.Scene {
   update() {
     //Esto es mejor porque solo revisa si se encuentra en la hitbox
     if (this.physics.overlap(this.player, this.sceneChange[0])) {
-      this.scene.start('levelTopDown', {coordinates: {x: 100, y: 500},playerData:this.playerData});
+      //this.scene.start('levelTopDown', {coordinates: {x: 100, y: 500},playerData:this.playerData});
     }
     if (this.physics.overlap(this.player, this.sceneChange[1])) {
-      this.scene.start('levelTopDown2', {coordinates: {x: 100, y: 500},playerData:this.playerData});
+      //this.scene.start('levelTopDown2', {coordinates: {x: 100, y: 500},playerData:this.playerData});
     }
     if (this.physics.overlap(this.player, this.sceneChange[2])) {
-      this.scene.start('beginningVillage', {coordinates: {x: 100, y: 500},playerData:this.playerData});
+      //this.scene.start('beginningVillage', {coordinates: {x: 100, y: 500},playerData:this.playerData});
     }
     if (this.physics.overlap(this.player, this.sceneChange[3])) {
-      this.scene.start('levelTopDown4', {coordinates: {x: 100, y: 500}, playerData:this.playerData});
+      //this.scene.start('levelTopDown4', {coordinates: {x: 100, y: 500}, playerData:this.playerData});
     }
   
   }
