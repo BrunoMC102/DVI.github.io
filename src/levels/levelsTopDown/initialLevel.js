@@ -14,9 +14,9 @@ export default class InitialLevel extends LevelParent {
         });
     }
 
-    createEnemies(){
+    /*createEnemies(){
         return [new WizardBoss(this, this.player, 500, 500)];
-    }
+    }*/
    
     init(data){
         super.init(data);

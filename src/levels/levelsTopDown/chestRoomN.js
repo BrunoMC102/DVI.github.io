@@ -24,7 +24,7 @@ export default class ChestRoomN extends LevelParent {
         return []
     }
     setTileSet() {
-        const map = this.make.tilemap({ key: 'tilemap1-4_Doors', tileWidth: 64, tileHeight: 64 });
+        const map = this.make.tilemap({ key: 'Dungeon1A', tileWidth: 64, tileHeight: 64 });
         const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
         this.groundLayer = map.createLayer('Ground', tileset);
         this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
