@@ -115,15 +115,14 @@ export default class BeginningVillage extends Phaser.Scene {
     this.dialog = this.add.bitmapText(10,700 ,'atari', 'HELLO THERE LITTLE KNIGHT',16)
     .setFontSize(48)
      .setDepth(8).setScrollFactor(0); 
-
+     this.dialog.visible = false;
      this.createShop();
   }
 
   createShop(){
 
     this.bgshop = this.add.rectangle(0,960,this.scale.width*2,600,"0x914f1d").setScrollFactor(0).setDepth(6);
-    this.bgshop.visible = false;
-     this.dialog.visible = false;
+    
      this.shopDialog = this.add.bitmapText(10, 700,'atari','',16)
     .setFontSize(48) 
      .setDepth(8).setScrollFactor(0);
@@ -137,8 +136,10 @@ export default class BeginningVillage extends Phaser.Scene {
     this.infoText = this.add.bitmapText(10,850,'atari', 'Pulsa Y si quieres comprarlo o N para salir',16)
      .setFontSize(48)
       .setDepth(8).setScrollFactor(0);
+      this.closeShop();
       this.yesKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Y);
       this.noKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
+      this.eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 
 
     this.items = [];
@@ -176,12 +177,21 @@ export default class BeginningVillage extends Phaser.Scene {
     else stringmonedas = "monedas";
     this.shopDialog.setText('Quieres comprar '+stringobjeto+ '\npor el valor de ' +objetoPrecio+ ' '+ stringmonedas);
 
+    if (Phaser.Input.Keyboard.JustDown(this.yesKey)) { 
+      if(this.player.playerData.money >= objetoPrecio){
+      this.spentMoney(objeto,objetoPrecio);
+      }else {
+        this.infoText.setText('No tienes suficiente dinero\n vuelve más tarde caballero');
+      }
+      
+    }
+    if (Phaser.Input.Keyboard.JustDown(this.noKey)) {
+      this.closeShop();
     
-
-    
-
     
   
+    
+  }
 
   }
 
@@ -236,6 +246,8 @@ export default class BeginningVillage extends Phaser.Scene {
         this.bg.visible = false;
         this.dialog.visible = false;
       }
+
+      
       if(this.physics.overlap(this.player, this.itemsZones[0])){
         if(!this.created && Phaser.Input.Keyboard.JustDown(this.yesKey)){
           this.createBoxShop(0);
