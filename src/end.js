@@ -12,7 +12,7 @@ export default class End extends Phaser.Scene {
   
   init(data) {
     this.coordinates = data.coordinates;
-    data.playerData.health = 6;
+    data.playerData.health = data.playerData.maxhealth;
     this.playerData = data.playerData;
     
   }

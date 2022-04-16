@@ -3,6 +3,7 @@ export default class PlayerData{
     constructor(){
       this.speed = 500;
       this.health = 6;
+      this.maxhealth = 6;
       this.damage = 5;
       
       this.money = 5; // dinero del jugador

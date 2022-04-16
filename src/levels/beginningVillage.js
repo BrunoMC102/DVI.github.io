@@ -174,7 +174,7 @@ export default class BeginningVillage extends Phaser.Scene {
     switch(objeto){
       case 'pocionVida': stringobjeto = "una Poción de vida";break;
       case 'pocionMana': stringobjeto = "una Poción de maná"; break;
-      case 'vida': stringobjeto = "un corazón de vida";break;
+      case 'vida': stringobjeto = "un corazón de vida para \naumentar la vida máxima";break;
     }
     if(objetoPrecio == 1) stringmonedas = "moneda";
     else stringmonedas = "monedas";
@@ -203,7 +203,7 @@ export default class BeginningVillage extends Phaser.Scene {
     switch(objeto){
       case 'pocionVida': this.player.playerData.healthPotions++;break;
       case 'pocionMana': this.player.playerData.manaPotions++;break;
-      case 'vida': this.player.playerData.health++;break;
+      case 'vida': this.player.playerData.maxhealth++;break;
     }
 
   } 
@@ -238,7 +238,7 @@ export default class BeginningVillage extends Phaser.Scene {
           newScenes.forEach(e=>{
             this.scene.manager.add(e.levelkey, e);
           })
-          this.scene.start('initialLevel', {coordinates: {x: 500, y: 500},playerData: new PlayerData(), powerUpList: new PasivePowerUpList()});
+          this.scene.start('initialLevel', {coordinates: {x: 500, y: 500},playerData: this.playerData, powerUpList: new PasivePowerUpList()});
         });
       }
 

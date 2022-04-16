@@ -59,7 +59,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
     //Creacion Informacion del jugador por pantalla
     this.array_hearts = [];
-    this.separation = 0;
+    this.array_emptyhearts = []
+    this.separationhearts = 0;
+    this.separationemptyhearts = 0;
     this.createUiBar();
     //Barra mana
 
@@ -195,9 +197,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
   //Metodos UI
   createUiBar() {
+    for (let i = 0; i < this.playerData.maxhealth; i++) {
+      this.array_emptyhearts[i] = this.scene.add.sprite(20 + this.separationemptyhearts, 20, 'emptyHeart').setScrollFactor(0).setDepth(3);
+      this.separationemptyhearts += 30;
+    }
     for (let i = 0; i < this.playerData.health; i++) {
-      this.array_hearts[i] = this.scene.add.sprite(20 + this.separation, 20, 'vida').setScrollFactor(0).setDepth(4);
-      this.separation += 30;
+      this.array_hearts[i] = this.scene.add.sprite(20 + this.separationhearts, 20, 'vida').setScrollFactor(0).setDepth(4);
+      this.separationhearts += 30;
     }
 
     this.manaBar = new ManaBar(this.scene, 105, 50);
@@ -225,18 +231,32 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         this.scene.m.minimapCam.ignore(e);
       })
       this.array_hearts.forEach(e => this.scene.m.minimapCam.ignore(e));
+      this.array_emptyhearts.forEach(e => this.scene.m.minimapCam.ignore(e));
     }
   }
 
   updateUi() {
     const j = this.array_hearts.length;
+    const m = this.array_emptyhearts.length;
+    if (this.playerData.maxhealth != m) {
+      if (this.playerData.maxhealth > m) {
+
+        for (let i = m; i < this.playerData.maxhealth; i++) {
+          this.array_emptyhearts[i] = this.scene.add.sprite(20 + this.separationemptyhearts, 20, 'emptyHeart').setScrollFactor(0).setDepth(3);
+          this.separationemptyhearts += 30;
+          if (this.scene.m != undefined) {
+            this.scene.m.minimapCam.ignore(this.array_emptyhearts[i]);
+          }
+        }
+      }
+    }
 
     if (this.playerData.health != j) {
       if (this.playerData.health > j) {
 
         for (let i = j; i < this.playerData.health; i++) {
-          this.array_hearts[i] = this.scene.add.sprite(20 + this.separation, 20, 'vida').setScrollFactor(0).setDepth(4);
-          this.separation += 30;
+          this.array_hearts[i] = this.scene.add.sprite(20 + this.separationhearts, 20, 'vida').setScrollFactor(0).setDepth(4);
+          this.separationhearts += 30;
           if (this.scene.m != undefined) {
             this.scene.m.minimapCam.ignore(this.array_hearts[i]);
           }
@@ -246,7 +266,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         for (let i = j; i > this.playerData.health; i--) {
           this.array_hearts[i - 1].destroy();
           this.array_hearts.pop();
-          this.separation -= 30;
+          this.separationhearts -= 30;
         }
       }
     }
@@ -326,7 +346,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   }
 
   useHealthPotions() {
-    if (this.playerData.healthPotions > 0) {
+    if (this.playerData.healthPotions > 0 && this.playerData.health < this.playerData.maxhealth) {
       this.healthPotionAudio.play();
       this.playerData.healthPotions--;
       this.playerData.health++;

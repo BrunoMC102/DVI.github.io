@@ -7,6 +7,7 @@ export default class Health extends PowerUp{
     }
     
     givePower(){
+        if(this.player.playerData.health < this.player.playerData.maxhealth) // Comentar lo de los black hearts o shield heart
         this.player.playerData.health++;
     }
 }

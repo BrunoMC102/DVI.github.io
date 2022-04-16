@@ -68,8 +68,7 @@ import PlayerData from "./player/playerData.js";
         this.optionsButton.on("pointerup", () =>{
            //  this.scale.scaleMode = Phaser.Scale.FIT
       this.scale.toggleFullscreen()
-     //
-       this.scale.width=this.scale.max
+     
         })
 
         
