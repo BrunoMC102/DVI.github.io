@@ -29,4 +29,11 @@ export default class Chest extends Phaser.GameObjects.Sprite{
         const a = this.scene.powerUpList.extractPowerUp();
         new a(this.scene, this.player, this.x, this.y-30);
     }
+
+    giveShopItem(){
+        this.open = true;
+        this.play('openChest')
+        const a = this.scene.powerUpList.extractPowerUp();
+        return new a(this.scene, this.player, this.x, this.y-30);
+    }
 }

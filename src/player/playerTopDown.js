@@ -432,7 +432,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
   givePasivoPowerUp(texture, titleString) {
     this.upgradeAudio.play();
-    const objectPicked = new Phaser.GameObjects.Image(this.scene, 0, -50, texture).setScrollFactor(0);
+    const objectPicked = new Phaser.GameObjects.Image(this.scene, 0, -50, texture);
     const background = new Phaser.GameObjects.Image(this.scene, this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, 'emptySign').setScrollFactor(0);
     background.scaleX = 2.5;
     this.scene.add.existing(background);
