@@ -1,6 +1,7 @@
 /**
  * Escena de parar el juego. Cuando el personaje le de al boton de parar 
  */
+import PasivePowerUpList from "./objetos_recogibles/pasivos/pasivePowerUpList.js";
 import PlayerData from "./player/playerData.js";
  export default class MainMenu extends Phaser.Scene {
     /**
@@ -50,7 +51,7 @@ import PlayerData from "./player/playerData.js";
         })
         this.playButton.on("pointerup", () =>{
           this.sound.stopAll();
-          this.scene.start(this.scene.start('beginningVillage', {coordinates: {x: 1312, y: 2708}, playerData: new PlayerData()}));
+          this.scene.start(this.scene.start('beginningVillage', {coordinates: {x: 1312, y: 2708}, playerData: new PlayerData(),powerUpList: new PasivePowerUpList()}));
         })
 
         this.optionsButton.on("pointerover", () =>{

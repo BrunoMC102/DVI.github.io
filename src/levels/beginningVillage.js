@@ -1,4 +1,5 @@
 import SceneManager from '../managers/sceneManager.js';
+import Chest from '../objetos_recogibles/chest.js';
 import PasivePowerUpList from '../objetos_recogibles/pasivos/pasivePowerUpList.js';
 import Player from '../player/player.js';
 import PlayerData from '../player/playerData.js';
@@ -26,6 +27,14 @@ const itemsData = [
   price: 1,
   x:4000,
   y: 1555
+},
+{
+  name: 'chestUnopened',
+  object: 'chest',
+  timesPurchased:1,
+  price: 5,
+  x:3485,
+  y: 1555
 }
 ]
 
@@ -40,6 +49,7 @@ export default class BeginningVillage extends Phaser.Scene {
   init(data) {
     this.coordinates = data.coordinates;
     this.playerData = data.playerData;
+    this.powerUpList = data.powerUpList;
   }
 
   /**
@@ -141,7 +151,6 @@ export default class BeginningVillage extends Phaser.Scene {
       this.noKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
       this.eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 
-
     this.items = [];
     this.itemsPrice= [];
     this.itemsZones=[];
@@ -149,9 +158,16 @@ export default class BeginningVillage extends Phaser.Scene {
     
 
     itemsData.forEach(item => {
-      const {x,y,name,price} = item;
+      const {x,y,name,object,timesPurchased,price} = item;
+      if(object == undefined){
         this.items[i]= this.physics.add.staticImage(x,y,name);
+      }else {
+        if(object === 'chest'){
+          this.items[i] = new Chest(this,this.player,x,y);
+        }
+      }
         this.items[i].name = name;
+        this.items[i].timesPurchased = timesPurchased;
         this.itemsPrice[i] = price;
         this.itemsZones[i] = this.add.zone(x, y, 50, 150);
         this.physics.world.enable(this.itemsZones[i]);
@@ -163,47 +179,57 @@ export default class BeginningVillage extends Phaser.Scene {
   }
 
   createBoxShop(i,created){
-    const objeto = this.items[i].name;
+    const objeto = this.items[i];
     const objetoPrecio = this.itemsPrice[i];
     if(!created && Phaser.Input.Keyboard.JustDown(this.eKey)){
     this.created = true;
     this.player.setBlocked(true);
     this.openShop();
     let stringobjeto = "";
-    let stringmonedas ="";
-    switch(objeto){
-      case 'pocionVida': stringobjeto = "una Poción de vida";break;
-      case 'pocionMana': stringobjeto = "una Poción de maná"; break;
-      case 'vida': stringobjeto = "un corazón de vida para \naumentar la vida máxima";break;
-    }
+    let stringmonedas="";
+    stringobjeto = this.choseText(objeto);
     if(objetoPrecio == 1) stringmonedas = "moneda";
     else stringmonedas = "monedas";
     this.shopDialog.setText('Quieres comprar '+stringobjeto+ '\npor el valor de ' +objetoPrecio+ ' '+ stringmonedas);
     }
-  
-    if (Phaser.Input.Keyboard.JustDown(this.yesKey)) { 
+    if(created){
+    if (Phaser.Input.Keyboard.JustDown(this.yesKey)) {
+      if(objeto.timesPurchased === undefined || objeto.timesPurchased >0){ 
       if(this.player.playerData.money >= objetoPrecio){
       this.spentMoney(objeto,objetoPrecio);
       }else {
         this.infoText.setText('No tienes suficiente dinero\n vuelve más tarde caballero');
       }
       
-    }
+    }else this.infoText.setText('Ya compraste este objeto caballero\n vuelve más tarde');
+  }
     if (Phaser.Input.Keyboard.JustDown(this.noKey)) {
       this.closeShop();
       this.created = false;
       this.player.setBlocked(false);
-    
+    }
   }
 
+  }
+
+  choseText(objeto){
+    let stringobjeto = "";
+    switch(objeto.name){
+      case 'pocionVida': stringobjeto = "una Poción de vida";break;
+      case 'pocionMana': stringobjeto = "una Poción de maná"; break;
+      case 'vida': stringobjeto = "un corazón de vida para \naumentar la vida máxima";break;
+      case 'chestUnopened': stringobjeto = 'una mejora pasiva aleatoria';break;
+    }
+    return stringobjeto;
   }
 
   spentMoney(objeto,objetoPrecio){
     this.player.playerData.money -= objetoPrecio;
-    switch(objeto){
+    switch(objeto.name){
       case 'pocionVida': this.player.playerData.healthPotions++;break;
       case 'pocionMana': this.player.playerData.manaPotions++;break;
       case 'vida': this.player.playerData.maxhealth++;break;
+      case 'chestUnopened':objeto.giveItem(); objeto.timesPurchased--;break; 
     }
 
   } 
@@ -222,6 +248,7 @@ export default class BeginningVillage extends Phaser.Scene {
     this.noText.visible = false;
     this.infoText.visible = false;
     this.infoText.setText('Pulsa Y si quieres comprarlo o N para salir');
+    this.created=false;
   }
 
 
@@ -238,7 +265,7 @@ export default class BeginningVillage extends Phaser.Scene {
           newScenes.forEach(e=>{
             this.scene.manager.add(e.levelkey, e);
           })
-          this.scene.start('initialLevel', {coordinates: {x: 500, y: 500},playerData: this.playerData, powerUpList: new PasivePowerUpList()});
+          this.scene.start('initialLevel', {coordinates: {x: 500, y: 500},playerData: this.playerData, powerUpList: this.powerUpList});
         });
       }
 
@@ -252,36 +279,17 @@ export default class BeginningVillage extends Phaser.Scene {
 
       
       if(this.physics.overlap(this.player, this.itemsZones[0])){
-      
-          this.createBoxShop(0);
-          
-          /*
-          this.created = true;
-          this.player.setBlocked(true);
-        }
-        /*
-        if(this.created){
-          if (Phaser.Input.Keyboard.JustDown(this.yesKey)) { 
-            if(this.player.playerData.money >= this.itemsPrice[0]){
-            this.spentMoney(this.items[0].name,this.itemsPrice[0]);
-            }else {
-              this.infoText.setText('No tienes suficiente dinero\n vuelve más tarde caballero');
-            }
-          }
-          if (Phaser.Input.Keyboard.JustDown(this.noKey)) {
-            this.closeShop();
-            this.created = false;
-            this.player.setBlocked(false);
-          }
-        }*/
-        
-      
+          this.createBoxShop(0,this.created); 
     }
       else if(this.physics.overlap(this.player, this.itemsZones[1])){
-        this.createBoxShop(1);
+        this.createBoxShop(1,this.created);
       }
       else if(this.physics.overlap(this.player, this.itemsZones[2])){
-        this.createBoxShop(2);
+        this.createBoxShop(2,this.created);
+
+      }
+      else if(this.physics.overlap(this.player, this.itemsZones[3])){
+        this.createBoxShop(3,this.created);
 
       }else {
         this.closeShop();

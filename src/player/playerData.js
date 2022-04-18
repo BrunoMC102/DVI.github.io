@@ -6,7 +6,7 @@ export default class PlayerData{
       this.maxhealth = 6;
       this.damage = 5;
       
-      this.money = 5; // dinero del jugador
+      this.money = 10; // dinero del jugador
       // datos para el scroll lateral
       // Aceleraciones vertical y horizontal 
       this.vAcc = -1800;

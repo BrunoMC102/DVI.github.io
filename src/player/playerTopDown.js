@@ -206,7 +206,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.separationhearts += 30;
     }
 
-    this.manaBar = new ManaBar(this.scene, 105, 50);
+    this.manaBar = new ManaBar(this.scene, 105, 50); // 125 si es la otra barra
 
     this.money_label = this.scene.add.text(45, 85, "x" + this.playerData.money, { fontSize: "22px" }).setScrollFactor(0).setDepth(5);
 
@@ -217,6 +217,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.mPotion_label = this.scene.add.text(80, 140, "x" + this.playerData.manaPotions, { fontSize: "22px" }).setScrollFactor(0).setDepth(5);
 
     this.mana_label = this.scene.add.text(210, 40, '' + this.playerData.mana, { fontSize: "22px" }).setScrollFactor(0).setDepth(4);
+    //this.mana_label = this.scene.add.text(250, 40, '' + this.playerData.mana, { fontSize: "22px" }).setScrollFactor(0).setDepth(4);
+
 
     this.moneySprite = this.scene.add.sprite(40, 85, "monedas").setScrollFactor(0).setDepth(4);
 
@@ -354,10 +356,14 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   }
   useManaPotions() {
     const remainingMana = this.playerData.mana;
-    if (this.playerData.manaPotions > 0 && remainingMana < 100 && remainingMana + 25 <= 100) {
+    if (this.playerData.manaPotions > 0 && remainingMana < 100) {
       this.healthPotionAudio.play();
       this.playerData.manaPotions--;
-      this.playerData.mana += 25;
+      if(remainingMana + 25 <= 100){
+        this.playerData.mana += 25;
+      }else{
+        this.playerData.mana += 100-remainingMana;
+      }
     }
   }
 
@@ -426,12 +432,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
   givePasivoPowerUp(texture, titleString) {
     this.upgradeAudio.play();
-    const objectPicked = new Phaser.GameObjects.Image(this.scene, 0, -50, texture);
-    const background = new Phaser.GameObjects.Image(this.scene, this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, 'emptySign');
+    const objectPicked = new Phaser.GameObjects.Image(this.scene, 0, -50, texture).setScrollFactor(0);
+    const background = new Phaser.GameObjects.Image(this.scene, this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, 'emptySign').setScrollFactor(0);
     background.scaleX = 2.5;
     this.scene.add.existing(background);
     //background.x -= background.width/2
-    const title = this.scene.add.text(this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, titleString, { fontSize: 50 });
+    const title = this.scene.add.text(this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, titleString, { fontSize: 50 }).setScrollFactor(0);
     title.x -= title.width / 2;
     this.scene.tweens.add({
       targets: [title, background],

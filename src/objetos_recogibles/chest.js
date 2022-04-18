@@ -17,6 +17,13 @@ export default class Chest extends Phaser.GameObjects.Sprite{
             });
         
     }
+    giveItem(){
+        if(this.open) return;
+        this.open = true;
+        this.play('openChest')
+        this.scene.time.delayedCall(600, () => {this.spawnPoweUp()})
+    }
+    
 
     spawnPoweUp(){
         const a = this.scene.powerUpList.extractPowerUp();
