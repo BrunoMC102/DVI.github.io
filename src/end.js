@@ -1,3 +1,5 @@
+import PasivePowerUpList from "./objetos_recogibles/pasivos/pasivePowerUpList.js";
+
 /**
  * Escena de fin de juego. Cuando el personaje principal tenga 0 de vida terminara el juego y volverá al principio.
  */
@@ -14,6 +16,7 @@ export default class End extends Phaser.Scene {
     this.coordinates = data.coordinates;
     data.playerData.health = data.playerData.maxhealth;
     this.playerData = data.playerData;
+    
     
   }
 
@@ -42,7 +45,7 @@ export default class End extends Phaser.Scene {
 onEvent(){
     this.input.keyboard.on('keydown', function (event) { 
       this.sound.stopAll();
-      this.scene.start('beginningVillage', {coordinates: {x: 1350, y: 1045}, playerData:this.playerData});
+      this.scene.start('beginningVillage', {coordinates: {x: 1350, y: 1045}, playerData:this.playerData, powerUpList: new PasivePowerUpList()});
     }, this);
   }
 
