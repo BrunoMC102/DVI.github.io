@@ -15,7 +15,7 @@ export default class GoblinKing extends ShootingEnemyParent {
     this.sprite.play("goblinKing_idle", true);
     //this.shootTime = 1;
     this.cont = 1;
-    this.body.pushaable = false;
+    
     this.origDrag = 0.001;
     this.body.setDrag(0.001);
     this.attacking = false;

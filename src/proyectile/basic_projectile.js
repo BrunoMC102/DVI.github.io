@@ -28,7 +28,7 @@ export default class Basic_projectile extends Phaser.GameObjects.Sprite{
         if(this.body.velocity.length() != 0){
             this.setRotation(this.body.velocity.angle());
         }
-        if(this.time_left <= 0) this.destroy();
+        if(this.time_left <= 0) this.dest();
         this.time_left -= dt/1000;
     }
 

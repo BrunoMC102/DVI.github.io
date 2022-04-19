@@ -54,7 +54,7 @@ export default class ShootingEnemyParent extends EnemyParent{
     this.wallCollGroup = this.scene.add.group();
     this.scene.physics.add.collider(this.wallCollGroup, this.scene.wallLayer, (o1,o2) => {
       o1.destroy();
-      });
+    });
 
     this.playerOverlapGroup = this.scene.add.group();
     this.scene.physics.add.overlap(this.playerOverlapGroup, this.player, (o1,o2) => {

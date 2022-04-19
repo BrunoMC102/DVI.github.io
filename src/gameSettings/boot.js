@@ -173,6 +173,9 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('fireColumn', 'fireColumn.png', 'fireColumn.json')
     this.load.atlas('ghostBoss', 'ghostBoss.png', 'ghostBoss.json')
     this.load.atlas('ghostArrow', 'ghostArrow.png', 'ghostArrow.json')
+    this.load.atlas('ghostBall', 'ghostBall.png', 'ghostBall.json')
+  
+
 
 
 
@@ -619,6 +622,12 @@ export default class Boot extends Phaser.Scene {
       key: 'ghostArrow',
       frames: this.anims.generateFrameNames('ghostArrow', { start: 0, end: 29, prefix: '1_' , suffix: '.png' }),
       frameRate: 20,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'ghostBall',
+      frames: this.anims.generateFrameNames('ghostBall', { start: 0, end: 60, suffix: '.png' }),
+      frameRate: 40,
       repeat: -1
     })
   }
