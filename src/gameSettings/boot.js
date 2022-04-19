@@ -171,6 +171,8 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('meteor', 'meteor.png', 'meteor.json')
     this.load.atlas('fireBall', 'fireBall.png', 'fireBall.json')
     this.load.atlas('fireColumn', 'fireColumn.png', 'fireColumn.json')
+    this.load.atlas('ghostBoss', 'ghostBoss.png', 'ghostBoss.json')
+    this.load.atlas('ghostArrow', 'ghostArrow.png', 'ghostArrow.json')
 
 
 
@@ -581,6 +583,43 @@ export default class Boot extends Phaser.Scene {
       frames: this.anims.generateFrameNames('fireColumn', { start: 4, end: 14, prefix: 'fire_column_medium_' , suffix: '.png' }),
       frameRate: 10,
       repeat: 0
+    })
+    this.anims.create({
+      key: 'ghostBossIdle',
+      frames: this.anims.generateFrameNames('ghostBoss', { start: 0, end: 9, prefix: 'idle' , suffix: '.png' }),
+      frameRate: 10,
+      repeat: 0,
+      yoyo: true
+    })
+    this.anims.create({
+      key: 'ghostBossAttack',
+      frames: this.anims.generateFrameNames('ghostBoss', { start: 0, end: 9, prefix: 'attack' , suffix: '.png' }),
+      frameRate: 10,
+      repeat: 0
+    })
+    this.anims.create({
+      key: 'ghostBossDash',
+      frames: this.anims.generateFrameNames('ghostBoss', { start: 0, end: 5, prefix: 'dash' , suffix: '.png' }),
+      frameRate: 10,
+      repeat: 0
+    })
+    this.anims.create({
+      key: 'ghostBossDashCont',
+      frames: this.anims.generateFrameNames('ghostBoss', { start: 4, end: 5, prefix: 'dash' , suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'ghostBossDie',
+      frames: this.anims.generateFrameNames('ghostBoss', { start: 0, end: 9 , suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'ghostArrow',
+      frames: this.anims.generateFrameNames('ghostArrow', { start: 0, end: 29, prefix: '1_' , suffix: '.png' }),
+      frameRate: 20,
+      repeat: -1
     })
   }
 }

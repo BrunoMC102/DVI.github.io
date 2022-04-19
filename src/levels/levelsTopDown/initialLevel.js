@@ -1,3 +1,4 @@
+import GhostBoss from "../../enemies/ghostBoss.js";
 import Minotaur from "../../enemies/minotaur.js";
 import WizardBoss from "../../enemies/wizardBoss.js";
 import Minimap from "../../managers/minimap.js";
@@ -14,9 +15,9 @@ export default class InitialLevel extends LevelParent {
         });
     }
 
-    /*createEnemies(){
-        return [new WizardBoss(this, this.player, 500, 500)];
-    }*/
+    createEnemies(){
+        return [new GhostBoss(this, this.player, 1280, 960, true)];
+    }
    
     init(data){
         super.init(data);
