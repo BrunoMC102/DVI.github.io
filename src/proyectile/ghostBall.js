@@ -17,7 +17,7 @@ export default class GhostBall extends Basic_projectile{
     }
 
     preUpdate(d,dt){
-        super.preUpdate(d,dt);
+       
         if(this.cont >= this.dispTime){
             const direction = new Phaser.Math.Vector2(0,1);
             direction.rotate(Math.random()*Math.PI*2);
@@ -29,6 +29,7 @@ export default class GhostBall extends Basic_projectile{
             this.cont = 0;
         }
         this.cont += dt;
+        super.preUpdate(d,dt);
     }
 
     dest(){

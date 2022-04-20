@@ -7,18 +7,17 @@ export default class GhostBall_2 extends Basic_projectile{
     constructor(scene,x,y,vx,vy,time,damage){
         super(scene,x,y,'flecha',vx,vy,time,damage);
         
-        this.play("ghostBall");
+        this.play("ghostBall_2");
         this.body.setBounce(1,1);
         this.dispTime = 50;
         this.cont = -2000;
         this.velocity = 400;
         this.deadCenter = new Phaser.Math.Vector2(this.body.center.x,this.body.center.y);
         this.body.useDamping = true;
-        this.body.setDrag(0.5);
+        this.body.setDrag(0.52);
     }
 
     preUpdate(d,dt){
-        super.preUpdate(d,dt);
         if(this.cont >= this.dispTime){
             const direction = new Phaser.Math.Vector2(0,1);
             direction.rotate(Math.random()*Math.PI*2);
@@ -28,6 +27,7 @@ export default class GhostBall_2 extends Basic_projectile{
             this.cont = 0;
         }
         this.cont += dt;
+        super.preUpdate(d,dt);
     }
 
     dest(){
