@@ -175,7 +175,8 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('ghostArrow', 'ghostArrow.png', 'ghostArrow.json')
     this.load.atlas('ghostBall', 'ghostBall.png', 'ghostBall.json')
     this.load.atlas('ghostBall_2', 'ghostBall_2.png', 'ghostBall_2.json')
-  
+    this.load.atlas('ghostArrow_2', 'ghostArrow_2.png', 'ghostArrow_2.json')
+    this.load.atlas('fireEnemy', 'fireEnemy.png', 'fireEnemy.json')
 
 
 
@@ -635,6 +636,26 @@ export default class Boot extends Phaser.Scene {
       key: 'ghostBall_2',
       frames: this.anims.generateFrameNames('ghostBall_2', { start: 0, end: 60, suffix: '.png' }),
       frameRate: 40,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'ghostArrow_2',
+      frames: this.anims.generateFrameNames('ghostArrow_2', { start: 0, end: 29, prefix: '1_' , suffix: '.png' }),
+      frameRate: 20,
+      repeat: -1
+    })
+
+    this.anims.create({
+      key: 'ghostBossAttackCont',
+      frames: this.anims.generateFrameNames('ghostBoss', { start: 3, end: 9, prefix: 'attack' , suffix: '.png' }),
+      frameRate: 10,
+      repeat: -1
+    })
+
+    this.anims.create({
+      key: 'fireEnemy',
+      frames: this.anims.generateFrameNames('fireEnemy', { start: 0, end: 9, suffix: '.png' }),
+      frameRate: 10,
       repeat: -1
     })
   }

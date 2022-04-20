@@ -1,4 +1,6 @@
+import fireEnemySpawn from "../proyectile/fireEnemySpawn.js";
 import GhostArrow from "../proyectile/ghostArrow.js";
+import GhostArrow_2 from "../proyectile/ghostArrow_2.js";
 import GhostBall from "../proyectile/ghostBall.js";
 import GhostBall_2 from "../proyectile/ghostBall_2.js";
 import ShootingEnemyParent from "./shootingEnemyParent.js";
@@ -38,9 +40,21 @@ export default class GhostBoss extends ShootingEnemyParent {
         this.attack2Vel = 130;
         this.attack3Vel = 370;
 
-        this.attacks = [1, 2, 3];
+
+        this.attack4Info = {
+            projectilesShooted: 0,
+            dispCont: 0,
+            projectiles: 7,
+            projectileTime: 0.7,
+          }
+
+
+        this.fireSpawnNumber = 4;
+
+        this.attacks = [1,2,3,4,5];
         this.phaseAttacks = [];
         this.Pv = 300;
+       
     }
 
 
@@ -68,12 +82,14 @@ export default class GhostBoss extends ShootingEnemyParent {
             return new GhostBall(this.scene, this.centerX() + this.calculateOffset(), this.centerY(), this.fireDirection.x * this.attack2Vel, this.fireDirection.y * this.attack2Vel, 5, this.projectileDamage);
         if (this.projectileType == 2)
             return new GhostBall_2(this.scene, this.centerX() + this.calculateOffset(), this.centerY(), this.fireDirection.x * this.attack3Vel, this.fireDirection.y * this.attack3Vel, 5, this.projectileDamage);
+        if(this.projectileType == 3)
+            return new GhostArrow_2(this.scene, this.centerX() + this.calculateOffset(), this.centerY(), this.fireDirection.x * this.Pv, this.fireDirection.y * this.Pv, 10, this.projectileDamage);
 
     }
 
     attack(d, dt) {
         if (this.attack_type == 0) {
-            
+
             if (this.statusInfo.postPreparing) {
                 this.statusInfo.postPreparingCont += dt;
                 if (this.statusInfo.postPreparingCont > this.statusInfo.postPreparingTime) {
@@ -81,7 +97,7 @@ export default class GhostBoss extends ShootingEnemyParent {
                     this.statusInfo.postPreparingCont = 0;
                 }
             }
-            else{
+            else {
                 this.sprite.play("ghostBossIdle", true);
             }
             this.cont += dt;
@@ -141,13 +157,52 @@ export default class GhostBoss extends ShootingEnemyParent {
                 this.statusInfo.postPreparing = true;
             }
         }
+        else if (this.attack_type == 4) {
+            if (this.statusInfo.preparing) {
+                this.statusInfo.preparingCont += dt;
+                this.sprite.play("ghostBossAttack", true);
+                if (this.statusInfo.preparingCont > 800) {
+                    this.statusInfo.preparingCont = 0;
+                    this.statusInfo.preparing = false;
+                    this.sprite.chain("ghostBossAttackCont", true);
+                }
+            }
+            else {
+
+                this.attack4(dt);
+                if (this.attack4Info.projectilesShooted >= this.attack4Info.projectiles) {
+                    this.attack_type = 0;
+                    this.attack4Info.projectilesShooted = 0;
+                    this.attack4Info.dispCont = 0;
+                    this.statusInfo.postPreparingTime = 400;
+                    this.statusInfo.postPreparing = true;
+                }
+
+            }
+        }
+        else if (this.attack_type == 5) {
+            if (this.statusInfo.preparing) {
+                this.statusInfo.preparingCont += dt;
+                this.sprite.play("ghostBossAttack", true);
+                if (this.statusInfo.preparingCont > 800) {
+                    this.statusInfo.preparingCont = 0;
+                    this.statusInfo.preparing = false;
+                }
+            }
+            else {
+                this.attack5();
+                this.attack_type = 0;
+                this.statusInfo.postPreparingTime = 350;
+                this.statusInfo.postPreparing = true;
+            }
+        }
     }
 
     moveU(d, dt) {
 
         this.setFlip();
 
-        if (this.attack_type === 0) {
+        if (this.attack_type === 0 || this.attack_type == 4) {
             if (this.isGoingUp) {
                 if (this.isUpCoord()) {
                     this.isGoingUp = false;
@@ -236,9 +291,41 @@ export default class GhostBoss extends ShootingEnemyParent {
         this.projectileType = 2;
         this.setFireDirection();
         this.fire();
-
-
     }
+
+    attack4(dt) {
+        this.projectileType = 3;
+        this.wallCollGroup = this.noBounceCollGroup;
+        if (this.attack4Info.dispCont == 0) {
+            this.setFireDirection();
+            this.fire();
+            this.attack4Info.projectilesShooted++;
+        }
+        this.attack4Info.dispCont += dt / 1000;
+        if (this.attack4Info.dispCont >= this.attack4Info.projectileTime) {
+            this.attack4Info.dispCont = 0;
+        }
+    }
+
+    attack5(){
+        for(let i = 0; i < this.fireSpawnNumber; i++){
+            this.fireFireSpawner();
+        }
+    }
+
+
+    fireFireSpawner(){
+        let velocidad = new Phaser.Math.Vector2(0, -Math.floor(Math.random() * 200 + 150));
+        let ang = (Math.random() * (Math.PI/3) + Math.PI/10)
+        let dir = Math.random();
+        if (this.isRight) {
+          ang = -ang;
+        }
+        velocidad.rotate(ang);
+        let target = Math.floor(Math.random() * 650 + 150);
+        new fireEnemySpawn(this.scene,this.centerX(),this.centerY(),target, velocidad.x,velocidad.y,150,1,1);
+      }
+
 
     dashShoot() {
         this.fireDirection = new Phaser.Math.Vector2(0, 1);
@@ -343,7 +430,7 @@ export default class GhostBoss extends ShootingEnemyParent {
     }
 
     setFireDirection() {
-        if (this.isRight){
+        if (this.isRight) {
             this.fireDirection = new Phaser.Math.Vector2(-1, 0);
         }
         else {
