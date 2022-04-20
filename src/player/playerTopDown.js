@@ -186,7 +186,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     if (this.playerData.health <= 0 && !this.isDead) {
       this.isDead = true;
       this.sprite.anims.play('death');
-      this.scene.finishGame();
+     // this.scene.finishGame();
+      const timer = this.scene.time.addEvent( {
+        delay: 2500, 
+        callback: 
+        this.scene.finishGame,
+        callbackScope: this.scene 
+        });
     }
 
 
@@ -253,7 +259,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       }
     }
 
-    if (this.playerData.health != j) {
+    if (this.playerData.health != j && !this.isDead) {
       if (this.playerData.health > j) {
 
         for (let i = j; i < this.playerData.health; i++) {
