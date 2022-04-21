@@ -25,7 +25,6 @@ export default class Enemy6_2 extends ShootingEnemyParent{
   }
   /*creador(){
     this.projectileE = new Homing_p(this.scene,this.x,this.y);
-    
   }*/
 
 
@@ -47,6 +46,7 @@ export default class Enemy6_2 extends ShootingEnemyParent{
           this.cont = 0;
         }
         if(this.actDispTime >= this.dispTime*1000){
+          
           this.attack_aux();
           this.dispCont++;
           this.actDispTime = 0;

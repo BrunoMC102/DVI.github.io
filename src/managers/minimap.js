@@ -42,8 +42,10 @@ export default class Minimap extends Phaser.GameObjects.Container{
 
         let rectangle = new Phaser.GameObjects.Rectangle(this.scene, x*(this.rectSize+this.offset),y*(this.rectSize+this.offset), this.rectSize, this.rectSize, color);
         this.add(rectangle);
+
         //let text = this.scene.add.text(x*(this.rectSize+this.offset),y*(this.rectSize+this.offset)-50, iden, {fontSize:20});
         //this.add(text);
+        
         if(doors.north){
             rectangle = new Phaser.GameObjects.Rectangle(this.scene,x*(this.rectSize+this.offset),y*(this.rectSize+this.offset)-(this.rectSize/2)-this.offset/8, this.offset, this.offset/2, 0x0);
             this.add(rectangle);

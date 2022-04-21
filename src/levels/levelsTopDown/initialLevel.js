@@ -16,7 +16,7 @@ export default class InitialLevel extends LevelParent {
     }
 
     createEnemies(){
-        return [new GhostBoss(this, this.player, 1280, 960, true)];
+        return [new WizardBoss(this, this.player, 500, 500)];
     }
    
     init(data){

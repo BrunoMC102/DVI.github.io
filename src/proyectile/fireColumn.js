@@ -13,7 +13,8 @@ export default class FireColumn extends Phaser.GameObjects.Sprite{
         this.tint = 0xff8080;
         this.scale = scale;
         
-        
+        this.body.setSize(35,100);
+        this.body.setOffset(25,60);
         this.rotation = Math.PI/2;
         
         this.play('fireBallAnimation');

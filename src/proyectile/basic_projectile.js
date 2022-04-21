@@ -6,11 +6,7 @@ export default class Basic_projectile extends Phaser.GameObjects.Sprite{
         this.scene.physics.add.existing(this, false);
         this.body.allowGravity = false;
         this.setVisible(true);
-        this.body.setCollideWorldBounds(true);
-        this.body.onWorldBounds = true;
-        this.body.world.on('worldbounds', (o1) => {
-          o1.gameObject.destroy();
-        });
+        
         this.damage = damage;
         
         if(time == undefined)

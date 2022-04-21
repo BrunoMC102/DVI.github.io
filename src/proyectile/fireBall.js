@@ -19,6 +19,8 @@ export default class FireBall extends Phaser.GameObjects.Sprite{
         this.ida = false;
         this.vuelta = false;
         this.finish = false;
+        this.body.setSize(20,20);
+        this.body.setOffset(47,45);
     }
 
     preUpdate(t,dt){
