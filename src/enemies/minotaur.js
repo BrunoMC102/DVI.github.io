@@ -23,6 +23,7 @@ export default class Minotaur extends ShootingEnemyParent {
     this.shootTime += this.dispMax*this.dispTime; //Suma el tiempo que dura un ataque al tiempo entre ataques
     this.attacking = false;
     this.attackingPreparing = false;
+    this.body.setDrag(0.0001);
     this.cont = 1;
     //this.body.offset.x = -15;
     this.body.offset.y = -10;
