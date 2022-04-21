@@ -13,19 +13,12 @@ export default class Sword extends Phaser.GameObjects.Container {
         this.enemiesDamaged = [];
         this.createGroups();
         for (let i = 0; i < this.sprite.width; i += h) {
-            const a = new Phaser.GameObjects.Rectangle(scene, i, 0, h, h, 0, 0);
-            this.scene.add.existing(a);
-            this.scene.physics.add.existing(a, false);
-            a.body.pushable = false;
-            a.body.allowGravity = false;
-            this.add(a);
-            this.hitBoxes.push(a);
+            this.createRectangleHitbox(i, h);
         }
 
 
     }
-    /*const dimension = Math.min(this.body.width,this.body.height);
-    this.body.setSize(dimension,dimension);*/
+
 
     createGroups() {
         this.EnemiesCollGroup = this.scene.add.group();
@@ -37,7 +30,7 @@ export default class Sword extends Phaser.GameObjects.Container {
             })
             if (encontrado) return;
             o2.hurt(this.player.playerData.damage);
-            o2.knockback(o2.x - this.player.x, o2.y - this.player.y, 400)
+            o2.knockback(o2.centerX() - this.player.x, o2.centerY() - this.player.y, 400)
             this.enemiesDamaged.push(o2)
         });
 
@@ -51,7 +44,15 @@ export default class Sword extends Phaser.GameObjects.Container {
     }
 
 
-
+    createRectangleHitbox(posX, dimension) {
+        const a = new Phaser.GameObjects.Rectangle(this.scene, posX, 0, dimension, dimension, 0, 0);
+        this.scene.add.existing(a);
+        this.scene.physics.add.existing(a, false);
+        a.body.pushable = false;
+        a.body.allowGravity = false;
+        this.add(a);
+        this.hitBoxes.push(a);
+    }
 
 
 

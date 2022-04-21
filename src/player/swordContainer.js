@@ -24,7 +24,7 @@ export default class SwordContainer extends Phaser.GameObjects.Container{
     }
 
 
-    preUpdate(t,dt){ //Llamar despues en clases hijos
+    preUpdate(t,dt){ 
 
         if (!this.attacking){
             let posEsp = this.player.controls.swordAngle();
@@ -34,25 +34,30 @@ export default class SwordContainer extends Phaser.GameObjects.Container{
             }
         }
         else {
+            let rotationInteriorContainer = 0;
+            let rotationSword = 0;
+            let index = this.positioning*2-1; //-1 si false, 1 si true, nos ahorramos 3 ifs, gran mejora del rendimiento, 100% rentable. 100% real no fake
+
             if(this.fase == 0){
-                if(this.positioning) this.interiorContainer.rotation -= dt*this.rotacion*5*0.2/this.timeAttack;  
-                else this.interiorContainer.rotation += dt*this.rotacion*2.5*0.05/this.timeAttack;  
+                rotationInteriorContainer = -index * this.rotationPercent(0.2, dt, this.rotacion, this.timeAttack/5)// 20% moviminento total
+                rotationSword = -index * this.rotationPercent(0.25, dt, this.rotacion, this.timeAttack/5);
             }
             else if(this.fase == 1){
-                if(this.positioning) this.interiorContainer.rotation -= dt*this.rotacion*5*0.5/this.timeAttack;  
-                else this.interiorContainer.rotation += dt*this.rotacion*5*0.6/this.timeAttack; 
+                rotationInteriorContainer = -index * this.rotationPercent(0.5, dt, this.rotacion, this.timeAttack/5) // 50% moviminento total
             }
             else{
-                if(this.positioning) this.interiorContainer.rotation -= dt*this.rotacion*(5/3)*0.3/this.timeAttack;  
-                else this.interiorContainer.rotation += dt*this.rotacion*2.5*0.25/this.timeAttack; 
+                rotationInteriorContainer = -index * this.rotationPercent(0.3, dt, this.rotacion, this.timeAttack*3/5) //30% movimiento total
+                rotationSword = -index * this.rotationPercent(0.75, dt, this.rotacion, this.timeAttack*3/5);
             }
-
-            if(this.fase == 0 || this.fase == 2)
-                if(this.positioning) this.sword.rotation -= dt*(5/4)*(Math.PI+1.4)/this.timeAttack;
-                else this.sword.rotation += dt*(5/4)*(Math.PI+1.4)/this.timeAttack;
+            this.interiorContainer.rotation += rotationInteriorContainer;
+            this.sword.rotation += rotationSword; 
         }
     }
 
+
+    rotationPercent(percent, time, totalRotation, totalTime){
+        return time*percent*totalRotation/totalTime;
+    }
     
     attack(){
         if(this.espera) return;
@@ -65,18 +70,15 @@ export default class SwordContainer extends Phaser.GameObjects.Container{
         this.scene.time.delayedCall(this.timeAttack*2/5, ()=>{this.fase = 2});
         this.scene.time.delayedCall(this.timeAttack, ()=> {
             this.positioning = !this.positioning
-            if(this.positioning){ 
-                this.noAttackrotation = Math.PI/2+0.7;
-                this.swordNoAttackRotation = Math.PI/2+0.7;
-            }
-            else{
-                this.noAttackrotation = -Math.PI/2-0.7;
-                this.swordNoAttackRotation = -Math.PI/2-0.7;
-            }
-
-            this.attacking = false; 
+            
+            //Posicion de la espada pasa al otro lado
+            this.noAttackrotation = -this.noAttackrotation;
+            this.swordNoAttackRotation = -this.swordNoAttackRotation;
             this.interiorContainer.rotation = this.noAttackrotation; 
             this.sword.rotation = this.swordNoAttackRotation; 
+
+
+            this.attacking = false; 
             this.fase = -1; 
             this.sword.removeHitbox();
         })

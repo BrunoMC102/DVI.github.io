@@ -37,7 +37,7 @@ export default class Archer extends ShootingEnemyParent {
 
 
 
-    preUpdate(d,dt){
+    preUpdate(t,dt){
         if(this.freezing) return;
     
         if(this.knockbackinfo.knocking){
@@ -47,8 +47,8 @@ export default class Archer extends ShootingEnemyParent {
           return;
         }
     
-        this.moveU(d,dt);
-        this.attack(d,dt);
+        this.moveU(dt);
+        this.attack(dt);
       }
 
     creador() {
@@ -56,7 +56,7 @@ export default class Archer extends ShootingEnemyParent {
     }
 
 
-    attack(d, dt) {
+    attack(dt) {
         if (!this.atrapado) {
             if (!this.dashing) {
                 if (!this.escaping) {
@@ -81,7 +81,7 @@ export default class Archer extends ShootingEnemyParent {
     }
 
 
-    moveU(t, dt) {
+    moveU(dt) {
         let xdir = this.player.x - this.centerX();
         if (xdir > 0) {
             this.sprite.flipX = false;
@@ -91,9 +91,6 @@ export default class Archer extends ShootingEnemyParent {
             this.sprite.flipX = true;
             this.dispOffset = -50;
         }
-
-        
-
         if (this.preCharging) {
             this.sprite.stop();
             this.body.setVelocity(0, 0);
