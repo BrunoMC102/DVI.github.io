@@ -10,5 +10,6 @@ export default class Enemy3 extends ShootingEnemyParent{
     super(scene,player,x,y,'enemy');
     this.Pv = 300;  //Velocidad proyectil
     this.shootTime = 5; //Velocidad disparo
+    this.body.setDrag(0.0001);
   }
 }

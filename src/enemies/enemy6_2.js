@@ -22,6 +22,7 @@ export default class Enemy6_2 extends ShootingEnemyParent{
     this.nVueltas = 1;  //Numero de vueltas que dan los proyectles en un ataque (puede ser menor a 1)
     this.shootTime = 5; //Tiempo entre ataques
     this.shootTime += this.dispMax*this.dispTime; //Suma el tiempo que dura un ataque al tiempo entre ataques
+    this.body.setDrag(0.0001);
   }
   /*creador(){
     this.projectileE = new Homing_p(this.scene,this.x,this.y);

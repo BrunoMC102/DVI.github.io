@@ -15,6 +15,7 @@ export default class Enemy7 extends ShootingEnemyParent{
     this.arrows = Math.floor(Math.random()*7+3);
     this.circun = Math.random()/5;
     this.shootTime = 2;
+    this.body.setDrag(0.0001);
   }
  
 

@@ -30,6 +30,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     this.body.allowGravity = false;
     this.scene.physics.add.collider(this, this.scene.wallLayer,()=>this.isCol());
     this.scene.physics.add.collider(this, this.scene.voidLayer,()=>this.isCol());
+    this.scene.physics.add.collider(this, this.scene.innerVoidLayer,()=>this.isCol());
     this.body.useDamping = true;
     this.v = 150;
     this.scene.physics.add.collider(this, this.player, () => {this.onCollisionWithPlayer()});
