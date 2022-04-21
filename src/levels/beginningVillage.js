@@ -136,14 +136,14 @@ export default class BeginningVillage extends Phaser.Scene {
     this.shopDialog = this.add.bitmapText(10, 700, 'atari', '', 16)
       .setFontSize(48)
       .setDepth(8).setScrollFactor(0);
-    this.okText = this.add.bitmapText(1100, 700, 'atari', 'Sí!', 16)
+    this.okText = this.add.bitmapText(1100, 700, 'atari', 'Yes!', 16)
       .setFontSize(48)
       .setDepth(8).setScrollFactor(0);
 
     this.noText = this.add.bitmapText(1100, 800, 'atari', 'No', 16)
       .setFontSize(48)
       .setDepth(8).setScrollFactor(0);
-    this.infoText = this.add.bitmapText(10, 850, 'atari', 'Pulsa Y si quieres comprarlo o N para salir', 16)
+    this.infoText = this.add.bitmapText(10, 850, 'atari', '', 16)
       .setFontSize(48)
       .setDepth(8).setScrollFactor(0);
     this.closeShop();
@@ -188,9 +188,9 @@ export default class BeginningVillage extends Phaser.Scene {
       let stringobjeto = "";
       let stringmonedas = "";
       stringobjeto = this.choseText(objeto);
-      if (objetoPrecio == 1) stringmonedas = "moneda";
-      else stringmonedas = "monedas";
-      this.shopDialog.setText('Quieres comprar ' + stringobjeto + '\npor el valor de ' + objetoPrecio + ' ' + stringmonedas);
+      if (objetoPrecio == 1) stringmonedas = "coin";
+      else stringmonedas = "coins";
+      this.shopDialog.setText('Do you want ' + stringobjeto + '\nfor the amount of ' + objetoPrecio + ' ' + stringmonedas);
     }
     if (created) {
       if (Phaser.Input.Keyboard.JustDown(this.yesKey)) {
@@ -198,10 +198,10 @@ export default class BeginningVillage extends Phaser.Scene {
           if (this.player.playerData.money >= objetoPrecio) {
             this.spentMoney(objeto, objetoPrecio);
           } else {
-            this.infoText.setText('No tienes suficiente dinero\n vuelve más tarde caballero');
+            this.infoText.setText("You don't have enough coins to buy this item\n come back later knight");
           }
 
-        } else this.infoText.setText('Ya compraste este objeto caballero\n vuelve más tarde');
+        } else this.infoText.setText('You have already purchase this item Knight\n come back later');
       }
       if (Phaser.Input.Keyboard.JustDown(this.noKey)) {
         this.closeShop();
@@ -215,10 +215,10 @@ export default class BeginningVillage extends Phaser.Scene {
   choseText(objeto) {
     let stringobjeto = "";
     switch (objeto.name) {
-      case 'pocionVida': stringobjeto = "una Poción de vida"; break;
-      case 'pocionMana': stringobjeto = "una Poción de maná"; break;
-      case 'vida': stringobjeto = "un corazón de vida para \naumentar la vida máxima"; break;
-      case 'chestUnopened': stringobjeto = 'una mejora pasiva aleatoria'; break;
+      case 'pocionVida': stringobjeto = "a Health Potion"; break;
+      case 'pocionMana': stringobjeto = "a Mana Potion"; break;
+      case 'vida': stringobjeto = "a heart slot \nto upgrade your max heart slots"; break;
+      case 'chestUnopened': stringobjeto = 'a random pasive upgrade'; break;
     }
     return stringobjeto;
   }
@@ -252,7 +252,7 @@ export default class BeginningVillage extends Phaser.Scene {
     this.okText.visible = false;
     this.noText.visible = false;
     this.infoText.visible = false;
-    this.infoText.setText('Pulsa Y si quieres comprarlo o N para salir');
+    this.infoText.setText('Press Y if you want to buy this item\n or press N to leave');
     this.created = false;
   }
 
@@ -261,6 +261,8 @@ export default class BeginningVillage extends Phaser.Scene {
     if ((this.physics.overlap(this.player, this.sceneChange[0]) || this.physics.overlap(this.player, this.sceneChange[1])) && this.changingScene == false) {
       this.changingScene = true;
       this.sound.stopAll();
+      
+      this.player.setBlocked(true);
       this.cameras.main.fadeOut(1000);
       this.time.delayedCall(1450, () => {
 
@@ -271,6 +273,7 @@ export default class BeginningVillage extends Phaser.Scene {
           this.scene.manager.add(e.levelkey, e);
         })
         this.scene.start('initialLevel', { coordinates: { x: 500, y: 500 }, playerData: this.playerData, powerUpList: this.powerUpList });
+       
       });
     }
 

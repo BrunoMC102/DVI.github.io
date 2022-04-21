@@ -187,6 +187,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     if (this.playerData.health <= 0 && !this.isDead) {
       this.isDead = true;
       this.sprite.anims.play('death');
+      this.setBlocked(true);
      // this.scene.finishGame();
       const timer = this.scene.time.addEvent( {
         delay: 2500, 
@@ -215,15 +216,15 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
     this.manaBar = new ManaBar(this.scene, 105, 50); // 125 si es la otra barra
 
-    this.money_label = this.scene.add.text(45, 85, "x" + this.playerData.money, { fontSize: "22px" }).setScrollFactor(0).setDepth(5);
+    this.money_label = this.scene.add.text(45, 85, "x" + this.playerData.money, { fontSize: "25px" }).setScrollFactor(0).setDepth(5);
 
-    this.arrow_label = this.scene.add.text(105, 85, "x" + this.playerData.arrows, { fontSize: "22px" }).setScrollFactor(0).setDepth(5);
+    this.arrow_label = this.scene.add.text(105, 85, "x" + this.playerData.arrows, { fontSize: "25px" }).setScrollFactor(0).setDepth(5);
 
-    this.hPotion_label = this.scene.add.text(25, 140, "x" + this.playerData.healthPotions, { fontSize: "22px" }).setScrollFactor(0).setDepth(5);
+    this.hPotion_label = this.scene.add.text(25, 140, "x" + this.playerData.healthPotions, { fontSize: "25px" }).setScrollFactor(0).setDepth(5);
 
-    this.mPotion_label = this.scene.add.text(80, 140, "x" + this.playerData.manaPotions, { fontSize: "22px" }).setScrollFactor(0).setDepth(5);
+    this.mPotion_label = this.scene.add.text(80, 140, "x" + this.playerData.manaPotions, { fontSize: "25px" }).setScrollFactor(0).setDepth(5);
 
-    this.mana_label = this.scene.add.text(210, 40, '' + this.playerData.mana, { fontSize: "22px" }).setScrollFactor(0).setDepth(4);
+    this.mana_label = this.scene.add.text(210, 40, '' + this.playerData.mana, { fontSize: "25px" }).setScrollFactor(0).setDepth(4);
     //this.mana_label = this.scene.add.text(250, 40, '' + this.playerData.mana, { fontSize: "22px" }).setScrollFactor(0).setDepth(4);
 
 
@@ -466,10 +467,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
   //Animacion player
   handlePlayerAnimation() {
-    if (this.isDead) {
-      this.sprite.anims.play('death', true);
-      return;
-    }
     if (this.body.velocity.x == 0 && this.body.velocity.y == 0) {
       const parts = this.sprite.anims.currentAnim.key.split('-');
       parts[0] = 'idle';
