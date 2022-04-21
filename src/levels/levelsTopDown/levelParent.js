@@ -205,6 +205,7 @@ export default class LevelParent extends Phaser.Scene {
     const map = this.make.tilemap({ key: 'tilemap1', tileWidth: 64, tileHeight: 64 });
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
     this.groundLayer = map.createLayer('Ground', tileset);
+    this.innnerVoidLayer = map.createLayer('InnerVoid', tileset).setCollisionByProperty({ collides: true });
     this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
     this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
   }

@@ -48,6 +48,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.createGroups();
     this.WallCollGroup_noEff.add(this);
     this.VoidCollGroup_noEff.add(this);
+    this.InnerVoidCollGroup_noEff.add(this);
     this.playerWithProjectilesCollider.add(this);
 
 
@@ -411,6 +412,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   createGroups() {
     this.WallCollGroup = this.scene.add.group();
     this.scene.physics.add.collider(this.WallCollGroup, this.scene.wallLayer, (o1, o2) => { o1.dest() });
+    this.VoidCollGroup = this.scene.add.group();
+    this.scene.physics.add.collider(this.VoidCollGroup, this.scene.voidLayer, (o1, o2) => { o1.dest() });
     this.EnemiesCollGroup = this.scene.add.group();
     this.scene.physics.add.overlap(this.EnemiesCollGroup, this.scene.enemies, (o1, o2) => {
       o2.hurt(this.playerData.damage);
@@ -423,6 +426,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.scene.physics.add.collider(this.WallCollGroup_noEff, this.scene.wallLayer, () => { });
     this.VoidCollGroup_noEff = this.scene.add.group();
     this.scene.physics.add.collider(this.VoidCollGroup_noEff, this.scene.voidLayer, () => { });
+    this.InnerVoidCollGroup_noEff = this.scene.add.group();
+    this.scene.physics.add.collider(this.InnerVoidCollGroup_noEff, this.scene.innerVoidLayer, () => { });
     this.playerWithProjectilesCollider = this.scene.add.group();
     this.scene.physics.add.overlap(this.playerWithProjectilesCollider, this.scene.projectiles, (o1, o2) => {
       o1.hurt(o2.damage);
