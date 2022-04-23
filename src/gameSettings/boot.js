@@ -149,6 +149,12 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('Dungeon5D-O', 'Dungeon5D-O.json');
     this.load.tilemapTiledJSON('Dungeon5D-S', 'Dungeon5D-S.json');
 
+    this.load.setPath('assets/json/DungeonBig');
+    this.load.tilemapTiledJSON('DungeonBigE', 'DungeonBigE.json');
+    this.load.tilemapTiledJSON('DungeonBigN', 'DungeonBigN.json');
+    this.load.tilemapTiledJSON('DungeonBigS', 'DungeonBigS.json');
+    this.load.tilemapTiledJSON('DungeonBigW', 'DungeonBigW.json');
+
     this.load.setPath('assets/atlas/');
     //knight
     this.load.atlas('character', 'atlas.png', 'atlas.json');
