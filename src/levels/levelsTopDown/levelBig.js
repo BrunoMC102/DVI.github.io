@@ -33,8 +33,8 @@ export default class LevelBig extends LevelParent {
     });
     this.iden = 'TB';
     this.dimensions = {
-      x:2500,
-      y:1500
+      x:1920,
+      y:1600
     }
   }
 

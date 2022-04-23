@@ -36,6 +36,7 @@ export default class ShootingEnemyParent extends EnemyParent{
 
   addtoGroups(disparo){
     this.wallCollGroup.add(disparo);
+    this.voidCollGroup.add(disparo);
     this.scene.projectiles.add(disparo);
   }
 
@@ -53,6 +54,11 @@ export default class ShootingEnemyParent extends EnemyParent{
   createGropus(){
     this.wallCollGroup = this.scene.add.group();
     this.scene.physics.add.collider(this.wallCollGroup, this.scene.wallLayer, (o1,o2) => {
+      o1.destroy();
+    });
+
+    this.voidCollGroup = this.scene.add.group();
+    this.scene.physics.add.collider(this.voidCollGroup, this.scene.voidLayer, (o1,o2) => {
       o1.destroy();
     });
 
