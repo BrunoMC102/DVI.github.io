@@ -4,6 +4,7 @@ import ManaBar from "./manaBar.js";
 import SwordContainer from "./swordContainer.js";
 import Bow from "./bow.js";
 import Spell from "../proyectile/spell.js";
+import PauseMenu from "../pauseMenu.js";
 
 export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
@@ -28,6 +29,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.keyC = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
     this.keyF = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
     this.keyG = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.G);
+    this.keyEsc = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
     //Propiedades del body
     this.body.allowGravity = false;
@@ -65,6 +67,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.separationhearts = 0;
     this.separationemptyhearts = 0;
     this.createUiBar();
+    this.pauseMenu = new PauseMenu(this, this.scene);
+    this.isMenuDeployed = false;
     //Barra mana
 
 
@@ -146,6 +150,17 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   
 
   preUpdate(t, dt) {
+    this.isKeyEscDown = Phaser.Input.Keyboard.JustDown(this.keyEsc);
+    if(!this.isMenuDeployed && this.isKeyEscDown){
+      this.pauseMenu.showMenuPanel();
+      this.isMenuDeployed = true;
+      this.setBlocked(true);
+
+    }else if (this.isMenuDeployed && this.isKeyEscDown){
+      this.pauseMenu.hideMenuPanel();
+      this.isMenuDeployed = false;
+      this.setBlocked(false);
+    }
 
     if(this.blocked){
       this.updateUi();
@@ -241,6 +256,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.pocionesSprite = this.scene.add.sprite(20, 130, "pocionVida").setScrollFactor(0).setDepth(4);
 
     this.pocionesManaSprite = this.scene.add.sprite(75, 130, 'pocionMana').setScrollFactor(0).setDepth(4);
+
     if (this.scene.m != undefined) {
       this.UIarray = [this.money_label, this.arrow_label, this.hPotion_label, this.hPotion_label, this.mPotion_label, this.mana_label, this.moneySprite, this.flechaSprite, this.pocionesSprite, this.pocionesManaSprite, this.manaBar, this.manaBar.outline];
       this.UIarray.forEach((e) => {

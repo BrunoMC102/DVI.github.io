@@ -12,6 +12,9 @@ export default class PlayerData{
       this.vAcc = -1800;
       this.hAcc = 2000;
 
+      //UI related
+      this.isSoundMuted = false;
+
 
       this.healthPotions = 50; // pociones de vida
       this.manaPotions = 50; // pociones de mana

@@ -58,11 +58,40 @@ export default class Boot extends Phaser.Scene {
     this.load.image('bossbar','bossHealthbar.png');
     this.load.image('wizardSprite','wizardSprite.png');
     this.load.image('boxImg','boxImg.png');
+    this.load.image('scrollTileset','tileset-cave2.png');
+
+    this.load.setPath('assets/sprites/uiSprites');
+    this.load.image('config', 'gear.png');
+    this.load.image('greyPanel', 'greyPanel.png');
+    this.load.image('greyButton','greyButton.png');
+    this.load.image('redPanel', 'redPanel.png');
+    this.load.image('redButton', 'redButton.png');
+    this.load.image('musicOn', 'musicOn.png');
+    this.load.image('musicOff', 'musicOff.png');
+    this.load.image('tileEsc', 'tileEsc.png');
+    this.load.image('tileUp', 'tileUp.png');
+    this.load.image('tileDown', 'tileDown.png');
+    this.load.image('tileLeft', 'tileLeft.png');
+    this.load.image('tileRight', 'tileRight.png');
+    this.load.image('tile1', 'tile1.png');
+    this.load.image('tile2', 'tile2.png');
+    this.load.image('tile3', 'tile3.png');
+    this.load.image('tileE', 'tileE.png');
+    this.load.image('tileF', 'tileF.png');
+    this.load.image('tileG', 'tileG.png');
+    this.load.image('tileC', 'tileC.png');
+    this.load.image('tileSpaceL', 'tileSpaceL.png');
+    this.load.image('tileSpaceM', 'tileSpaceM.png');
+    this.load.image('tileSpaceR', 'tileSpaceR.png');
 
     this.load.setPath('assets/json/');
     this.load.tilemapTiledJSON('tilemapJose', 'PruebaScrollJose.json');
     this.load.tilemapTiledJSON('tilemapBig', 'DungeonBig.json');
     this.load.tilemapTiledJSON('tilemapVillage', 'PruebaPoblado2.json');
+
+    this.load.setPath('assets/json/Scroll');
+    this.load.tilemapTiledJSON('Scroll', 'scroll.json');
+
 
     this.load.setPath('assets/json/Dungeon 1');
     this.load.tilemapTiledJSON('Dungeon1A', 'Dungeon1A.json');
@@ -219,7 +248,7 @@ export default class Boot extends Phaser.Scene {
     this.createAnimations();
     //Para jugar en el modo vista lateral descomentar level
     this.scene.start('mainMenu');
-    //this.scene.start('levelScroll', {coordinates: {x: 0, y: 500}, playerData: new PlayerData()});
+    //this.scene.start('scroll1', {coordinates: {x: 0, y: 900}, playerData: new PlayerData()});
     //this.scene.start('level');
   }
 

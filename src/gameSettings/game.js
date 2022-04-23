@@ -14,13 +14,15 @@ import LevelPrueba2 from '../levels/levelsTopDown/levelPrueba2.js';
 import InitialLevel from '../levels/levelsTopDown/initialLevel.js';
 import SceneManager from '../managers/sceneManager.js';
 import Minimap from '../managers/minimap.js';
+import PauseMenu from '../pauseMenu.js';
+import LevelScrollFinal from '../levels/levelsScroll/levelScrollFinal.js';
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
  */
 
-let a = [Boot, Level, LevelScroll,BeginningVillage,MainMenu , End];
+let a = [Boot, Level, LevelScroll,BeginningVillage,MainMenu ,LevelScrollFinal, End];
 let config = {
     type: Phaser.AUTO,
     width: 1280,
