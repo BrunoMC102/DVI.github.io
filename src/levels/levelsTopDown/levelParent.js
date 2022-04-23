@@ -199,7 +199,7 @@ export default class LevelParent extends Phaser.Scene {
           this.changeLevel(this.changeSceneManager.north, 0);
         }
       })
-      this.northDoor = this.add.zone(this.doorCoordinates.north.x, this.doorCoordinates.north.y, 130, 60);
+      this.northDoor = this.add.zone(this.doorCoordinates.north.x, this.doorCoordinates.north.y, 130, 90);
       this.physics.add.existing(this.northDoor, true);
       this.sceneChange.push(this.northDoor);
     }
@@ -212,7 +212,7 @@ export default class LevelParent extends Phaser.Scene {
           this.changeLevel(this.changeSceneManager.south, 2);
         }
       })
-      this.southDoor = this.add.zone(this.doorCoordinates.south.x, this.doorCoordinates.south.y, 132, 60);
+      this.southDoor = this.add.zone(this.doorCoordinates.south.x, this.doorCoordinates.south.y, 132, 90);
       this.physics.add.existing(this.southDoor, true);
       this.sceneChange.push(this.southDoor);
     }
@@ -258,22 +258,22 @@ export default class LevelParent extends Phaser.Scene {
   closeDoors(){
     if (this.doors.north){
       this.northdoorGroup.remove(this.northDoor)
-      this.boxes.push(new Box(this,this.doorCoordinates.north.x-20, this.doorCoordinates.north.y-30, 0));
+      this.boxes.push(new Box(this,this.doorCoordinates.north.x, this.doorCoordinates.north.y-20, 0));
     }
 
     if (this.doors.south){
       this.southdoorGroup.remove(this.southDoor)
-      this.boxes.push(new Box(this,this.doorCoordinates.south.x-20, this.doorCoordinates.south.y-10, 2));
+      this.boxes.push(new Box(this,this.doorCoordinates.south.x, this.doorCoordinates.south.y+10, 2));
     }
 
     if (this.doors.east){
       this.eastdoorGroup.remove(this.eastDoor)
-      this.boxes.push(new Box(this,this.doorCoordinates.east.x+5, this.doorCoordinates.east.y-20, 1));
+      this.boxes.push(new Box(this,this.doorCoordinates.east.x+14, this.doorCoordinates.east.y-20, 1));
     }
 
     if (this.doors.west){
       this.westdoorGroup.remove(this.westDoor)
-      this.boxes.push(new Box(this,this.doorCoordinates.west.x-40, this.doorCoordinates.west.y-20, 3));
+      this.boxes.push(new Box(this,this.doorCoordinates.west.x-20, this.doorCoordinates.west.y-1, 3));
     }
     this.zoneCollider = this.physics.add.collider(this.player, this.zoneGroup);
   }

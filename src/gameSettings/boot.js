@@ -57,7 +57,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('emptyHeart', 'emptyHeart.png');
     this.load.image('bossbar','bossHealthbar.png');
     this.load.image('wizardSprite','wizardSprite.png');
-    this.load.image('boxImg','boxImg.png');
+    this.load.image('boxImg','box_1.png');
     this.load.image('scrollTileset','tileset-cave2.png');
 
     this.load.setPath('assets/sprites/uiSprites');
@@ -247,8 +247,8 @@ export default class Boot extends Phaser.Scene {
     //this.scene.start('lebel');
     this.createAnimations();
     //Para jugar en el modo vista lateral descomentar level
-    //this.scene.start('mainMenu');
-    this.scene.start('scroll1', {coordinates: {x: 0, y: 900}, playerData: new PlayerData()});
+    this.scene.start('mainMenu');
+    //this.scene.start('scroll1', {coordinates: {x: 0, y: 900}, playerData: new PlayerData()});
     //this.scene.start('level');
   }
 
@@ -699,14 +699,14 @@ export default class Boot extends Phaser.Scene {
 
     this.anims.create({
       key: 'boxDestroy',
-      frames: this.anims.generateFrameNames('box', { start: 0, end: 6, suffix: '.png' }),
+      frames: this.anims.generateFrameNames('box', { start: 1, end: 7, prefix: 'box_', suffix: '.png' }),
       frameRate: 10,
       repeat: 0
     })
 
     this.anims.create({
       key: 'box',
-      frames: this.anims.generateFrameNames('box', { start: 0, end: 2, suffix: '.png' }),
+      frames: this.anims.generateFrameNames('box', { start: 1, end: 3, prefix: 'box_', suffix: '.png' }),
       frameRate: 10,
       repeat: 2,
       yoyo:true
