@@ -320,7 +320,7 @@ export default class LevelParent extends Phaser.Scene {
   getPlayerCoordinates(direction) {
     if (direction == 0) return { x: 640, y: 830 }
     else if (direction == 1) return { x: 120, y: 500 }
-    else if (direction == 2) return { x: 640, y: 70 }
+    else if (direction == 2) return { x: 640, y: 100 }
     else return { x: 1170, y: 500 }
   }
 

@@ -49,7 +49,12 @@ export default class LevelTopDownBigS extends LevelParent {
   }
 
   
-
+  getPlayerCoordinates(direction) {
+    if (direction == 0) return { x: 960, y: 1500 }
+    else if (direction == 1) return { x: 150, y: 750 }
+    else if (direction == 2) return { x: 960, y: 100 }
+    else return { x: 1750, y: 750 }
+  }
 
   setTileSet() {
     const map = this.make.tilemap({ key: 'DungeonBigS', tileWidth: 64, tileHeight: 64 });

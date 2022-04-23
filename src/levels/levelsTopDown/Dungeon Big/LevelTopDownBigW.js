@@ -29,7 +29,7 @@ export default class LevelTopDownBigW extends LevelParent {
       north: { x: 0, y: 0 },
       south: { x: 0, y: 0 },
       east: { x: 0, y: 0 },
-      west: { x: 50, y: 760 }
+      west: { x: 20, y: 760 }
     });
     this.iden = 'TB';
     this.dimensions = {
@@ -48,7 +48,12 @@ export default class LevelTopDownBigW extends LevelParent {
     new Arrow(this, this.player, 900, 200);
   }
 
-  
+  getPlayerCoordinates(direction) {
+    if (direction == 0) return { x: 960, y: 1500 }
+    else if (direction == 1) return { x: 150, y: 750 }
+    else if (direction == 2) return { x: 960, y: 100 }
+    else return { x: 1750, y: 750 }
+  }
 
 
   setTileSet() {
