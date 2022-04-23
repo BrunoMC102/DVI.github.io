@@ -47,57 +47,51 @@ export default class LevelParent extends Phaser.Scene {
       x: 1280,
       y: 960
     };
+
+
   }
 
   init(data) {
-    this.coordinates = data.coordinates;
+
     this.playerData = data.playerData;
     this.powerUpList = data.powerUpList;
     if (data.levelList != undefined)
       this.levelList = data.levelList;
     this.direction = data.direction;
+    this.coordinates = this.getPlayerCoordinates(this.direction);
   }
 
 
+  
 
   create() {
-    this.changingScene = false;
-    //this.showHitbox(voidLayer);
-    //this.showHitbox(wallLayer);
+    this.events.on('wake', this.onWake, this);
+    
     this.cameras.main.setBackgroundColor(0x454550);
     this.cameras.cameras[0].transparent = false;
+    this.getNearLevels();
     this.setTileSet();
-
     this.actMinimap();
 
-    this.initialSwipe();
-    this.started = false;
-
-    this.started = true;
+   
+    
     this.enemies = this.add.group();
     this.projectiles = this.add.group();
     this.m = new Minimap(this, 1010, 20, this.levelList, this.grid, this.playerData.minimapUnlock);
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
-
-    this.time.delayedCall(this.swipeTime, () => {
-      this.cameras.main.startFollow(this.player);
-      this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y)
-    });
-
-
+    this.onStart();
+    
     const enemiesCreated = this.createEnemies();
     this.createOthers();
     enemiesCreated.forEach(e => this.enemies.add(e));
     this.sceneChange = [];
+
     if (this.doors.north) {
       this.northdoorGroup = this.add.group();
       this.physics.add.overlap(this.northdoorGroup, this.player, () => {
         if (!this.changingScene) {
           this.swipeY(-this.halfHeigh);
-          this.changingScene = true;
-          this.time.delayedCall(this.swipeTime, () => {
-            this.scene.start(this.changeSceneManager.north, { coordinates: { x: 640, y: 830 }, playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: 0 });
-          });
+          this.changeLevel(this.changeSceneManager.north, 0);
         }
       })
       this.northDoor = this.add.zone(this.doorCoordinates.north.x, this.doorCoordinates.north.y, 130, 60);
@@ -110,10 +104,7 @@ export default class LevelParent extends Phaser.Scene {
       this.physics.add.overlap(this.southdoorGroup, this.player, () => {
         if (!this.changingScene) {
           this.swipeY(this.halfHeigh);
-          this.changingScene = true;
-          this.time.delayedCall(this.swipeTime, () => {
-            this.scene.start(this.changeSceneManager.south, { coordinates: { x: 640, y: 70 }, playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: 2 });
-          });
+          this.changeLevel(this.changeSceneManager.south, 2);
         }
       })
       this.southDoor = this.add.zone(this.doorCoordinates.south.x, this.doorCoordinates.south.y, 132, 60);
@@ -126,10 +117,7 @@ export default class LevelParent extends Phaser.Scene {
       this.physics.add.overlap(this.eastdoorGroup, this.player, () => {
         if (!this.changingScene) {
           this.swipeX(this.halfWidth);
-          this.changingScene = true;
-          this.time.delayedCall(this.swipeTime, () => {
-            this.scene.start(this.changeSceneManager.east, { coordinates: { x: 120, y: 500 }, playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: 1 });
-          });
+          this.changeLevel(this.changeSceneManager.east, 1);
         }
       })
 
@@ -143,18 +131,15 @@ export default class LevelParent extends Phaser.Scene {
       this.physics.add.overlap(this.westdoorGroup, this.player, () => {
         if (!this.changingScene) {
           this.swipeX(-this.halfWidth);
-          this.changingScene = true;
-          this.time.delayedCall(this.swipeTime, () => {
-            this.scene.start(this.changeSceneManager.west, { coordinates: { x: 1170, y: 500 }, playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: 3 });
-          });
+          this.changeLevel(this.changeSceneManager.west, 3);
         }
       })
       this.westDoor = this.add.zone(this.doorCoordinates.west.x, this.doorCoordinates.west.y, 60, 122)
       this.physics.add.existing(this.westDoor, true);
       this.sceneChange.push(this.westDoor);
-
-
     }
+
+
 
 
     this.zoneGroup = this.add.group();
@@ -168,13 +153,52 @@ export default class LevelParent extends Phaser.Scene {
     this.dungeonSound = this.sound.add("dungeontheme").play();
   }
 
+
+  onWake(sys,data){
+    this.playerData = data.playerData;
+    this.powerUpList = data.powerUpList;
+    if (data.levelList != undefined)
+      this.levelList = data.levelList;
+    this.direction = data.direction;
+    this.coordinates = this.getPlayerCoordinates(this.direction);
+
+    this.player.restart(this.coordinates.x, this.coordinates.y, this.playerData);
+
+    this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y);
+    this.cameras.main.startFollow(this.player);
+    
+    
+    
+    this.onStart();
+
+    
+    this.m.restart(this.levelList, this.grid, this.playerData.minimapUnlock);
+  }
+
+  onStart(){
+    this.changingScene = false;
+    this.time.delayedCall(1, ()=>{this.initialSwipe()});
+   
+    this.time.delayedCall(this.swipeTime, () => {
+      this.cameras.main.startFollow(this.player);
+      this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y);
+    });
+
+  }
+
+  changeLevel(levelKey, direction) {
+    this.changingScene = true;
+    this.time.delayedCall(this.swipeTime, () => {
+      this.scene.sleep(this.levelkey);
+      this.scene.run(levelKey, { playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: direction })
+    });
+  }
+
   update() {
-    if (!this.started) return;
     if (!this.cleared) {
       if (this.enemies.getLength() === 0) {
         this.cleared = true;
-        let a = this.levelList.find((e) => { return (e.grid.x == this.grid.x && e.grid.y == this.grid.y) });
-        a.cleared = true;
+        this.nearLevelsInfo.actual.cleared = true;
       }
     }
     if (!this.open) {
@@ -241,23 +265,38 @@ export default class LevelParent extends Phaser.Scene {
 
   actMinimap() {
     if (!this.cleared) {
-      let a = this.levelList.find((e) => { return (e.grid.x == this.grid.x && e.grid.y == this.grid.y) });
-      a.reached = true;
+      this.nearLevelsInfo.actual.reached = true;
       if (this.doors.north) {
-        this.levelList.find((e) => { return (e.grid.x == this.grid.x && e.grid.y == this.grid.y - 1) }).reached = true;
+        this.nearLevelsInfo.north.reached = true;
       }
       if (this.doors.south) {
-        this.levelList.find((e) => { return (e.grid.x == this.grid.x && e.grid.y == this.grid.y + 1) }).reached = true;
+        this.nearLevelsInfo.south.reached = true;
       }
       if (this.doors.east) {
-        this.levelList.find((e) => { return (e.grid.x == this.grid.x + 1 && e.grid.y == this.grid.y) }).reached = true;
+        this.nearLevelsInfo.east.reached = true;
       }
       if (this.doors.west) {
-        this.levelList.find((e) => { return (e.grid.x == this.grid.x - 1 && e.grid.y == this.grid.y) }).reached = true;
+        this.nearLevelsInfo.west.reached = true;
       }
     }
   }
 
+  getPlayerCoordinates(direction) {
+    if (direction == 0) return { x: 640, y: 830 }
+    else if (direction == 1) return { x: 120, y: 500 }
+    else if (direction == 2) return { x: 640, y: 70 }
+    else return { x: 1170, y: 500 }
+  }
+
+  getNearLevels() {
+    this.nearLevelsInfo = {
+      actual: this.levelList.find((e) => { return (e.grid.x == this.grid.x && e.grid.y == this.grid.y) }),
+      north: this.levelList.find((e) => { return (e.grid.x == this.grid.x && e.grid.y == this.grid.y - 1) }),
+      south: this.levelList.find((e) => { return (e.grid.x == this.grid.x && e.grid.y == this.grid.y + 1) }),
+      east: this.levelList.find((e) => { return (e.grid.x == this.grid.x + 1 && e.grid.y == this.grid.y) }),
+      west: this.levelList.find((e) => { return (e.grid.x == this.grid.x - 1 && e.grid.y == this.grid.y) })
+    }
+  }
 
   initialSwipe() {
     if (this.direction != undefined) {

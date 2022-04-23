@@ -33,7 +33,7 @@ export default class PlayerData{
       this.dashSpeed = 900;
       this.dashInvincibilityPower = false;
       this.currentManaCost = 5;
-      this.minimapUnlock = true;
+      this.minimapUnlock = false;
     }
 
     setBouncy(){

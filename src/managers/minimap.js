@@ -5,12 +5,7 @@ export default class Minimap extends Phaser.GameObjects.Container{
         this.offset = 10;
         this.horizontalSize = 250;
         this.verticalSize = 250;
-        levels.forEach(element => {
-            if(!visionPower){
-                if(!element.reached) return;
-            }
-            this.createRectangle(element.grid.x,element.grid.y, element.doors, element.iden, grid, element.cleared);
-        });
+        this.createMinimapInterior(levels, grid, visionPower, false);
         this.scene.add.existing(this);
         this.scene.cameras.cameras[0].ignore(this);
         this.minimapCam = this.scene.cameras.add(x, y, this.horizontalSize, this.verticalSize);
@@ -22,12 +17,31 @@ export default class Minimap extends Phaser.GameObjects.Container{
         
     }
 
-    createRectangle(x,y, doors, iden, grid, cleared){
+    restart(levels, grid, visionPower){
+        this.removeAll(true);
+        this.createMinimapInterior(levels, grid, visionPower, true);
+    }
+
+
+    createMinimapInterior(levels, grid, visionPower, alreadyCreated){
+       
+        levels.forEach(element => {
+            if(!visionPower){
+                if(!element.reached) return;
+            }
+            this.createRectangle(element.grid.x,element.grid.y, element.doors, element.iden, grid, element.cleared, alreadyCreated);
+        });
+    }
+
+
+    createRectangle(x,y, doors, iden, grid, cleared, alreadyCreated){
         let color = 0x656565;
         if(x == grid.x && y == grid.y){ 
             color = 0xffffff;
-            this.x = this.x - x*(this.rectSize+this.offset);
-            this.y = this.y - y*(this.rectSize+this.offset);
+            if(!alreadyCreated){
+                this.x = this.x - x*(this.rectSize+this.offset);
+                this.y = this.y - y*(this.rectSize+this.offset);
+            }
             if(iden == 'Chest'){
                 color = 0xffff00;
             }

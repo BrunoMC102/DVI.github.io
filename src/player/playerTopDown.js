@@ -33,7 +33,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.body.allowGravity = false;
     this.body.pushable = false;
 
-
+    
     //Handle datos jugador
     this.playerData = data;
     this.playerData.player = this;
@@ -131,6 +131,11 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
   }
 
+  restart(x, y, playerData){
+    this.x = x;
+    this.y = y;
+    this.playerData = playerData;
+  }
 
   setBlocked(cond){
     this.body.setVelocity(0,0);

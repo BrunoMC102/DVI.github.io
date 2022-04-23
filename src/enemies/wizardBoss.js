@@ -162,24 +162,6 @@ export default class WizardBoss extends ShootingEnemyParent {
         this.Pv = 150
       },
         this.attack1.bind(this), () => { }, dt)
-
-      /*this.sprite.play("wizardAttack1", true)
-      if (this.statusInfo.preparing) {
-        this.statusInfo.preparingCont += dt;
-        if (this.statusInfo.preparingCont > 400) {
-          this.statusInfo.preparingCont = 0;
-          this.statusInfo.preparing = false;
-          this.projectileType = 1;
-          this.Pv = 150;
-        }
-      }
-      else {
-
-        this.attack1();
-        this.statusInfo.attack = 0;
-        this.statusInfo.postPreparingTime = 350;
-        this.statusInfo.postPreparing = true;
-      }*/
     }
     else if (this.statusInfo.attack == 2) {
 
