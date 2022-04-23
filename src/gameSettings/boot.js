@@ -57,6 +57,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('emptyHeart', 'emptyHeart.png');
     this.load.image('bossbar','bossHealthbar.png');
     this.load.image('wizardSprite','wizardSprite.png');
+    this.load.image('boxImg','boxImg.png');
 
     this.load.setPath('assets/json/');
     this.load.tilemapTiledJSON('tilemapJose', 'PruebaScrollJose.json');
@@ -178,6 +179,7 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('ghostBall_2', 'ghostBall_2.png', 'ghostBall_2.json')
     this.load.atlas('ghostArrow_2', 'ghostArrow_2.png', 'ghostArrow_2.json')
     this.load.atlas('fireEnemy', 'fireEnemy.png', 'fireEnemy.json')
+    this.load.atlas('box', 'box.png', 'box.json')
 
 
 
@@ -658,6 +660,21 @@ export default class Boot extends Phaser.Scene {
       frames: this.anims.generateFrameNames('fireEnemy', { start: 0, end: 9, suffix: '.png' }),
       frameRate: 10,
       repeat: -1
+    })
+
+    this.anims.create({
+      key: 'boxDestroy',
+      frames: this.anims.generateFrameNames('box', { start: 0, end: 6, suffix: '.png' }),
+      frameRate: 10,
+      repeat: 0
+    })
+
+    this.anims.create({
+      key: 'box',
+      frames: this.anims.generateFrameNames('box', { start: 0, end: 2, suffix: '.png' }),
+      frameRate: 10,
+      repeat: 2,
+      yoyo:true
     })
   }
 }

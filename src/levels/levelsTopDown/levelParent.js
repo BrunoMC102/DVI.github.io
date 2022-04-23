@@ -14,6 +14,7 @@ import Mole2 from '../../enemies/moleVariante2.js';
 import Chest from '../../objetos_recogibles/chest.js';
 import Archer from '../../enemies/archer.js';
 import Minimap from '../../managers/minimap.js';
+import Box from '../../decoracion/box.js';
 
 
 export default class LevelParent extends Phaser.Scene {
@@ -85,6 +86,110 @@ export default class LevelParent extends Phaser.Scene {
     this.createOthers();
     enemiesCreated.forEach(e => this.enemies.add(e));
     this.sceneChange = [];
+    this.createDoors();
+    this.boxes = [];
+    this.closeDoors();
+  
+    this.dungeonSound = this.sound.add("dungeontheme").play();
+  }
+
+
+  onWake(sys,data){
+    this.playerData = data.playerData;
+    this.powerUpList = data.powerUpList;
+    if (data.levelList != undefined)
+      this.levelList = data.levelList;
+    this.direction = data.direction;
+    this.coordinates = this.getPlayerCoordinates(this.direction);
+
+    this.player.restart(this.coordinates.x, this.coordinates.y, this.playerData);
+    this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y);
+    this.cameras.main.startFollow(this.player);
+
+    
+    
+    
+    this.onStart();
+
+    
+    this.m.restart(this.levelList, this.grid, this.playerData.minimapUnlock);
+  }
+
+  onStart(){
+    this.changingScene = false;
+    this.initialSwipe();
+   
+    this.time.delayedCall(this.swipeTime, () => {
+      this.cameras.main.startFollow(this.player);
+      this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y);
+    });
+
+  }
+
+  changeLevel(levelKey, direction) {
+    this.changingScene = true;
+    this.time.delayedCall(this.swipeTime, () => {
+      this.scene.sleep(this.levelkey);
+      this.scene.run(levelKey, { playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: direction })
+    });
+  }
+
+  update() {
+    if (!this.cleared) {
+      if (this.enemies.getLength() === 0) {
+        this.cleared = true;
+        this.nearLevelsInfo.actual.cleared = true;
+      }
+    }
+    if (!this.open) {
+      if (this.cleared) {
+        this.activateDoors();
+        this.open = true;
+      }
+    }
+  }
+
+  finishGame() {
+    this.sound.stopAll();
+    this.scene.start("end", { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
+  }
+
+  showHitbox(layer) {
+    const debugGraphics = this.add.graphics().setAlpha(0.7);
+
+    layer.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
+      faceColor: new Phaser.Display.Color(40, 39, 37, 255)
+    });
+  }
+
+  setTileSet() {
+    const map = this.make.tilemap({ key: 'tilemap1', tileWidth: 64, tileHeight: 64 });
+    const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
+    this.groundLayer = map.createLayer('Ground', tileset);
+    this.innnerVoidLayer = map.createLayer('InnerVoid', tileset).setCollisionByProperty({ collides: true });
+    this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
+    this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
+  }
+
+  getDefaultCoordinates() {
+    return {
+      north: { x: 640, y: 20 },
+      south: { x: 640, y: 930 },
+      east: { x: 1250, y: 510 },
+      west: { x: 30, y: 510 }
+    }
+  }
+
+  createEnemies() {
+    return [];
+  }
+
+  createOthers() { }
+
+
+  createDoors(){
 
     if (this.doors.north) {
       this.northdoorGroup = this.add.group();
@@ -139,113 +244,39 @@ export default class LevelParent extends Phaser.Scene {
       this.sceneChange.push(this.westDoor);
     }
 
-
-
-
     this.zoneGroup = this.add.group();
     this.physics.add.collider(this.enemies, this.zoneGroup);
+    
 
     this.sceneChange.forEach(e => {
       this.zoneGroup.add(e);
     })
 
-
-    this.dungeonSound = this.sound.add("dungeontheme").play();
   }
 
 
-  onWake(sys,data){
-    this.playerData = data.playerData;
-    this.powerUpList = data.powerUpList;
-    if (data.levelList != undefined)
-      this.levelList = data.levelList;
-    this.direction = data.direction;
-    this.coordinates = this.getPlayerCoordinates(this.direction);
-
-    this.player.restart(this.coordinates.x, this.coordinates.y, this.playerData);
-
-    this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y);
-    this.cameras.main.startFollow(this.player);
-    
-    
-    
-    this.onStart();
-
-    
-    this.m.restart(this.levelList, this.grid, this.playerData.minimapUnlock);
-  }
-
-  onStart(){
-    this.changingScene = false;
-    this.time.delayedCall(1, ()=>{this.initialSwipe()});
-   
-    this.time.delayedCall(this.swipeTime, () => {
-      this.cameras.main.startFollow(this.player);
-      this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y);
-    });
-
-  }
-
-  changeLevel(levelKey, direction) {
-    this.changingScene = true;
-    this.time.delayedCall(this.swipeTime, () => {
-      this.scene.sleep(this.levelkey);
-      this.scene.run(levelKey, { playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: direction })
-    });
-  }
-
-  update() {
-    if (!this.cleared) {
-      if (this.enemies.getLength() === 0) {
-        this.cleared = true;
-        this.nearLevelsInfo.actual.cleared = true;
-      }
+  closeDoors(){
+    if (this.doors.north){
+      this.northdoorGroup.remove(this.northDoor)
+      this.boxes.push(new Box(this,this.doorCoordinates.north.x-20, this.doorCoordinates.north.y-30, 0));
     }
-    if (!this.open) {
-      if (this.cleared) {
-        this.activateDoors();
-      }
+
+    if (this.doors.south){
+      this.southdoorGroup.remove(this.southDoor)
+      this.boxes.push(new Box(this,this.doorCoordinates.south.x-20, this.doorCoordinates.south.y-10, 2));
     }
-  }
 
-  finishGame() {
-    this.sound.stopAll();
-    this.scene.start("end", { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
-  }
-
-  showHitbox(layer) {
-    const debugGraphics = this.add.graphics().setAlpha(0.7);
-
-    layer.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
-      faceColor: new Phaser.Display.Color(40, 39, 37, 255)
-    });
-  }
-
-  setTileSet() {
-    const map = this.make.tilemap({ key: 'tilemap1', tileWidth: 64, tileHeight: 64 });
-    const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
-    this.groundLayer = map.createLayer('Ground', tileset);
-    this.innnerVoidLayer = map.createLayer('InnerVoid', tileset).setCollisionByProperty({ collides: true });
-    this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
-    this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
-  }
-
-  getDefaultCoordinates() {
-    return {
-      north: { x: 640, y: 0 },
-      south: { x: 640, y: 930 },
-      east: { x: 1250, y: 510 },
-      west: { x: 30, y: 510 }
+    if (this.doors.east){
+      this.eastdoorGroup.remove(this.eastDoor)
+      this.boxes.push(new Box(this,this.doorCoordinates.east.x+5, this.doorCoordinates.east.y-20, 1));
     }
-  }
 
-  createEnemies() {
-    return [];
+    if (this.doors.west){
+      this.westdoorGroup.remove(this.westDoor)
+      this.boxes.push(new Box(this,this.doorCoordinates.west.x-40, this.doorCoordinates.west.y-20, 3));
+    }
+    this.zoneCollider = this.physics.add.collider(this.player, this.zoneGroup);
   }
-
-  createOthers() { }
 
   activateDoors() {
     if (this.doors.north)
@@ -259,6 +290,11 @@ export default class LevelParent extends Phaser.Scene {
 
     if (this.doors.west)
       this.westdoorGroup.add(this.westDoor)
+
+    this.boxes.forEach(e=>e.break());
+    if(this.zoneCollider != undefined){
+      this.physics.world.removeCollider(this.zoneCollider);
+    }
   }
 
 
@@ -300,7 +336,8 @@ export default class LevelParent extends Phaser.Scene {
 
   initialSwipe() {
     if (this.direction != undefined) {
-      let scroll = this.cameras.cameras[0].scrollX;
+      this.cameras.main.stopFollow();
+      this.cameras.main.removeBounds();
       if (this.direction == 0) {
         this.cameras.cameras[0].scrollY += this.halfHeigh;
         this.swipeY(-this.halfHeigh);

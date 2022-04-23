@@ -56,6 +56,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.sprite = this.scene.add.sprite(0, 0, 'character', 'idle-side.png');
     this.add(this.sprite);
     this.sprite.anims.play('idle-side');
+    this.sprite.depth = 5;
 
 
     //Creacion Informacion del jugador por pantalla

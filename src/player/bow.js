@@ -8,6 +8,7 @@ export default class Bow extends Phaser.GameObjects.Container {
         this.setVisible(false);
         
         this.sprite = new Phaser.GameObjects.Sprite(scene, 40, 0, 'bow');
+        this.sprite.depth = 6;
         this.add(this.sprite);
         this.player = player;
 
