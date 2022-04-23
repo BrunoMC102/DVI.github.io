@@ -9,7 +9,7 @@ export default class PlayerData{
       this.money = 10; // dinero del jugador
       // datos para el scroll lateral
       // Aceleraciones vertical y horizontal 
-      this.vAcc = -1800;
+      this.vAcc = -8000;
       this.hAcc = 2000;
 
       //UI related

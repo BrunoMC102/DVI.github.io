@@ -1,4 +1,4 @@
-import Star from '../star.js';
+
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
  * También almacena la puntuación o número de estrellas que ha recogido hasta el momento.
@@ -30,9 +30,10 @@ export default class Player extends Phaser.GameObjects.Container {
     this.add(this.sprite);
     this.health_label = this.scene.add.text(this.scene.cameras.x, this.scene.cameras.y, "Health");
     this.jumpTimer = 0;
-    this.maxJumpTime = 500; // tiempo maximo de salto en ms 
+    this.maxJumpTime = 125; // tiempo maximo de salto en ms 
     this.isJumping = false;
-
+    this.stillJumping = true;
+    this.body.setMaxVelocityY(975);
   }
 
   /*
@@ -43,7 +44,78 @@ export default class Player extends Phaser.GameObjects.Container {
     this.label.text = 'Health ' + this.score;
   }*/
 
+  //Preupdate con salto nuevo
+
   preUpdate(t, dt) {
+
+    let somePressed = false;
+
+    if (this.cursors.up.isDown) {
+
+      if (this.body.onFloor()) {
+        this.stillJumping = true;
+        this.jumpTimer = 0;
+        this.body.setAccelerationY(this.playerData.vAcc);
+      }
+
+      this.sprite.play('jump', true);
+
+      if (this.jumpTimer >= this.maxJumpTime) {
+        this.stillJumping = false;
+        this.body.setAccelerationY(0);
+        this.jumpTimer = 0;
+      }
+      else{
+         this.jumpTimer += dt;
+      }
+        //this.anims.chain(['jump', 'jumpfinal']);
+      somePressed = true;
+    }
+    else{
+      if(this.stillJumping){
+        this.body.setAccelerationY(0);
+        this.stillJumping = false;
+      }
+    }
+    if (this.cursors.left.isDown) {
+      //this.body.setAccelerationY(-this.playerData.vAcc);
+      if (this.body.onFloor()) {
+        this.sprite.play('walk', true);
+      } else {
+        this.sprite.play('jump', true);
+      }
+      this.body.setVelocityX(-this.playerData.speed);
+      this.scaleX = -1;
+      this.body.offset.x = 95;
+      somePressed = true;
+    }
+    if (this.cursors.right.isDown) {
+      //this.body.setAccelerationY(-this.playerData.vAcc);
+      if (this.body.onFloor()) {
+        this.sprite.play('walk', true);
+      } else {
+        this.sprite.play('jump', true);
+      }
+      this.body.setVelocityX(this.playerData.speed);
+      this.scaleX = 1;
+      this.body.offset.x = 35;
+      somePressed = true;
+    }
+    if(!somePressed){
+      if (this.body.onFloor()) {
+        this.sprite.play('stand', true);
+        this.body.setAccelerationY(0);
+      } else {
+        this.sprite.play('jump', true);
+      }
+      this.body.setVelocityX(0);
+      this.jumpTimer = 0;
+    }
+  }
+
+  //Preupdate anterior con salto de Bruno
+
+  /*preUpdate(t, dt) {
 
     if (this.cursors.up.isDown) {
       this.sprite.play('jump', true);
@@ -93,5 +165,5 @@ export default class Player extends Phaser.GameObjects.Container {
       this.body.setVelocityX(0);
       this.jumpTimer = 0;
     }
-  }
+  }*/
 }
