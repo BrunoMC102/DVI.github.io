@@ -16,46 +16,28 @@ import Archer from '../../../enemies/archer.js';
 import LevelParent from '../levelParent.js';
 
 
-export default class LevelBig extends LevelParent {
+export default class LevelBigParent extends LevelParent {
 
-  constructor(key) {
-    super(key, {
-      north: true,
-      south: true,
-      west: true,
-      east: true
-    },
+  constructor(key, doors) {
+    super(key, doors,
     {
-      north: { x: 895, y: 0 },
-      south: { x: 895, y: 704 },
-      east: { x: 1856, y: 704 },
-      west: { x: 895, y: 1566 }
+      north: { x: 960, y: 20 },
+      south: { x: 960, y: 1600 },
+      east: { x: 1900, y: 760 },
+      west: { x: 20, y: 760 }
     });
-    this.iden = 'TB';
+    this.iden = 'Boss';
+
     this.dimensions = {
       x:1920,
       y:1600
     }
   }
 
- 
-
-  createOthers(){
-    new Chest(this, this.player, 450, 300);
-    new Coin(this, this.player, 450, 200);
-    new HealthPotion(this, this.player, 600, 200);
-    new Health(this, this.player, 750, 200);
-    new Arrow(this, this.player, 900, 200);
-  }
-
-  
-
-
-  setTileSet() {
-    const map = this.make.tilemap({ key: 'tilemapBig', tileWidth: 64, tileHeight: 64 });
-    const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
-    this.groundLayer = map.createLayer('Ground', tileset);
-    this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
-    this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
+  getPlayerCoordinates(direction) {
+    if (direction == 0) return { x: 960, y: 1500 }
+    else if (direction == 1) return { x: 150, y: 750 }
+    else if (direction == 2) return { x: 960, y: 100 }
+    else return { x: 1750, y: 750 }
   }
 }

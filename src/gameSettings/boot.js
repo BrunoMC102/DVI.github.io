@@ -239,7 +239,7 @@ export default class Boot extends Phaser.Scene {
   }
 
   /**
-   * Creación de la escena. En este caso, solo cambiamos a la escena que reprsesenta el
+   * Creación de la escena. En este caso, solo cambiamos a la escena que representa el
    * nivel del juego
    */
   create() {

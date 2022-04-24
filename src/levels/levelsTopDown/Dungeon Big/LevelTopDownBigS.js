@@ -13,10 +13,10 @@ import Mole from '../../../enemies/moleVariante.js';
 import Mole2 from '../../../enemies/moleVariante2.js';
 import Chest from '../../../objetos_recogibles/chest.js';
 import Archer from '../../../enemies/archer.js';
-import LevelParent from '../levelParent.js';
+import LevelBigParent from './levelBigParent.js';
 
 
-export default class LevelTopDownBigS extends LevelParent {
+export default class LevelTopDownBigS extends LevelBigParent {
 
   constructor(key) {
     super(key, {
@@ -24,36 +24,7 @@ export default class LevelTopDownBigS extends LevelParent {
       south: true,
       west: false,
       east: false
-    },
-    {
-      north: { x: 0, y: 0 },
-      south: { x: 960, y: 1600 },
-      east: { x: 0, y: 0 },
-      west: { x: 0, y: 0 }
     });
-    this.iden = 'TB';
-    this.dimensions = {
-      x:1920,
-      y:1600
-    }
-  }
-
- 
-
-  createOthers(){
-    new Chest(this, this.player, 450, 300);
-    new Coin(this, this.player, 450, 200);
-    new HealthPotion(this, this.player, 600, 200);
-    new Health(this, this.player, 750, 200);
-    new Arrow(this, this.player, 900, 200);
-  }
-
-  
-  getPlayerCoordinates(direction) {
-    if (direction == 0) return { x: 960, y: 1500 }
-    else if (direction == 1) return { x: 150, y: 750 }
-    else if (direction == 2) return { x: 960, y: 100 }
-    else return { x: 1750, y: 750 }
   }
 
   setTileSet() {
