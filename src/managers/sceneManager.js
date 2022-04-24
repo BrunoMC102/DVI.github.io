@@ -109,12 +109,13 @@ export default class SceneManager {
                           LevelTopDown5A, LevelTopDown5C_NE, LevelTopDown5B_E, LevelTopDown5B_N, LevelTopDown5B_O, LevelTopDown5B_S, LevelTopDown5C_NS, LevelTopDown5C_NO, LevelTopDown5C_SE, LevelTopDown5C_SO, LevelTopDown5C_EO, 
                           ];
         this.profundidadMinima = 1;
-        this.profundidadMaxima = 3;
+        this.profundidadMaxima = 1;
 
         this.endSceneList = [
                         LevelTopDownBigE, LevelTopDownBigN, LevelTopDownBigS, LevelTopDownBigW
         ];
         this.chestLevelList = [ChestRoomE, ChestRoomN, ChestRoomS, ChestRoomW];
+        this.bossLevelList = [LevelTopDownBigE, LevelTopDownBigN, LevelTopDownBigS, LevelTopDownBigW];
         this.levelCont = 0;
     }
 
@@ -309,22 +310,45 @@ export default class SceneManager {
     addChestLevel(list) {
         const oneDoors = list.filter(e => { return e.doorNumbers == 1 });
         const moreDoors = list.filter(e => { return e.doorNumbers != 1 });
-        let index = Math.floor(Math.random() * oneDoors.length);
-        let salaSustituir = oneDoors[index];
-        oneDoors.splice(index, 1);
-        const chestLevel = this.swapChestLevel(this.chestLevelList, salaSustituir, true);
+        
+        const bossLevel = this.switchLevel(this.bossLevelList, oneDoors);
 
-        if(oneDoors.length <= 0) return;
+        if(oneDoors.length <= 0){
+            oneDoors.push(bossLevel);
+            return moreDoors.concat(oneDoors);
+        } 
+        const chestLevel = this.switchChestLevel(this.chestLevelList, oneDoors, true);
 
-        index = Math.floor(Math.random() * oneDoors.length);
-        salaSustituir = oneDoors[index];
-        oneDoors.splice(index, 1);
-        const mimicLevel = this.swapChestLevel(this.chestLevelList, salaSustituir, false);
+        if(oneDoors.length <= 0) {
+            oneDoors.push(bossLevel);
+            oneDoors.push(chestLevel);
+            return moreDoors.concat(oneDoors);
+        }
 
+        const mimicLevel = this.switchChestLevel(this.chestLevelList, oneDoors, false);
+
+        oneDoors.push(bossLevel);
         oneDoors.push(chestLevel);
         oneDoors.push(mimicLevel);
         return moreDoors.concat(oneDoors);
     }
+
+
+    switchChestLevel(listFromSust, listToSust, isReal){
+        let index = Math.floor(Math.random() * listToSust.length);
+        let salaSustituir = listToSust[index];
+        listToSust.splice(index, 1);
+        return this.swapChestLevel(listFromSust, salaSustituir, isReal);
+    }
+
+    switchLevel(listFromSust, listToSust){
+        let index = Math.floor(Math.random() * listToSust.length);
+        let salaSustituir = listToSust[index];
+        listToSust.splice(index, 1);
+        return this.swapLevel(listFromSust, salaSustituir);
+    }
+
+
 
     swapChestLevel(list, salaSustituir, isReal){
         const chestList = this.createRandomizedList(list);

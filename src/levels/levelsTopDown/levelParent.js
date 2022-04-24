@@ -82,9 +82,9 @@ export default class LevelParent extends Phaser.Scene {
     this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
     this.onStart();
     
-    const enemiesCreated = this.createEnemies();
+    this.enemiesCreated = this.createEnemies();
     this.createOthers();
-    enemiesCreated.forEach(e => this.enemies.add(e));
+    this.enemiesCreated.forEach(e => this.enemies.add(e));
     this.sceneChange = [];
     this.createDoors();
     this.boxes = [];
@@ -276,6 +276,8 @@ export default class LevelParent extends Phaser.Scene {
       this.boxes.push(new Box(this,this.doorCoordinates.west.x-20, this.doorCoordinates.west.y-1, 3));
     }
     this.zoneCollider = this.physics.add.collider(this.player, this.zoneGroup);
+    this.open = false;
+    this.cleared = false;
   }
 
   activateDoors() {
