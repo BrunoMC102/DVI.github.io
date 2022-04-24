@@ -1,3 +1,4 @@
+import PlayerPlatform from "./playerPlatform.js";
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -34,6 +35,33 @@ export default class Player extends Phaser.GameObjects.Container {
     this.isJumping = false;
     this.stillJumping = true;
     this.body.setMaxVelocityY(975);
+
+    this.handleControls();
+    if (this.playerData.isPadControlling) this.controls = this.padControls;
+    else this.controls = this.keyboardControls;
+    scene.input.keyboard.on('keydown', () => { this.controls = this.keyboardControls; this.playerData.isPadControlling = false });
+    scene.input.gamepad.on(Phaser.Input.Gamepad.Events.BUTTON_DOWN, () => { this.controls = this.padControls; this.playerData.isPadControlling = true });
+    
+    this.dashing = false;
+    this.doubleJumped = false;
+
+    //Keys
+    this.keyC = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
+    this.keyX = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
+
+    //Pressed buttons
+    this.jumpPressed = false;
+    this.dashPressed = false;
+    this.boxCreated = false;
+    this.boxPressed = false;
+    this.maxPlatforms = 10;
+
+    this.lastInput = 1;
+
+    this.platforms = [];
+
+    this.boxesGroup = this.scene.add.group();
+    this.scene.physics.add.collider(this.boxesGroup, this.boxesGroup);
   }
 
   /*
@@ -47,69 +75,15 @@ export default class Player extends Phaser.GameObjects.Container {
   //Preupdate con salto nuevo
 
   preUpdate(t, dt) {
-
-    let somePressed = false;
-
-    if (this.cursors.up.isDown) {
-
-      if (this.body.onFloor()) {
-        this.stillJumping = true;
-        this.jumpTimer = 0;
-        this.body.setAccelerationY(this.playerData.vAcc);
-      }
-
-      this.sprite.play('jump', true);
-
-      if (this.jumpTimer >= this.maxJumpTime) {
-        this.stillJumping = false;
-        this.body.setAccelerationY(0);
-        this.jumpTimer = 0;
-      }
-      else{
-         this.jumpTimer += dt;
-      }
-        //this.anims.chain(['jump', 'jumpfinal']);
-      somePressed = true;
+    if(this.playerData.scrollDash){
+       this.controls.dashControl();
     }
-    else{
-      if(this.stillJumping){
-        this.body.setAccelerationY(0);
-        this.stillJumping = false;
-      }
+    if(this.playerData.scrollBoxes){
+       this.controls.boxControl();
     }
-    if (this.cursors.left.isDown) {
-      //this.body.setAccelerationY(-this.playerData.vAcc);
-      if (this.body.onFloor()) {
-        this.sprite.play('walk', true);
-      } else {
-        this.sprite.play('jump', true);
-      }
-      this.body.setVelocityX(-this.playerData.speed);
-      this.scaleX = -1;
-      this.body.offset.x = 95;
-      somePressed = true;
-    }
-    if (this.cursors.right.isDown) {
-      //this.body.setAccelerationY(-this.playerData.vAcc);
-      if (this.body.onFloor()) {
-        this.sprite.play('walk', true);
-      } else {
-        this.sprite.play('jump', true);
-      }
-      this.body.setVelocityX(this.playerData.speed);
-      this.scaleX = 1;
-      this.body.offset.x = 35;
-      somePressed = true;
-    }
-    if(!somePressed){
-      if (this.body.onFloor()) {
-        this.sprite.play('stand', true);
-        this.body.setAccelerationY(0);
-      } else {
-        this.sprite.play('jump', true);
-      }
-      this.body.setVelocityX(0);
-      this.jumpTimer = 0;
+    this.controls.movementcontrol(dt);
+    if(this.body.onFloor()){
+      this.doubleJumped = false;
     }
   }
 
@@ -166,4 +140,198 @@ export default class Player extends Phaser.GameObjects.Container {
       this.jumpTimer = 0;
     }
   }*/
+
+
+
+
+  handleMovement(conditionUp, conditionLeft, conditionRight, dt){
+    if(this.dashing) return;
+
+  
+    let somePressed = false;
+
+    if (conditionUp) {
+      if(!this.jumpPressed){
+         if (this.body.onFloor()) {
+          this.jumpPressed = true;
+          this.stillJumping = true;
+          this.jumpTimer = 0;
+          this.body.setAccelerationY(this.playerData.vAcc);
+          this.sprite.play('jump', true);
+          
+        }
+        else if(this.playerData.doubleJump){
+          if(!this.doubleJumped){
+            this.body.setVelocityY(0);
+             this.doubleJumped = true;
+             this.jumpPressed = true;
+              this.stillJumping = true;
+            this.jumpTimer = 0;
+            this.body.setAccelerationY(this.playerData.vAcc);
+            this.sprite.play('jump', true);
+          }
+          
+        }
+      }
+     
+      if (this.jumpTimer >= this.maxJumpTime) {
+        this.stillJumping = false;
+        this.body.setAccelerationY(0);
+      }
+      else{
+         this.jumpTimer += dt;
+      }
+        //this.anims.chain(['jump', 'jumpfinal']);
+      somePressed = true;
+    }
+    else{
+      this.jumpPressed = false;
+      if(this.stillJumping){
+        this.body.setAccelerationY(0);
+        this.stillJumping = false;
+      }
+    }
+    if (conditionLeft) {
+      //this.body.setAccelerationY(-this.playerData.vAcc);
+      if (this.body.onFloor()) {
+        this.sprite.play('walk', true);
+      } else {
+        this.sprite.play('jump', true);
+      }
+      this.body.setVelocityX(-this.playerData.speed);
+      this.scaleX = -1;
+      this.body.offset.x = 95;
+      this.lastInput = -1;
+      somePressed = true;
+    }
+    if (conditionRight) {
+      //this.body.setAccelerationY(-this.playerData.vAcc);
+      if (this.body.onFloor()) {
+        this.sprite.play('walk', true);
+      } else {
+        this.sprite.play('jump', true);
+      }
+      this.body.setVelocityX(this.playerData.speed);
+      this.scaleX = 1;
+      this.body.offset.x = 35;
+      this.lastInput = 1;
+      somePressed = true;
+    }
+    if(!conditionLeft && ! conditionRight){
+      this.body.setVelocityX(0);
+    }
+    if(!somePressed){
+      if (this.body.onFloor()) {
+        this.sprite.play('stand', true);
+        this.body.setAccelerationY(0);
+      } else {
+        this.sprite.play('jump', true);
+      }
+    }
+    
+  }
+
+
+
+  checkForDash(ControlCondition){
+    if(ControlCondition){
+      if(this.dashPressed) return;
+      this.dashPressed = true;
+    } 
+    else {
+      this.dashPressed = false;
+    }
+    if(this.dashing) return;
+    if(this.body.onFloor()) this.dashed = false;
+    if(this.dashed) return;
+    if(ControlCondition){
+      this.initiateDash()
+    }
+  }
+
+  initiateDash(){
+    this.dashing = true;
+    this.dashed = true;
+    this.body.setVelocity(this.playerData.dashVelocity*this.lastInput, 0);
+    this.body.setAcceleration(0,0);
+    this.body.setAllowGravity(false);
+    this.scene.time.delayedCall(300, ()=>{this.endDash()});
+  }
+
+  endDash(){
+    this.dashing = false;
+    this.body.setVelocityX(0);
+    this.body.setAllowGravity(true);
+  }
+
+
+  handleBoxCreations(condition){
+    
+    if(condition){
+      if(this.boxPressed){
+        return;
+      }
+      else{
+        this.boxPressed = true;
+      }
+      if(this.boxCreated){
+        this.stopBox();
+        this.boxCreated = false;
+      }
+      else{
+        this.createBox();
+        this.boxCreated = true;
+      }
+    }
+    else{
+      this.boxPressed = false;
+    }
+  }
+
+  createBox(){
+    this.platforms.length += 1;
+    for(let i = this.platforms.length - 1; i > 0; i--){
+      this.platforms[i] = this.platforms[i-1];
+    }
+    this.platforms[0] = new PlayerPlatform(this.scene, this.body.center.x + 10, this.body.center.y + 10, this.lastInput, this);
+    this.boxesGroup.add(this.platforms[0]);
+    if(this.platforms.length > this.maxPlatforms){
+      this.platforms.pop().destroy();
+    }
+  }
+  
+  stopBox(){
+    this.platforms[0].stop();
+  }
+
+  handleControls() {
+    this.keyboardControls = {
+      
+      movementcontrol: (dt) => {
+        this.handleMovement(this.cursors.space.isDown, this.cursors.left.isDown, this.cursors.right.isDown,dt);
+      },
+      boxControl: () => {
+        this.handleBoxCreations(this.keyX.isDown)
+      },
+      dashControl: () => {
+        this.checkForDash(this.keyC.isDown);
+      },
+    };
+    this.padControls = {
+      movementcontrol: (dt) => {
+        const pad = this.scene.input.gamepad.getPad(0);
+        if (pad == undefined) return;
+        this.handleMovement(pad.A, pad.leftStick.x < 0, pad.leftStick.x > 0,dt);
+      },
+      dashControl: () => {
+        const pad = this.scene.input.gamepad.getPad(0);
+        this.checkForDash(pad.R2 > 0);
+      },
+      boxControl: () => {
+        const pad = this.scene.input.gamepad.getPad(0);
+        this.handleBoxCreations(pad.Y);
+      },
+    };
+
+  }
 }

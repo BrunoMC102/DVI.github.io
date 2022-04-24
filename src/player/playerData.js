@@ -33,7 +33,12 @@ export default class PlayerData{
     
       this.projectileEffects = [];
       this.isPadControlling = false;
-      this.dashSpeed = 900;
+      this.dashSpeed = 900;  //Topdown
+      this.dashVelocity = 975 //Scroll
+      this.doubleJump = true;
+      this.scrollDash = true;
+      this.scrollBoxes = true;
+
       this.dashInvincibilityPower = false;
       this.currentManaCost = 5;
       this.minimapUnlock = false;
