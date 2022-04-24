@@ -112,20 +112,16 @@ export default class SceneManager {
         this.profundidadMaxima = 1;
 
         this.endSceneList = [
-                        LevelTopDownBigE, LevelTopDownBigN, LevelTopDownBigS, LevelTopDownBigW
+            LevelTopDown1D_E, LevelTopDown1D_N, LevelTopDown1D_S, LevelTopDown1D_O,
+            LevelTopDown2D_E, LevelTopDown2D_N, LevelTopDown2D_S, LevelTopDown2D_O, 
+            LevelTopDown3D_E, LevelTopDown3D_N, LevelTopDown3D_S, LevelTopDown3D_O, 
+            LevelTopDown4D_E, LevelTopDown4D_N, LevelTopDown4D_S, LevelTopDown4D_O, 
+            LevelTopDown5D_E, LevelTopDown5D_N, LevelTopDown5D_S, LevelTopDown5D_O,
         ];
         this.chestLevelList = [ChestRoomE, ChestRoomN, ChestRoomS, ChestRoomW];
         this.bossLevelList = [LevelTopDownBigE, LevelTopDownBigN, LevelTopDownBigS, LevelTopDownBigW];
         this.levelCont = 0;
     }
-
-    /*
-                        LevelTopDown1D_E, LevelTopDown1D_N, LevelTopDown1D_S, LevelTopDown1D_O,
-                        LevelTopDown2D_E, LevelTopDown2D_N, LevelTopDown2D_S, LevelTopDown2D_O, 
-                        LevelTopDown3D_E, LevelTopDown3D_N, LevelTopDown3D_S, LevelTopDown3D_O, 
-                        LevelTopDown4D_E, LevelTopDown4D_N, LevelTopDown4D_S, LevelTopDown4D_O, 
-                        LevelTopDown5D_E, LevelTopDown5D_N, LevelTopDown5D_S, LevelTopDown5D_O,
-    */
 
     generateMap() {
         this.levelList = this.createRandomizedList(this.sceneList);
