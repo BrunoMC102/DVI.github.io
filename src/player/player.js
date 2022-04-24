@@ -54,7 +54,7 @@ export default class Player extends Phaser.GameObjects.Container {
     this.dashPressed = false;
     this.boxCreated = false;
     this.boxPressed = false;
-    this.maxPlatforms = 10;
+    this.maxPlatforms = 2;
 
     this.lastInput = 1;
 
