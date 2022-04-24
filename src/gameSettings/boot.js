@@ -66,8 +66,12 @@ export default class Boot extends Phaser.Scene {
     this.load.image('greyButton','greyButton.png');
     this.load.image('redPanel', 'redPanel.png');
     this.load.image('redButton', 'redButton.png');
+    this.load.image('redRectangle', 'redRectangle.png');
     this.load.image('musicOn', 'musicOn.png');
     this.load.image('musicOff', 'musicOff.png');
+    this.load.image('cross','cross.png');
+    this.load.image('arrowLeft', 'arrowLeft.png');
+    this.load.image('arrowRight','arrowRight.png');
     this.load.image('tileEsc', 'tileEsc.png');
     this.load.image('tileUp', 'tileUp.png');
     this.load.image('tileDown', 'tileDown.png');
@@ -80,13 +84,13 @@ export default class Boot extends Phaser.Scene {
     this.load.image('tileF', 'tileF.png');
     this.load.image('tileG', 'tileG.png');
     this.load.image('tileC', 'tileC.png');
+    this.load.image('tileX', 'tileX.png');
     this.load.image('tileSpaceL', 'tileSpaceL.png');
     this.load.image('tileSpaceM', 'tileSpaceM.png');
     this.load.image('tileSpaceR', 'tileSpaceR.png');
 
     this.load.setPath('assets/json/');
     this.load.tilemapTiledJSON('tilemapJose', 'PruebaScrollJose.json');
-    this.load.tilemapTiledJSON('tilemapBig', 'DungeonBig.json');
     this.load.tilemapTiledJSON('tilemapVillage', 'PruebaPoblado2.json');
 
     this.load.setPath('assets/json/Scroll');
@@ -183,6 +187,7 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('DungeonBigN', 'DungeonBigN.json');
     this.load.tilemapTiledJSON('DungeonBigS', 'DungeonBigS.json');
     this.load.tilemapTiledJSON('DungeonBigW', 'DungeonBigW.json');
+    this.load.tilemapTiledJSON('tilemapBig', 'DungeonBig.json');
 
     this.load.setPath('assets/atlas/');
     //knight

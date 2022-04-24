@@ -147,19 +147,25 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.blocked = cond;
   }
 
-  
+  showMenu(){
+    this.pauseMenu.showMenuPanel();
+      this.isMenuDeployed = true;
+      this.setBlocked(true);
+  }
+
+  hideMenu(){
+      this.pauseMenu.hideMenuPanel();
+      this.isMenuDeployed = false;
+      this.setBlocked(false);
+  }
 
   preUpdate(t, dt) {
     this.isKeyEscDown = Phaser.Input.Keyboard.JustDown(this.keyEsc);
     if(!this.isMenuDeployed && this.isKeyEscDown){
-      this.pauseMenu.showMenuPanel();
-      this.isMenuDeployed = true;
-      this.setBlocked(true);
+      this.showMenu();
 
     }else if (this.isMenuDeployed && this.isKeyEscDown){
-      this.pauseMenu.hideMenuPanel();
-      this.isMenuDeployed = false;
-      this.setBlocked(false);
+      this.hideMenu();
     }
 
     if(this.blocked){
