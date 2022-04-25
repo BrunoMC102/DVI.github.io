@@ -4,6 +4,8 @@ import WizardBoss from "../../enemies/wizardBoss.js";
 import Minimap from "../../managers/minimap.js";
 import Enemy from "../../enemies/inverter.js";
 import LevelParent from "./levelParent.js";
+import wizardProjectile from "../../proyectile/wizardProjectile.js";
+import GhostArrow from "../../proyectile/ghostArrow.js";
 
 
 export default class InitialLevel extends LevelParent {
@@ -18,8 +20,12 @@ export default class InitialLevel extends LevelParent {
 
     createEnemies(){
 
-        return [new Enemy(this, this.player, 500, 500)];
+        return [];
 
+    }
+
+    createOthers(){
+        this.pr = new GhostArrow(this,600,500,0,0,100,0,1);
     }
    
     init(data){
@@ -36,5 +42,10 @@ export default class InitialLevel extends LevelParent {
         this.groundLayer = map.createLayer('Ground', tileset);
         this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
         this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
-      }
+    }
+
+    update(t,dt){
+        super.update(t,dt);
+        this.pr.rotation += dt/200; 
+    }
 }

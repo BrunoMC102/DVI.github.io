@@ -287,6 +287,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           }
         }
       }
+      else{
+        for (let i = m; i > this.playerData.maxhealth; i--) {
+          const emptyHearth = this.array_emptyhearts.pop();
+          emptyHearth.destroy();
+          this.separationemptyhearts -= 30;
+        }
+      }
     }
 
     if (this.playerData.health != j && !this.isDead) {
@@ -302,8 +309,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       }
       else {
         for (let i = j; i > this.playerData.health; i--) {
-          this.array_hearts[i - 1].destroy();
-          this.array_hearts.pop();
+          const hearth = this.array_hearts.pop();
+          hearth.destroy();
           this.separationhearts -= 30;
         }
       }
@@ -361,12 +368,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.inDashDelay = true;
     if (this.playerData.dashInvincibilityPower)
       this.playerWithProjectilesCollider.remove(this);
-    this.scene.time.delayedCall(130, () => {
+    this.scene.time.delayedCall(this.playerData.dashDuration*1000, () => {
       if (this.playerData.dashInvincibilityPower)
         this.playerWithProjectilesCollider.remove(this);
       this.dashing = false;
     })
-    this.scene.time.delayedCall(400, () => {
+    this.scene.time.delayedCall(this.playerData.dashCoolDown*1000, () => {
       this.playerWithProjectilesCollider.add(this);
       this.inDashDelay = false;
     })
@@ -379,7 +386,6 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   }
 
   setBouncy() {
-
     this.playerData.setBouncy();
   }
 
@@ -403,6 +409,50 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     }
   }
 
+  steal(){
+    const index = Math.random();
+    let quantity = 0;
+    if(index < 0.3){
+      quantity = 3
+      if(this.stealResource(this.playerData.money, quantity)){
+        this.playerData.money -= quantity;
+        return "monedas";
+      }
+      return null;
+    }
+    else if(index < 0.6){
+      quantity = 5
+      if(this.stealResource(this.playerData.arrows, quantity)){
+        this.playerData.arrows -= quantity;
+        return "flecha";
+      }
+      return null;
+
+    }
+    else if(index < 0.9){
+      quantity = 20
+      if(this.stealResource(this.playerData.mana, quantity)){
+        this.playerData.mana -= quantity;
+        return "mana";
+      }
+      return null;
+    }
+    else{
+      quantity = 1
+      if(this.stealResource(this.playerData.maxhealth, quantity)){
+        this.playerData.maxhealth -= quantity;
+        return "vida";
+      }
+      return null;
+    }
+  }
+
+  stealResource(resource, quantity){
+    if(resource - quantity >= 0){
+      return true;
+    }
+    return false;
+  }
 
   getDirectionX() {
     if (this.body.facing == Phaser.Physics.Arcade.FACING_RIGHT)

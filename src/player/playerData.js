@@ -39,6 +39,9 @@ export default class PlayerData{
       this.scrollDash = true;
       this.scrollBoxes = true;
 
+      this.dashDuration = 0.13;
+      this.dashCoolDown = 0.8;
+      this.minDashCooldown = 0.8;
       this.dashInvincibilityPower = false;
       this.currentManaCost = 5;
       this.minimapUnlock = false;

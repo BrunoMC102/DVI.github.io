@@ -4,6 +4,7 @@ export default class wizardProjectile extends Basic_projectile{
     constructor(scene,x,y,vx,vy,time,damage, type, velocity){
         super(scene,x,y,'flecha',vx,vy,time,damage);
         this.cont = 4000;
+        this.setOrigin(1,1);
         
         this.velocity = velocity;
         if(type == 0){
@@ -20,7 +21,7 @@ export default class wizardProjectile extends Basic_projectile{
             this.doEffect = this.doHoming;
             this.body.setSize(35,35);
             this.body.setOffset(35,35);
-            this.setOrigin(0.8,0);
+            
             
         }
         else if(type == 3){

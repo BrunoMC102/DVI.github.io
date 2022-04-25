@@ -14,6 +14,7 @@ export default class MimicChest extends EnemyParent{
     this.v = 50;
     this.active = false;
     this.body.pushable = false;
+    this.stealing = false;
   }
   
   moveU(t,dt){
@@ -103,6 +104,7 @@ export default class MimicChest extends EnemyParent{
   onCollisionWithPlayer(){
     if(this.active){
         super.onCollisionWithPlayer();
+        this.steal();
         return;
     }
     if(this.awaking) return;
@@ -113,5 +115,16 @@ export default class MimicChest extends EnemyParent{
         this.awaking = false;
     })
     
+  }
+  steal(){
+    if(this.stealing) return;
+
+    const objectStealed = this.player.steal()
+    if(objectStealed != null){
+      const imgStealed = new Phaser.GameObjects.Image(this.scene, 20, -30, objectStealed);
+      this.add(imgStealed);
+      this.stealing = true;
+      this.scene.time.delayedCall(4000, () => {imgStealed.destroy(); this.stealing = false;});
+    }
   }
 }
