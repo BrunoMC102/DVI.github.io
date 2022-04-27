@@ -1,18 +1,15 @@
-import ShootingEnemyParent from './shootingEnemyParent.js';
+
 import wizardProjectile from '../proyectile/wizardProjectile.js';
 import Meteor from '../proyectile/meteor.js';
 import FireBall from '../proyectile/fireBall.js';
 import FireColumn from '../proyectile/fireColumn.js';
-import WizardBossHealth from './wizardBossHealth.js';
 
-/**
- * Clase que representa las plataformas que aparecen en el escenario de juego.
- * Cada plataforma es responsable de crear la base que aparece sobre ella y en la 
- * que, durante el juego, puede aparecer una estrella
- */
-export default class WizardBoss extends ShootingEnemyParent {
+import BossParent from './bossParent.js';
 
-  constructor(scene, player, x, y) {
+
+export default class WizardBoss extends BossParent {
+
+  constructor(scene, player, x, y, dimesionX, dimesionY) {
     super(scene, player, x, y, '');
     this.Pv = 300;
     this.fireDirection = new Phaser.Math.Vector2(0, 1);
@@ -21,18 +18,12 @@ export default class WizardBoss extends ShootingEnemyParent {
     this.shootTime = 4;
     this.projectileType = 0;
 
-    //info general boss
-    this.statusInfo = {
-      phase: 0,
-      preparingCont: 0,
-      preparing: true,
-      attack: 0,
-      postPreparing: false,
-      postPreparingCont: 0,
-      postPreparingTime: 350,
-      lastattack: 0
-    }
+    this.sceneDimensionX = dimesionX;
+    this.sceneDimensionY = dimesionY;
+   
 
+  
+    
     this.attack2Info = {
       projectilesShooted: 0,
       dispCont: 0,
@@ -43,14 +34,14 @@ export default class WizardBoss extends ShootingEnemyParent {
     this.fireColumns = {
       projectilesShooted: 0,
       dispCont: 0,
-      projectiles: 10,
-      projectileTime: 1,
+      projectiles: 20,
+      projectileTime: 0.5,
     }
     this.meteor = {
       projectilesShooted: 0,
       dispCont: 0,
-      projectiles: 33,
-      projectileTime: 0.3,
+      projectiles: 50,
+      projectileTime: 0.2,
     }
 
     this.body.setSize(40, 150);
@@ -73,15 +64,11 @@ export default class WizardBoss extends ShootingEnemyParent {
     this.healCont = 0;
     this.recovering = false;
     this.secondPhase = false;
-    this.healthBar = new WizardBossHealth(this.scene, 300, 850);
+    
     this.movingFireCont = 0;
     this.firstPhaseAttacks = [1, 2, 3];
     this.secondPhaseAttacks = [2, 4, 5, 6, 7];
     this.phaseAttacks = [];
-
-
-
-
   }
 
   creador() {
@@ -179,7 +166,7 @@ export default class WizardBoss extends ShootingEnemyParent {
 
 
     else if (this.statusInfo.attack == 4) {
-      this.runAttack(400, true, () => { }, 350, () => { }, this.attack4.bind(this), () => { }, dt);
+      this.runAttack(400, true, () => { }, 350, () => {this.projectileType = 2 }, this.attack4.bind(this), () => { }, dt);
     }
 
     else if (this.statusInfo.attack == 5) {
@@ -207,28 +194,7 @@ export default class WizardBoss extends ShootingEnemyParent {
     }
   }
 
-  runAttack(preparingCont, finishCondition, finishAction, postPreparingTime, preAttackAction, attack, attackingAction, dt, animation = "wizardAttack1") {
-    if (this.statusInfo.preparing) {
-      this.sprite.play(animation, true);
-      this.statusInfo.preparingCont += dt;
-      if (this.statusInfo.preparingCont > preparingCont) {
-        this.statusInfo.preparingCont = 0;
-        this.statusInfo.preparing = false;
-        preAttackAction();
-      }
-    }
-    else {
-      attackingAction();
-      attack(dt);
-      if (finishCondition) {
-        this.statusInfo.attack = 0;
-        finishAction();
-        this.statusInfo.postPreparingTime = postPreparingTime;
-        this.statusInfo.postPreparing = true;
-      }
-    }
-  }
-
+  
 
   moveU(dt) {
 
@@ -319,7 +285,7 @@ export default class WizardBoss extends ShootingEnemyParent {
       this.fireDirection.rotate(2 * Math.PI * this.circun / this.arrows * Math.floor((i + 1) / 2) * ((-1) ** i));
       this.fire();
       this.fireDirection.rotate(-2 * Math.PI * this.circun / this.arrows * Math.floor((i + 1) / 2) * ((-1) ** i));
-      this.boo = 0;
+      
     }
   }
 
@@ -336,11 +302,11 @@ export default class WizardBoss extends ShootingEnemyParent {
   }
 
   attack3() {
-    let numMeteor = Math.floor(Math.random() * 5 + 8);
+    let numMeteor = Math.floor(Math.random() * 15 + 20);
     for (let i = 0; i < numMeteor; i++) {
       let velocidad = Math.floor(Math.random() * 400 + 75);
-      let posX = Math.floor(Math.random() * 1000 + 100);
-      let target = Math.floor(Math.random() * 500 + 300);
+      let posX = Math.floor(Math.random() * (this.sceneDimensionX-200) + 100);
+      let target = Math.floor(Math.random() * (this.sceneDimensionY-500) + 300);
       this.meteorFire(posX, target, velocidad, 1);
     }
 
@@ -356,15 +322,15 @@ export default class WizardBoss extends ShootingEnemyParent {
       this.fireDirection.rotate(2 * Math.PI / arrows * Math.floor((i + 1) / 2) * ((-1) ** i));
       this.fire();
       this.fireDirection.rotate(-2 * Math.PI / arrows * Math.floor((i + 1) / 2) * ((-1) ** i));
-      this.boo = 0;
+      
     }
   }
 
   attack5(dt) {
     if (this.meteor.dispCont == 0) {
       let velocidad = Math.floor(Math.random() * 400 + 75);
-      let posX = Math.floor(Math.random() * 1000 + 100);
-      let target = Math.floor(Math.random() * 500 + 300);
+      let posX = Math.floor(Math.random() * (this.sceneDimensionX-200) + 100);
+      let target = Math.floor(Math.random() * (this.sceneDimensionY-500) + 300);
       this.meteorFire(posX, target, velocidad, 1);
       this.meteor.projectilesShooted++;
     }
@@ -380,7 +346,8 @@ export default class WizardBoss extends ShootingEnemyParent {
 
   attack7(dt) {
     this.interiorContainer.rotation += dt / 100;
-    this.fireBalls.forEach(e => e.moveLocation(70));
+    this.fireBalls.forEach(e => e.moveLocation(100));
+
   }
 
 
@@ -480,8 +447,8 @@ export default class WizardBoss extends ShootingEnemyParent {
         this.scene.time.delayedCall(400, _ => this.sprite.play("wizardSpell"))
         this.sprite.tint = 0xffffff;
         this.recovering = false;
-        this.x = 640;
-        this.y = 490;
+        this.x -= this.centerX() - this.sceneDimensionX/2;
+        this.y -= this.centerY() - this.sceneDimensionY/2;
         this.teleported = true;
       }
     }
@@ -501,7 +468,7 @@ export default class WizardBoss extends ShootingEnemyParent {
 
 
   heal() {
-    if (this.health <= this.maxHealth)
+    if (this.health < this.maxHealth)
       this.health++;
   }
 
@@ -517,15 +484,15 @@ export default class WizardBoss extends ShootingEnemyParent {
   }
 
   fireFireColumn() {
-    let velocidad = new Phaser.Math.Vector2(0, -Math.floor(Math.random() * 200 + 100));
+    let velocidad = new Phaser.Math.Vector2(0, -Math.floor(Math.random() * 300 + 150));
     let ang = (Math.random() * (Math.PI / 4) + Math.PI / 10)
     let dir = Math.random();
     if (dir < 0.5) {
       ang = -ang;
     }
     velocidad.rotate(ang);
-    let target = Math.floor(Math.random() * 600 + 150);
-    new FireColumn(this.scene, this.centerX(), this.centerY(), target, velocidad.x, velocidad.y, 100, 1, 1);
+    let target = Math.floor(Math.random() * (this.sceneDimensionY*2/3) + this.sceneDimensionY*1/4);
+    new FireColumn(this.scene, this.centerX(), this.centerY(), target, velocidad.x, velocidad.y, 175, 1, 1);
   }
 
   setFire() {
@@ -616,17 +583,7 @@ export default class WizardBoss extends ShootingEnemyParent {
   }
 
   die() {
-    this.sprite.play('wizardDie');
-    this.preUpdate = () => { };
-    this.deadCenter.x = this.centerX();
-    this.deadCenter.y = this.centerY();
-    this.body.destroy();
-    this.healthBar.boom();
-    this.scene.time.delayedCall(1500, () => {
-      this.spawnMana();
-      this.spawnLoot();
-      this.destroy();
-    })
+    super.die("wizardDie");
   }
 
   hurt(damage) {

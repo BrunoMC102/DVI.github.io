@@ -383,4 +383,8 @@ export default class LevelParent extends Phaser.Scene {
       repeat: 0,
     })
   }
+
+  win(){
+    
+  }
 }

@@ -1,19 +1,13 @@
 import Basic_projectile from '../proyectile/basic_projectile.js';
 import EnemyParent from './enemyParent.js';
-/**
- * Clase que representa las plataformas que aparecen en el escenario de juego.
- * Cada plataforma es responsable de crear la base que aparece sobre ella y en la 
- * que, durante el juego, puede aparecer una estrella
- */
+
 export default class ShootingEnemyParent extends EnemyParent{
   
   constructor(scene, player, x, y, texture) {
     super(scene,player,x,y, texture);
     this.cont = 0;
     
-    //this.projectilesE = this.scene.physics.add.group({
-    //    classType: Phaser.Physics.Arcade.Image,
-    //})
+   
     this.shootTime = 5;
     this.Pv = 1000; //Projectile speed
     this.createGropus();
@@ -36,11 +30,10 @@ export default class ShootingEnemyParent extends EnemyParent{
 
   addtoGroups(disparo){
     this.wallCollGroup.add(disparo);
-    this.voidCollGroup.add(disparo);
     this.scene.projectiles.add(disparo);
   }
 
-  attack(d,dt){
+  attack(t,dt){
       if (this.cont === 0){
         this.fire();
       }
@@ -56,9 +49,7 @@ export default class ShootingEnemyParent extends EnemyParent{
     this.scene.physics.add.collider(this.wallCollGroup, this.scene.wallLayer, (o1,o2) => {
       o1.destroy();
     });
-
-    this.voidCollGroup = this.scene.add.group();
-    this.scene.physics.add.collider(this.voidCollGroup, this.scene.voidLayer, (o1,o2) => {
+     this.scene.physics.add.collider(this.wallCollGroup, this.scene.voidLayer, (o1,o2) => {
       o1.destroy();
     });
 

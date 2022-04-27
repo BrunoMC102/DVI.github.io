@@ -10,11 +10,11 @@ export default class GhostBall_2 extends Basic_projectile{
         this.play("ghostBall_2");
         this.body.setBounce(1,1);
         this.dispTime = 50;
-        this.cont = -2000;
+        this.cont = -3000;
         this.velocity = 400;
         this.deadCenter = new Phaser.Math.Vector2(this.body.center.x,this.body.center.y);
         this.body.useDamping = true;
-        this.body.setDrag(0.52);
+        this.body.setDrag(0.7);
     }
 
     preUpdate(d,dt){
@@ -46,6 +46,9 @@ export default class GhostBall_2 extends Basic_projectile{
 
     addColliders(disparo){
         this.scene.physics.add.collider(disparo, this.scene.wallLayer, (o1,o2) => {
+            o1.destroy();
+        });
+        this.scene.physics.add.collider(disparo, this.scene.voidLayer, (o1,o2) => {
             o1.destroy();
         });
         this.scene.projectiles.add(disparo);

@@ -256,8 +256,8 @@ export default class Boot extends Phaser.Scene {
     //this.scene.start('lebel');
     this.createAnimations();
     //Para jugar en el modo vista lateral descomentar level
-    //this.scene.start('mainMenu');
-    this.scene.start('Scroll1', {coordinates: {x: 100, y: 800}, playerData: new PlayerData()});
+    this.scene.start('mainMenu');
+    //this.scene.start('Scroll1', {coordinates: {x: 100, y: 800}, playerData: new PlayerData()});
     //this.scene.start('level');
   }
 
@@ -665,7 +665,7 @@ export default class Boot extends Phaser.Scene {
       key: 'ghostBossDie',
       frames: this.anims.generateFrameNames('ghostBoss', { start: 0, end: 9 , suffix: '.png' }),
       frameRate: 10,
-      repeat: -1
+      repeat: 0
     })
     this.anims.create({
       key: 'ghostArrow',
