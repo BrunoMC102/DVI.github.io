@@ -91,6 +91,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('tileSpaceL', 'tileSpaceL.png');
     this.load.image('tileSpaceM', 'tileSpaceM.png');
     this.load.image('tileSpaceR', 'tileSpaceR.png');
+    this.load.image('ps4','ps4.png');
 
     this.load.setPath('assets/json/');
     this.load.tilemapTiledJSON('tilemapJose', 'PruebaScrollJose.json');
