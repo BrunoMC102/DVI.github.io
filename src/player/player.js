@@ -29,7 +29,6 @@ export default class Player extends Phaser.GameObjects.Container {
     this.playerData.player = this;
     this.sprite = this.scene.add.sprite(0, 0, 'characterScroll', 'walk-143.png');
     this.add(this.sprite);
-    this.health_label = this.scene.add.text(this.scene.cameras.x, this.scene.cameras.y, "Health");
     this.jumpTimer = 0;
     this.maxJumpTime = 125; // tiempo maximo de salto en ms 
     this.isJumping = false;
@@ -62,6 +61,32 @@ export default class Player extends Phaser.GameObjects.Container {
 
     this.boxesGroup = this.scene.add.group();
     this.scene.physics.add.collider(this.boxesGroup, this.boxesGroup);
+
+    //Audio
+    this.upgradeAudio = this.scene.sound.add("upgrade");
+  }
+
+  givePasivoPowerUp(texture, titleString) {
+    this.upgradeAudio.play();
+    const objectPicked = new Phaser.GameObjects.Image(this.scene, 0, -50, texture);
+    const background = new Phaser.GameObjects.Image(this.scene, this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, 'emptySign').setScrollFactor(0);
+    background.scaleX = 2.5;
+    this.scene.add.existing(background);
+    //background.x -= background.width/2
+    const title = this.scene.add.text(this.scene.cameras.cameras[0].centerX, this.scene.cameras.cameras[0].centerY - 600, titleString, { fontSize: 50 }).setScrollFactor(0);
+    title.x -= title.width / 2;
+    this.scene.tweens.add({
+      targets: [title, background],
+      y: this.scene.cameras.cameras[0].centerY - 430,
+      duration: 1000,
+      ease: 'Sine.easeInOut',
+      repeat: 0,
+      hold: 2000,
+      yoyo: true
+    })
+    //this.scene.add(objectPicked);
+    this.add(objectPicked);
+    this.scene.time.delayedCall(4000, () => { objectPicked.destroy(); title.destroy(); background.destroy() });
   }
 
   /*
