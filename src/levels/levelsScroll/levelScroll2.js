@@ -1,5 +1,6 @@
 
 import HealthPotion from '../../objetos_recogibles/consumibles/healthPotion.js';
+import Key from '../../objetos_recogibles/pasivos/key.js';
 import Player from '../../player/player.js';
 import PlayerTopDown from '../../player/playerTopDown.js';
 
@@ -7,12 +8,12 @@ import PlayerTopDown from '../../player/playerTopDown.js';
  .
  * @extends Phaser.Scene
  */
-export default class LevelScrollFinal extends Phaser.Scene {
+export default class LevelScroll2 extends Phaser.Scene {
   /**
    * Constructor de la escena
    */
   constructor() {
-    super({ key: 'scroll1' });
+    super({ key: 'Scroll2' });
   }
 
   init(data) {
@@ -24,14 +25,15 @@ export default class LevelScrollFinal extends Phaser.Scene {
    * Creación de los elementos de la escena principal de juego
    */
   create() {
-    const map = this.make.tilemap({ key: 'Scroll', tileWidth: 64, tileHeight: 64});
+    const map = this.make.tilemap({ key: 'Scroll2', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('tileset-cave2', 'scrollTileset');
 
  
     const backgroundLayer = map.createLayer('BackgroundLayer', tileset).setCollisionByProperty({ collides: true })
     this.player = new Player(this, this.coordinates.x, this.coordinates.y, this.playerData);
+    this.key = new Key(this, this.player,1284.85 , 606, 'Key2');
     this.cameras.main.startFollow(this.player);
-    this.cameras.main.setBounds(0,0,5120,1280);
+    this.cameras.main.setBounds(0,0,2560,5120);
     const wallLayer = map.createLayer('WallLayer', tileset).setCollisionByProperty({ collides: true });
     this.backgroundLayer = backgroundLayer;
     this.wallLayer = wallLayer;

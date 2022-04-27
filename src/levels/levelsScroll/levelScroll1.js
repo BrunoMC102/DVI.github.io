@@ -15,6 +15,7 @@ export default class LevelScroll1 extends Phaser.Scene {
   init(data) {
     this.coordinates = data.coordinates;
     this.playerData = data.playerData;
+    this.powerUpList = data.powerUpList;
   }
 
   create() {
