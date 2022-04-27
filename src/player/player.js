@@ -21,9 +21,9 @@ export default class Player extends Phaser.GameObjects.Container {
     //this.body.setCollideWorldBounds();
     // Esta label es la UI en la que pondremos la puntuación del jugador
     this.cursors = this.scene.input.keyboard.createCursorKeys();
-    this.body.setSize(this.body.width * 0.5, this.body.height * 0.8);
-    this.body.offset.y = 20;
-    this.body.offset.x = 25;
+    this.body.setSize(this.body.width * 0.7, this.body.height * 1.3);
+    this.body.offset.y = -25;
+    this.body.offset.x = -22;
     //this.body.setBounce(0, 0.15);
     this.playerData = data;
     this.playerData.player = this;
@@ -200,7 +200,7 @@ export default class Player extends Phaser.GameObjects.Container {
       }
       this.body.setVelocityX(-this.playerData.speed);
       this.scaleX = -1;
-      this.body.offset.x = 95;
+      this.body.offset.x = 20;
       this.lastInput = -1;
       somePressed = true;
     }
@@ -213,7 +213,7 @@ export default class Player extends Phaser.GameObjects.Container {
       }
       this.body.setVelocityX(this.playerData.speed);
       this.scaleX = 1;
-      this.body.offset.x = 35;
+      this.body.offset.x = -22;
       this.lastInput = 1;
       somePressed = true;
     }

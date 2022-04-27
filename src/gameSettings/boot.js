@@ -20,9 +20,6 @@ export default class Boot extends Phaser.Scene {
   preload() {
     // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
     this.load.setPath('assets/sprites/');
-    this.load.image('platform', 'platform.png');
-    this.load.image('base', 'base.png');
-    this.load.image('star', 'star.png');
     this.load.image('player', 'player.png');
     this.load.image('enemy', 'enemy_white.png');
     this.load.image('flecha', 'flecha.png')
@@ -253,7 +250,7 @@ export default class Boot extends Phaser.Scene {
     this.createAnimations();
     //Para jugar en el modo vista lateral descomentar level
     //this.scene.start('mainMenu');
-    this.scene.start('Scroll1', {coordinates: {x: 0, y: 900}, playerData: new PlayerData()});
+    this.scene.start('Scroll1', {coordinates: {x: 100, y: 800}, playerData: new PlayerData()});
     //this.scene.start('level');
   }
 

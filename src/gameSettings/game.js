@@ -1,6 +1,5 @@
 import Boot from './boot.js';
 import End from '../end.js';
-import Level from '../levels/levelsTopDown/level.js';
 import LevelScroll from '../levels/levelsScroll/levelScroll.js';
 import BeginningVillage from '../levels/beginningVillage.js';
 import MainMenu from '../mainMenu.js';
@@ -16,7 +15,7 @@ import LevelScroll1 from '../levels/levelsScroll/levelScroll1.js';
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
  */
 
-let a = [Boot, Level, LevelScroll, BeginningVillage, MainMenu, LevelScrollFinal, LevelScroll1, End];
+let a = [Boot, LevelScroll, BeginningVillage, MainMenu, LevelScrollFinal, LevelScroll1, End];
 let config = {
     type: Phaser.AUTO,
     width: 1280,

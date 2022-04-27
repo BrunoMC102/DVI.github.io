@@ -28,7 +28,7 @@ export default class End extends Phaser.Scene {
     this.deathSound = this.sound.add("tonedeath").play();
     const {width, height} = this.sys.game.canvas;
     
-    this.add.bitmapText(this.game.renderer.width / 2, this.game.renderer.height * 0.5,'atari', 'The Knightmares starts again\nPress any button to fight for your glory',16)
+    this.add.bitmapText(this.game.renderer.width / 2, this.game.renderer.height * 0.5,'atari', 'The Knightmares start again\nPress any button to fight for your glory',16)
     .setFontSize(48).setOrigin()  // Colocamos el pivote en el centro de cuadro de texto 
      .setDepth(2);  // Centramos e texto dentro del cuadro de texto
         this.add.image(0,0, 'menuBackground').setOrigin(0).setDepth(1);
