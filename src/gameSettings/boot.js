@@ -95,6 +95,7 @@ export default class Boot extends Phaser.Scene {
 
     this.load.setPath('assets/json/Scroll');
     this.load.tilemapTiledJSON('Scroll', 'scroll.json');
+    this.load.tilemapTiledJSON('Scroll1', 'scroll1.json');
 
 
     this.load.setPath('assets/json/Dungeon 1');
@@ -193,8 +194,10 @@ export default class Boot extends Phaser.Scene {
     //knight
     this.load.atlas('character', 'atlas.png', 'atlas.json');
     this.load.atlas('characterScroll', 'movement.png', 'movement.json');
+
     //npcs
     this.load.atlas('npcs', 'npc.png', 'npc.json');
+
     // enemies
     this.load.atlas('brainmole', 'brainmole.png', 'brainmole.json');
     this.load.atlas('goblinKing', 'goblinKing.png', 'goblinKing.json');
@@ -220,9 +223,6 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('ghostArrow_2', 'ghostArrow_2.png', 'ghostArrow_2.json')
     this.load.atlas('fireEnemy', 'fireEnemy.png', 'fireEnemy.json')
     this.load.atlas('box', 'box.png', 'box.json')
-
-
-
 
     //musica
     this.load.setPath('assets/music/');
@@ -252,8 +252,8 @@ export default class Boot extends Phaser.Scene {
     //this.scene.start('lebel');
     this.createAnimations();
     //Para jugar en el modo vista lateral descomentar level
-    this.scene.start('mainMenu');
-    //this.scene.start('scroll1', {coordinates: {x: 0, y: 900}, playerData: new PlayerData()});
+    //this.scene.start('mainMenu');
+    this.scene.start('Scroll1', {coordinates: {x: 0, y: 900}, playerData: new PlayerData()});
     //this.scene.start('level');
   }
 
