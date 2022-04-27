@@ -46,5 +46,8 @@ export default class FireEnemy extends EnemyParent {
         return new Phaser.Math.Vector2(this.player.x - this.centerX(), this.player.y - this.centerY()).normalize().scale(scale);
     }
 
+    die(){  
+        this.destroy();
+    }
 
 }

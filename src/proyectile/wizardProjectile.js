@@ -5,7 +5,7 @@ export default class wizardProjectile extends Basic_projectile{
         super(scene,x,y,'flecha',vx,vy,time,damage);
         this.cont = 4000;
         this.setOrigin(1,1);
-        
+        this.doEffect = (t,dt) => {};
         this.velocity = velocity;
         if(type == 0){
             this.play('boltFire');
@@ -13,7 +13,6 @@ export default class wizardProjectile extends Basic_projectile{
             this.flipX = true;
             this.body.setSize(20,20);
             this.body.setOffset(25,15);
-            
         }
         else if(type == 1){
             this.cont = -2000;
@@ -24,13 +23,12 @@ export default class wizardProjectile extends Basic_projectile{
             
             
         }
-        else if(type == 3){
+        else if(type == 2){
             this.cont = -2500;
             this.play('magicBallAnimation');
             this.doEffect = this.doHomingOnce;
             this.body.setSize(35,35);
             this.body.setOffset(35,35);
-            
         }
         
     }
@@ -62,7 +60,7 @@ export default class wizardProjectile extends Basic_projectile{
             this.cont+= dt
         }
     }
-    doEffect(t,dt){}
+    
 
     doHomingOnce(t,dt){
         if(this.cont < 0){

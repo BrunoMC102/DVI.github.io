@@ -91,6 +91,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('tileSpaceL', 'tileSpaceL.png');
     this.load.image('tileSpaceM', 'tileSpaceM.png');
     this.load.image('tileSpaceR', 'tileSpaceR.png');
+    this.load.image('ps4','ps4.png');
 
     this.load.setPath('assets/json/');
     this.load.tilemapTiledJSON('tilemapJose', 'PruebaScrollJose.json');
@@ -256,8 +257,8 @@ export default class Boot extends Phaser.Scene {
     //this.scene.start('lebel');
     this.createAnimations();
     //Para jugar en el modo vista lateral descomentar level
-    //this.scene.start('mainMenu');
-    this.scene.start('Scroll4', {coordinates: {x: 100, y: 600}, playerData: new PlayerData()});
+    this.scene.start('mainMenu');
+    //this.scene.start('Scroll1', {coordinates: {x: 100, y: 800}, playerData: new PlayerData()});
     //this.scene.start('level');
   }
 
@@ -665,7 +666,7 @@ export default class Boot extends Phaser.Scene {
       key: 'ghostBossDie',
       frames: this.anims.generateFrameNames('ghostBoss', { start: 0, end: 9 , suffix: '.png' }),
       frameRate: 10,
-      repeat: -1
+      repeat: 0
     })
     this.anims.create({
       key: 'ghostArrow',

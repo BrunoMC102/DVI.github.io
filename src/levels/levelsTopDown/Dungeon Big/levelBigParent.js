@@ -14,6 +14,8 @@ import Mole2 from '../../../enemies/moleVariante2.js';
 import Chest from '../../../objetos_recogibles/chest.js';
 import Archer from '../../../enemies/archer.js';
 import LevelParent from '../levelParent.js';
+import WizardBoss from '../../../enemies/wizardBoss.js';
+import GhostBoss from '../../../enemies/ghostBoss.js';
 
 
 export default class LevelBigParent extends LevelParent {
@@ -39,5 +41,50 @@ export default class LevelBigParent extends LevelParent {
     else if (direction == 1) return { x: 150, y: 750 }
     else if (direction == 2) return { x: 960, y: 100 }
     else return { x: 1750, y: 750 }
+  }
+
+  createEnemies(){
+    return [new GhostBoss(this,this.player,this.dimensions.x,this.dimensions.y,false)];
+  }
+
+  create() {
+    this.events.on('wake', this.onWake, this);
+    
+    this.cameras.main.setBackgroundColor(0x454550);
+    this.cameras.cameras[0].transparent = false;
+    this.getNearLevels();
+    this.setTileSet();
+    this.actMinimap();
+
+   
+    
+    this.enemies = this.add.group();
+    this.projectiles = this.add.group();
+    this.player = new PlayerTopDown(this, this.coordinates.x, this.coordinates.y, this.playerData);
+    this.onStart();
+    
+    this.enemiesCreated = this.createEnemies();
+    this.createOthers();
+    this.enemiesCreated.forEach(e => this.enemies.add(e));
+    this.sceneChange = [];
+    this.createDoors();
+    this.boxes = [];
+    this.closeDoors();
+  
+    this.dungeonSound = this.sound.add("dungeontheme").play();
+  }
+
+
+  onWake(sys,data){
+    this.playerData = data.playerData;
+    this.powerUpList = data.powerUpList;
+    if (data.levelList != undefined)
+      this.levelList = data.levelList;
+    this.direction = data.direction;
+    this.coordinates = this.getPlayerCoordinates(this.direction);
+    this.player.restart(this.coordinates.x, this.coordinates.y, this.playerData);
+    this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y);
+    this.cameras.main.startFollow(this.player);
+    this.onStart();
   }
 }
