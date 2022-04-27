@@ -211,24 +211,32 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     //Actualizacion informacion en pantalla
     //this.health_label.text = 'Health: ' + this.playerData.health;
     this.updateUi();
-    if (this.playerData.health <= 0 && !this.isDead) {
-      this.isDead = true;
-      this.sprite.anims.play('death');
-      this.setBlocked(true);
-     // this.scene.finishGame();
-      const timer = this.scene.time.addEvent( {
-        delay: 2500, 
-        callback: 
-        this.scene.finishGame,
-        callbackScope: this.scene 
-        });
-    }
+    this.checkDeath();
+    
 
 
     this.handlePlayerAnimation();
   }
 
 
+
+  checkDeath(){
+    if (this.playerData.health <= 0 && !this.isDead) {
+      this.die();
+    }
+  }
+
+  die(){
+    this.isDead = true;
+    this.sprite.anims.play('death');
+    this.setBlocked(true);
+    const timer = this.scene.time.addEvent( {
+      delay: 2500, 
+      callback: 
+      this.scene.finishGame,
+      callbackScope: this.scene 
+    });
+  }
 
   //Metodos UI
   createUiBar() {
@@ -797,6 +805,28 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     };
 
   }
+
+
+  //PowerUps recogidos
+  healthUp(){
+    this.playerData.healthUp();
+  }
+  speedUp(cant){
+    this.playerData.speedUp(cant);
+  }
+  progressObject(){
+    this.playerData.progressObject();
+  }
+  dashCoolDownUp(cant){
+    this.playerData.dashCoolDownUp(cant);
+  }
+  projectileBaseSpeedUp(cant){
+    this.playerData.projectileBaseSpeedUp(cant);
+  }
+  damageUp(cant){
+    this.playerData.damageUp(cant);
+  }
+  
 
 }
 

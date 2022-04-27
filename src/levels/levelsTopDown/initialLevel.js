@@ -6,6 +6,7 @@ import Enemy from "../../enemies/inverter.js";
 import LevelParent from "./levelParent.js";
 import wizardProjectile from "../../proyectile/wizardProjectile.js";
 import GhostArrow from "../../proyectile/ghostArrow.js";
+import Chest from "../../objetos_recogibles/chest.js";
 
 
 export default class InitialLevel extends LevelParent {
@@ -26,6 +27,18 @@ export default class InitialLevel extends LevelParent {
 
     createOthers(){
         this.pr = new GhostArrow(this,600,500,0,0,100,0,1);
+        new Chest(this,this.player, 640, 490);
+        new Chest(this,this.player, 680, 490);
+        new Chest(this,this.player, 560, 490);
+        new Chest(this,this.player, 520, 490);
+        new Chest(this,this.player, 720, 490);
+        new Chest(this,this.player, 760, 490);
+        new Chest(this,this.player, 800, 490);
+        new Chest(this,this.player, 480, 490);
+        new Chest(this,this.player, 440, 490);
+        new Chest(this,this.player, 400, 490);
+        new Chest(this,this.player, 360, 490);
+
     }
    
     init(data){

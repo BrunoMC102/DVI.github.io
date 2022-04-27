@@ -1,58 +1,109 @@
 import ProjectileBar from "./projectileBar.js";
-export default class PlayerData{
-    constructor(){
-      this.speed = 500;
-      this.health = 6;
-      this.maxhealth = 6;
-      this.damage = 5;
-      
-      this.money = 10; // dinero del jugador
-      // datos para el scroll lateral
-      // Aceleraciones vertical y horizontal 
-      this.vAcc = -8000;
-      this.hAcc = 2000;
+export default class PlayerData {
+  constructor() {
 
-      //UI related
-      this.isSoundMuted = false;
+    //Atributos generales
+    this.damage = 5;
+    this.speed = 400;
+    this.isPadControlling = false;
+    this.progressStory = 0;
+    this.wins = 0;
+    this.deaths = 0;
+    this.pickedProgress = false;
+    this.maxSpeed = 750;
+
+    //Recursos jugador
+    this.health = 6;
+    this.maxhealth = 6;
+    this.money = 10; // dinero del jugador
+    this.healthPotions = 50; // pociones de vida
+    this.manaPotions = 50; // pociones de mana
+    this.mana = 0;
+    this.arrows = 100;
+    this.maxMana = 100;
+
+    //Atributos topdown
+    this.projectileBaseSpeed = 500;
+    this.projectileSpeed = this.projectileBaseSpeed;
+    this.projectileMaxSpeed = 1000;
+    this.flickerTime = 0;
+    this.weapon = 0;
+    this.dashSpeed = 900;  //Topdown
+    this.dashDuration = 0.13;
+    this.dashCoolDown = 0.8;
+    this.minDashCooldown = 0.3;
+    this.dashInvincibilityPower = false;
+    this.currentManaCost = 5;
+    this.minimapUnlock = false;
 
 
-      this.healthPotions = 50; // pociones de vida
-      this.manaPotions = 50; // pociones de mana
-      this.mana = 0;
-      //Informacion proyectiles
-      this.projectileBaseSpeed = 500;
-      this.projectileSpeed = this.projectileBaseSpeed;
-      this.projectileMaxSpeed = 1000;
-      this.arrows = 100;
-      this.flickerTime = 0;
-      this.maxMana = 100;
-      this.player = null;
-      this.weapon = 0;
-      this.projectileGroups = [() => {return {id: 'nWall', grupo: this.player.WallCollGroup}}, () => {return {id:"enemiesColl", grupo: this.player.EnemiesCollGroup}}, () => {return {id:"nVoid", grupo: this.player.VoidCollGroup}}];
-      //this.projectileGroups = [];
+    //Atributos scroll
+    this.dashVelocity = 975 
+    this.doubleJump = true;
+    this.scrollDash = true;
+    this.scrollBoxes = true;
+    // Aceleraciones vertical y horizontal 
+    this.vAcc = -8000;
+    this.hAcc = 2000;
+   
     
-      this.projectileEffects = [];
-      this.isPadControlling = false;
-      this.dashSpeed = 900;  //Topdown
-      this.dashVelocity = 975 //Scroll
-      this.doubleJump = true;
-      this.scrollDash = true;
-      this.scrollBoxes = true;
 
-      this.dashDuration = 0.13;
-      this.dashCoolDown = 0.8;
-      this.minDashCooldown = 0.8;
-      this.dashInvincibilityPower = false;
-      this.currentManaCost = 5;
-      this.minimapUnlock = false;
-    }
+    //UI related
+    this.isSoundMuted = false;
 
-    setBouncy(){
-      this.projectileGroups = this.projectileGroups.filter((a) => a().id != 'nWall');
-      this.projectileGroups.push(() => {return {id: "bouncy", grupo:this.player.WallCollGroup_noEff}});
-    }
 
-    setSpectral(){
-      this.projectileGroups = this.projectileGroups.filter(a=>a().id != 'nWall');
+    this.player = null;
+    this.projectileGroups = [() => { return { id: 'nWall', grupo: this.player.WallCollGroup } }, () => { return { id: "enemiesColl", grupo: this.player.EnemiesCollGroup } }, () => { return { id: "nVoid", grupo: this.player.VoidCollGroup } }];
+    this.projectileEffects = [];
+  }
+
+  setBouncy() {
+    this.projectileGroups = this.projectileGroups.filter((a) => a().id != 'nWall');
+    this.projectileGroups.push(() => { return { id: "bouncy", grupo: this.player.WallCollGroup_noEff } });
+  }
+
+  setSpectral() {
+    this.projectileGroups = this.projectileGroups.filter(a => a().id != 'nWall');
+  }
+
+  win(){
+    this.wins++;
+    if(this.pickedProgress){
+      this.progressStory++;
+      this.pickedProgress = false;
     }
+  }
+  die(){
+    this.deaths++;
+    this.pickedProgress = false;
+  }
+
+//PowerUps
+  healthUp(){
+    this.maxhealth++;
+  }
+  speedUp(cant){
+    this.speed += cant;
+    if(this.speed >= this.maxSpeed){
+      this.speed = this.maxSpeed;
+    }
+  }
+  progressObject(){
+    this.pickedProgress = true;
+  }
+  dashCoolDownUp(cant){
+    this.dashCoolDown -= cant;
+    if(this.dashCoolDown <= this.minDashCooldown){
+      this.dashCoolDown = this.minDashCooldown;
+    }
+  }
+  projectileBaseSpeedUp(cant){
+    this.projectileBaseSpeed += cant;
+    if(this.projectileBaseSpeed > this.projectileMaxSpeed){
+      this.projectileBaseSpeed = this.projectileMaxSpeed;
+    }
+  }
+  damageUp(cant){
+    this.damage += cant;
+  }
 }

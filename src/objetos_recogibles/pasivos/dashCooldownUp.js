@@ -1,15 +1,14 @@
-
 import Pasivo from "./pasivo.js";
 
-export default class Bouncy extends Pasivo{
+export default class DashCoolDownUp extends Pasivo{
 
     constructor(scene,player,x,y){
         super(scene,player,x,y,'flecha');
-        this.title = 'Bouncy Projectiles';
+        this.title = 'Dash Cooldown reduced';
     }
     
     givePower(){
         super.givePower();
-        this.player.setBouncy();
+        this.player.dashCoolDownUp(0.5);
     }
 }

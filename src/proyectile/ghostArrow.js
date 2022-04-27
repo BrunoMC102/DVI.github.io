@@ -8,6 +8,7 @@ export default class GhostArrow extends Basic_projectile{
         this.play("ghostArrow");
         const margen = 5
         this.body.setOffset(this.width/2-margen, this.height/2-margen);
+        this.setOrigin(1,1);
     }
 
 

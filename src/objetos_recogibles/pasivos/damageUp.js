@@ -1,15 +1,14 @@
-
 import Pasivo from "./pasivo.js";
 
-export default class Bouncy extends Pasivo{
+export default class DamageUp extends Pasivo{
 
     constructor(scene,player,x,y){
         super(scene,player,x,y,'flecha');
-        this.title = 'Bouncy Projectiles';
+        this.title = 'Damage Up';
     }
     
     givePower(){
         super.givePower();
-        this.player.setBouncy();
+        this.player.damageUp(5);
     }
 }

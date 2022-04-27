@@ -1,13 +1,18 @@
 import Bouncy from "./bouncy.js"
+import DamageUp from "./damageUp.js"
+import DashCoolDownUp from "./dashCooldownUp.js"
 import FreezeProjectiles from "./freezeProjectiles.js"
+import HealthUp from "./healthUp.js"
+import ProjectileBaseSpeedUp from "./projectileBaseSpeedUp.js"
 import ProjectileInvincibilityDash from "./projectileInvincibilityDash.js"
 import Spectral from "./spectral.js"
+import SpeedUp from "./speedUp.js"
 
 
 export default class PasivePowerUpList {
     constructor() {
-         this.powerUpList = [Bouncy, FreezeProjectiles, ProjectileInvincibilityDash, Spectral]
-         this.defaultPowerUp = Bouncy;
+         this.powerUpList = [Bouncy, FreezeProjectiles, ProjectileInvincibilityDash, Spectral, DamageUp, DashCoolDownUp, HealthUp, ProjectileBaseSpeedUp, SpeedUp]
+         this.defaultPowerUp = HealthUp;
     }
 
   extractPowerUp(){
