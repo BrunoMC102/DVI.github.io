@@ -99,6 +99,7 @@ export default class Boot extends Phaser.Scene {
     this.load.setPath('assets/json/Scroll');
     this.load.tilemapTiledJSON('Scroll', 'scroll.json');
     this.load.tilemapTiledJSON('Scroll1', 'scroll1.json');
+    this.load.tilemapTiledJSON('Scroll4', 'scroll4.json');
 
 
     this.load.setPath('assets/json/Dungeon 1');
@@ -256,7 +257,7 @@ export default class Boot extends Phaser.Scene {
     this.createAnimations();
     //Para jugar en el modo vista lateral descomentar level
     //this.scene.start('mainMenu');
-    this.scene.start('Scroll1', {coordinates: {x: 100, y: 800}, playerData: new PlayerData()});
+    this.scene.start('Scroll4', {coordinates: {x: 100, y: 600}, playerData: new PlayerData()});
     //this.scene.start('level');
   }
 

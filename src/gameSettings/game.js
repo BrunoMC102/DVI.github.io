@@ -9,13 +9,14 @@ import Minimap from '../managers/minimap.js';
 import PauseMenu from '../pauseMenu.js';
 import LevelScrollFinal from '../levels/levelsScroll/levelScrollFinal.js';
 import LevelScroll1 from '../levels/levelsScroll/levelScroll1.js';
+import LevelScroll4 from '../levels/levelsScroll/levelScroll4.js';
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
  */
 
-let a = [Boot, LevelScroll, BeginningVillage, MainMenu, LevelScrollFinal, LevelScroll1, End];
+let a = [Boot, LevelScroll, LevelScroll4, BeginningVillage, MainMenu, LevelScrollFinal, LevelScroll1, End];
 let config = {
     type: Phaser.AUTO,
     width: 1280,
