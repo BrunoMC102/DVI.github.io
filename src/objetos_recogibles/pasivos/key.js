@@ -9,5 +9,6 @@ export default class Key extends Pasivo{
     
     givePower(){
         super.givePower();
+        this.player.progressObject();
     }
 }
