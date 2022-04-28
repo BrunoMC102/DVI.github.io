@@ -9,6 +9,6 @@ export default class WinTrophy extends Pasivo{
     
     givePower(){
         super.givePower();
-        this.scene.win();
+        this.player.win();
     }
 }

@@ -49,7 +49,7 @@ export default class LevelScroll1 extends Phaser.Scene {
       this.scene.start('initialLevel', { coordinates: { x: 500, y: 500 }, playerData: this.playerData, powerUpList: this.powerUpList });
     }
     if (this.physics.overlap(this.player, this.spikes[0]) || this.physics.overlap(this.player, this.spikes[1])) {
-
+      this.scene.start("end", { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
     }
   }
 }

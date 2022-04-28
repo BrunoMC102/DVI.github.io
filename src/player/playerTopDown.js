@@ -97,6 +97,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.handleControls();
     if (this.playerData.isPadControlling) this.controls = this.padControls;
     else this.controls = this.keyboardControls;
+    /*scene.input.keyboard.on('keydown-ESC', () => { 
+      // this.scene.scene.launch('pauseMenu', {scene: this.scene});
+      this.scene.scene.launch('pauseMenu', {scene: this.scene.scene.key});
+    });*/
     scene.input.keyboard.on('keydown', () => { this.controls = this.keyboardControls; this.playerData.isPadControlling = false });
     scene.input.gamepad.on(Phaser.Input.Gamepad.Events.BUTTON_DOWN, () => { this.controls = this.padControls; this.playerData.isPadControlling = true });
 
@@ -150,24 +154,22 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   showMenu(){
     this.pauseMenu.showMenuPanel();
       this.isMenuDeployed = true;
-      this.setBlocked(true);
   }
 
   hideMenu(){
       this.pauseMenu.hideMenuPanel();
       this.isMenuDeployed = false;
-      this.setBlocked(false);
   }
 
   preUpdate(t, dt) {
-    this.isKeyEscDown = Phaser.Input.Keyboard.JustDown(this.keyEsc);
+
+    /* this.isKeyEscDown = Phaser.Input.Keyboard.JustDown(this.keyEsc);
     if(!this.isMenuDeployed && this.isKeyEscDown){
       this.showMenu();
 
     }else if (this.isMenuDeployed && this.isKeyEscDown){
       this.hideMenu();
-    }
-
+    }*/
     if(this.blocked){
       this.updateUi();
       return;
@@ -237,6 +239,18 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       callbackScope: this.scene 
     });
   }
+
+  win(){
+    this.setBlocked(true);
+    const timer = this.scene.time.addEvent( {
+      delay: 500, 
+      callback: 
+      this.scene.winGame,
+      callbackScope: this.scene 
+    });
+  }
+
+
 
   //Metodos UI
   createUiBar() {
@@ -814,9 +828,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   speedUp(cant){
     this.playerData.speedUp(cant);
   }
-  progressObject(){
-    this.playerData.progressObject();
-  }
+  
   dashCoolDownUp(cant){
     this.playerData.dashCoolDownUp(cant);
   }
