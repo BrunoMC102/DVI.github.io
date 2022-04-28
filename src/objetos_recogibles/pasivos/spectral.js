@@ -4,8 +4,8 @@ import Pasivo from "./pasivo.js";
 export default class Spectral extends Pasivo{
 
     constructor(scene,player,x,y){
-        super(scene,player,x,y,'flecha');
-        this.title = 'Spectral Arrows'
+        super(scene,player,x,y,'SpectralArrows');
+        this.title = 'Necklace of the Skies';
     }
     
     givePower(){

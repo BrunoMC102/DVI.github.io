@@ -56,6 +56,15 @@ export default class Boot extends Phaser.Scene {
     this.load.image('wizardSprite','wizardSprite.png');
     this.load.image('boxImg','box_1.png');
     this.load.image('scrollTileset','tileset-cave2.png');
+    this.load.image('BouncyArrows','BouncyArrows.png');
+    this.load.image('DamageUp','DamageUp.png');
+    this.load.image('DashCoolDown','DashCoolDown.png');
+    this.load.image('Freeze','Freeze.png');
+    this.load.image('HealthUp','HealthUp.png');
+    this.load.image('Invincibility','Invincibility.png');
+    this.load.image('ProjectileSpeed','ProjectileSpeed.png');
+    this.load.image('SpectralArrows','SpectralArrows.png');
+    this.load.image('SpeedUp','SpeedUp.png');
     this.load.image('Key1', 'Keys1.png');
     this.load.image('Key2', 'Keys2.png');
     this.load.image('Key3', 'Keys3.png');

@@ -4,8 +4,8 @@ import Pasivo from "./pasivo.js";
 export default class Bouncy extends Pasivo{
 
     constructor(scene,player,x,y){
-        super(scene,player,x,y,'flecha');
-        this.title = 'Bouncy Projectiles';
+        super(scene,player,x,y,'Bouncy');
+        this.title = 'Crimson Mirror';
     }
     
     givePower(){

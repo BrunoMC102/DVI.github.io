@@ -3,8 +3,8 @@ import Pasivo from "./pasivo.js";
 export default class FreezeProjectiles extends Pasivo{
 
     constructor(scene,player,x,y){
-        super(scene,player,x,y,'flecha');
-        this.title = 'Freeze Power'
+        super(scene,player,x,y,'Freeze');
+        this.title = 'Magical Icycle';
     }
     
     givePower(){
