@@ -102,14 +102,24 @@ export default class SceneManager {
 
 
     constructor() {
-        this.sceneList = [LevelTopDown1C_NE, LevelTopDown1B_E, LevelTopDown1B_N, LevelTopDown1B_O, LevelTopDown1B_S, LevelTopDown1C_NS, LevelTopDown1C_NO, LevelTopDown1C_SE, LevelTopDown1C_SO, LevelTopDown1C_EO, 
-                          LevelTopDown2A, LevelTopDown2C_NE, LevelTopDown2B_E, LevelTopDown2B_N, LevelTopDown2B_O, LevelTopDown2B_S, LevelTopDown2C_NS, LevelTopDown2C_NO, LevelTopDown2C_SE, LevelTopDown2C_SO, LevelTopDown2C_EO, 
-                          LevelTopDown3A, LevelTopDown3C_NE, LevelTopDown3B_E, LevelTopDown3B_N, LevelTopDown3B_O, LevelTopDown3B_S, LevelTopDown3C_NS, LevelTopDown3C_NO, LevelTopDown3C_SE, LevelTopDown3C_SO, LevelTopDown3C_EO, 
-                          LevelTopDown4A, LevelTopDown4C_NE, LevelTopDown4B_E, LevelTopDown4B_N, LevelTopDown4B_O, LevelTopDown4B_S, LevelTopDown4C_NS, LevelTopDown4C_NO, LevelTopDown4C_SE, LevelTopDown4C_SO, LevelTopDown4C_EO, 
-                          LevelTopDown5A, LevelTopDown5C_NE, LevelTopDown5B_E, LevelTopDown5B_N, LevelTopDown5B_O, LevelTopDown5B_S, LevelTopDown5C_NS, LevelTopDown5C_NO, LevelTopDown5C_SE, LevelTopDown5C_SO, LevelTopDown5C_EO, 
+        this.sceneList = [
+            LevelTopDown3A, LevelTopDown3C_NE, LevelTopDown3B_E, LevelTopDown3B_N, LevelTopDown3B_O, LevelTopDown3B_S, LevelTopDown3C_NS, LevelTopDown3C_NO, LevelTopDown3C_SE, LevelTopDown3C_SO, LevelTopDown3C_EO,     
                           ];
         this.profundidadMinima = 1;
         this.profundidadMaxima = 1;
+
+        /*
+        arriba der: 1100 200
+        arriba izq: 200 200
+        abajo der: 1100 800
+        abajo izq: 200 800
+        mitad: 640, 500
+LevelTopDown1C_NE, LevelTopDown1B_E, LevelTopDown1B_N, LevelTopDown1B_O, LevelTopDown1B_S, LevelTopDown1C_NS, LevelTopDown1C_NO, LevelTopDown1C_SE, LevelTopDown1C_SO, LevelTopDown1C_EO,
+LevelTopDown2A, LevelTopDown2C_NE, LevelTopDown2B_E, LevelTopDown2B_N, LevelTopDown2B_O, LevelTopDown2B_S, LevelTopDown2C_NS, LevelTopDown2C_NO, LevelTopDown2C_SE, LevelTopDown2C_SO, LevelTopDown2C_EO, 
+
+LevelTopDown4A, LevelTopDown4C_NE, LevelTopDown4B_E, LevelTopDown4B_N, LevelTopDown4B_O, LevelTopDown4B_S, LevelTopDown4C_NS, LevelTopDown4C_NO, LevelTopDown4C_SE, LevelTopDown4C_SO, LevelTopDown4C_EO, 
+LevelTopDown5A, LevelTopDown5C_NE, LevelTopDown5B_E, LevelTopDown5B_N, LevelTopDown5B_O, LevelTopDown5B_S, LevelTopDown5C_NS, LevelTopDown5C_NO, LevelTopDown5C_SE, LevelTopDown5C_SO, LevelTopDown5C_EO, 
+        */
 
         this.endSceneList = [
             LevelTopDown1D_E, LevelTopDown1D_N, LevelTopDown1D_S, LevelTopDown1D_O,

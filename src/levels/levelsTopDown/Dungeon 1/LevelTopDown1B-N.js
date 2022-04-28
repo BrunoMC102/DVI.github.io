@@ -39,7 +39,7 @@ export default class LevelTopDown1B_N extends LevelParent {
   }
 
   createEnemies(){
-    return [new Minotaur(this, this.player, 500, 500), new Enemy(this, this.player, 700, 500)];
+    return [new Mole(this, this.player, 200, 200), new Mole2(this, this.player, 700, 700)];
   }
   
 

@@ -14,7 +14,7 @@ import Mole2 from '../../../enemies/moleVariante2.js';
 import Chest from '../../../objetos_recogibles/chest.js';
 import Archer from '../../../enemies/archer.js';
 import LevelParent from '../levelParent.js';
-
+import Mosca from '../../../enemies/mosca.js'
 
 export default class LevelTopDown2D_E extends LevelParent {
 
@@ -28,18 +28,8 @@ export default class LevelTopDown2D_E extends LevelParent {
     this.iden = 'T1';
   }
 
- 
-
-  createOthers(){
-    new Chest(this, this.player, 450, 300);
-    new Coin(this, this.player, 450, 200);
-    new HealthPotion(this, this.player, 600, 200);
-    new Health(this, this.player, 750, 200);
-    new Arrow(this, this.player, 900, 200);
-  }
-
   createEnemies(){
-    return [new Minotaur(this, this.player, 500, 500), new Enemy(this, this.player, 700, 500)];
+    return [new Mosca(this, this.player, 200, 200), new Mosca(this, this.player, 1100, 200), new Mosca(this, this.player, 1100, 800), new Mosca(this, this.player, 200, 800)];
   }
   
 
