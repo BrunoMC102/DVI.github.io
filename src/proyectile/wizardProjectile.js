@@ -4,8 +4,8 @@ export default class wizardProjectile extends Basic_projectile{
     constructor(scene,x,y,vx,vy,time,damage, type, velocity){
         super(scene,x,y,'flecha',vx,vy,time,damage);
         this.cont = 4000;
-        this.setOrigin(1,1);
-        this.doEffect = (t,dt) => {};
+        this.setOrigin(0.5,0.5);
+        this.doEffect = (dt) => {};
         this.velocity = velocity;
         if(type == 0){
             this.play('boltFire');
@@ -35,11 +35,11 @@ export default class wizardProjectile extends Basic_projectile{
 
 
     preUpdate(t,dt){
-        this.doEffect(t,dt);
+        this.doEffect(dt);
         super.preUpdate(t,dt);
     }
 
-    doHoming(t,dt){
+    doHoming(dt){
         if(this.cont < 0){
             this.cont+= dt;
             if(this.cont >= 0){
@@ -62,7 +62,7 @@ export default class wizardProjectile extends Basic_projectile{
     }
     
 
-    doHomingOnce(t,dt){
+    doHomingOnce(dt){
         if(this.cont < 0){
             this.cont+= dt;
             if(this.cont >= 0){

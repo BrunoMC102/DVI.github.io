@@ -26,7 +26,7 @@ export default class InitialLevel extends LevelParent {
     }
 
     createOthers(){
-        this.pr = new GhostArrow(this,600,500,0,0,100,0,1);
+        this.pr = new wizardProjectile(this,600,500,0,0,100,0,1,1);
         new Chest(this,this.player, 640, 490);
         new Chest(this,this.player, 680, 490);
         new Chest(this,this.player, 560, 490);
