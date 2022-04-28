@@ -37,11 +37,11 @@ export default class Archer extends ShootingEnemyParent {
 
 
 
-    preUpdate(t,dt){
+    preUpdate(d,dt){
         if(this.freezing) return;
     
         if(this.knockbackinfo.knocking){
-          this.attack(d,dt);
+          this.attack(dt);
           if(this.preCharging || this.charging) return;
           this.checkatrapado(dt);
           return;
