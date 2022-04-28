@@ -29,19 +29,11 @@ export default class InitialLevel extends LevelParent {
     }
 
     createOthers(){
-<<<<<<< Updated upstream
-        this.pr = new wizardProjectile(this,600,500,0,0,100,0,1,1);
-        new Chest(this,this.player, 640, 490);
-        new Chest(this,this.player, 680, 490);
-        new Chest(this,this.player, 560, 490);
-        new Chest(this,this.player, 520, 490);
-=======
         this.pr = new GhostArrow(this,600,500,0,0,100,0,1);
         new Enemy4(this,this.player, 200, 200);
         new Enemy5(this,this.player, 200, 800);
         new Enemy7(this,this.player, 1100, 200);
         new Chest(this,this.player, 1100, 800);
->>>>>>> Stashed changes
         new Chest(this,this.player, 720, 490);
         new Chest(this,this.player, 760, 490);
         new Chest(this,this.player, 800, 490);
