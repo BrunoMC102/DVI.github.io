@@ -21,9 +21,6 @@ export default class WizardBoss extends BossParent {
     this.sceneDimensionX = dimesionX;
     this.sceneDimensionY = dimesionY;
    
-
-  
-    
     this.attack2Info = {
       projectilesShooted: 0,
       dispCont: 0,
@@ -428,9 +425,10 @@ export default class WizardBoss extends BossParent {
   }
 
 
+ 
+
 
   changingToFinalPhase(dt) {
-
     if (this.finalFaseCont < 1000 && this.finalFaseCont >= -4500) {
       this.recovering = true;
       this.sprite.tint = 0x00ff00;

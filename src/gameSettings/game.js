@@ -9,15 +9,18 @@ import Minimap from '../managers/minimap.js';
 import PauseMenu from '../pauseMenu.js';
 import LevelScroll1 from '../levels/levelsScroll/levelScroll1.js';
 import LevelScroll2 from '../levels/levelsScroll/levelScroll2.js';
+
 import LevelScroll3 from '../levels/levelsScroll/levelScroll3.js';
 import LevelScroll4 from '../levels/levelsScroll/levelScroll4.js';
+
+import LevelBigNoDoors from '../levels/levelsTopDown/Dungeon Big/levelTopDownBigNoDoors.js';
+
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
  */
 
-let a = [Boot, LevelScroll, BeginningVillage, MainMenu, LevelScroll1, LevelScroll2, LevelScroll3, LevelScroll4, End];
 let config = {
     type: Phaser.AUTO,
     width: 1280,
@@ -31,7 +34,7 @@ let config = {
         gamepad: true
     },
 
-    scene: a,
+    scene: [Boot, LevelScroll, BeginningVillage, MainMenu, LevelScroll2, LevelScroll1,LevelScroll4 ,End, LevelBigNoDoors, LevelScroll3],
     physics: {
         default: 'arcade',
         arcade: {

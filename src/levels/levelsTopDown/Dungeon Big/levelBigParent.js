@@ -16,6 +16,7 @@ import Archer from '../../../enemies/archer.js';
 import LevelParent from '../levelParent.js';
 import WizardBoss from '../../../enemies/wizardBoss.js';
 import GhostBoss from '../../../enemies/ghostBoss.js';
+import WinTrophy from '../../../objetos_recogibles/pasivos/winTrophy.js';
 
 
 export default class LevelBigParent extends LevelParent {
@@ -44,7 +45,7 @@ export default class LevelBigParent extends LevelParent {
   }
 
   createEnemies(){
-    return [new GhostBoss(this,this.player,this.dimensions.x,this.dimensions.y,false)];
+    return [new WizardBoss(this,this.player,this.dimensions.x/2,this.dimensions.y/2, this.dimensions.x,this.dimensions.y)];
   }
 
   create() {
@@ -86,5 +87,31 @@ export default class LevelBigParent extends LevelParent {
     this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y);
     this.cameras.main.startFollow(this.player);
     this.onStart();
+  }
+
+  onBossDefeated(){
+    if(this.playerData.progressStory >= 4){
+      this.createPortal();
+      this.spawnTrophy(this.dimensions.x/2-250, this.dimensions.y/2);
+    }
+    else{
+      this.spawnTrophy(this.dimensions.x/2, this.dimensions.y/2);
+    }
+  }
+
+  spawnTrophy(x,y) {
+    new WinTrophy(this, this.player, x, y);
+  }
+
+  createPortal(){
+    const portal = this.add.zone(this.dimensions.x/2 + 250, this.dimensions.y/2, 100, 100);
+    this.physics.add.existing(portal, true);
+    
+    this.physics.add.overlap(portal, this.player, () => {
+      this.cameras.main.fadeOut(1000);
+      this.time.delayedCall(1400, ()=>{
+        this.scene.start('finalBoss', { playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: 0 
+      });
+      })})
   }
 }

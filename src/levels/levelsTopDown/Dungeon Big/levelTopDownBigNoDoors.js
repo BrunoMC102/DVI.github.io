@@ -20,19 +20,13 @@ import GhostBoss from '../../../enemies/ghostBoss.js';
 
 export default class LevelBigNoDoors extends LevelParent {
 
-  constructor(key) {
-    super(key, {
-      north: true,
+  constructor() {
+    super('finalBoss', {
+      north: false,
       south: false,
       west: false,
       east: false
-    },
-    {
-      north: { x: 960, y: 20 },
-      south: { x: 960, y: 1600 },
-      east: { x: 1900, y: 760 },
-      west: { x: 20, y: 760 }
-    });
+    })
     this.iden = 'FinalBoss';
 
     this.dimensions = {
@@ -42,7 +36,7 @@ export default class LevelBigNoDoors extends LevelParent {
   }
 
   getPlayerCoordinates(direction) {
-    return { x: 960, y: 1500 }
+    return { x: 800, y: 800 }
   }
 
   createEnemies(){
@@ -54,9 +48,7 @@ export default class LevelBigNoDoors extends LevelParent {
     
     this.cameras.main.setBackgroundColor(0x454550);
     this.cameras.cameras[0].transparent = false;
-    this.getNearLevels();
     this.setTileSet();
-    this.actMinimap();
 
    
     
@@ -69,25 +61,14 @@ export default class LevelBigNoDoors extends LevelParent {
     this.createOthers();
     this.enemiesCreated.forEach(e => this.enemies.add(e));
     this.sceneChange = [];
-    this.createDoors();
-    this.boxes = [];
-    this.closeDoors();
-  
+
+
     this.dungeonSound = this.sound.add("dungeontheme").play();
   }
 
 
   onWake(sys,data){
-    this.playerData = data.playerData;
-    this.powerUpList = data.powerUpList;
-    if (data.levelList != undefined)
-      this.levelList = data.levelList;
-    this.direction = data.direction;
-    this.coordinates = this.getPlayerCoordinates(this.direction);
-    this.player.restart(this.coordinates.x, this.coordinates.y, this.playerData);
-    this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y);
-    this.cameras.main.startFollow(this.player);
-    this.onStart();
+   
   }
 
   setTileSet() {
@@ -95,7 +76,24 @@ export default class LevelBigNoDoors extends LevelParent {
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
     this.groundLayer = map.createLayer('Ground', tileset);
     this.groundLayer = map.createLayer('InnerVoid', tileset);
+    //this.innerVoidLayer = map.createLayer('InnerVoid', tileset).setCollisionByProperty({ collides: true });
     this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
     this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
   }
+
+  onBossDefeated(){
+    this.spawnTrophy(this.dimensions.x/2, this.dimensions.y/2);
+  }
+
+  onStart(){
+      this.cameras.main.startFollow(this.player);
+      this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y);
+  }
+
+  actMinimap(){}
+  initialSwipe(){}
+  getNearLevels(){}
+  createDoors(){}
+  activateDoors(){}
+  closeDoors(){}
 }

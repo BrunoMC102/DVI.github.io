@@ -6,10 +6,10 @@ export default class PlayerData {
     this.damage = 5;
     this.speed = 400;
     this.isPadControlling = false;
-    this.progressStory = 0;
+    this.progressStory = 4;
     this.wins = 0;
     this.deaths = 0;
-    this.pickedProgress = false;
+    this.keys = 0;
     this.maxSpeed = 750;
 
     //Recursos jugador
@@ -43,7 +43,7 @@ export default class PlayerData {
     this.scrollDash = true;
     this.scrollBoxes = true;
     // Aceleraciones vertical y horizontal 
-    this.vAcc = -8000;
+    
     this.hAcc = 2000;
    
     
@@ -68,14 +68,52 @@ export default class PlayerData {
 
   win(){
     this.wins++;
-    if(this.pickedProgress){
+    if(this.keys > this.progressStory){
       this.progressStory++;
-      this.pickedProgress = false;
+      this.unlockPowers(this.progressStory);
     }
+    this.pickedProgress = 0;
+    this.restartData();
   }
   die(){
     this.deaths++;
+    this.pickedProgress = 0;
+    this.restartData();
+  }
+
+  unlockPowers(progress){
+    switch (progress) {
+      case 1:
+        this.doubleJump = true
+        break;
+      case 2:
+        this.scrollDash = true;
+        break;
+      case 3:
+        this.scrollBoxes = true;
+      default:
+        break;
+    }
+  }
+
+  restartData(){
+    this.damage = 5;
+    this.speed = 400;
     this.pickedProgress = false;
+    this.health = 6;
+    this.maxhealth = 6;
+    this.money -= 10;
+    if(this.money < 0) this.money = 0; 
+    this.healthPotions = 1; // pociones de vida
+    this.manaPotions = 1; // pociones de mana
+    this.mana = 0;
+    this.arrows = 20;
+    this.projectileBaseSpeed = 500;
+    this.weapon = 0;
+    this.dashDuration = 0.13;
+    this.dashCoolDown = 0.8;
+    this.dashInvincibilityPower = false;
+    this.minimapUnlock = false;
   }
 
 //PowerUps
@@ -89,7 +127,7 @@ export default class PlayerData {
     }
   }
   progressObject(){
-    this.pickedProgress = true;
+    this.keys++;
   }
   dashCoolDownUp(cant){
     this.dashCoolDown -= cant;

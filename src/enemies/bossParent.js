@@ -1,4 +1,4 @@
-import WinTrophy from "../objetos_recogibles/pasivos/winTrophy.js";
+
 import ShootingEnemyParent from "./shootingEnemyParent.js";
 import WizardBossHealth from "./wizardBossHealth.js";
 
@@ -42,9 +42,7 @@ export default class BossParent extends ShootingEnemyParent {
     }
 
 
-    spawnTrophy() {
-        new WinTrophy(this.scene, this.player, this.centerX(), this.centerY());
-    }
+    
 
     die(dieAnimation) {
         this.sprite.play(dieAnimation);
@@ -54,7 +52,7 @@ export default class BossParent extends ShootingEnemyParent {
         this.body.destroy();
         this.healthBar.boom();
         this.scene.time.delayedCall(2000, () => {
-            this.spawnTrophy();
+            this.scene.onBossDefeated();
             this.destroy();
         })
     }

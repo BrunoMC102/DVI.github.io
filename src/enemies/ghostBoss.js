@@ -387,4 +387,7 @@ export default class GhostBoss extends BossParent {
         super.die("ghostBossDie");
     }
 
+
+    
+
 }
