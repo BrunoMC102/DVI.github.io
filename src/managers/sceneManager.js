@@ -99,7 +99,13 @@ import ChestRoomW from "../levels/levelsTopDown/chestRoomW.js"
 
 
 export default class SceneManager {
-
+        /*
+        arriba der: 1100 200
+        arriba izq: 200 200
+        abajo der: 1050 800
+        abajo izq: 200 800
+        mitad: 640, 500
+        */
 
     constructor() {
         this.sceneList = [
@@ -112,29 +118,17 @@ export default class SceneManager {
         this.profundidadMinima = 1;
         this.profundidadMaxima = 1;
 
-        /*
-        arriba der: 1100 200
-        arriba izq: 200 200
-        abajo der: 1050 800
-        abajo izq: 200 800
-        mitad: 640, 500
-        */
-
         this.endSceneList = [
+            LevelTopDown1D_E, LevelTopDown1D_N, LevelTopDown1D_S, LevelTopDown1D_O,
+            LevelTopDown2D_E, LevelTopDown2D_N, LevelTopDown2D_S, LevelTopDown2D_O, 
+            LevelTopDown3D_E, LevelTopDown3D_N, LevelTopDown3D_S, LevelTopDown3D_O, 
+            LevelTopDown4D_E, LevelTopDown4D_N, LevelTopDown4D_S, LevelTopDown4D_O, 
             LevelTopDown5D_E, LevelTopDown5D_N, LevelTopDown5D_S, LevelTopDown5D_O,
         ];
         this.chestLevelList = [ChestRoomE, ChestRoomN, ChestRoomS, ChestRoomW];
         this.bossLevelList = [LevelTopDownBigE, LevelTopDownBigN, LevelTopDownBigS, LevelTopDownBigW];
         this.levelCont = 0;
     }
-
-    /*
-            LevelTopDown1D_E, LevelTopDown1D_N, LevelTopDown1D_S, LevelTopDown1D_O,
-            LevelTopDown2D_E, LevelTopDown2D_N, LevelTopDown2D_S, LevelTopDown2D_O, 
-            LevelTopDown3D_E, LevelTopDown3D_N, LevelTopDown3D_S, LevelTopDown3D_O, 
-            LevelTopDown4D_E, LevelTopDown4D_N, LevelTopDown4D_S, LevelTopDown4D_O, 
-
-    */
 
     generateMap() {
         this.levelList = this.createRandomizedList(this.sceneList);
