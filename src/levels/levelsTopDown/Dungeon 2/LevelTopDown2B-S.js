@@ -29,7 +29,7 @@ export default class LevelTopDown2B_S extends LevelParent {
   }
 
   createEnemies(){
-    return [new Mosca(this, this.player, 200, 200), new Mosca(this, this.player, 1100, 200), new Mosca(this, this.player, 1100, 800), new Mosca(this, this.player, 200, 800)];
+    return [new Mosca(this, this.player, 640, 200), new Mosca(this, this.player, 640, 800), new GoblinKing(this,this.player, 640, 500)];
   }
   
 

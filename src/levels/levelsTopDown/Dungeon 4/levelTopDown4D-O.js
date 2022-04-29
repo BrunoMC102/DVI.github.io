@@ -29,7 +29,7 @@ export default class LevelTopDown4D_O extends LevelParent {
   }
 
   createEnemies(){
-    return [new Trabuquero(this, this.player, 500, 200), new Archer(this, this.player, 640, 500)];
+    return [new Trabuquero(this, this.player, 500, 200), new Archer(this, this.player, 550, 500), new Archer(this, this.player, 700, 500)];
   }
   
 

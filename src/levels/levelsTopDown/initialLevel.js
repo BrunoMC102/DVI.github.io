@@ -30,8 +30,8 @@ export default class InitialLevel extends LevelParent {
 
     createOthers(){
         this.pr = new GhostArrow(this,600,500,0,0,100,0,1);
-        new Chest(this,this.player, 200, 200);
-        new Chest(this,this.player, 200, 800);
+        new Enemy4(this,this.player, 200, 200);
+        new Enemy5(this,this.player, 200, 800);
         new Chest(this,this.player, 1100, 200);
         new Chest(this,this.player, 1100, 800);
         new Chest(this,this.player, 720, 490);

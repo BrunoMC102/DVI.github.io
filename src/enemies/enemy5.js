@@ -8,7 +8,7 @@ import Homing_2 from '../proyectile/homing_2.js';
 export default class Enemy5 extends ShootingEnemyParent{
   
   constructor(scene, player, x, y) {
-    super(scene,player,x,y,'enemy');
+    super(scene,player,x,y,'enemyBlack');
     this.Pv = 300;
     this.body.setDrag(0.0001);
   }

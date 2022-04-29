@@ -7,6 +7,7 @@ import Arrow from '../../../objetos_recogibles/consumibles/arrow.js';
 import Bouncy from '../../../objetos_recogibles/pasivos/bouncy.js';
 import Minotaur from '../../../enemies/minotaur.js';
 import Enemy from '../../../enemies/enemy.js';
+import Enemy4 from '../../../enemies/enemy4.js';
 import Trabuquero from '../../../enemies/trabuquero.js';
 import GoblinKing from '../../../enemies/goblinKing.js';
 import Mole from '../../../enemies/moleVariante.js';
@@ -29,7 +30,7 @@ export default class LevelTopDown3B_E extends LevelParent {
   }
 
   createEnemies(){
-    return [new Minotaur(this, this.player, 1100, 200), new Minotaur(this, this.player, 200, 200),new Enemy(this, this.player, 640, 500)];
+    return [new Enemy4(this, this.player, 1050, 200), new Enemy4(this, this.player, 200, 200), new Enemy(this, this.player, 640, 500)];
   }
   
 
