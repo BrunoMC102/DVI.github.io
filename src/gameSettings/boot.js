@@ -561,7 +561,7 @@ export default class Boot extends Phaser.Scene {
       key: 'mimicChestDie',
       frames: this.anims.generateFrameNames('mimicChest', { start: 13, end: 18, suffix: '.png' }),
       frameRate: 10,
-      repeat: -1
+      repeat: 0
     })
 
     this.anims.create({

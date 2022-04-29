@@ -13,7 +13,7 @@ export default class Minimap extends Phaser.GameObjects.Container {
         this.y += this.verticalSize / 2;
         this.setDepth(6);
         this.minimapCam.setScroll(x, y);
-
+        this.setVisibility(false);
 
     }
 
@@ -79,4 +79,9 @@ export default class Minimap extends Phaser.GameObjects.Container {
             this.add(rectangle);
         }
     }
+
+    setVisibility(cond){
+        this.minimapCam.visible = cond;
+    }
+    
 }

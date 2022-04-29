@@ -1,7 +1,7 @@
 export default class Basic_projectile extends Phaser.GameObjects.Sprite{
 
     constructor(scene,x,y,texture,vx,vy, time, damage){
-        super(scene,x,y);
+        super(scene,x,y, texture);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, false);
         this.body.allowGravity = false;
@@ -13,8 +13,8 @@ export default class Basic_projectile extends Phaser.GameObjects.Sprite{
             this.time_left = 10;
         else
             this.time_left = time
-        // const dimension = Math.min(this.body.width,this.body.height);
-        // this.body.setSize(dimension,dimension);
+        const dimension = Math.min(this.body.width,this.body.height);
+        this.body.setSize(dimension,dimension);
         this.body.setVelocity(vx,vy);
     }
 

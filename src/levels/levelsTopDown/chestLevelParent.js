@@ -28,7 +28,7 @@ export default class ChestLevelParent extends LevelParent {
     update() {
         if(!this.isReal){
             if(!this.active){
-                this.enemiesCreated.forEach(e => {if(e.active) this.active = true})
+                this.enemiesCreated.forEach(e => {if(e.awake) this.active = true})
                 if(this.active){
                     this.closeDoors();
                 }

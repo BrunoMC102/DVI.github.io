@@ -284,6 +284,7 @@ export default class LevelParent extends Phaser.Scene {
     this.zoneCollider = this.physics.add.collider(this.player, this.zoneGroup);
     this.open = false;
     this.cleared = false;
+    this.m.setVisibility(false);
   }
 
   activateDoors() {
@@ -303,6 +304,7 @@ export default class LevelParent extends Phaser.Scene {
     if(this.zoneCollider != undefined){
       this.physics.world.removeCollider(this.zoneCollider);
     }
+    this.m.setVisibility(true);
   }
 
 

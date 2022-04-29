@@ -13,8 +13,10 @@ export default class MimicChest extends EnemyParent{
     this.a = 1000;
     this.v = 50;
     this.active = false;
+    this.awake = false;
     this.body.pushable = false;
     this.stealing = false;
+    this.health = 60;
   }
   
   moveU(t,dt){
@@ -109,6 +111,7 @@ export default class MimicChest extends EnemyParent{
     }
     if(this.awaking) return;
     this.awaking = true;
+    this.awake = true;
     this.sprite.play("mimicChestAttack");
     this.scene.time.delayedCall(1000, ()=>{
         this.active = true;
@@ -127,4 +130,23 @@ export default class MimicChest extends EnemyParent{
       this.scene.time.delayedCall(4000, () => {imgStealed.destroy(); this.stealing = false;});
     }
   }
+  
+  die() {
+    this.sprite.play('mimicChestDie');
+    this.deadCenter.x = this.centerX();
+    this.deadCenter.y = this.centerY();
+    this.body.destroy();
+    this.preUpdate = () => { };
+    if (this.cambio != undefined)
+        this.cambio.remove();
+    if (this.escambio != undefined)
+        this.escambio.remove();
+          
+    this.scene.time.delayedCall(1500, () => {
+        this.spawnMana();
+        this.spawnLoot();
+        this.destroy();
+    })
+  }
+  
 }
