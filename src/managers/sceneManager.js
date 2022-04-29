@@ -1,9 +1,5 @@
 
 import InitialLevel from "../levels/levelsTopDown/initialLevel.js"
-import LevelEnd from "../levels/levelsTopDown/levelEnd.js"
-import LevelEnd1 from "../levels/levelsTopDown/levelEnd1.js"
-import LevelEnd2 from "../levels/levelsTopDown/levelEnd2.js"
-import LevelEnd3 from "../levels/levelsTopDown/LevelEnd3.js"
 
 import LevelTopDown1A from "../levels/levelsTopDown/Dungeon 1/levelTopDown1A.js"
 import LevelTopDown1B_E from "../levels/levelsTopDown/Dungeon 1/levelTopDown1B-E.js"
