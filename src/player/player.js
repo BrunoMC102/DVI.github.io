@@ -66,6 +66,13 @@ export default class Player extends Phaser.GameObjects.Container {
     this.upgradeAudio = this.scene.sound.add("upgrade");
   }
 
+  
+  restart(x, y, playerData){
+    this.x = x;
+    this.y = y;
+    this.playerData = playerData;
+  }
+
   givePasivoPowerUp(texture, titleString) {
     this.upgradeAudio.play();
     const objectPicked = new Phaser.GameObjects.Image(this.scene, 0, -50, texture);

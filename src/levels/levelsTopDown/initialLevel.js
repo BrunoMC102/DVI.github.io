@@ -10,46 +10,47 @@ import Chest from "../../objetos_recogibles/chest.js";
 import Enemy4 from "../../enemies/enemy4.js";
 import Enemy5 from "../../enemies/enemy5.js";
 import Enemy7 from "../../enemies/enemy7.js";
+import PlayerData from "../../player/playerData.js";
 
 
 export default class InitialLevel extends LevelParent {
-    constructor(){
-        super('initialLevel',{
-            north:true,
-            south:true,
-            west:true,
-            east:true
+    constructor() {
+        super('initialLevel', {
+            north: true,
+            south: true,
+            west: true,
+            east: true
         });
     }
 
-    createEnemies(){
+    createEnemies() {
 
         return [];
 
     }
 
-    createOthers(){
-        this.pr = new GhostArrow(this,600,500,0,0,100,0,1);
-        new Enemy4(this,this.player, 200, 200);
-        new Enemy5(this,this.player, 200, 800);
-        new Chest(this,this.player, 1100, 200);
-        new Chest(this,this.player, 1100, 800);
-        new Chest(this,this.player, 720, 490);
-        new Chest(this,this.player, 760, 490);
-        new Chest(this,this.player, 800, 490);
-        new Chest(this,this.player, 480, 490);
-        new Chest(this,this.player, 440, 490);
-        new Chest(this,this.player, 400, 490);
-        new Chest(this,this.player, 360, 490);
+    createOthers() {
+        this.pr = new GhostArrow(this, 600, 500, 0, 0, 100, 0, 1);
+        new Enemy4(this, this.player, 200, 200);
+        new Enemy5(this, this.player, 200, 800);
+        new Chest(this, this.player, 1100, 200);
+        new Chest(this, this.player, 1100, 800);
+        new Chest(this, this.player, 720, 490);
+        new Chest(this, this.player, 760, 490);
+        new Chest(this, this.player, 800, 490);
+        new Chest(this, this.player, 480, 490);
+        new Chest(this, this.player, 440, 490);
+        new Chest(this, this.player, 400, 490);
+        new Chest(this, this.player, 360, 490);
 
     }
-   
-    init(data){
+
+    init(data) {
         super.init(data);
         const m = this.scene.manager.getScenes(false);
-        const mapInfo = m.filter(s => {return (s.generated != undefined)})
-        if(this.levelList == undefined)
-            this.levelList = mapInfo.map(e => {return {grid:e.grid, doors: e.doors, iden: e.iden, reached: false, cleared:false}});
+        const mapInfo = m.filter(s => { return (s.generated != undefined) })
+        if (this.levelList == undefined)
+            this.levelList = mapInfo.map(e => { return { grid: e.grid, doors: e.doors, iden: e.iden, reached: false, cleared: false } });
     }
 
     setTileSet() {
@@ -58,10 +59,44 @@ export default class InitialLevel extends LevelParent {
         this.groundLayer = map.createLayer('Ground', tileset);
         this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
         this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
+
     }
 
-    update(t,dt){
-        super.update(t,dt);
-        this.pr.rotation += dt/200; 
+
+    createScrollDoors(){
+        this.sceneScrollChange = [this.add.zone(220, 60, 60, 20), this.add.zone(419, 60, 60, 20), , this.add.zone(886, 60, 60, 20), this.add.zone(1055, 60, 60, 20)];
+        this.sceneScrollChange.forEach((o1)=>{
+            this.physics.add.existing(o1,true);
+        })
+
+        this.physics.add.overlap(this.player,this.sceneScrollChange[0], () =>{
+            
+            super.changeLevel('Scroll1', 0);
+            //this.player.restart(200, 500, this.playerData);
+            
+        });
+        this.physics.add.overlap(this.player,this.sceneScrollChange[1], () =>{
+            this.scene.start('Scroll2', {coordinates: {x: 100, y: 800}, playerData: new PlayerData()});
+        });
+        this.physics.add.overlap(this.player,this.sceneScrollChange[2], () =>{
+            this.scene.start('Scroll3', {coordinates: {x: 100, y: 800}, playerData: new PlayerData()});
+        })
+        this.physics.add.overlap(this.player,this.sceneScrollChange[3], () =>{
+            this.scene.start('Scroll4', {coordinates: {x: 100, y: 800}, playerData: new PlayerData()});
+        })
+    }
+    
+
+
+    createDoors(){
+        super.createDoors();
+        this.createScrollDoors();
+    }
+    
+
+    update(t, dt) {
+        super.update(t, dt);
+        this.pr.rotation += dt / 200;
+        
     }
 }

@@ -253,6 +253,8 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('villagetheme', 'villagetheme.mp3');
     this.load.audio('dungeontheme', 'dungeontheme.ogg');
     this.load.audio('mainMenuTrack', 'mainMenuTrack.ogg');
+    this.load.audio('takePotion', 'takePotion.wav');
+    this.load.audio('takeCoins', 'coins.wav');
 
     //fuentes
     this.load.setPath('assets/fonts/');

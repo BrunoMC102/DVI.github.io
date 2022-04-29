@@ -13,12 +13,14 @@ export default class LevelScroll1 extends Phaser.Scene {
   }
 
   init(data) {
-    this.coordinates = data.coordinates;
     this.playerData = data.playerData;
     this.powerUpList = data.powerUpList;
+    this.levelList = data.levelList;
+    this.coordinates = {x: 100, y: 800};
   }
 
   create() {
+    this.events.on('wake', this.onWake, this);
     const map = this.make.tilemap({ key: 'Scroll1', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('tileset-cave2', 'scrollTileset');
  
@@ -32,21 +34,34 @@ export default class LevelScroll1 extends Phaser.Scene {
     this.wallLayer = wallLayer;
 
     this.spikes = [this.add.zone(800,1150,350,50),this.add.zone(3485,1210,850,60)];
-    this.physics.world.enable(this.spikes); 
-    this.spikes[0].body.setAllowGravity(false);
-    this.spikes[1].body.setAllowGravity(false);
+    this.spikes.forEach((o2) =>{
+      this.physics.add.existing(o2,true); 
+    })
+
 
     this.sceneChange =  [this.add.zone(40,880,60,122), this.add.zone(4750,825,60,225)];
-    this.physics.world.enable(this.sceneChange); 
-    this.sceneChange[0].body.setAllowGravity(false);
-    this.sceneChange[1].body.setAllowGravity(false);
+    this.sceneChange.forEach((o2) =>{
+      this.physics.add.existing(o2,true); 
+    })
 
     this.physics.add.collider(this.player, wallLayer);
   }
 
+  onWake(sys,data){
+    this.playerData = data.playerData;
+    this.powerUpList = data.powerUpList;
+    if (data.levelList != undefined)
+      this.levelList = data.levelList;
+    this.direction = data.direction;
+    this.coordinates = {x: 100, y: 800};
+
+    this.player.restart(this.coordinates.x, this.coordinates.y, this.playerData);
+  }
+
   update() {
     if (this.physics.overlap(this.player, this.sceneChange[0]) || this.physics.overlap(this.player, this.sceneChange[1])) {
-      this.scene.start('initialLevel', { coordinates: { x: 500, y: 500 }, playerData: this.playerData, powerUpList: this.powerUpList });
+      this.scene.sleep('Scroll1');
+      this.scene.run('initialLevel',  { playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: 1 });
     }
     if (this.physics.overlap(this.player, this.spikes[0]) || this.physics.overlap(this.player, this.spikes[1])) {
       this.scene.start("end", { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
