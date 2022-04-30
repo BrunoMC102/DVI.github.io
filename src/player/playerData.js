@@ -4,7 +4,7 @@ export default class PlayerData {
 
     //Atributos generales
     this.damage = 5;
-    this.speed = 400;
+    
     this.isPadControlling = false;
     this.progressStory = 0;
     this.wins = 0;
@@ -24,6 +24,7 @@ export default class PlayerData {
 
     //Atributos topdown
     this.projectileBaseSpeed = 500;
+    this.speed = 400;
     this.projectileSpeed = this.projectileBaseSpeed;
     this.projectileMaxSpeed = 1000;
     this.flickerTime = 0;
@@ -38,7 +39,8 @@ export default class PlayerData {
 
 
     //Atributos scroll
-    this.dashVelocity = 975 
+    this.scrollSpeed = 400;
+    this.dashVelocity = 975;
     this.doubleJump = false;
     this.scrollDash = false;
     this.scrollBoxes = false;

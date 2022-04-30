@@ -235,7 +235,7 @@ export default class Player extends Phaser.GameObjects.Container {
       } else {
         this.sprite.play('jump', true);
       }
-      this.body.setVelocityX(-this.playerData.speed);
+      this.body.setVelocityX(-this.playerData.scrollSpeed);
       this.scaleX = -1;
       this.body.offset.x = 20;
       this.lastInput = -1;
@@ -248,7 +248,7 @@ export default class Player extends Phaser.GameObjects.Container {
       } else {
         this.sprite.play('jump', true);
       }
-      this.body.setVelocityX(this.playerData.speed);
+      this.body.setVelocityX(this.playerData.scrollSpeed);
       this.scaleX = 1;
       this.body.offset.x = -22;
       this.lastInput = 1;
@@ -265,7 +265,6 @@ export default class Player extends Phaser.GameObjects.Container {
         this.sprite.play('jump', true);
       }
     }
-
   }
 
 

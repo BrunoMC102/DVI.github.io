@@ -21,7 +21,6 @@ export default class Bow extends Phaser.GameObjects.Container {
         this.add(this.wand);
         this.add(this.directionArrow);
         this.player = player;
-
     }
 
 
