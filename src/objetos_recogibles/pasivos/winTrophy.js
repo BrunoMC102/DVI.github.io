@@ -3,8 +3,8 @@ import Pasivo from "./pasivo.js";
 export default class WinTrophy extends Pasivo{
 
     constructor(scene,player,x,y){
-        super(scene,player,x,y,'flecha');
-        this.title = 'Win Trophy';
+        super(scene,player,x,y,'Crown');
+        this.title = 'Ending Crown';
     }
     
     givePower(){

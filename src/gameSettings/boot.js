@@ -74,6 +74,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('Key6', 'Keys6.png');
     this.load.image('directionArrow','directionArrow.png');
     this.load.image('wand','wand.png');
+    this.load.image('crown', 'Crown.png')
 
     this.load.setPath('assets/sprites/uiSprites');
     this.load.image('config', 'gear.png');
