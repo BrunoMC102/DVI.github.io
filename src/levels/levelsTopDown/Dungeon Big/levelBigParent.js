@@ -106,6 +106,8 @@ export default class LevelBigParent extends LevelParent {
   createPortal(){
     const portal = this.add.zone(this.dimensions.x/2 + 250, this.dimensions.y/2, 100, 100);
     this.physics.add.existing(portal, true);
+    this.portalSprite = this.add.sprite(this.dimensions.x/2 + 250, this.dimensions.y/2, 100);
+    this.portalSprite.play('TeleportGate');
     
     this.physics.add.overlap(portal, this.player, () => {
       this.cameras.main.fadeOut(1000);
