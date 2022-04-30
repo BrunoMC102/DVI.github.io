@@ -6,7 +6,7 @@ export default class PlayerData {
     this.damage = 5;
     this.speed = 400;
     this.isPadControlling = false;
-    this.progressStory = 4;
+    this.progressStory = 0;
     this.wins = 0;
     this.deaths = 0;
     this.keys = 0;
@@ -39,9 +39,9 @@ export default class PlayerData {
 
     //Atributos scroll
     this.dashVelocity = 975 
-    this.doubleJump = true;
-    this.scrollDash = true;
-    this.scrollBoxes = true;
+    this.doubleJump = false;
+    this.scrollDash = false;
+    this.scrollBoxes = false;
     // Aceleraciones vertical y horizontal 
     
     this.hAcc = 2000;

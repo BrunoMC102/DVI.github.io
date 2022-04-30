@@ -272,7 +272,7 @@ export default class BeginningVillage extends Phaser.Scene {
         newScenes.forEach(e => {
           this.scene.manager.add(e.levelkey, e);
         })
-        this.scene.start('initialLevel', { coordinates: { x: 500, y: 500 }, playerData: this.playerData, powerUpList: this.powerUpList });
+        this.scene.start('initialLevel', {playerData: this.playerData, powerUpList: this.powerUpList, direction:-1});
        
       });
     }

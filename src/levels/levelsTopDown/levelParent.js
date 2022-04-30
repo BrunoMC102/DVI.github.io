@@ -127,10 +127,13 @@ export default class LevelParent extends Phaser.Scene {
   }
 
   changeLevel(levelKey, direction) {
+    if(this.changingScene) return;
     this.changingScene = true;
     this.time.delayedCall(this.swipeTime, () => {
+      
       this.scene.sleep(this.levelkey);
       this.scene.run(levelKey, { playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: direction })
+
     });
   }
 
@@ -360,7 +363,7 @@ export default class LevelParent extends Phaser.Scene {
         this.cameras.cameras[0].scrollY -= this.halfHeigh;
         this.swipeY(this.halfHeigh);
       }
-      else {
+      else if(this.direction == 3){
         this.cameras.cameras[0].scrollX += this.halfWidth;
         this.swipeX(-this.halfWidth);
       }

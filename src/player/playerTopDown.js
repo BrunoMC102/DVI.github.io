@@ -82,10 +82,16 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.add(this.bow);
     if (this.playerData.weapon == 0) {
       this.sword.setVisible(true);
+      this.bow.directionArrow.setVisible(true);
     }
     else if (this.playerData.weapon == 1) {
-      this.bow.setVisible(true);
+      this.bow.sprite.setVisible(true);
     }
+    else if (this.playerData.weapon == 2) {
+      this.bow.wand.setVisible(true);
+      this.bow.directionArrow.setVisible(true);
+    }
+
 
     //Barra proyectiles
     this.projectileBar = new ProjectileBar(scene, 0, 70);
@@ -179,6 +185,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.controls.movementcontrol();
       if (this.playerData.weapon == 0)
         this.controls.swordControl();
+        
 
       if (this.playerData.weapon == 1) {
         if (this.playerData.arrows > 0)
@@ -633,17 +640,24 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
         if (Phaser.Input.Keyboard.JustDown(this.key1)) {
           this.playerData.weapon = 0;
           this.sword.setVisible(true);
-          this.bow.setVisible(false);
+          this.bow.sprite.setVisible(false);
+          this.bow.wand.setVisible(false);
+          this.bow.directionArrow.setVisible(true);
+
         }
         if (Phaser.Input.Keyboard.JustDown(this.key2)) {
           this.playerData.weapon = 1;
           this.sword.setVisible(false);
-          this.bow.setVisible(true);
+          this.bow.sprite.setVisible(true);
+          this.bow.wand.setVisible(false);
+          this.bow.directionArrow.setVisible(false);
         }
         if (Phaser.Input.Keyboard.JustDown(this.key3)) {
           this.playerData.weapon = 2;
           this.sword.setVisible(false);
-          this.bow.setVisible(false);
+          this.bow.sprite.setVisible(false);
+          this.bow.wand.setVisible(true);
+          this.bow.directionArrow.setVisible(true);
         }
       },
       projectileAngle: () => {
@@ -737,17 +751,21 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           this.trianglePressed = true;
           this.playerData.weapon = (this.playerData.weapon + 1) % 3;
           let newWeapon = this.playerData.weapon;
+          this.bow.sprite.setVisible(false);
+          this.bow.wand.setVisible(false);
+          this.sword.setVisible(false);
+          this.bow.directionArrow.setVisible(false);
+          
           if (newWeapon == 0) {
             this.sword.setVisible(true);
-            this.bow.setVisible(false);
+            this.bow.directionArrow.setVisible(true);
           }
           else if (newWeapon == 1) {
-            this.sword.setVisible(false);
-            this.bow.setVisible(true);
+            this.bow.sprite.setVisible(true);
           }
           else {
-            this.sword.setVisible(false);
-            this.bow.setVisible(false);
+            this.bow.wand.setVisible(true);
+            this.bow.directionArrow.setVisible(true);
           }
         }
         else {

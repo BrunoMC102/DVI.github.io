@@ -72,6 +72,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('Key4', 'Keys4.png');
     this.load.image('Key5', 'Keys5.png');
     this.load.image('Key6', 'Keys6.png');
+    this.load.image('directionArrow','directionArrow.png');
+    this.load.image('wand','wand.png');
 
     this.load.setPath('assets/sprites/uiSprites');
     this.load.image('config', 'gear.png');
@@ -102,6 +104,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('tileSpaceM', 'tileSpaceM.png');
     this.load.image('tileSpaceR', 'tileSpaceR.png');
     this.load.image('ps4','ps4.png');
+    
 
     this.load.setPath('assets/json/');
     this.load.tilemapTiledJSON('tilemapJose', 'PruebaScrollJose.json');
