@@ -48,8 +48,8 @@ export default class WizardBoss extends BossParent {
     this.add(this.interiorContainer);
     this.fireBalls = [];
     this.body.pushable = false;
-    this.health = 100;
-    this.maxHealth = 100;
+    this.health = 15;
+    this.maxHealth = 15;
     this.escaping = true;
     this.persecution = false;
     this.moving = false;
@@ -97,8 +97,9 @@ export default class WizardBoss extends BossParent {
   toUpdate(dt) {
     this.interiorContainer.rotation += dt / 1000;
     this.fireBalls.forEach((e) => {
-      e.rotation -= dt / 1000;
+      e.rotation = -e.getParentRotation()+Math.PI/2;
     })
+    
     if (this.statusInfo.phase == 0 && this.health <= this.maxHealth * 4 / 5) {
       this.changeFase(1);
       this.statusInfo.phase = 1;
@@ -195,6 +196,8 @@ export default class WizardBoss extends BossParent {
 
   moveU(dt) {
 
+    if (this.changinPhase || this.changingFinalPhase) return;
+    
     if (this.statusInfo.attack != 0 || this.statusInfo.postPreparing) {
       if (this.isPLayerRight()) {
         this.sprite.flipX = false;
@@ -379,7 +382,7 @@ export default class WizardBoss extends BossParent {
 
 
   changeFase(phase) {
-
+    
     if (phase == 4) {
       this.changingFinalPhase = true;
       this.secondPhase = true;
@@ -422,6 +425,7 @@ export default class WizardBoss extends BossParent {
       this.sprite.play("wizardDie");
 
     }
+    this.body.setVelocity(0,0);
   }
 
 
@@ -515,6 +519,7 @@ export default class WizardBoss extends BossParent {
   addFireBall(firePos) {
     let fireBall = new FireBall(this.scene, firePos.x, firePos.y, 1);
     this.interiorContainer.add(fireBall);
+    fireBall.rotation = -fireBall.getParentRotation()+Math.PI/2;
     this.fireBalls.push(fireBall);
   }
 

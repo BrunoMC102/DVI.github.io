@@ -188,12 +188,12 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     }
     
   }
-  spreadSpell(damage){
+  spreadSpell(damage, time){
     let dir = new Phaser.Math.Vector2(1,0);
-    
-    for (let i = 0; i < 8; i++) {
-      new Spell(this.scene,this.centerX(),this.centerY(),dir.x*450,dir.y*450, 10, damage, this);
-      dir.rotate(2*Math.PI/8);
+    dir.rotate(Math.PI/4);
+    for (let i = 0; i < 4; i++) {
+      new Spell(this.scene,this.centerX(),this.centerY(),dir.x*450,dir.y*450, time-1, damage, this);
+      dir.rotate(2*Math.PI/4);
     }
   }
 

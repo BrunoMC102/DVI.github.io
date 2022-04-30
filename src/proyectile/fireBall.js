@@ -1,7 +1,7 @@
 export default class FireBall extends Phaser.GameObjects.Sprite{
     constructor(scene,x,y, damage){
         super(scene,0,0,'');
-        this.rotation = Math.PI/2;
+        this.rotation = -Math.PI/4;
         this.targetX = x;
         this.targetY = y;
         this.scene.add.existing(this);
@@ -20,7 +20,7 @@ export default class FireBall extends Phaser.GameObjects.Sprite{
         this.vuelta = false;
         this.finish = false;
         this.body.setSize(20,20);
-        this.body.setOffset(47,45);
+        this.body.setOffset(50,65);
     }
 
     preUpdate(t,dt){
