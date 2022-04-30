@@ -74,7 +74,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('Key6', 'Keys6.png');
     this.load.image('directionArrow','directionArrow.png');
     this.load.image('wand','wand.png');
-    this.load.image('crown', 'Crown.png')
+    this.load.image('crown', 'Crown.png');
 
     this.load.setPath('assets/sprites/uiSprites');
     this.load.image('config', 'gear.png');
@@ -244,6 +244,7 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('ghostArrow_2', 'ghostArrow_2.png', 'ghostArrow_2.json')
     this.load.atlas('fireEnemy', 'fireEnemy.png', 'fireEnemy.json')
     this.load.atlas('box', 'box.png', 'box.json')
+    this.load.atlas('TeleportGate', 'TeleportGate.png', 'TeleportGate.json')
 
     //musica
     this.load.setPath('assets/music/');
@@ -744,6 +745,13 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: 2,
       yoyo:true
+    })
+
+    this.anims.create({
+      key: 'TeleportGate',
+      frames: this.anims.generateFrameNames('TeleportGate', {start:1, end:2, prefix:'TeleportGate', suffix: '.png'}),
+      frameRate: 4,
+      repeat: -1
     })
   }
 }
