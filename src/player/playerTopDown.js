@@ -150,6 +150,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.x = x;
     this.y = y;
     this.playerData = playerData;
+    this.changeWeaponVisibility(this.playerData.weapon);
   }
 
   setBlocked(cond){
@@ -590,6 +591,27 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     else this.sprite.anims.play('walk-up', true);
   }
 
+
+  changeWeaponVisibility(newWeapon){
+
+    this.bow.sprite.setVisible(false);
+    this.bow.wand.setVisible(false);
+    this.sword.setVisible(false);
+    this.bow.directionArrow.setVisible(false);
+    
+    if (newWeapon == 0) {
+      this.sword.setVisible(true);
+      this.bow.directionArrow.setVisible(true);
+    }
+    else if (newWeapon == 1) {
+      this.bow.sprite.setVisible(true);
+    }
+    else {
+      this.bow.wand.setVisible(true);
+      this.bow.directionArrow.setVisible(true);
+    }
+  }
+
   //Controles player
   handleControls() {
     this.keyboardControls = {
@@ -639,25 +661,15 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       selectWeapon: () => {
         if (Phaser.Input.Keyboard.JustDown(this.key1)) {
           this.playerData.weapon = 0;
-          this.sword.setVisible(true);
-          this.bow.sprite.setVisible(false);
-          this.bow.wand.setVisible(false);
-          this.bow.directionArrow.setVisible(true);
-
+          this.changeWeaponVisibility(this.playerData.weapon);
         }
         if (Phaser.Input.Keyboard.JustDown(this.key2)) {
           this.playerData.weapon = 1;
-          this.sword.setVisible(false);
-          this.bow.sprite.setVisible(true);
-          this.bow.wand.setVisible(false);
-          this.bow.directionArrow.setVisible(false);
+          this.changeWeaponVisibility(this.playerData.weapon);
         }
         if (Phaser.Input.Keyboard.JustDown(this.key3)) {
           this.playerData.weapon = 2;
-          this.sword.setVisible(false);
-          this.bow.sprite.setVisible(false);
-          this.bow.wand.setVisible(true);
-          this.bow.directionArrow.setVisible(true);
+          this.changeWeaponVisibility(this.playerData.weapon);
         }
       },
       projectileAngle: () => {
@@ -750,23 +762,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           if (this.trianglePressed) return;
           this.trianglePressed = true;
           this.playerData.weapon = (this.playerData.weapon + 1) % 3;
-          let newWeapon = this.playerData.weapon;
-          this.bow.sprite.setVisible(false);
-          this.bow.wand.setVisible(false);
-          this.sword.setVisible(false);
-          this.bow.directionArrow.setVisible(false);
-          
-          if (newWeapon == 0) {
-            this.sword.setVisible(true);
-            this.bow.directionArrow.setVisible(true);
-          }
-          else if (newWeapon == 1) {
-            this.bow.sprite.setVisible(true);
-          }
-          else {
-            this.bow.wand.setVisible(true);
-            this.bow.directionArrow.setVisible(true);
-          }
+          this.changeWeaponVisibility(this.playerData.weapon);
         }
         else {
           if (!this.trianglePressed) return;
