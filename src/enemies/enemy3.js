@@ -11,5 +11,6 @@ export default class Enemy3 extends ShootingEnemyParent{
     this.Pv = 300;  //Velocidad proyectil
     this.shootTime = 5; //Velocidad disparo
     this.body.setDrag(0.0001);
+    this.origDrag = 0.0001;
   }
 }

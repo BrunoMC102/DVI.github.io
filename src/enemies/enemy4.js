@@ -11,6 +11,8 @@ export default class Enemy4 extends ShootingEnemyParent{
     super(scene,player,x,y,'enemy');
     this.Pv = 300;
     this.shootTime = 2;
+    this.body.setDrag(0.0001);
+    this.origDrag = 0.0001;
   }
   
   creador(){
