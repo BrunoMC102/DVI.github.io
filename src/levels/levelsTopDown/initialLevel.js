@@ -11,6 +11,7 @@ import Enemy4 from "../../enemies/enemy4.js";
 import Enemy5 from "../../enemies/enemy5.js";
 import Enemy7 from "../../enemies/enemy7.js";
 import PlayerData from "../../player/playerData.js";
+import GhostArrow_2 from "../../proyectile/ghostArrow_2.js";
 
 
 export default class InitialLevel extends LevelParent {
@@ -30,7 +31,7 @@ export default class InitialLevel extends LevelParent {
     }
 
     createOthers() {
-        this.pr = new GhostArrow(this, 600, 500, 0, 0, 100, 0, 1);
+        this.pr = new GhostArrow_2(this, 600, 500, 0, 0, 100, 0, 1);
         new Chest(this, this.player, 1100, 200);
         new Chest(this, this.player, 1100, 800);
         new Chest(this, this.player, 720, 490);

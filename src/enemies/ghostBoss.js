@@ -364,12 +364,16 @@ export default class GhostBoss extends BossParent {
         this.scene.physics.add.collider(this.noBounceCollGroup, this.scene.wallLayer, (o1, o2) => {
             o1.destroy();
         });
+        this.scene.physics.add.collider(this.noBounceCollGroup, this.scene.voidLayer, (o1,o2) => {
+            o1.destroy();
+          });
         this.playerOverlapGroup = this.scene.add.group();
         this.scene.physics.add.overlap(this.playerOverlapGroup, this.player, (o1, o2) => {
             o2.hurt(this.damage);
         });
         this.bounceCollGroup = this.scene.add.group();
         this.scene.physics.add.collider(this.bounceCollGroup, this.scene.wallLayer, (o1, o2) => { });
+        this.scene.physics.add.collider(this.bounceCollGroup, this.scene.voidLayer, (o1,o2) => { });
 
         this.wallCollGroup = this.noBounceCollGroup;
     }
