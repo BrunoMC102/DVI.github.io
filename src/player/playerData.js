@@ -6,7 +6,7 @@ export default class PlayerData {
     this.damage = 5;
     
     this.isPadControlling = false;
-    this.progressStory = 4;
+    this.progressStory = 0;
     this.wins = 0;
     this.deaths = 0;
     this.keys = 0;
@@ -71,8 +71,10 @@ export default class PlayerData {
   win(){
     this.wins++;
     if(this.keys > this.progressStory){
-      this.progressStory++;
-      this.unlockPowers(this.progressStory);
+      if(this.progressStory < 3){
+        this.progressStory++;
+        this.unlockPowers(this.progressStory);
+      }
     }
     this.pickedProgress = 0;
     this.money += 10;
@@ -118,6 +120,7 @@ export default class PlayerData {
     this.dashCoolDown = 0.8;
     this.dashInvincibilityPower = false;
     this.minimapUnlock = false;
+    this.keys = 0;
   }
 
 //PowerUps

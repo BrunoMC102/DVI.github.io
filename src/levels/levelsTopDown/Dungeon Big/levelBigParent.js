@@ -91,7 +91,7 @@ export default class LevelBigParent extends LevelParent {
   }
 
   onBossDefeated(){
-    if(this.playerData.progressStory >= 4){
+    if(this.playerData.progressStory >= 3 && this.playerData.keys >= 4){
       this.createPortal();
       this.spawnTrophy(this.dimensions.x/2-250, this.dimensions.y/2);
     }
