@@ -55,7 +55,31 @@
             player.playerData.isSoundMuted = !player.playerData.isSoundMuted;
             scene.sound.mute = player.playerData.isSoundMuted;
             
+            
         })
+
+        this.panelScreen = scene.add.image(885,285,'redButton').setScrollFactor(0).setDepth(6);
+        this.panelFullscreenOnButton = scene.add.image(884,282,'larger').setScrollFactor(0).setDepth(7);
+        this.panelFullscreenOffButton = scene.add.image(884,282,'smaller').setScrollFactor(0).setDepth(5);
+        this.panelScreen.setInteractive();
+        this.panelScreen.on('pointerup', ()=>{
+            const depth = this.panelFullscreenOnButton._depth;
+            this.panelFullscreenOnButton.setDepth(this.panelFullscreenOffButton._depth);
+            this.panelFullscreenOffButton.setDepth(depth);
+            scene.scale.toggleFullscreen();
+            
+            
+        })
+
+        this.panelGuideArrow = scene.add.image(830,285,'redButton').setScrollFactor(0).setDepth(6);
+        this.panelGuideArrowButton =  scene.add.image(830,282,'question').setScrollFactor(0).setDepth(7);
+        this.panelGuideArrow.setInteractive();
+        this.panelGuideArrow.on('pointerup', ()=>{
+          
+        })
+       
+
+
        this.upText = scene.add.bitmapText(750,540,'atari', 'Move up',16)
        .setFontSize(20).setScrollFactor(0) 
         .setDepth(6); 
@@ -142,6 +166,11 @@
       this.panelMusicOffButton.visible = true;
       this.panelExit.visible = true;
       this.crossImage.visible = true;
+      this.panelScreen.visible = true;
+      this.panelFullscreenOnButton.visible = true;
+      this.panelFullscreenOffButton.visible = true; 
+      this.panelGuideArrow.visible = true;
+      this.panelGuideArrowButton.visible = true;
       this.controlText.visible = true;
       this.selectPanel.visible = true;
       this.choosePanelLeft.visible = true;
@@ -166,6 +195,11 @@
       this.panelMusicOffButton.visible = false;
       this.panelExit.visible = false;
       this.crossImage.visible = false;
+      this.panelScreen.visible = false;
+      this.panelFullscreenOnButton.visible = false;
+      this.panelFullscreenOffButton.visible = false; 
+      this.panelGuideArrow.visible = false;
+      this.panelGuideArrowButton.visible = false;
       this.controlText.visible = false;
       this.selectPanel.visible = false;
       this.choosePanelLeft.visible = false;
@@ -173,6 +207,7 @@
       this.chooseImageLeft.visible = false;
       this.chooseImageRight.visible = false;
       this.line.visible = false;
+      
       this.hideKeyboardMenuPanel();
       this.hideControllerMenuPanel();
      }

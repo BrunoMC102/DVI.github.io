@@ -14,6 +14,7 @@ import LevelScroll3 from '../levels/levelsScroll/levelScroll3.js';
 import LevelScroll4 from '../levels/levelsScroll/levelScroll4.js';
 
 import LevelBigNoDoors from '../levels/levelsTopDown/Dungeon Big/levelTopDownBigNoDoors.js';
+import Win from '../win.js';
 
 
 /**
@@ -34,7 +35,7 @@ let config = {
         gamepad: true
     },
 
-    scene: [Boot, LevelScroll, BeginningVillage, MainMenu, LevelScroll2, LevelScroll1,LevelScroll4 ,End, LevelBigNoDoors, LevelScroll3],
+    scene: [Boot, LevelScroll, BeginningVillage, MainMenu, LevelScroll2, LevelScroll1,LevelScroll4 ,Win,End, LevelBigNoDoors, LevelScroll3],
     physics: {
         default: 'arcade',
         arcade: {

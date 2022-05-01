@@ -75,6 +75,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('directionArrow','directionArrow.png');
     this.load.image('wand','wand.png');
     this.load.image('crown', 'Crown.png');
+    this.load.image('larger','larger.png');
+    this.load.image('smaller','smaller.png');
+    this.load.image('question','question.png');
 
     this.load.setPath('assets/sprites/uiSprites');
     this.load.image('config', 'gear.png');
@@ -260,6 +263,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('mainMenuTrack', 'mainMenuTrack.ogg');
     this.load.audio('takePotion', 'takePotion.wav');
     this.load.audio('takeCoins', 'coins.wav');
+    this.load.audio('winTheme', 'win.wav');
 
     //fuentes
     this.load.setPath('assets/fonts/');

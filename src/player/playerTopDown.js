@@ -19,7 +19,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     super(scene, x, y);
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
-    
+
 
     //Creacion de teclas
     this.cursors = this.scene.input.keyboard.createCursorKeys();
@@ -35,7 +35,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.body.allowGravity = false;
     this.body.pushable = false;
 
-    
+
     //Handle datos jugador
     this.playerData = data;
     this.playerData.player = this;
@@ -146,47 +146,47 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
   }
 
-  restart(x, y, playerData){
+  restart(x, y, playerData) {
     this.x = x;
     this.y = y;
     this.playerData = playerData;
     this.changeWeaponVisibility(this.playerData.weapon);
   }
 
-  setBlocked(cond){
-    this.body.setVelocity(0,0);
+  setBlocked(cond) {
+    this.body.setVelocity(0, 0);
     this.blocked = cond;
   }
 
-  showMenu(){
+  showMenu() {
     this.pauseMenu.showMenuPanel();
-      this.isMenuDeployed = true;
+    this.isMenuDeployed = true;
   }
 
-  hideMenu(){
-      this.pauseMenu.hideMenuPanel();
-      this.isMenuDeployed = false;
+  hideMenu() {
+    this.pauseMenu.hideMenuPanel();
+    this.isMenuDeployed = false;
   }
 
   preUpdate(t, dt) {
 
-    /* this.isKeyEscDown = Phaser.Input.Keyboard.JustDown(this.keyEsc);
-    if(!this.isMenuDeployed && this.isKeyEscDown){
+    this.isKeyEscDown = Phaser.Input.Keyboard.JustDown(this.keyEsc);
+    if (!this.isMenuDeployed && this.isKeyEscDown) {
       this.showMenu();
 
-    }else if (this.isMenuDeployed && this.isKeyEscDown){
+    } else if (this.isMenuDeployed && this.isKeyEscDown) {
       this.hideMenu();
-    }*/
-    if(this.blocked){
+    }
+    if (this.blocked) {
       this.updateUi();
       return;
-    } 
+    }
 
     if (!this.dashing) {
       this.controls.movementcontrol();
       if (this.playerData.weapon == 0)
         this.controls.swordControl();
-        
+
 
       if (this.playerData.weapon == 1) {
         if (this.playerData.arrows > 0)
@@ -222,7 +222,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     //this.health_label.text = 'Health: ' + this.playerData.health;
     this.updateUi();
     this.checkDeath();
-    
+
 
 
     this.handlePlayerAnimation();
@@ -230,31 +230,31 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
 
 
-  checkDeath(){
+  checkDeath() {
     if (this.playerData.health <= 0 && !this.isDead) {
       this.die();
     }
   }
 
-  die(){
+  die() {
     this.isDead = true;
     this.sprite.anims.play('death');
     this.setBlocked(true);
-    const timer = this.scene.time.addEvent( {
-      delay: 2500, 
-      callback: 
-      this.scene.finishGame,
-      callbackScope: this.scene 
+    const timer = this.scene.time.addEvent({
+      delay: 2500,
+      callback:
+        this.scene.finishGame,
+      callbackScope: this.scene
     });
   }
 
-  win(){
+  win() {
     this.setBlocked(true);
-    const timer = this.scene.time.addEvent( {
-      delay: 500, 
-      callback: 
-      this.scene.winGame,
-      callbackScope: this.scene 
+    const timer = this.scene.time.addEvent({
+      delay: 500,
+      callback:
+        this.scene.winGame,
+      callbackScope: this.scene
     });
   }
 
@@ -317,7 +317,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           }
         }
       }
-      else{
+      else {
         for (let i = m; i > this.playerData.maxhealth; i--) {
           const emptyHearth = this.array_emptyhearts.pop();
           emptyHearth.destroy();
@@ -398,12 +398,12 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.inDashDelay = true;
     if (this.playerData.dashInvincibilityPower)
       this.playerWithProjectilesCollider.remove(this);
-    this.scene.time.delayedCall(this.playerData.dashDuration*1000, () => {
+    this.scene.time.delayedCall(this.playerData.dashDuration * 1000, () => {
       if (this.playerData.dashInvincibilityPower)
         this.playerWithProjectilesCollider.remove(this);
       this.dashing = false;
     })
-    this.scene.time.delayedCall(this.playerData.dashCoolDown*1000, () => {
+    this.scene.time.delayedCall(this.playerData.dashCoolDown * 1000, () => {
       this.playerWithProjectilesCollider.add(this);
       this.inDashDelay = false;
     })
@@ -431,45 +431,45 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     if (this.playerData.manaPotions > 0 && remainingMana < 100) {
       this.healthPotionAudio.play();
       this.playerData.manaPotions--;
-      if(remainingMana + 25 <= 100){
+      if (remainingMana + 25 <= 100) {
         this.playerData.mana += 25;
-      }else{
-        this.playerData.mana += 100-remainingMana;
+      } else {
+        this.playerData.mana += 100 - remainingMana;
       }
     }
   }
 
-  steal(){
+  steal() {
     const index = Math.random();
     let quantity = 0;
-    if(index < 0.3){
+    if (index < 0.3) {
       quantity = 3
-      if(this.stealResource(this.playerData.money, quantity)){
+      if (this.stealResource(this.playerData.money, quantity)) {
         this.playerData.money -= quantity;
         return "monedas";
       }
       return null;
     }
-    else if(index < 0.6){
+    else if (index < 0.6) {
       quantity = 5
-      if(this.stealResource(this.playerData.arrows, quantity)){
+      if (this.stealResource(this.playerData.arrows, quantity)) {
         this.playerData.arrows -= quantity;
         return "flecha";
       }
       return null;
 
     }
-    else if(index < 0.9){
+    else if (index < 0.9) {
       quantity = 20
-      if(this.stealResource(this.playerData.mana, quantity)){
+      if (this.stealResource(this.playerData.mana, quantity)) {
         this.playerData.mana -= quantity;
         return "mana";
       }
       return null;
     }
-    else{
+    else {
       quantity = 1
-      if(this.stealResource(this.playerData.maxhealth, quantity)){
+      if (this.stealResource(this.playerData.maxhealth, quantity)) {
         this.playerData.maxhealth -= quantity;
         return "vida";
       }
@@ -477,8 +477,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     }
   }
 
-  stealResource(resource, quantity){
-    if(resource - quantity >= 0){
+  stealResource(resource, quantity) {
+    if (resource - quantity >= 0) {
       return true;
     }
     return false;
@@ -592,13 +592,13 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   }
 
 
-  changeWeaponVisibility(newWeapon){
+  changeWeaponVisibility(newWeapon) {
 
     this.bow.sprite.setVisible(false);
     this.bow.wand.setVisible(false);
     this.sword.setVisible(false);
     this.bow.directionArrow.setVisible(false);
-    
+
     if (newWeapon == 0) {
       this.sword.setVisible(true);
       this.bow.directionArrow.setVisible(true);
@@ -836,23 +836,23 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
 
 
   //PowerUps recogidos
-  healthUp(){
+  healthUp() {
     this.playerData.healthUp();
   }
-  speedUp(cant){
+  speedUp(cant) {
     this.playerData.speedUp(cant);
   }
-  
-  dashCoolDownUp(cant){
+
+  dashCoolDownUp(cant) {
     this.playerData.dashCoolDownUp(cant);
   }
-  projectileBaseSpeedUp(cant){
+  projectileBaseSpeedUp(cant) {
     this.playerData.projectileBaseSpeedUp(cant);
   }
-  damageUp(cant){
+  damageUp(cant) {
     this.playerData.damageUp(cant);
   }
-  
+
 
 }
 

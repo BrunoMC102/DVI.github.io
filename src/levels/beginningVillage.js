@@ -16,19 +16,19 @@ import LevelScroll4 from './levelsScroll/levelScroll4.js';
 const itemsData = [
   {
     name: 'pocionVida',
-    price: 1,
+    price: 3,
     x: 3798,
     y: 1555
   },
   {
     name: 'pocionMana',
-    price: 1,
+    price: 3,
     x: 3876,
     y: 1555
   },
   {
     name: 'vida',
-    price: 1,
+    price: 10,
     x: 4000,
     y: 1555
   },
@@ -36,7 +36,7 @@ const itemsData = [
     name: 'chestUnopened',
     object: 'chest',
     timesPurchased: 1,
-    price: 5,
+    price: 15,
     x: 3485,
     y: 1555
   }
@@ -134,10 +134,11 @@ export default class BeginningVillage extends Phaser.Scene {
 
     this.bg = this.add.rectangle(0, 960, this.scale.width * 2, 600, "0x914f1d").setScrollFactor(0).setDepth(6);
     this.bg.visible = false;
-    this.dialog = this.add.bitmapText(10, 700, 'atari', 'HELLO THERE LITTLE KNIGHT', 16)
+    this.dialog = this.add.bitmapText(10, 660, 'atari', 'Welcome knight my name is Roger,\nI am the third general of the Radagon Squad.\nYou may noticed that the village is in great danger\nafter the return of Radhan the wizard.\nPlease Knight enter the dungeon and slay him\nto protect our village from his evil spell.', 16)
       .setFontSize(48)
       .setDepth(8).setScrollFactor(0);
     this.dialog.visible = false;
+    this.dialogCreated = false;
     this.createShop();
   }
 
@@ -291,6 +292,7 @@ export default class BeginningVillage extends Phaser.Scene {
 
     if (this.physics.overlap(this.player, this.zona)) {
       this.startDialog();
+
     }
     else {
       this.bg.visible = false;
@@ -327,10 +329,34 @@ export default class BeginningVillage extends Phaser.Scene {
   }*/
 
 
+  choseDialog(pressedButton){
+    let text = "";
+    switch(pressedButton){
+      case 0:  text = 'After you go Knight I want to talk you about two more things:\nMy great friend Hewg the BlackSmith is waiting you in his shop\nif you want to buy him some items.\nThese items may help you in your journey in the dungeon.\nHe has cheap prices so do not spare with him.';break;
+      case 1: text = 'Also I want you to talk about one interesting thing of the dungeon.\nAccording to one of my best explorers'+
+      'in the very beginning of the dungeon four different doors were embedded in the walls.'+
+      'He dediced to enter in the first one but he was not brave enough to walk through all the caves.'+
+      'The last thing he told me was that he heard a key ringing in the cave.'+
+      'Yoy may want to find out what is this all about';break;
+      default: text = 'I believe in you Knight. Save our Village!!'
+    }
+    return text;
+  }
+
 
   startDialog() {
+    if(!this.dialogCreated){
+    this.player.setBlocked(true);
     this.bg.visible = true;
     this.dialog.visible = true;
+    this.pressedButton = 0;
+    this.dialogCreated = true;
+    }
+    this.input.keyboard.on('keydown-SPACE', () => { 
+      const dialog = this.choseDialog(this.pressedButton)
+      this.dialog.setText(dialog);
+      this.pressedButton++;
+    });
 
   }
 
