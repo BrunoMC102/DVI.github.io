@@ -50,7 +50,7 @@ export default class LevelScroll3 extends Phaser.Scene {
     if (data.levelList != undefined)
       this.levelList = data.levelList;
     this.direction = data.direction;
-    this.coordinates = {x: 200, y: 4730};
+    this.coordinates = {x: 100, y: 1230};
 
     this.player.restart(this.coordinates.x, this.coordinates.y, this.playerData);
   }
