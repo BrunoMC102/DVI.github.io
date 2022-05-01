@@ -17,14 +17,17 @@ export default class LevelScroll2 extends Phaser.Scene {
   }
 
   init(data) {
-    this.coordinates = data.coordinates;
     this.playerData = data.playerData;
+    this.powerUpList = data.powerUpList;
+    this.levelList = data.levelList;
+    this.coordinates = {x: 200, y: 4730};
   }
 
   /**
    * Creación de los elementos de la escena principal de juego
    */
   create() {
+    this.events.on('wake', this.onWake, this);
     const map = this.make.tilemap({ key: 'Scroll2', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('tileset-cave2', 'scrollTileset');
 
@@ -38,47 +41,28 @@ export default class LevelScroll2 extends Phaser.Scene {
     this.backgroundLayer = backgroundLayer;
     this.wallLayer = wallLayer;
 
-    
-
-    //this.showHitbox(wallLayer);
-    this.sceneChange =  [this.add.zone(40,880,60,122)];
+    this.sceneChange =  [this.add.zone(40,4700,60,300)];
     this.physics.world.enable(this.sceneChange); 
     this.sceneChange[0].body.setAllowGravity(false);
-   // this.sceneChange[1].body.setAllowGravity(false);
-    //this.sceneChange[2].body.setAllowGravity(false);
-    //this.sceneChange[3].body.setAllowGravity(false);
-
      this.physics.add.collider(this.player, wallLayer);
+  }
 
+  onWake(sys,data){
+    this.playerData = data.playerData;
+    this.powerUpList = data.powerUpList;
+    if (data.levelList != undefined)
+      this.levelList = data.levelList;
+    this.direction = data.direction;
+    this.coordinates = {x: 200, y: 4730};
 
+    this.player.restart(this.coordinates.x, this.coordinates.y, this.playerData);
   }
 
   update() {
-    //Esto es mejor porque solo revisa si se encuentra en la hitbox
-    
     if (this.physics.overlap(this.player, this.sceneChange[0])) {
-      //this.scene.start('initialLevel', {coordinates: {x: 100, y: 500},playerData:this.playerData,});
+      this.scene.sleep('Scroll2');
+      this.scene.run('initialLevel',  { playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: 5 });
     }
-   
-    /*
-    if (this.physics.overlap(this.player, this.sceneChange[2])) {
-      //this.scene.start('beginningVillage', {coordinates: {x: 100, y: 500},playerData:this.playerData});
-    }
-    if (this.physics.overlap(this.player, this.sceneChange[3])) {
-      //this.scene.start('levelTopDown4', {coordinates: {x: 100, y: 500}, playerData:this.playerData});
-    }*/
-  
   }
 
-  showHitbox(layer) {
-    const debugGraphics = this.add.graphics().setAlpha(0.7);
-
-    layer.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Phaser.Display.Color(243,234,48,255),
-      faceColor: new Phaser.Display.Color(40,39,37,255)
-    });
-  }
-
-  
 }

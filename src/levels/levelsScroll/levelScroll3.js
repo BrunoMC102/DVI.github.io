@@ -13,12 +13,14 @@ export default class LevelScroll3 extends Phaser.Scene {
   }
 
   init(data) {
-    this.coordinates = data.coordinates;
     this.playerData = data.playerData;
     this.powerUpList = data.powerUpList;
+    this.levelList = data.levelList;
+    this.coordinates = {x: 100, y: 1230};
   }
 
   create() {
+    this.events.on('wake', this.onWake, this);
     const map = this.make.tilemap({ key: 'Scroll3', tileWidth: 64, tileHeight: 64});
     const tileset = map.addTilesetImage('tileset-cave2', 'scrollTileset');
  
@@ -42,11 +44,24 @@ export default class LevelScroll3 extends Phaser.Scene {
     this.physics.add.collider(this.player, wallLayer);
   }
 
+  onWake(sys,data){
+    this.playerData = data.playerData;
+    this.powerUpList = data.powerUpList;
+    if (data.levelList != undefined)
+      this.levelList = data.levelList;
+    this.direction = data.direction;
+    this.coordinates = {x: 200, y: 4730};
+
+    this.player.restart(this.coordinates.x, this.coordinates.y, this.playerData);
+  }
+
   update() {
     if (this.physics.overlap(this.player, this.sceneChange[0])) {
-      this.scene.start('initialLevel', { coordinates: { x: 500, y: 500 }, playerData: this.playerData, powerUpList: this.powerUpList });
+      this.scene.sleep('Scroll3');
+      this.scene.run('initialLevel',  { playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: 6 });
     }
     if (this.physics.overlap(this.player, this.lava[0])) {
+      this.playerData.die();
       this.scene.start("end", { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
     }
   }

@@ -16,7 +16,7 @@ export default class LevelScroll1 extends Phaser.Scene {
     this.playerData = data.playerData;
     this.powerUpList = data.powerUpList;
     this.levelList = data.levelList;
-    this.coordinates = {x: 100, y: 800};
+    this.coordinates = {x: 100, y: 890};
   }
 
   create() {
@@ -39,7 +39,7 @@ export default class LevelScroll1 extends Phaser.Scene {
     })
 
 
-    this.sceneChange =  [this.add.zone(40,880,60,122), this.add.zone(4750,825,60,225)];
+    this.sceneChange =  [this.add.zone(40,890,60,122), this.add.zone(4750,825,60,225)];
     this.sceneChange.forEach((o2) =>{
       this.physics.add.existing(o2,true); 
     })
@@ -53,7 +53,7 @@ export default class LevelScroll1 extends Phaser.Scene {
     if (data.levelList != undefined)
       this.levelList = data.levelList;
     this.direction = data.direction;
-    this.coordinates = {x: 100, y: 800};
+    this.coordinates = {x: 100, y: 880};
 
     this.player.restart(this.coordinates.x, this.coordinates.y, this.playerData);
   }

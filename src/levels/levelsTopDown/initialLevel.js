@@ -63,22 +63,22 @@ export default class InitialLevel extends LevelParent {
     
 
     createScrollDoors() {
-        this.sceneScrollChange = [this.add.zone(220, 60, 60, 20), this.add.zone(419, 60, 60, 20), , this.add.zone(886, 60, 60, 20), this.add.zone(1055, 60, 60, 20)];
+        this.sceneScrollChange = [this.add.zone(220, 60, 60, 20), this.add.zone(419, 60, 60, 20), this.add.zone(860, 60, 60, 20), this.add.zone(1055, 60, 60, 20)];
         this.sceneScrollChange.forEach((o1) => {
             this.physics.add.existing(o1, true);
         })
 
         this.physics.add.overlap(this.player, this.sceneScrollChange[0], () => {
-            super.changeLevel('Scroll1', 0);
+            this.changeLevel('Scroll1', 0);
         });
         this.physics.add.overlap(this.player, this.sceneScrollChange[1], () => {
-            this.scene.start('Scroll2', { coordinates: { x: 100, y: 800 }, playerData: new PlayerData() });
+            this.changeLevel('Scroll2', 0);
         });
         this.physics.add.overlap(this.player, this.sceneScrollChange[2], () => {
-            this.scene.start('Scroll3', { coordinates: { x: 100, y: 800 }, playerData: new PlayerData() });
+            this.changeLevel('Scroll3', 0);
         })
         this.physics.add.overlap(this.player, this.sceneScrollChange[3], () => {
-            this.scene.start('Scroll4', { coordinates: { x: 100, y: 800 }, playerData: new PlayerData() });
+            this.changeLevel('Scroll4', 0);
         })
     }
 
@@ -89,6 +89,9 @@ export default class InitialLevel extends LevelParent {
         else if (direction == 2) return { x: 640, y: 100 }
         else if (direction == 3) return { x: 1170, y: 500 }
         else if (direction == 4) return {x: 220, y:130};
+        else if (direction == 5) return {x:420, y:130}
+        else if (direction == 6) return {x:860, y:130}
+        else if (direction == 7) return {x:1060, y:130}
         else return {x:this.dimensions.x/2, y:this.dimensions.y/2};
       }
 
