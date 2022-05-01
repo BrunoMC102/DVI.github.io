@@ -4,6 +4,10 @@ import PasivePowerUpList from '../objetos_recogibles/pasivos/pasivePowerUpList.j
 import Player from '../player/player.js';
 import PlayerData from '../player/playerData.js';
 import PlayerTopDown from '../player/playerTopDown.js';
+import LevelScroll1 from './levelsScroll/levelScroll1.js';
+import LevelScroll2 from './levelsScroll/levelScroll2.js';
+import LevelScroll3 from './levelsScroll/levelScroll3.js';
+import LevelScroll4 from './levelsScroll/levelScroll4.js';
 
 /**
  .
@@ -119,6 +123,14 @@ export default class BeginningVillage extends Phaser.Scene {
         this.scene.manager.remove(s)
       }
     })
+    this.scene.manager.remove('Scroll1');
+    this.scene.manager.remove('Scroll2');
+    this.scene.manager.remove('Scroll3');
+    this.scene.manager.remove('Scroll4');
+    this.scene.manager.add('Scroll1', LevelScroll1);
+    this.scene.manager.add('Scroll2', LevelScroll2);
+    this.scene.manager.add('Scroll3', LevelScroll3);
+    this.scene.manager.add('Scroll4', LevelScroll4);
 
     this.bg = this.add.rectangle(0, 960, this.scale.width * 2, 600, "0x914f1d").setScrollFactor(0).setDepth(6);
     this.bg.visible = false;
