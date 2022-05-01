@@ -48,8 +48,8 @@ export default class WizardBoss extends BossParent {
     this.add(this.interiorContainer);
     this.fireBalls = [];
     this.body.pushable = false;
-    this.health = 15;
-    this.maxHealth = 15;
+    this.health = 1;
+    this.maxHealth = 1;
     this.escaping = true;
     this.persecution = false;
     this.moving = false;

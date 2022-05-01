@@ -16,9 +16,10 @@ import Archer from '../../../enemies/archer.js';
 import LevelParent from '../levelParent.js';
 import WizardBoss from '../../../enemies/wizardBoss.js';
 import GhostBoss from '../../../enemies/ghostBoss.js';
+import LevelBigParent from './levelBigParent.js';
 
 
-export default class LevelBigNoDoors extends LevelParent {
+export default class LevelBigNoDoors extends LevelBigParent {
 
   constructor() {
     super('finalBoss', {
@@ -33,6 +34,7 @@ export default class LevelBigNoDoors extends LevelParent {
       x:1920,
       y:1600
     }
+    this.generated = undefined;
   }
 
   getPlayerCoordinates(direction) {
@@ -44,7 +46,7 @@ export default class LevelBigNoDoors extends LevelParent {
   }
 
   create() {
-    this.events.on('wake', this.onWake, this);
+    
     
     this.cameras.main.setBackgroundColor(0x454550);
     this.cameras.cameras[0].transparent = false;
@@ -67,9 +69,6 @@ export default class LevelBigNoDoors extends LevelParent {
   }
 
 
-  onWake(sys,data){
-   
-  }
 
   setTileSet() {
     const map = this.make.tilemap({ key: 'DungeonBigNoDoors', tileWidth: 64, tileHeight: 64 });

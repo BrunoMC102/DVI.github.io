@@ -6,7 +6,7 @@ export default class PlayerData {
     this.damage = 5;
     
     this.isPadControlling = false;
-    this.progressStory = 0;
+    this.progressStory = 4;
     this.wins = 0;
     this.deaths = 0;
     this.keys = 0;
@@ -75,11 +75,13 @@ export default class PlayerData {
       this.unlockPowers(this.progressStory);
     }
     this.pickedProgress = 0;
+    this.money += 10;
     this.restartData();
   }
   die(){
     this.deaths++;
     this.pickedProgress = 0;
+    this.money -= 10;
     this.restartData();
   }
 
@@ -104,7 +106,7 @@ export default class PlayerData {
     this.pickedProgress = false;
     this.health = 6;
     this.maxhealth = 6;
-    this.money -= 10;
+    
     if(this.money < 0) this.money = 0; 
     this.healthPotions = 1; // pociones de vida
     this.manaPotions = 1; // pociones de mana

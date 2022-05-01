@@ -32,7 +32,7 @@ export default class GhostBoss extends BossParent {
 
         this.circun = 0.3;
         this.arrowsAttack2 = 5;
-        this.arrowsAttack3 = 3;
+        this.arrowsAttack3 = 2;
         this.attack2Vel = 130;
         this.attack3Vel = 370;
 

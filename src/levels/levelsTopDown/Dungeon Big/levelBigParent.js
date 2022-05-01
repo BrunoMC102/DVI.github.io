@@ -73,6 +73,7 @@ export default class LevelBigParent extends LevelParent {
     this.closeDoors();
   
     this.dungeonSound = this.sound.add("dungeontheme").play();
+    this.changingScene = false;
   }
 
 
@@ -110,10 +111,11 @@ export default class LevelBigParent extends LevelParent {
     this.portalSprite.play('TeleportGate');
     
     this.physics.add.overlap(portal, this.player, () => {
-      this.cameras.main.fadeOut(1000);
+      if(this.changingScene) return
+      this.changingScene = true;
+      this.cameras.main.fadeOut();
       this.time.delayedCall(1400, ()=>{
-        this.scene.start('finalBoss', { playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: 0 
-      });
+        this.scene.start('finalBoss', { playerData: this.playerData, levelList: this.levelList, powerUpList: this.powerUpList, direction: 0 });
       })})
   }
 }
