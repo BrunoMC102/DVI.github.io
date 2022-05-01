@@ -139,3 +139,17 @@ GDD más adelante:
 
 Descripcion del proceso
 
+
+TESTING CON JUGAORES EXTERNOS AL PROYECTO
+   - ¿Qué se prueba?
+      El objetivo principal de las pruebas es comprobar si un jugador real que no conoce nada sobre el desarrollo del juego, es capaz de utilizar las mecánicas y de
+      pasar sin problema por los diferentes niveles tal y como los desarrolladores lo pensamos en un principio. 
+      Esta experiencia nos sirve para aprender del jugador y retocar lo necesario para mejorar la experiencia, la jugabilidad y corregir errores inesperados que
+      aparezcan por comportamientos que no hayamos tenido en cuenta a la hora de programar el juego.
+   - ¿Cómo se lleva a cabo una prueba?
+      Durante las pruebas, el jugador es el unico que tiene control del juego, haciendo que sea lo más cercano posible a una situación real. Pero a diferencia de esta,
+      un miembro del equipo estará con el durante la experiencia para ayudar en caso de que no pueda avanzar o tenga dudas de cualquier tipo. Tanto el comportamiento
+      del jugador como estas dudas son el material que nos sirve para hacer todos estos pequeños cambios en el juego.
+   -  Número de participantes
+   -  Resultados de las pruebas
+   -  Conclusiones (que funciona y que no)
