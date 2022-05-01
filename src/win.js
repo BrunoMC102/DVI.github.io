@@ -14,9 +14,8 @@ export default class Win extends Phaser.Scene {
   
   init(data) {
     this.coordinates = data.coordinates;
-    data.playerData.health = data.playerData.maxhealth;
     this.playerData = data.playerData;
-    
+    this.powerUpList = data.powerUpList;
     
   }
 
@@ -45,7 +44,7 @@ export default class Win extends Phaser.Scene {
 onEvent(){
     this.input.keyboard.on('keydown', function (event) { 
       this.sound.stopAll();
-      this.scene.start('beginningVillage', {coordinates: {x: 1350, y: 1045}, playerData:this.playerData, powerUpList: new PasivePowerUpList()});
+      this.scene.start('beginningVillage', {coordinates: {x: 1350, y: 1045}, playerData:this.playerData, powerUpList: this.powerUpList});
     }, this);
   }
 

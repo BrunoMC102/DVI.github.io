@@ -3,7 +3,7 @@ export default class PlayerData {
   constructor() {
 
     //Atributos generales
-    this.damage = 5;
+    this.damage = 1000;
     
     this.isPadControlling = false;
     this.progressStory = 0;
@@ -76,13 +76,12 @@ export default class PlayerData {
         this.unlockPowers(this.progressStory);
       }
     }
-    this.pickedProgress = 0;
-    this.money += 10;
-    this.restartData();
+    this.keys = 0;
+    this.winData();
   }
   die(){
     this.deaths++;
-    this.pickedProgress = 0;
+    this.keys = 0;
     this.money -= 10;
     this.restartData();
   }
@@ -102,10 +101,19 @@ export default class PlayerData {
     }
   }
 
+  winData(){
+    this.health = this.maxhealth;
+    this.money += 10;
+    this.healthPotions = Math.max(1,this.healthPotions);
+    this.manaPotions = Math.max(1,this.manaPotions);
+    this.arrows = Math.max(20,this.arrows);
+    this.weapon = 0;
+    this.keys = 0;
+  }
+
   restartData(){
     this.damage = 5;
     this.speed = 400;
-    this.pickedProgress = false;
     this.health = 6;
     this.maxhealth = 6;
     
@@ -121,6 +129,8 @@ export default class PlayerData {
     this.dashInvincibilityPower = false;
     this.minimapUnlock = false;
     this.keys = 0;
+    this.projectileGroups = [() => { return { id: 'nWall', grupo: this.player.WallCollGroup } }, () => { return { id: "enemiesColl", grupo: this.player.EnemiesCollGroup } }, () => { return { id: "nVoid", grupo: this.player.VoidCollGroup } }];
+    this.projectileEffects = [];
   }
 
 //PowerUps

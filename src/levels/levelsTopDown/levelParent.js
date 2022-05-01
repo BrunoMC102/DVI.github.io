@@ -155,12 +155,12 @@ export default class LevelParent extends Phaser.Scene {
   finishGame() {
     this.playerData.die();
     this.sound.stopAll();
-    this.scene.start("end", { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
+    this.scene.start("end", {playerData: this.playerData });
   }
   winGame() {
     this.playerData.win();
     this.sound.stopAll();
-    this.scene.start("win", { coordinates: { x: 100, y: 500 }, playerData: this.playerData });
+    this.scene.start("win", {playerData: this.playerData, powerUpList:this.powerUpList});
   }
 
   showHitbox(layer) {

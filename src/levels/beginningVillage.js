@@ -120,7 +120,7 @@ export default class BeginningVillage extends Phaser.Scene {
     this.cameras.main.fadeIn(1000);
     this.scene.manager.getScenes(false).forEach(s => {
       if (s.generated != undefined) {
-        this.scene.manager.remove(s)
+        this.scene.manager.remove(s);
       }
     })
     this.scene.manager.remove('Scroll1');
