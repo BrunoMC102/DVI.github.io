@@ -34,7 +34,7 @@ export default class LevelScroll2 extends Phaser.Scene {
  
     const backgroundLayer = map.createLayer('BackgroundLayer', tileset).setCollisionByProperty({ collides: true })
     this.player = new Player(this, this.coordinates.x, this.coordinates.y, this.playerData);
-    this.key = new Key(this, this.player,1284.85 , 606, 'Key2');
+    this.key = new Key(this, this.player,1284.85 , 606, 'Key2', 'Secret Key 2');
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setBounds(0,0,2560,5120);
     const wallLayer = map.createLayer('WallLayer', tileset).setCollisionByProperty({ collides: true });

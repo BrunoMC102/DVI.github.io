@@ -6,7 +6,7 @@ export default class PlayerData {
     this.damage = 1000;
     
     this.isPadControlling = false;
-    this.progressStory = 3;
+    this.progressStory = 0;
     this.wins = 0;
     this.deaths = 0;
     this.keys = 4;
