@@ -28,16 +28,6 @@ export default class LevelTopDown1A extends LevelParent {
     this.iden = 'T1';
   }
 
- 
-
-  createOthers(){
-    new Chest(this, this.player, 450, 300);
-    new Coin(this, this.player, 450, 200);
-    new HealthPotion(this, this.player, 600, 200);
-    new Health(this, this.player, 750, 200);
-    new Arrow(this, this.player, 900, 200);
-  }
-
   createEnemies(){
     return [new Mole(this, this.player, 200, 200), new Mole2(this, this.player, 700, 700)];
   }
