@@ -6,7 +6,7 @@ import Health from '../../../objetos_recogibles/consumibles/health.js';
 import Arrow from '../../../objetos_recogibles/consumibles/arrow.js';
 import Bouncy from '../../../objetos_recogibles/pasivos/bouncy.js';
 import Minotaur from '../../../enemies/minotaur.js';
-import Enemy from '../../../enemies/enemy.js';
+import Enemy5 from '../../../enemies/enemy5.js';
 import Trabuquero from '../../../enemies/trabuquero.js';
 import GoblinKing from '../../../enemies/goblinKing.js';
 import Mole from '../../../enemies/moleVariante.js';
