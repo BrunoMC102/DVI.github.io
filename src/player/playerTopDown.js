@@ -132,6 +132,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.L2Pressed = false;
     this.upPadPressed = false;
     this.downPadPressed = false;
+    this.startpadPressed = false;
+
 
     //Variables generales
     this.isDead = false;
@@ -169,15 +171,18 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.isMenuDeployed = false;
   }
 
-  preUpdate(t, dt) {
-
-    this.isKeyEscDown = Phaser.Input.Keyboard.JustDown(this.keyEsc);
-    if (!this.isMenuDeployed && this.isKeyEscDown) {
+  controlPauseMenu(){
+    if (!this.isMenuDeployed) {
       this.showMenu();
 
-    } else if (this.isMenuDeployed && this.isKeyEscDown) {
+    } else if (this.isMenuDeployed) {
       this.hideMenu();
     }
+  }
+
+  preUpdate(t, dt) {
+
+    
     if (this.blocked) {
       this.updateUi();
       return;
@@ -218,6 +223,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     }
     this.controls.healthRecovery();
     this.controls.manaRecovery();
+    this.controls.pauseMenuControl();
     //Actualizacion informacion en pantalla
     //this.health_label.text = 'Health: ' + this.playerData.health;
     this.updateUi();
@@ -706,6 +712,11 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           this.spellFire();
           this.playerData.mana -= this.playerData.currentManaCost;
         }
+      },
+      pauseMenuControl: () => {
+        if (Phaser.Input.Keyboard.JustDown(this.keyEsc)) {
+          this.controlPauseMenu();
+        }
       }
     };
     this.padControls = {
@@ -809,6 +820,17 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
           if (!this.R2_pressed) return;
           this.R2_pressed = false;
         }
+      },
+      pauseMenuControl: () => {
+        const pad = this.scene.input.gamepad.getPad(0);
+        if(pad.buttons[9].pressed){
+          if(this.startpadPressed) return;
+        this.startpadPressed = true;
+        this.controlPauseMenu();
+        }else {
+          this.startpadPressed = false;
+        }
+        
       },
       manaRecovery: () => {
         const pad = this.scene.input.gamepad.getPad(0);
