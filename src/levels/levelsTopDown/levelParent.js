@@ -185,7 +185,7 @@ export default class LevelParent extends Phaser.Scene {
   getDefaultCoordinates() {
     return {
       north: { x: 640, y: 20 },
-      south: { x: 640, y: 930 },
+      south: { x: 640, y: 935 },
       east: { x: 1250, y: 510 },
       west: { x: 30, y: 510 }
     }
@@ -221,7 +221,7 @@ export default class LevelParent extends Phaser.Scene {
           this.changeLevel(this.changeSceneManager.south, 2);
         }
       })
-      this.southDoor = this.add.zone(this.doorCoordinates.south.x, this.doorCoordinates.south.y, 132, 90);
+      this.southDoor = this.add.zone(this.doorCoordinates.south.x, this.doorCoordinates.south.y, 132, 75);
       this.physics.add.existing(this.southDoor, true);
       this.sceneChange.push(this.southDoor);
     }
