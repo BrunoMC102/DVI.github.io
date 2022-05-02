@@ -88,6 +88,10 @@ export default class LevelBigNoDoors extends LevelBigParent {
       this.cameras.main.setBounds(0, 0, this.dimensions.x, this.dimensions.y);
   }
 
+  update() {
+    
+  }
+
   actMinimap(){}
   initialSwipe(){}
   getNearLevels(){}

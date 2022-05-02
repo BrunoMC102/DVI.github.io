@@ -136,6 +136,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     //Variables generales
     this.isDead = false;
     this.blocked = false;
+    this.hurting = false;
 
     //Audio
     this.swordAudio = this.scene.sound.add("slide");
@@ -206,9 +207,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     if (this.immunity > 0)
       this.immunity -= dt;
     else
-      this.displayColor = () => { };
-
-
+      this.hurting = false;
+      
     this.controls.selectWeapon();
     this.displayColor();
     this.flickerTime += dt;
@@ -361,9 +361,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.hit.play();
       this.playerData.health -= damage;
       this.immunity = 1500;
-      this.displayColor = this.flickering;
       this.flickerTime = -200;
       this.sprite.tint = 0xff0000;
+      this.hurting = true;
     }
   }
 
@@ -515,7 +515,11 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     }
   }
 
-  displayColor() { }
+  displayColor() { 
+    if(this.hurting){
+      this.flickering();
+    }
+  }
 
   //Creacion Grupos
   createGroups() {
