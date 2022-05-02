@@ -29,7 +29,7 @@ export default class LevelTopDown3C_NE extends LevelParent {
   }
 
   createEnemies(){
-    return [new Minotaur(this, this.player, 1100, 200), new Minotaur(this, this.player, 200, 200)], new Enemy(this, this.player, 640, 500);
+    return [new Minotaur(this, this.player, 1100, 200), new Minotaur(this, this.player, 200, 200), new Enemy(this, this.player, 640, 500)];
   }
   
 

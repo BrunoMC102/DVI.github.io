@@ -180,7 +180,6 @@ export default class Player extends Phaser.GameObjects.Container {
 
 
   handleMovement(conditionUp, conditionLeft, conditionRight, dt) {
-    if (this.dashing) return;
 
 
     let somePressed = false;
@@ -193,7 +192,8 @@ export default class Player extends Phaser.GameObjects.Container {
           this.jumpTimer = 0;
           // this.body.setAccelerationY(this.playerData.vAcc);
           this.sprite.play('jump', true);
-
+          
+          this.cancelDash();
         }
         else if (this.playerData.doubleJump) {
           if (!this.doubleJumped) {
@@ -202,6 +202,7 @@ export default class Player extends Phaser.GameObjects.Container {
             this.stillJumping = true;
             this.jumpTimer = 0;
             this.sprite.play('jump', true);
+            this.cancelDash();
           }
 
         }
@@ -228,6 +229,7 @@ export default class Player extends Phaser.GameObjects.Container {
         this.stillJumping = false;
       }
     }
+    if(this.dashing) return;
     if (conditionLeft) {
       //this.body.setAccelerationY(-this.playerData.vAcc);
       if (this.body.onFloor()) {
@@ -267,7 +269,12 @@ export default class Player extends Phaser.GameObjects.Container {
     }
   }
 
-
+  cancelDash(){
+    if(this.dashing){
+      this.dashing = false;
+      this.body.setVelocityX(0);
+    }
+  }
 
   checkForDash(ControlCondition) {
     if (ControlCondition) {

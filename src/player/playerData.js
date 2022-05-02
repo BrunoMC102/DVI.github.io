@@ -41,9 +41,9 @@ export default class PlayerData {
     //Atributos scroll
     this.scrollSpeed = 400;
     this.dashVelocity = 975;
-    this.doubleJump = false;
-    this.scrollDash = false;
-    this.scrollBoxes = false;
+    this.doubleJump = true;
+    this.scrollDash = true;
+    this.scrollBoxes = true;
     // Aceleraciones vertical y horizontal 
     
     this.hAcc = 2000;
