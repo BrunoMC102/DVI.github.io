@@ -350,7 +350,7 @@ export default class BeginningVillage extends Phaser.Scene {
     this.player.setBlocked(true);
     this.firstDialog = true;
     this.rectangle = this.add.rectangle(0, 960, this.scale.width * 2, 600, "0x914f1d").setScrollFactor(0).setDepth(6);
-    this.dialogBlacksmith = this.add.bitmapText(10, 660, 'atari', 'Welcome Knight my name is Hewg, I am the Blacksmith\nof our village,if you want an item of my store just\ncome closer to the item and press E( with gamepad)\nand you could buy the item if you have coins enough.\nSee ya around!!', 16)
+    this.dialogBlacksmith = this.add.bitmapText(10, 660, 'atari', 'Welcome Knight my name is Hewg, I am the Blacksmith\nof our village,if you want an item of my store just\ncome closer to the item and press E(Square with gamepad)\nand you could buy the item if you have coins enough.\nSee ya around!!', 16)
       .setFontSize(48)
       .setDepth(8).setScrollFactor(0);
     const timer = this.time.addEvent({
