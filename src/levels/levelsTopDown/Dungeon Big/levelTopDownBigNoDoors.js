@@ -74,7 +74,7 @@ export default class LevelBigNoDoors extends LevelBigParent {
     const map = this.make.tilemap({ key: 'DungeonBigNoDoors', tileWidth: 64, tileHeight: 64 });
     const tileset = map.addTilesetImage('Dungeon64', 'dungeon');
     this.groundLayer = map.createLayer('Ground', tileset);
-    this.innerVoidLayer = map.createLayer('InnerVoid', tileset);
+    this.innerVoidLayer = map.createLayer('InnerVoid', tileset).setCollisionByProperty({ collides: true });
     this.voidLayer = map.createLayer('Void', tileset).setCollisionByProperty({ collides: true });
     this.wallLayer = map.createLayer('Walls', tileset).setCollisionByProperty({ collides: true });
   }
