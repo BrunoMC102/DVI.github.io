@@ -586,6 +586,7 @@ export default class WizardBoss extends BossParent {
   }
 
   die() {
+    this.scene.sound.stopAll();
     super.die("wizardDie");
   }
 

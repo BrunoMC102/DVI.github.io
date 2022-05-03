@@ -141,7 +141,8 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     this.hurting = false;
 
     //Audio
-    this.swordAudio = this.scene.sound.add("slide");
+    this.swordAudio = this.scene.sound.add('slide');
+    this.spellAudio = this.scene.sound.add("throwSpell");
     this.hit = this.scene.sound.add("hit");
     this.upgradeAudio = this.scene.sound.add("upgrade");
     this.flechaAudio = this.scene.sound.add("disparoFlecha");
@@ -385,6 +386,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   }
 
   spellFire() {
+    this.spellAudio.play();
     const projectileVector = this.controls.projectileAngle();
     this.projectile = new Spell(this.scene, this.x, this.y, projectileVector.x, projectileVector.y, 10, this.playerData.damage);
   }

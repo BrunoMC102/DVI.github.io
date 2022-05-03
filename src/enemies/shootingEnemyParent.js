@@ -27,6 +27,10 @@ export default class ShootingEnemyParent extends EnemyParent{
     return new Basic_projectile(this.scene,this.centerX() , this.centerY(),'flecha',dx*this.Pv/t,dy*this.Pv/t, 10, this.projectileDamage);
   }
 
+  hurt(damage){
+    super.hurt(damage);
+  }
+
 
   addtoGroups(disparo){
     this.wallCollGroup.add(disparo);

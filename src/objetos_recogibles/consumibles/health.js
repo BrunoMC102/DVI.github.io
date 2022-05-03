@@ -4,10 +4,12 @@ export default class Health extends PowerUp{
 
     constructor(scene,player,x,y){
         super(scene,player,x,y,'vida');
+        this.getHealthAudio = this.scene.sound.add("getHealth");
         this.body.useDamping = true;
     }
     
     givePower(){
+        this.getHealthAudio.play();
         this.player.playerData.health++;
     }
     createCollider(){

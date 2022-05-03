@@ -265,6 +265,13 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('takePotion', 'takePotion.wav');
     this.load.audio('takeCoins', 'coins.wav');
     this.load.audio('winTheme', 'win.wav');
+    this.load.audio('bossTheme','bossTheme.wav');
+    this.load.audio('getHealth','getHealth.wav');
+    this.load.audio('throwSpell','throwSpell.wav');
+    this.load.audio('minotaurAppear','minotaurAppear.wav');
+    this.load.audio('minotaurDamage','minotaurDamage.wav');
+    this.load.audio('minotaurDeath1','minotaurDeath1.wav');
+    this.load.audio('minotaurDeath2','minotaurDeath2.wav');
 
     //fuentes
     this.load.setPath('assets/fonts/');
