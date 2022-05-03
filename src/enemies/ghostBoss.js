@@ -357,6 +357,11 @@ export default class GhostBoss extends BossParent {
 
     }
 
+    addColliders(){
+        this.scene.physics.add.collider(this, this.scene.wallLayer,()=>this.isCol());
+        this.scene.physics.add.collider(this, this.scene.voidLayer,()=>this.isCol());
+    }
+
     createGropus() {
 
 

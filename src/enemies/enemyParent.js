@@ -28,9 +28,7 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this, false);
     this.body.allowGravity = false;
-    this.scene.physics.add.collider(this, this.scene.wallLayer,()=>this.isCol());
-    this.scene.physics.add.collider(this, this.scene.voidLayer,()=>this.isCol());
-    this.scene.physics.add.collider(this, this.scene.innerVoidLayer,()=>this.isCol());
+    this.addColliders();
     this.body.useDamping = true;
     this.v = 150;
     this.scene.physics.add.collider(this, this.player, () => {this.onCollisionWithPlayer()});
@@ -142,7 +140,11 @@ export default class EnemyParent extends Phaser.GameObjects.Container {
 
   }
     
-  
+  addColliders(){
+    this.scene.physics.add.collider(this, this.scene.wallLayer,()=>this.isCol());
+    this.scene.physics.add.collider(this, this.scene.voidLayer,()=>this.isCol());
+    this.scene.physics.add.collider(this, this.scene.innerVoidLayer,()=>this.isCol());
+  }
 
   knockback(x,y,p){
     
