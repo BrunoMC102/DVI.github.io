@@ -90,7 +90,6 @@ export default class LevelParent extends Phaser.Scene {
     this.boxes = [];
     this.closeDoors();
   
-    this.dungeonSound = this.sound.add("dungeontheme").play();
   }
 
 

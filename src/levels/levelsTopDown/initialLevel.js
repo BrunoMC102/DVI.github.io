@@ -22,6 +22,7 @@ export default class InitialLevel extends LevelParent {
             west: true,
             east: true
         });
+       
     }
 
     createEnemies() {
@@ -41,6 +42,7 @@ export default class InitialLevel extends LevelParent {
         new Chest(this, this.player, 440, 490);
         new Chest(this, this.player, 400, 490);
         new Chest(this, this.player, 360, 490);
+        this.dungeonSound = this.sound.add("dungeontheme",{loop: true}).play();
 
     }
 

@@ -73,7 +73,9 @@ export default class LevelBigParent extends LevelParent {
     this.closeDoors();
 
     this.sound.stopAll();
-    this.dungeonSound = this.sound.add("bossTheme").play();
+    
+    this.laughSound = this.sound.add("laugh2").play();
+    this.dungeonSound = this.sound.add("bossTheme", {loop: true}).play();
     this.changingScene = false;
   }
 

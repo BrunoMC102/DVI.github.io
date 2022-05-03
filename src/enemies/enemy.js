@@ -18,6 +18,7 @@ export default class Enemy extends EnemyParent{
   constructor(scene, player, x, y) {
     super(scene,player,x,y,'');
     this.sprite.play('minotaur_idle');
+    this.scene.sound.add('minotaurAppear').play();
     this.dist = 600;
     this.body.offset.y = -10;
     this.body.setSize(this.body.width * 1.2, this.body.height * 1.5);
@@ -95,6 +96,8 @@ export default class Enemy extends EnemyParent{
       this.c = true;
   }
   die(){
+    this.scene.sound.add('minotaurDeath1').play();
+    this.scene.sound.add('minotaurDeath2').play();
     this.sprite.play('minotaurDeath');
     this.preUpdate = ()=>{};
     this.deadCenter.x = this.centerX();
@@ -105,5 +108,10 @@ export default class Enemy extends EnemyParent{
       this.spawnLoot();
       this.destroy();
     })
+  }
+
+  hurt(damage){
+    this.scene.sound.add('minotaurDamage').play();
+    super.hurt(damage);
   }
 }
