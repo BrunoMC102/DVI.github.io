@@ -37,7 +37,7 @@ const itemsData = [
     object: 'chest',
     timesPurchased: 1,
     price: 15,
-    x: 3485,
+    x: 3600,
     y: 1555
   }
 ]
@@ -89,6 +89,7 @@ export default class BeginningVillage extends Phaser.Scene {
     this.physics.world.enable(this.zona);
     this.zona.body.setAllowGravity(false)
     this.zona.body.setImmovable(false);
+    this.pressedButton = 0;
     if (!this.playerData.firstDialogBlacksmith) {
       this.firstDialogueZone = this.add.zone(3878, 1500, 600, 600);
       this.physics.add.existing(this.firstDialogueZone, true);
@@ -350,7 +351,7 @@ export default class BeginningVillage extends Phaser.Scene {
     this.player.setBlocked(true);
     this.firstDialog = true;
     this.rectangle = this.add.rectangle(0, 960, this.scale.width * 2, 600, "0x914f1d").setScrollFactor(0).setDepth(6);
-    this.dialogBlacksmith = this.add.bitmapText(10, 660, 'atari', 'Welcome Knight my name is Hewg, I am the Blacksmith\nof our village,if you want an item of my store just\ncome closer to the item and press E(Square with gamepad)\nand you could buy the item if you have coins enough.\nSee ya around!!', 16)
+    this.dialogBlacksmith = this.add.bitmapText(10, 660, 'atari', 'Welcome Knight my name is Hewg, I am the Blacksmith,\nif you want an item of my store just come closer\nto the item and press E(Square with gamepad) and\nyou could buy the item if you have coins enough.\nSee ya around!!', 16)
       .setFontSize(48)
       .setDepth(8).setScrollFactor(0);
     const timer = this.time.addEvent({
@@ -370,15 +371,21 @@ export default class BeginningVillage extends Phaser.Scene {
   choseDialog(pressedButton) {
     let text = "";
     switch (pressedButton) {
-      case 0: text = 'After you go Knight I want to talk you about two more things:\nMy great friend Hewg the BlackSmith is waiting you in his shop\nif you want to buy him some items.\nThese items may help you in your journey in the dungeon.\nHe has cheap prices so do not spare with him.'; break;
-      case 1: text = 'Also I want you to talk about one interesting thing of the dungeon.\nAccording to one of my best explorers' +
-        'in the very beginning of the dungeon four different doors were embedded in the walls.' +
-        'He dediced to enter in the first one but he was not brave enough to walk through all the caves.' +
-        'The last thing he told me was that he heard a key ringing in the cave.' +
-        'Yoy may want to find out what is this all about'; break;
-      default: text = 'I believe in you Knight. Save our Village!!'
+      case 0: text = 'After you go Knight I want to talk you about two more\nthings:\nMy great friend Hewg the BlackSmith is waiting you\nin his shop if you want to buy him some items.\nThese items may help you inside of the dungeon.\nHe has cheap prices so do not spare with him.';this.dialogCreated = false; break;
+      case 1: text = 'Also I want you to talk about one interesting thing\nAccording to one of my best explorers' +
+        ' in the very\nbeginning of the dungeon four different doors were\nembedded in the walls.' +
+        '\nHe dediced to enter in the first one but he was not\nbrave enough to walk through all the caves.';
+        this.dialogCreated = false; break;
+      case 2: text = 'The last thing he told me was that he heard\na key ringing in the cave.' +
+      '\nYou may want to find out what is this all about';this.dialogCreated = false; break;
+      default: text = 'I believe in you Knight. Save our Village!!'; this.player.setBlocked(false);
     }
     return text;
+  }
+  onEventGeneral(){
+    const dialog = this.choseDialog(this.pressedButton)
+      this.dialog.setText(dialog);
+      this.pressedButton++;
   }
 
 
@@ -387,14 +394,14 @@ export default class BeginningVillage extends Phaser.Scene {
       this.player.setBlocked(true);
       this.bg.visible = true;
       this.dialog.visible = true;
-      this.pressedButton = 0;
       this.dialogCreated = true;
+      const timer = this.time.addEvent({
+        delay: 10000,
+        callback: this.onEventGeneral,
+        callbackScope: this
+      });
+    
     }
-    this.input.keyboard.on('keydown-SPACE', () => {
-      const dialog = this.choseDialog(this.pressedButton)
-      this.dialog.setText(dialog);
-      this.pressedButton++;
-    });
 
   }
 
