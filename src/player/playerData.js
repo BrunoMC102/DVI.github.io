@@ -6,10 +6,10 @@ export default class PlayerData {
     this.damage = 1000;
     
     this.isPadControlling = false;
-    this.progressStory = 3;
+    this.progressStory = 0;
     this.wins = 0;
     this.deaths = 0;
-    this.keys = 4;
+    this.keys = 1;
     this.maxSpeed = 750;
 
     //Recursos jugador
@@ -71,15 +71,18 @@ export default class PlayerData {
   }
 
   win(){
+    let power = 0;
     this.wins++;
     if(this.keys > this.progressStory){
       if(this.progressStory < 3){
         this.progressStory++;
         this.unlockPowers(this.progressStory);
+        power = this.progressStory;
       }
     }
     this.keys = 0;
     this.winData();
+    return power;
   }
   die(){
     this.deaths++;
@@ -145,8 +148,8 @@ export default class PlayerData {
       this.speed = this.maxSpeed;
     }
   }
-  progressObject(){
-    this.keys++;
+  progressObject(n){
+    this.keys = Math.max(n, this.keys);
   }
   dashCoolDownUp(cant){
     this.dashCoolDown -= cant;

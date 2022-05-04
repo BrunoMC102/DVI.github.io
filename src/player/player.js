@@ -173,8 +173,8 @@ export default class Player extends Phaser.GameObjects.Container {
     }
   }*/
 
-  progressObject(){
-    this.playerData.progressObject();
+  progressObject(n){
+    this.playerData.progressObject(n);
   }
 
 

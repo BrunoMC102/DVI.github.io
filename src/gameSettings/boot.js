@@ -79,6 +79,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('larger','larger.png');
     this.load.image('smaller','smaller.png');
     this.load.image('question','question.png');
+    this.load.image('infoCartel', 'cartelPowerUp.jpg');
 
     this.load.setPath('assets/sprites/uiSprites');
     this.load.image('config', 'gear.png');
@@ -109,6 +110,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('tileSpaceM', 'tileSpaceM.png');
     this.load.image('tileSpaceR', 'tileSpaceR.png');
     this.load.image('ps4','ps4.png');
+    
     
 
     this.load.setPath('assets/json/');
