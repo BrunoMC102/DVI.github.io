@@ -262,7 +262,6 @@ export default class Player extends Phaser.GameObjects.Container {
     if (!somePressed) {
       if (this.body.onFloor()) {
         this.sprite.play('stand', true);
-        this.body.setAccelerationY(0);
       } else {
         this.sprite.play('jump', true);
       }
@@ -271,8 +270,7 @@ export default class Player extends Phaser.GameObjects.Container {
 
   cancelDash(){
     if(this.dashing){
-      this.dashing = false;
-      this.body.setVelocityX(0);
+      this.endDash();
     }
   }
 
@@ -304,6 +302,7 @@ export default class Player extends Phaser.GameObjects.Container {
   endDash() {
     this.dashing = false;
     this.body.setVelocityX(0);
+    this.body.setAccelerationY(0);
     this.body.setAllowGravity(true);
   }
 
