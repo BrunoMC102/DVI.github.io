@@ -32,7 +32,6 @@ export default class InitialLevel extends LevelParent {
     }
 
     createOthers() {
-        this.pr = new GhostArrow_2(this, 600, 500, 0, 0, 100, 0, 1);
         new Chest(this, this.player, 1100, 200);
         new Chest(this, this.player, 1100, 800);
         new Chest(this, this.player, 720, 490);
@@ -106,7 +105,5 @@ export default class InitialLevel extends LevelParent {
 
     update(t, dt) {
         super.update(t, dt);
-        this.pr.rotation += dt / 200;
-
     }
 }
