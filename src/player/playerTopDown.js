@@ -405,6 +405,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
   }
 
   initiateDash() {
+    this.scene.sound.add('dash',{volume:0.2}).play();
     this.dashVelocity = this.lastVelocity;
     this.dashVelocity.normalize().scale(this.playerData.dashSpeed);
     this.dashing = true;

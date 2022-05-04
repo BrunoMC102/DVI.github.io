@@ -291,6 +291,7 @@ export default class Player extends Phaser.GameObjects.Container {
   }
 
   initiateDash() {
+    this.scene.sound.add('dash').play();
     this.dashing = true;
     this.dashed = true;
     this.body.setVelocity(this.playerData.dashVelocity * this.lastInput, 0);
