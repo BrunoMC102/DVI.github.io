@@ -280,6 +280,8 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('minotaurDamage','minotaurDamage.wav');
     this.load.audio('minotaurDeath1','minotaurDeath1.wav');
     this.load.audio('minotaurDeath2','minotaurDeath2.wav');
+    this.load.audio('unlockDoor','unlockDoor.mp3');
+    this.load.audio('dash','dash.wav');
 
     //fuentes
     this.load.setPath('assets/fonts/');

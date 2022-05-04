@@ -34,6 +34,7 @@ export default class Box extends Phaser.GameObjects.Sprite {
             this.destroy();
         }
         else {
+            this.scene.sound.add('unlockDoor', {volume: 0.2}).play();
             this.play("boxDestroy");
             this.scene.time.delayedCall(1000, () => this.destroy());
         }
