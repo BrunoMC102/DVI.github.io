@@ -112,7 +112,7 @@ export default class SceneManager {
             LevelTopDown5A, LevelTopDown5C_NE, LevelTopDown5B_E, LevelTopDown5B_N, LevelTopDown5B_O, LevelTopDown5B_S, LevelTopDown5C_NS, LevelTopDown5C_NO, LevelTopDown5C_SE, LevelTopDown5C_SO, LevelTopDown5C_EO, 
                           ];
         this.profundidadMinima = 1;
-        this.profundidadMaxima = 1;
+        this.profundidadMaxima = 3;
 
         this.endSceneList = [
             LevelTopDown1D_E, LevelTopDown1D_N, LevelTopDown1D_S, LevelTopDown1D_O,

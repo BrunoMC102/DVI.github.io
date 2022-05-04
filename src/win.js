@@ -28,7 +28,12 @@ export default class Win extends Phaser.Scene {
     const { width, height } = this.sys.game.canvas;
 
     this.input.gamepad.on(Phaser.Input.Gamepad.Events.BUTTON_DOWN, () => {
-
+      if (this.textCreated) {
+        this.cartel.destroy();
+        this.text.destroy();
+        this.textCreated = false;
+        return
+      }
       this.sound.stopAll();
       this.scene.start('beginningVillage', { coordinates: { x: 1350, y: 1045 }, playerData: this.playerData, powerUpList: this.powerUpList })
     });
