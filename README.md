@@ -135,8 +135,8 @@ Otras mejoras menos prioritarias que tambien tenemos planeado son:
 -Para este hito hemos trabajado bastante para pulir bastante todo el tema relacionado con el topDown,
 para el hito final trabajaremos para tener un scrollLateral bien implementado.
 
-GDD más adelante:
-
+emlace al GDD:
+https://docs.google.com/document/d/1VJKg9feMnnY7HcWO3QgpQhNLaDZVVkGWzVkmMB02zFo/edit?usp=sharing
 Descripcion del proceso
 
 
