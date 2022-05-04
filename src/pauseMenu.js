@@ -8,6 +8,7 @@ export default class PauseMenu {
 
 
   constructor(player, scene) {
+    this.player = player;
     this.otherText = "Controller";
     // this.container = scene.add.container(640,480);
     this.line = scene.add.line(640, 335, 0, 0, 450, 0, 0xffffff).setScrollFactor(0).setDepth(7);
@@ -67,6 +68,7 @@ export default class PauseMenu {
       this.panelFullscreenOnButton.setDepth(this.panelFullscreenOffButton._depth);
       this.panelFullscreenOffButton.setDepth(depth);
       scene.scale.toggleFullscreen();
+      
 
 
     })
@@ -181,6 +183,7 @@ export default class PauseMenu {
     this.chooseImageLeft.visible = true;
     this.chooseImageRight.visible = true;
     this.line.visible = true;
+    if(!this.player.playerData.arrowHelp) this.lineQuestion.visible = true; 
     if (this.controlText.text === "Controller") {
       this.showControllerMenuPanel();
       this.hideKeyboardMenuPanel();
