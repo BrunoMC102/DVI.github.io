@@ -54,7 +54,7 @@ export default class Win extends Phaser.Scene {
         text = "You have unlocked the dash. \nPress C or L2 to go further"
       }
       if (this.power == 3) {
-        text = "You have unlocked the mistic boxes, \nPress X or triangle to go throw a new box or freeze an existing one"
+        text = "You have unlocked the mystic\n boxes, Press X or triangle\n to go throw a new box\n or freeze an existing one"
       }
       this.createText(text);
     }
@@ -77,12 +77,24 @@ export default class Win extends Phaser.Scene {
 
   createText(text) {
     this.textCreated = true;
-    this.cartel = this.add.sprite(this.cameras.cameras[0].centerX + 800, this.cameras.cameras[0].centerY, 'infoCartel').setScrollFactor(0).setDepth(3);
+    this.cartel = this.add.sprite(this.cameras.cameras[0].centerX + 800, this.cameras.cameras[0].centerY, 'infoCartel1').setScrollFactor(0).setDepth(3);
+    this.cartel.scaleX = 4;
+    this.cartel.scaleY = 2;
     this.text = this.add.text(this.cameras.cameras[0].centerX + 800, this.cameras.cameras[0].centerY, text, { fontSize: 50 }).setScrollFactor(0).setDepth(4);
     
     this.tweens.add({
-      targets: [this.cartel, this.text],
+      targets: [this.text],
       x: this.cameras.cameras[0].centerX - 430,
+      y: this.cameras.cameras[0].centerY - 50,
+      duration: 300,
+      ease: 'Sine.easeInOut',
+      repeat: 0,
+    })
+
+    this.tweens.add({
+      targets: [this.cartel],
+      x: this.cameras.cameras[0].centerX,
+      y: this.cameras.cameras[0].centerY,
       duration: 300,
       ease: 'Sine.easeInOut',
       repeat: 0,

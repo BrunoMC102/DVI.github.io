@@ -80,6 +80,10 @@ export default class Boot extends Phaser.Scene {
     this.load.image('smaller','smaller.png');
     this.load.image('question','question.png');
     this.load.image('infoCartel', 'cartelPowerUp.jpg');
+    this.load.image('infoCartel1', 'cartelPowerUp1.png');
+    this.load.image('infoCartel2', 'cartelPowerUp2.png');
+    this.load.image('infoCartel3', 'cartelPowerUp3.png');
+    this.load.image('infoCartel4', 'cartelPowerUp4.png');
 
     this.load.setPath('assets/sprites/uiSprites');
     this.load.image('config', 'gear.png');
