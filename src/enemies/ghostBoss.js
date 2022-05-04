@@ -391,6 +391,7 @@ export default class GhostBoss extends BossParent {
     }
 
     die(){
+        this.scene.sound.stopAll();
         super.die("ghostBossDie");
     }
 

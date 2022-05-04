@@ -85,7 +85,9 @@ export default class Win extends Phaser.Scene {
     this.cartel = this.add.sprite(this.cameras.cameras[0].centerX + 800, this.cameras.cameras[0].centerY, 'infoCartel1').setScrollFactor(0).setDepth(3);
     this.cartel.scaleX = 4;
     this.cartel.scaleY = 2;
-    this.text = this.add.text(this.cameras.cameras[0].centerX + 800, this.cameras.cameras[0].centerY, text, { fontSize: 50 }).setScrollFactor(0).setDepth(4);
+    this.text = this.add.bitmapText(this.cameras.cameras[0].centerX + 800, this.cameras.cameras[0].centerY, 'atari', text, 16)
+    .setFontSize(50)
+    .setDepth(4).setScrollFactor(0);
     
     this.tweens.add({
       targets: [this.text],

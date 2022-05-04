@@ -156,7 +156,42 @@ export default class PauseMenu {
     this.oneImage = scene.add.image(450, 440, 'tile1').setScrollFactor(0).setDepth(6);
     this.twoImage = scene.add.image(490, 440, 'tile2').setScrollFactor(0).setDepth(6);
     this.threeImage = scene.add.image(530, 440, 'tile3').setScrollFactor(0).setDepth(6);
+
+
     this.ps4 = scene.add.image(630, 525, 'ps4').setScrollFactor(0).setDepth(6);
+    this.r2Text = scene.add.bitmapText(750, 405, 'atari', 'Attack', 16)
+    .setFontSize(20).setScrollFactor(0)
+    .setDepth(6);
+    this.l2Text = scene.add.bitmapText(470, 405, 'atari', 'Dash', 16)
+    .setFontSize(20).setScrollFactor(0)
+    .setDepth(6);
+    this.optionsText = scene.add.bitmapText(580, 390, 'atari', 'Show\ncontrols', 16)
+    .setFontSize(20).setScrollFactor(0)
+    .setDepth(6);
+    this.squareText = scene.add.bitmapText(720, 630, 'atari', 'Interact', 16)
+    .setFontSize(20).setScrollFactor(0)
+    .setDepth(6);
+    this.leftCText = scene.add.bitmapText(570, 630, 'atari', 'Move', 16)
+    .setFontSize(20).setScrollFactor(0)
+    .setDepth(6);
+    this.rightCText = scene.add.bitmapText(640, 630, 'atari', 'Rotate\nangle\nweapon', 16)
+    .setFontSize(20).setScrollFactor(0)
+    .setDepth(6);
+    this.upCText = scene.add.bitmapText(370,470 , 'atari', 'Use health potion', 16)
+    .setFontSize(20).setScrollFactor(0)
+    .setDepth(6);
+    this.downCText = scene.add.bitmapText(370, 550, 'atari', 'Use mana potion', 16)
+    .setFontSize(20).setScrollFactor(0)
+    .setDepth(6);
+    this.circleText = scene.add.bitmapText(775, 510, 'atari', 'Close shop', 16)
+    .setFontSize(20).setScrollFactor(0)
+    .setDepth(6);
+    this.xCText = scene.add.bitmapText(770, 575, 'atari', 'Jump/\nPurchase item', 16)
+    .setFontSize(20).setScrollFactor(0)
+    .setDepth(6);
+    this.triangleText = scene.add.bitmapText(775, 450, 'atari', 'Change weapon\n/Throw box', 16)
+    .setFontSize(20).setScrollFactor(0)
+    .setDepth(6);
 
     //this.container.add(this.panel)
     //this.container._visible = false;
@@ -334,9 +369,31 @@ export default class PauseMenu {
 
   hideControllerMenuPanel() {
     this.ps4.visible = false;
+    this.r2Text.visible = false;
+    this.l2Text.visible = false;
+    this.triangleText.visible = false;
+    this.squareText.visible = false;
+    this.xCText.visible = false;
+    this.circleText.visible = false;
+    this.leftCText.visible = false;
+    this.rightCText.visible = false;
+    this.upCText.visible = false;
+    this.downCText.visible = false;
+    this.optionsText.visible = false;
   }
   showControllerMenuPanel() {
     this.ps4.visible = true;
+    this.r2Text.visible = true;
+    this.l2Text.visible = true;
+    this.triangleText.visible = true;
+    this.squareText.visible = true;
+    this.xCText.visible = true;
+    this.circleText.visible = true;
+    this.leftCText.visible = true;
+    this.rightCText.visible = true;
+    this.upCText.visible = true;
+    this.downCText.visible = true;
+    this.optionsText.visible = true;
   }
 
 

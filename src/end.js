@@ -21,7 +21,7 @@ export default class End extends Phaser.Scene {
    * Creación de la escena. Tan solo contiene el texto que indica que el juego se ha acabado
    */
   create() {
-    
+    this.sound.stopAll();
     this.deathSound = this.sound.add("tonedeath").play();
     const {width, height} = this.sys.game.canvas;
 

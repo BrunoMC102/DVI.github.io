@@ -396,7 +396,7 @@ export default class BeginningVillage extends Phaser.Scene {
       this.dialog.visible = true;
       this.dialogCreated = true;
       const timer = this.time.addEvent({
-        delay: 10000,
+        delay: 15000,
         callback: this.onEventGeneral,
         callbackScope: this
       });

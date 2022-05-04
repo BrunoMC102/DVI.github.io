@@ -65,7 +65,7 @@ export default class LevelBigNoDoors extends LevelBigParent {
     this.sceneChange = [];
 
 
-    this.dungeonSound = this.sound.add("dungeontheme").play();
+    this.dungeonSound = this.sound.add("bossTheme", {loop: true}).play();
   }
 
 

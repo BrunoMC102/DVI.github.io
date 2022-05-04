@@ -25,7 +25,7 @@ export default class Minotaur extends ShootingEnemyParent {
     this.attackingPreparing = false;
     this.origDrag = 0.0001;
     this.body.setDrag(this.origDrag);
-    this.appearSound= this.scene.sound.add("minotaurAppear").play();
+    this.appearSound= this.scene.sound.add("minotaurAppear",{volume:0.5}).play();
     this.deathSound1 = this.scene.sound.add("minotaurDeath1");
     this.deathSound2 = this.scene.sound.add("minotaurDeath2");
     this.damageSound = this.scene.sound.add("minotaurDamage");
