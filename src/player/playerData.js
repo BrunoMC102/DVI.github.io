@@ -53,6 +53,7 @@ export default class PlayerData {
     //UI related
     this.isSoundMuted = false;
     this.firstDialogBlacksmith = false;
+    this.arrowHelp = true;
 
 
     this.player = null;

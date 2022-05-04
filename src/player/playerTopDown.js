@@ -91,6 +91,7 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.bow.wand.setVisible(true);
       this.bow.directionArrow.setVisible(true);
     }
+    if(!this.playerData.arrowHelp) this.bow.directionArrow.setVisible(false);
 
 
     //Barra proyectiles
@@ -222,6 +223,10 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
     if (this.body.velocity.x != 0 || this.body.velocity.y != 0) {
       this.lastVelocity = new Phaser.Math.Vector2(this.body.velocity.x, this.body.velocity.y);
     }
+    
+    if(!this.playerData.arrowHelp) this.bow.directionArrow.setVisible(false);
+    else this.bow.directionArrow.setVisible(true);
+
     this.controls.healthRecovery();
     this.controls.manaRecovery();
     this.controls.pauseMenuControl();
@@ -622,6 +627,9 @@ export default class PlayerTopDown extends Phaser.GameObjects.Container {
       this.bow.wand.setVisible(true);
       this.bow.directionArrow.setVisible(true);
     }
+
+    if(!this.playerData.arrowHelp) this.bow.directionArrow.setVisible(false);
+
   }
 
   //Controles player
