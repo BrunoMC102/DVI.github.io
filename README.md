@@ -1,7 +1,7 @@
 # Knightmares
 
-Nombre del Juego: KnightMares
-Nombre del Grupo : Knight Studios
+Nombre del Juego:KnightMares
+Nombre del Grupo:Knight Studios
 
 Dirección del juego: https://brunomc102.github.io/DVI.github.io/
 
@@ -14,9 +14,10 @@ En el Scroll-Lateral el personaje podrá andar y saltar intentando atravesar una
 En el Top-Down el personaje deberá pasar habitaciones llenas de enemigos para llegar al final de la mazmorra. En algunas habitaciones tendrá la posibilidad de acceder a ciertas zonas concretas para pasar al SideLateral. 
 
 
--MECANICAS:
+MECANICAS:
 
 Dentro de Knightmares el jugador tendrá diferentes mecánicas dentro del juego, dependiendo si estas en el ScrollLateral o en el TopDown:
+
 •	Mecánicas del personaje principal (ScrollLateral):
 En esta vista el personaje podrá:
 + Moverse, para avanzar a lo largo de la sala.
@@ -45,6 +46,7 @@ Aparte de las mecánicas del personaje, el jugador tendrá también:
 
 
 DINAMICAS:
+
 Dentro de este apartado describiremos las dinámicas del juego, la manera de ver las mecánicas del juego en su totalidad y descubrir estrategias o pensamientos a lo largo de la experiencia dentro del juego. 
 
 - Una de las dinámicas más drásticas dentro de nuestro juego, es el aprendizaje del jugador de cara a enfrentarse a un enemigo especifico. Una vez que el jugador debe vencer a un     enemigo es mejor aprenderse los patrones de ataque de los enemigos para evitar recibir daño dentro de las salas.
@@ -57,10 +59,12 @@ Otra dinámica muy marcada es el tema del balance entre la dificultad y la recom
 
 
 MENU INICIAL:
+
 El menu inicial del juego es muy basico, contiene dos botones, uno que inicia el juego y el otro que convierte el juego en pantalla completa.
 
 
 MENU JUEGO:
+
 El menu del juego contiene los controles tanto de teclado como de mando y ademas tiene otros 4 botones, uno que mutea y desmutea los sonidos
 del juego, otro que hace que el juego se vuelva en pantalla completa, otro que bloquea o desbloquea la flecha de ayuda del jugador y un 
 ultimo boton que simplemente cierra el menu.
@@ -83,6 +87,7 @@ General del cuartel (hablará sobre tu historia)
 
 
 RECURSOS DEL JUGADOR:
+
 El jugador tiene a su disposicion varios objetos que actuan como recursos a lo largo de su aventura y son soltados de forma aleatoria
 por los enemigos al morir, entre ellos tenemos:
 Oro: es la moneda del juego, con ella puede comprar objetos en la tienda del herrero.
@@ -95,10 +100,12 @@ el ataque del baston.
 
 
 PERSONAJE PRINCIPAL:
+
 Caballero 
 
 
 ENEMIGOS:
+
 Minotaur: tenemos dos tipos de minotauro, uno es estatico y cada ciertos segundos empieza a dar una vuelta y lanza 
 flechas en todos los sentidos. El otro minotauro simplemente persigue al jugador y le hace danyo cuando choca con el.
 
@@ -142,17 +149,18 @@ luego explota generando una cantidad masiva de flechas oscuras hacia todas las d
 
 
 OBJETOS:
+
 En el juego tenemos una cantidad de objetos pasivos que se pueden obtener a traves de los cofres, entre ellos tenemos:
 
-Lightweight badge: una chapa que adhiere el jugador y le otorga velocidad de movimiento superior.
-Crimson Mirror: un espejo que hace que las flechas del jugador reboten al chocar con paredes.
-Gloves of Power: unos guantes que hacen que las flechas del jugador sean lanzadas con mas velocidad.
-Ring of the Sages: un anillo que le otorgara al jugador un corazon de vida extra permanente.
-Demonic Totem: un totem que le sube el ataque al jugador tanto fisico como a distancia.
-Magical Icycle: le otorga al jugador un 25% de probabilidades que las flechas que lance congelen al enemigo por algunos segundos.
-Cloak of Agility: le otorga al jugador invulnerabilidad durante la duracion de su dash.
-Necklace of the Skies: convierte las flechas del jugador en flechas espectrales que pueden atravesar paredes.
-Buffoon Hat: reduce el cooldown del dash del jugador.
++ Lightweight badge: una chapa que adhiere el jugador y le otorga velocidad de movimiento superior.
++ Crimson Mirror: un espejo que hace que las flechas del jugador reboten al chocar con paredes.
++ Gloves of Power: unos guantes que hacen que las flechas del jugador sean lanzadas con mas velocidad.
++ Ring of the Sages: un anillo que le otorgara al jugador un corazon de vida extra permanente.
++ Demonic Totem: un totem que le sube el ataque al jugador tanto fisico como a distancia.
++ Magical Icycle: le otorga al jugador un 25% de probabilidades que las flechas que lance congelen al enemigo por algunos segundos.
++ Cloak of Agility: le otorga al jugador invulnerabilidad durante la duracion de su dash.
++ Necklace of the Skies: convierte las flechas del jugador en flechas espectrales que pueden atravesar paredes.
++ Buffoon Hat: reduce el cooldown del dash del jugador.
 
 Ademas, tenemos otros objetos pasivos:
 Las llaves, que se encuentran en los niveles de scroll y sirven para desbloquear nuevas
@@ -162,6 +170,7 @@ Las coronas, que se obtienen al matar al boss y teletransportan al jugador de vu
 
 
 CONTROLES:
+
 El juego se puede usar tanto con teclado como con mando, dentro del juego aparecen los controles detallados al pulsar la tecla esc.
 
 
