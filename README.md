@@ -2,13 +2,14 @@
 
 ![alt text](https://github.com/BrunoMC102/DVI.github.io/blob/main/ImagenJuego.png)
 
-Nombre del Juego:KnightMares
-Nombre del Grupo:Knight Studios
+*Nombre del Juego:* KnightMares
+
+*Nombre del Grupo:* Knight Studios
 
 Dirección del juego: https://brunomc102.github.io/DVI.github.io/
 
 
-IDEA GENERAL
+### IDEA GENERAL
 
 Este juego se basa en un juego Roguelike que combinará las vistas de Side-Lateral y Top-Down.
 En el Scroll-Lateral el personaje podrá andar y saltar intentando atravesar una pequeña habitación desafiante para volver al mapa en Top-Down.
@@ -16,7 +17,7 @@ En el Scroll-Lateral el personaje podrá andar y saltar intentando atravesar una
 En el Top-Down el personaje deberá pasar habitaciones llenas de enemigos para llegar al final de la mazmorra. En algunas habitaciones tendrá la posibilidad de acceder a ciertas zonas concretas para pasar al SideLateral. 
 
 
-MECANICAS:
+### MECÁNICAS
 
 Dentro de Knightmares el jugador tendrá diferentes mecánicas dentro del juego, dependiendo si estas en el ScrollLateral o en el TopDown:
 
@@ -28,6 +29,7 @@ Además, al ser un juego tipo MetroidVania, este juego tiene mecánicas que solo
 + Doble salto, para llegar a sitios inalcanzables anteriormente.
 + Dash, el personaje se deslizará horizontalmente llegando más lejos en sus saltos.
 + Cajas misteriosas, el personaje desbloqueará la posibilidad de tirar cajas y pararlas en el aire. Con ella podrás pasar por pinchos y llegar a nuevos niveles de altura.
+
 •	Mecánicas del personaje principal (TopDown):
 En esta vista el personaje podrá:
    + Moverse, para avanzar a lo largo de la sala.
@@ -47,7 +49,7 @@ Aparte de las mecánicas del personaje, el jugador tendrá también:
 + Viajar hacia el boss final: En el caso que el jugador haya conseguido todas las llaves de los Scrolls y mate al boss principal, al lado de la corona para volver a la aldea, se abrirá un portal que permitirá al jugador visitar la zona del verdadero boss final.
 
 
-DINAMICAS:
+### DINÁMICAS
 
 Dentro de este apartado describiremos las dinámicas del juego, la manera de ver las mecánicas del juego en su totalidad y descubrir estrategias o pensamientos a lo largo de la experiencia dentro del juego. 
 
@@ -56,57 +58,57 @@ Otra dinámica muy marcada es el tema del balance entre la dificultad y la recom
 - Además, a medida que el jugador vaya avanzando por el mapa puede ser que en algunas salas venza a los enemigos sin recibir daño, en el caso que los enemigos suelten un corazón de vida y el jugador tenga la máxima vida, el corazón se quedará en esa sala sin recoger, donde el jugador deberá acordarse más delante en su partida por si pierde vida podrá volver a esta sala donde no recibió daño y recoger este corazón.
 - Dentro de nuestro juego contamos con numerosos objetos. Estos no contienen ningún tipo de descripción así que el jugador deberá aprenderse las mejoras que garantizan los objetos si de verdad quiere sacarle potencial a cada uno de ellos.
 - Relacionada con el Scroll, una vez el jugador empieza la partida este es capaz de entrar a todos los niveles de Scroll, obviamente al acabar de empezar la partida solo podrá completar el primer nivel y todos los demás el jugador se dará cuenta que no tendrá las habilidades necesarias para pasárselo por lo que deberá jugar al juego para desbloquear nuevas habilidades y acordarse de que en el Scroll podrá utilizarlas.
-- El boss final es uno de los enemigos más complicados del juego y se caracteriza por ser muy agresivo, por lo que en vez de intentar entender sus ataques es mejor que atacarlo rápidamente para intentar vencer el juego. A lo mejor otros jugadores pueden pensar que es mejor aprenderse los patrones de ataque pero no es lo recomendable.
+- El boss final es uno de los enemigos más complicados del juego y se caracteriza por ser muy agresivo, por lo que en vez de intentar entender sus ataques es mejor atacarlo rápidamente para intentar vencer el juego. A lo mejor otros jugadores pueden pensar que es mejor aprenderse los patrones de ataque pero no es lo recomendable.
 
 
 
-MENU INICIAL:
+### MENU INICIAL
 
 El menu inicial del juego es muy basico, contiene dos botones, uno que inicia el juego y el otro que convierte el juego en pantalla completa.
 
 
-MENU JUEGO:
+### MENU JUEGO
 
 El menu del juego contiene los controles tanto de teclado como de mando y ademas tiene otros 4 botones, uno que mutea y desmutea los sonidos
 del juego, otro que hace que el juego se vuelva en pantalla completa, otro que bloquea o desbloquea la flecha de ayuda del jugador y un 
-ultimo boton que simplemente cierra el menu.
+ultimo botón que simplemente cierra el menu.
 
 
-STATS DEL PERSONAJE:
+### STATS DEL PERSONAJE
 
-Vida
-Velocidad de movimiento
-Daño
-Velocidad de flechas:
-
-
-ALDEA (LOBBY):
-
--Tienda 
--NPCS(Non Player Character):
-Herrero(te permitirá realizar mejoras respecto a las armas)
-General del cuartel (hablará sobre tu historia)
++ Vida
++ Velocidad de movimiento
++ Daño
++ Velocidad de flechas
 
 
-RECURSOS DEL JUGADOR:
+### ALDEA (LOBBY)
+
++ Tienda 
++ NPCS(Non Player Character):
++ Herrero, Hewg te permitirá 
++ General del cuartel, Roger, personaje que se
+
+
+### RECURSOS DEL JUGADOR
 
 El jugador tiene a su disposicion varios objetos que actuan como recursos a lo largo de su aventura y son soltados de forma aleatoria
 por los enemigos al morir, entre ellos tenemos:
-Oro: es la moneda del juego, con ella puede comprar objetos en la tienda del herrero.
-Vida: es un objeto que le otorga al jugador un corazon en caso de que le falte vida.
-Pocion de vida: un objeto acumulable que puede ser activada por el jugador en cualquier momento y le otorga un corazon de vida faltante.
-Pocion de mana: un objeto acumulable que puede ser activada por el jugador en cualquier momento y le otorga al jugador 25 de mana faltante.
-Flechas: un objeto acumulable, funciona como municion para el ataque del arco.
-Bolas de mana: todos los enemigos sueltan mana al morir y le regeneran al jugador una parte de su mana faltante, sirve como municion para
++ Oro: es la moneda del juego, con ella puede comprar objetos en la tienda del herrero.
++ Vida: es un objeto que le otorga al jugador un corazon en caso de que le falte vida.
++ Pocion de vida: un objeto acumulable que puede ser activada por el jugador en cualquier momento y le otorga un corazon de vida faltante.
++ Pocion de mana: un objeto acumulable que puede ser activada por el jugador en cualquier momento y le otorga al jugador 25 de mana faltante.
++ Flechas: un objeto acumulable, funciona como municion para el ataque del arco.
++ Bolas de mana: todos los enemigos sueltan mana al morir y le regeneran al jugador una parte de su mana faltante, sirve como municion para
 el ataque del baston.
 
 
-PERSONAJE PRINCIPAL:
+### PERSONAJE PRINCIPAL
 
 Caballero 
 
 
-ENEMIGOS:
+### ENEMIGOS
 
 Minotaur: tenemos dos tipos de minotauro, uno es estatico y cada ciertos segundos empieza a dar una vuelta y lanza 
 flechas en todos los sentidos. El otro minotauro simplemente persigue al jugador y le hace danyo cuando choca con el.
@@ -150,7 +152,7 @@ otro ataque es que genere una horda de Fire Ghost, otro que lanza una bola de en
 luego explota generando una cantidad masiva de flechas oscuras hacia todas las direcciones.
 
 
-OBJETOS:
+### OBJETOS
 
 En el juego tenemos una cantidad de objetos pasivos que se pueden obtener a traves de los cofres, entre ellos tenemos:
 
@@ -165,13 +167,13 @@ En el juego tenemos una cantidad de objetos pasivos que se pueden obtener a trav
 + Buffoon Hat: reduce el cooldown del dash del jugador.
 
 Ademas, tenemos otros objetos pasivos:
-Las llaves, que se encuentran en los niveles de scroll y sirven para desbloquear nuevas
++ Las llaves, que se encuentran en los niveles de scroll y sirven para desbloquear nuevas
 habilidades del jugador si mata al boss y ademas, si se consiguen las cuatro llaves y se mata al boss desbloquean el portal para
 llegar a la habitacion del boss final.
-Las coronas, que se obtienen al matar al boss y teletransportan al jugador de vuelta a la aldea.
++ Las coronas, que se obtienen al matar al boss y teletransportan al jugador de vuelta a la aldea.
 
 
-CONTROLES:
+### CONTROLES
 
 El juego se puede usar tanto con teclado como con mando, dentro del juego aparecen los controles detallados al pulsar la tecla esc.
 
@@ -187,19 +189,25 @@ En el Scroll-Lateral serán habitaciones más grandes donde el jugador deberá c
 
 BACKGROUND GENERAL DEL JUEGO
 
-La trama del juego nos cuenta la historia de un caballero que pierde la memoria y con la ayuda del tabernero de la aldea que conoce las historias que la gente cuenta sobre él, recordará el héroe que es....o morirá en el intento.
+La trama del juego nos cuenta la historia de un caballero que tras recibir el informe de que algo ha pasado en la aldea, decide hablar con el general del tercer escuadrón de Radagon, Roger.
+Básicamente el malvado hechicero Radahn, uno de los hechiceros más temidos de la época ha vuelto a la aldea cuando se pensaba que había sido derrotado por Radagon, uno de los caballeros más valerosos de la época que falleció en la pelea. Resucitado no sabemos por qué Radahn se prepara para intentar lanzar uno de sus hechizos más peligrosos.
+Como caballero deberás adentrarte en la mazmorra y descubrir que es lo que planea Radahn y cómo puedes detenerle. 
+Durante tus aventuras descubrirás la existencia de llaves secretas escondidas dentro de la mazmorra, las cuales contienen un poder secreto que deberás luchar para saber como explotar su verdadero potencial. 
+Tras descubrir que el malévolo mago está intentando invocar a una deidad maligna, el caballero deberá utilizar el poder de las cuatro llaves secretas para entrar a la dimensión donde se esconde la deidad para derrotarla y salvar así a su aldea.
 
 
-IDEA DEL ARTE
+### IDEA DEL ARTE
+
 En cuanto al arte del juego, nos hemos inspirado en un estilo pixel-art, semejante a juegos como Enter The Gungeon o el Moonlighter, pero con tonalidades mas oscuras haciendo referencia al medievo.
 
 
 
-UML INICIAL
+### UML INICIAL
+
 En la carpeta de UML del repositorio.
 
 
-PLAN PARA HITOS RESTANTES
+### PLAN PARA HITOS RESTANTES
 
 De cara a futuros hitos, tenemos planeadas varias mejoras para implementar en el juego. Las más importantes, y que implementaremos 
 primero serán: 
@@ -226,7 +234,7 @@ https://docs.google.com/document/d/1VJKg9feMnnY7HcWO3QgpQhNLaDZVVkGWzVkmMB02zFo/
 Descripcion del proceso
 
 
-TESTING CON JUGAORES EXTERNOS AL PROYECTO
+### TESTING CON JUGADORES EXTERNOS AL PROYECTO
    - ¿Qué se prueba?
       El objetivo principal de las pruebas es comprobar si un jugador real que no conoce nada sobre el desarrollo del juego, es capaz de utilizar las mecánicas y de
       pasar sin problema por los diferentes niveles tal y como los desarrolladores lo pensamos en un principio. 
@@ -236,6 +244,10 @@ TESTING CON JUGAORES EXTERNOS AL PROYECTO
       Durante las pruebas, el jugador es el unico que tiene control del juego, haciendo que sea lo más cercano posible a una situación real. Pero a diferencia de esta,
       un miembro del equipo estará con el durante la experiencia para ayudar en caso de que no pueda avanzar o tenga dudas de cualquier tipo. Tanto el comportamiento
       del jugador como estas dudas son el material que nos sirve para hacer todos estos pequeños cambios en el juego.
-   -  Número de participantes
-   -  Resultados de las pruebas
+   -  Número de participantes: 5
+   -  Guía de las pruebas
+      Los jugadores empezarían en la aldea donde cada uno realizará la investigación pertinente antes de entrar a la mazmorra. Podrán conocer algo más del background del juego, visitar la tienda o simplemente acceder a la mazmorra.
+      Una vez dentro de la mazmorra tendrán total libertad a realizar cualquier actividad tanto como probar el scroll o avanzar por el topdown. Como hemos indicado anteriormente en el caso que el jugador necesite ayuda con algo, el miembro del equipo que este supervisando la prueba, le ayudará con lo que necesite.
+      Una vez matado el boss, en el caso que le haya faltado por descubrir algo el supervisor le indicará que cosas podría buscar.
    -  Conclusiones (que funciona y que no)
+      Después nuevos individuos probaron el juego, como esta indicado en la guía de las pruebas 
