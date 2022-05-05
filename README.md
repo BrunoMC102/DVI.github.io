@@ -1,5 +1,7 @@
 # Knightmares
 
+![alt text](https://github.com/BrunoMC102/DVI.github.io/blob/main/ImagenJuego.png)
+
 Nombre del Juego:KnightMares
 Nombre del Grupo:Knight Studios
 
