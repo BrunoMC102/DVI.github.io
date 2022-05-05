@@ -1,7 +1,7 @@
 # Knightmares
 
 Nombre del Juego: KnightMares
-Nombre del Grupo : 6
+Nombre del Grupo : Knight Studios
 
 Dirección del juego: https://brunomc102.github.io/DVI.github.io/
 
@@ -16,26 +16,44 @@ En el Top-Down el personaje deberá pasar habitaciones llenas de enemigos para l
 
 -MECANICAS:
 
-Mecánicas del personaje principal(ScrollLateral):
-En esta vista el personaje :
-   +Moverse, para avanzar a lo largo de la sala. 
-   +Saltar, para alcanzar plataformas, evitar trampas,etc..
-   +Opcionalmente, poder correr para llegar a ciertas plataformas que estén más alejadas.
-   +Atacar, en el caso que haya enemigos que compliquen el camino del protagonista se podrá atacar para derrotarlos.
+Dentro de Knightmares el jugador tendrá diferentes mecánicas dentro del juego, dependiendo si estas en el ScrollLateral o en el TopDown:
+•	Mecánicas del personaje principal (ScrollLateral):
+En esta vista el personaje podrá:
++ Moverse, para avanzar a lo largo de la sala.
++ Saltar, para alcanzar plataformas, evitar trampas,etc..
+Además, al ser un juego tipo MetroidVania, este juego tiene mecánicas que solo se consiguen si avanzas dentro de la mazmorra en TopDown y vences al boss. Con ello puedes conseguir nuevas mecánicas dentro del Scroll, como son:
++ Doble salto, para llegar a sitios inalcanzables anteriormente.
++ Dash, el personaje se deslizará horizontalmente llegando más lejos en sus saltos.
++ Cajas misteriosas, el personaje desbloqueará la posibilidad de tirar cajas y pararlas en el aire. Con ella podrás pasar por pinchos y llegar a nuevos niveles de altura.
+•	Mecánicas del personaje principal (TopDown):
+En esta vista el personaje podrá:
+   + Moverse, para avanzar a lo largo de la sala.
+   + Esquivar, para evadir los ataques de los enemigos 
+   + Atacar cuerpo a cuerpo, para poder eliminar a los enemigos que traten de acercarse al jugador
+   + Atacar a distancia con arco, para poder eliminar a los enemigos a la distancia con un arco con flechas limitadas.
+   + Atacar a distancia con bastón, para poder eliminar a los enemigos a la distancia con un bastón que al golpear a un enemigo se dispersará en cuatro direcciones golpeando en nuevos enemigos. Este ataque costará maná al jugador.
+Aparte de las mecánicas del personaje, el jugador tendrá también:
++ Interfaz gráfica de usuario: el jugador contará con una interfaz donde se le mostrará la información de cuantos recursos tiene en ese momento. Los recursos del jugador son varios, pero estos se desarrollan más en el apartado de Recursos.
++ Minimapa, mapa de ayuda del jugador para viajar a lo largo de la mazmorra. Mientras el jugador este en combate desaparecerá para no molestar, una vez completado la habitación volverá y se descubrirá las zonas colindantes a esta habitación.
++ Cruzar salas: A medida que el jugador vaya avanzando a lo largo de las salas podrá cruzar a través de las salas. Cuanto más profundo vaya dentro de ella los niveles serán más complicados.
 
-Mecanicas del personaje principal(TopDown)
-En esta vista el personaje :
-   +Moverse, para avanzar a lo largo de la sala.
-   +Esquivar, para evadir los ataques de los enemigos 
-   +Atacar cuerpo a cuerpo, para poder eliminar a los enemigos que traten de acercarse al jugador
-   +Atacar a distancia, para poder eliminar a los enemigos a la distancia
-   +Tendrá un bastón que podrá utilizar gastando maná
++ Recoger objetos: A lo largo de la mazmorra, el jugador podrá recoger objetos que le aumentan los atributos pasivamente, le aumenten sus recursos como vida o pociones o le añadan una nueva mecánica.
++ Obtención maná: Tras vencer a los enemigos el jugador recibirá maná de ellos.
++ Morir: Si la vida del jugador llega a 0, el jugador perderá y tendrá que volver a empezar en la aldea sin ninguna de las mejoras pasivas que tenía, incluyendo también la perdida de pociones y dinero.
++ Ganar: En el caso que el jugador consiga vencer al boss del juego podrá volver a la aldea para jugar otra partida cogiendo la corona que aparecerá en la sala del boss. En el caso que el jugador haya conseguido todas las llaves posibles con sus poderes actuales dentro de los Scrolls, al vencer al boss desbloqueará una nueva habilidad dentro del Scroll, que le servirá para completar un nuevo nivel.
++ Viajar hacia el boss final: En el caso que el jugador haya conseguido todas las llaves de los Scrolls y mate al boss principal, al lado de la corona para volver a la aldea, se abrirá un portal que permitirá al jugador visitar la zona del verdadero boss final.
+
 
 DINAMICAS:
-Gracias a las mejoras que se van otorgando el jugador podrá desarrollar nuevas dinámicas gracias a los cambios
-en el gameplay a través de las mejoras que se le otorguen:
--Disparar a través de superficies
--Mejorar el esquive para evitar flechas
+Dentro de este apartado describiremos las dinámicas del juego, la manera de ver las mecánicas del juego en su totalidad y descubrir estrategias o pensamientos a lo largo de la experiencia dentro del juego. 
+
+- Una de las dinámicas más drásticas dentro de nuestro juego, es el aprendizaje del jugador de cara a enfrentarse a un enemigo especifico. Una vez que el jugador debe vencer a un     enemigo es mejor aprenderse los patrones de ataque de los enemigos para evitar recibir daño dentro de las salas.
+Otra dinámica muy marcada es el tema del balance entre la dificultad y la recompensa. Dentro del TopDown, a medida que el jugador vaya avanzando a lo largo de la mazmorra, la dificultad de las salas aumentará y además al jugador podrá en malas condiciones, por lo que deberá tomar las decisiones de si seguir avanzando y conseguir alguna recompensa que le ayude con el boss o dejar pasar la oportunidad.
+- Además, a medida que el jugador vaya avanzando por el mapa puede ser que en algunas salas venza a los enemigos sin recibir daño, en el caso que los enemigos suelten un corazón de vida y el jugador tenga la máxima vida, el corazón se quedará en esa sala sin recoger, donde el jugador deberá acordarse más delante en su partida por si pierde vida podrá volver a esta sala donde no recibió daño y recoger este corazón.
+- Dentro de nuestro juego contamos con numerosos objetos. Estos no contienen ningún tipo de descripción así que el jugador deberá aprenderse las mejoras que garantizan los objetos si de verdad quiere sacarle potencial a cada uno de ellos.
+- Relacionada con el Scroll, una vez el jugador empieza la partida este es capaz de entrar a todos los niveles de Scroll, obviamente al acabar de empezar la partida solo podrá completar el primer nivel y todos los demás el jugador se dará cuenta que no tendrá las habilidades necesarias para pasárselo por lo que deberá jugar al juego para desbloquear nuevas habilidades y acordarse de que en el Scroll podrá utilizarlas.
+- El boss final es uno de los enemigos más complicados del juego y se caracteriza por ser muy agresivo, por lo que en vez de intentar entender sus ataques es mejor que atacarlo rápidamente para intentar vencer el juego. A lo mejor otros jugadores pueden pensar que es mejor aprenderse los patrones de ataque pero no es lo recomendable.
+
 
 
 MENU INICIAL:
