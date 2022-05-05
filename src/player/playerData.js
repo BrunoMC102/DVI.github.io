@@ -3,10 +3,10 @@ export default class PlayerData {
   constructor() {
 
     //Atributos generales
-    this.damage = 7;
+    this.damage = 1000;
     
     this.isPadControlling = false;
-    this.progressStory = 0;
+    this.progressStory = 3;
     this.wins = 0;
     this.deaths = 0;
     this.keys = 1;
