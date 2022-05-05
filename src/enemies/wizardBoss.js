@@ -48,8 +48,8 @@ export default class WizardBoss extends BossParent {
     this.add(this.interiorContainer);
     this.fireBalls = [];
     this.body.pushable = false;
-    this.health = 250;
-    this.maxHealth = 250;
+    this.health = 300;
+    this.maxHealth = 300;
     this.escaping = true;
     this.persecution = false;
     this.moving = false;
@@ -164,7 +164,7 @@ export default class WizardBoss extends BossParent {
 
 
     else if (this.statusInfo.attack == 4) {
-      this.runAttack(400, true, () => { }, 350, () => {this.projectileType = 2 }, this.attack4.bind(this), () => { }, dt);
+      this.runAttack(400, true, () => { }, 350, () => {this.projectileType = 2; this.Pv = 200; }, this.attack4.bind(this), () => { }, dt);
     }
 
     else if (this.statusInfo.attack == 5) {
@@ -470,8 +470,12 @@ export default class WizardBoss extends BossParent {
 
 
   heal() {
-    if (this.health < this.maxHealth)
-      this.health++;
+    if (this.health < this.maxHealth){
+      this.health += 2;
+      if(this.health > this.maxHealth){
+        this.health = this.maxHealth;
+      }
+    }
   }
 
   releaseFireColumns(dt) {
