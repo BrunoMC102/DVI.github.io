@@ -205,7 +205,7 @@ llegar a la habitacion del boss final.
 
 ### UML INICIAL
 
-En la carpeta de UML del repositorio.
+![alt text](https://github.com/BrunoMC102/DVI.github.io/blob/main/UML/UMLfinal.PNG)
 
 
 ### PLATAFORMA DE COMUNICACION
