@@ -33,30 +33,31 @@ Dentro de Knightmares el jugador tendrá diferentes mecánicas dentro del juego,
 
 •	Mecánicas del personaje principal (ScrollLateral):
 En esta vista el personaje podrá:
-+ Moverse, para avanzar a lo largo de la sala.
-+ Saltar, para alcanzar plataformas, evitar trampas,etc..
++ **Moverse**, para avanzar a lo largo de la sala.
++ **Saltar**, para alcanzar plataformas, evitar trampas,etc..
 Además, al ser un juego tipo MetroidVania, este juego tiene mecánicas que solo se consiguen si avanzas dentro de la mazmorra en TopDown y vences al boss. Con ello puedes conseguir nuevas mecánicas dentro del Scroll, como son:
-+ Doble salto, para llegar a sitios inalcanzables anteriormente.
-+ Dash, el personaje se deslizará horizontalmente llegando más lejos en sus saltos.
-+ Cajas misteriosas, el personaje desbloqueará la posibilidad de tirar cajas y pararlas en el aire. Con ella podrás pasar por pinchos y llegar a nuevos niveles de altura.
++ **Doble salto**, para llegar a sitios inalcanzables anteriormente.
++ **Dash**, el personaje se deslizará horizontalmente llegando más lejos en sus saltos.
++ **Cajas misteriosas**, el personaje desbloqueará la posibilidad de tirar cajas y pararlas en el aire. Con ella podrás pasar por pinchos y llegar a nuevos niveles de altura.
 
 •	Mecánicas del personaje principal (TopDown):
 En esta vista el personaje podrá:
-   + Moverse, para avanzar a lo largo de la sala.
-   + Esquivar, para evadir los ataques de los enemigos 
-   + Atacar cuerpo a cuerpo, para poder eliminar a los enemigos que traten de acercarse al jugador
-   + Atacar a distancia con arco, para poder eliminar a los enemigos a la distancia con un arco con flechas limitadas.
-   + Atacar a distancia con bastón, para poder eliminar a los enemigos a la distancia con un bastón que al golpear a un enemigo se dispersará en cuatro direcciones golpeando en nuevos enemigos. Este ataque costará maná al jugador.
+   + **Moverse**, para avanzar a lo largo de la sala.
+   + **Esquivar**, para evadir los ataques de los enemigos 
+   + **Atacar cuerpo a cuerpo**, para poder eliminar a los enemigos que traten de acercarse al jugador
+   + **Atacar a distancia con arco**, para poder eliminar a los enemigos a la distancia con un arco con flechas limitadas.
+   + **Atacar a distancia con bastón**, para poder eliminar a los enemigos a la distancia con un bastón que al golpear a un enemigo se dispersará en cuatro direcciones golpeando en nuevos enemigos. Este ataque costará maná al jugador.
 Aparte de las mecánicas del personaje, el jugador tendrá también:
-+ Interfaz gráfica de usuario: el jugador contará con una interfaz donde se le mostrará la información de cuantos recursos tiene en ese momento. Los recursos del jugador son varios, pero estos se desarrollan más en el apartado de Recursos.
-+ Minimapa, mapa de ayuda del jugador para viajar a lo largo de la mazmorra. Mientras el jugador este en combate desaparecerá para no molestar, una vez completado la habitación volverá y se descubrirá las zonas colindantes a esta habitación.
-+ Cruzar salas: A medida que el jugador vaya avanzando a lo largo de las salas podrá cruzar a través de las salas. Cuanto más profundo vaya dentro de ella los niveles serán más complicados.
++ **Interfaz gráfica de usuario**: el jugador contará con una interfaz donde se le mostrará la información de cuantos recursos tiene en ese momento. Los recursos del jugador son varios, pero estos se desarrollan más en el apartado de Recursos.
++ **Minimapa**, mapa de ayuda del jugador para viajar a lo largo de la mazmorra. Mientras el jugador este en combate desaparecerá para no molestar, una vez completado la habitación volverá y se descubrirá las zonas colindantes a esta habitación.
++ **Cruzar salas**: A medida que el jugador vaya avanzando a lo largo de las salas podrá cruzar a través de las salas. Cuanto más profundo vaya dentro de ella los niveles serán más complicados.
 
-+ Recoger objetos: A lo largo de la mazmorra, el jugador podrá recoger objetos que le aumentan los atributos pasivamente, le aumenten sus recursos como vida o pociones o le añadan una nueva mecánica.
-+ Obtención maná: Tras vencer a los enemigos el jugador recibirá maná de ellos.
++ **Recoger objetos**: A lo largo de la mazmorra, el jugador podrá recoger objetos que le aumentan los atributos pasivamente, le aumenten sus recursos como vida o pociones o le añadan una nueva mecánica.
++ **Obtención maná**: Tras vencer a los enemigos el jugador recibirá maná de ellos.
 + Morir: Si la vida del jugador llega a 0, el jugador perderá y tendrá que volver a empezar en la aldea sin ninguna de las mejoras pasivas que tenía, incluyendo también la perdida de pociones y dinero.
-+ Ganar: En el caso que el jugador consiga vencer al boss del juego podrá volver a la aldea para jugar otra partida cogiendo la corona que aparecerá en la sala del boss. En el caso que el jugador haya conseguido todas las llaves posibles con sus poderes actuales dentro de los Scrolls, al vencer al boss desbloqueará una nueva habilidad dentro del Scroll, que le servirá para completar un nuevo nivel.
-+ Viajar hacia el boss final: En el caso que el jugador haya conseguido todas las llaves de los Scrolls y mate al boss principal, al lado de la corona para volver a la aldea, se abrirá un portal que permitirá al jugador visitar la zona del verdadero boss final.
++ **Ganar**: En el caso que el jugador consiga vencer al boss del juego podrá volver a la aldea para jugar otra partida cogiendo la corona que aparecerá en la sala del boss. En el caso que el jugador haya conseguido todas las llaves posibles con sus poderes actuales dentro de los Scrolls, al vencer al boss desbloqueará una nueva habilidad dentro del Scroll, que le servirá para completar un nuevo nivel.
++ **Viajar hacia el boss final**: En el caso que el jugador haya conseguido todas las llaves de los Scrolls y mate al boss principal, al lado de la corona para volver a la aldea, se abrirá un portal que permitirá al jugador visitar la zona del verdadero boss final.
++ **Tienda**: En la aldea, el jugador será capaz de comprar objetos al herrero que le ayudarán en su instancia en la mazmorra.
 
 
 ### DINÁMICAS
@@ -70,11 +71,11 @@ Otra dinámica muy marcada es el tema del balance entre la dificultad y la recom
 - El boss final es uno de los enemigos más complicados del juego y se caracteriza por ser muy agresivo, por lo que en vez de intentar entender sus ataques es mejor atacarlo rápidamente para intentar vencer el juego. A lo mejor otros jugadores pueden pensar que es mejor aprenderse los patrones de ataque pero no es lo recomendable.
 - Relacionada con el Scroll, una vez el jugador empieza la partida este es capaz de entrar a todos los niveles de Scroll, obviamente al acabar de empezar la partida solo podrá completar el primer nivel y todos los demás el jugador se dará cuenta que no tendrá las habilidades necesarias para pasárselo por lo que deberá jugar al juego para desbloquear nuevas habilidades y acordarse de que en el Scroll podrá utilizarlas.
 - El segundo nivel del Scroll es el único sitio donde el jugador nunca podrá morir, debido a esto este nivel se construyó para que al principio del nivel el jugador estuviese más tranquilo. Eso se intenta conseguir cuando al principio del nivel abajo de todo se empieza con un lago de agua de color azul fluorescente que intenta transmitir tranquilidad al jugador. A medida que vas subiendo en ese mismo nivel aparecen dos caminos a elegir uno más sencillo que otro. El camino mása díficil se intenta demostrar con un pequeño lago de lava tapado indicando como peligro o dificultad.  
-
+- Gracias a la existencia de la tienda, el jugador deberá barajar las diferentes opciones que tenga a comprar para entrar a la mazmorra la mejor manera posible. A medida que el jugador vaya jugando irá aprendiendo cuales son los mejores objetos a comprar. 
 
 ### CONTROLES
 
-El juego se puede usar tanto con teclado como con mando, dentro del juego aparecen los controles detallados al pulsar la tecla esc.
+El juego se puede jugar tanto con teclado como con mando, dentro del juego aparecen los controles detallados al pulsar la tecla esc o el botón de Options.
 
 ### IDEA DEL ARTE
 
@@ -113,9 +114,8 @@ ultimo botón que simplemente cierra el menu.
 
 ### ALDEA (LOBBY)
 
-+ Tienda 
-+ NPCS(Non Player Character):
-+ Herrero, Hewg te permitirá 
+- NPCS(Non Player Character):
++ Herrero, Hewg te permitirá comprar mejoras en su tienda como pueden ser tanto mejoras de vida, pociones, mana o mejoras pasivas.
 + General del cuartel, Roger, personaje que se encarga de hacer una pequeña introducción al juego y a la mazmorra contando un poco el desarrollo de la historia al jugador
 
 
@@ -125,16 +125,16 @@ El jugador tiene a su disposicion varios objetos que actuan como recursos a lo l
 por los enemigos al morir, entre ellos tenemos:
 + Oro: es la moneda del juego, con ella puede comprar objetos en la tienda del herrero.
 + Vida: es un objeto que le otorga al jugador un corazon en caso de que le falte vida.
-+ Pocion de vida: un objeto acumulable que puede ser activada por el jugador en cualquier momento y le otorga un corazon de vida faltante.
-+ Pocion de mana: un objeto acumulable que puede ser activada por el jugador en cualquier momento y le otorga al jugador 25 de mana faltante.
++ Poción de vida: un objeto acumulable que puede ser activada por el jugador en cualquier momento y le otorga un corazon de vida faltante.
++ Poción de mana: un objeto acumulable que puede ser activada por el jugador en cualquier momento y le otorga al jugador 25 de mana faltante.
 + Flechas: un objeto acumulable, funciona como municion para el ataque del arco.
-+ Bolas de mana: todos los enemigos sueltan mana al morir y le regeneran al jugador una parte de su mana faltante, sirve como municion para
++ Bolas de maná: todos los enemigos sueltan mana al morir y le regeneran al jugador una parte de su mana faltante, sirve como municion para
 el ataque del baston.
 
 
 ### PERSONAJE PRINCIPAL
 
-Caballero 
+Caballero
 
 
 ### ENEMIGOS
@@ -203,7 +203,7 @@ llegar a la habitacion del boss final.
 
 
 
-### UML INICIAL
+### UML del proyecto
 
 ![alt text](https://github.com/BrunoMC102/DVI.github.io/blob/main/UML/UMLfinal.PNG)
 
