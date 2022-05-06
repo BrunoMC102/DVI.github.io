@@ -211,7 +211,7 @@ En la carpeta de UML del repositorio.
 
 De cara a futuros hitos, tenemos planeadas varias mejoras para implementar en el juego. Las más importantes, y que implementaremos 
 primero serán: 
--Meter más sonidos y animaciones al juego
+-Meter más sonidos y animaciones al juego.
 -Crear mejores menus del juego, incluyendo el menu principal y la interfaz del usuario en general.
 -Crear boss con varios ataques y fases.
 -Crear un tutorial.
