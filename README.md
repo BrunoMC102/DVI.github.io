@@ -335,8 +335,8 @@ Respecto al progreso, decidimos retocar todo el apartado de las llaves y cambiam
 
 Finalmente, al boss final le hicimos que redujese la cantidad de ataques por segundo y redujimos la cantidad de proyectiles que lanzaba en cada ataque. 
 
-      
-
+### PARTICIPACION
+![alt text](https://github.com/BrunoMC102/DVI.github.io/blob/main/participacion.png)
 
 
       
