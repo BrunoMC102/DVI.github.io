@@ -234,40 +234,18 @@ luego implementarlos dentro del juego, los otros dos niveles de Scroll fueron he
 la aldea como la tienda y los NPC, a la vez que tambien realizo la gran mayoria de los recursos artisticos del juego como los sonidos y las interfaces.
 
 
-### PLAN PARA HITOS RESTANTES
-
-De cara a futuros hitos, tenemos planeadas varias mejoras para implementar en el juego. Las más importantes, y que implementaremos 
-primero serán: 
-+ Meter más sonidos y animaciones al juego.
-+ Crear mejores menus del juego, incluyendo el menu principal y la interfaz del usuario en general.
-+ Crear boss con varios ataques y fases.
-+ Crear un tutorial.
-+ Dentro de la aldea crear nuevos sitios y NPCS que le den vida al juego 
-
-Desde aqui se podrá acceder al tutorial, y se podrán mejorar habilidades.
-+ Crear diferentes tipos de salas: Tiendas/tesoro/desafio/secreta
-+ Un arbol de habilidades, que se podrá ir mejorando desde el lobby.
-
-Otras mejoras menos prioritarias que tambien tenemos planeado son:
-+ Aumentar la cantidad de enemigos.
-+ Aumentar la cantidad de objetos.
-+ Crear zonas nuevas con estetica distinta, y enemigos distintos.
-
-emlace al GDD:
-https://docs.google.com/document/d/1VJKg9feMnnY7HcWO3QgpQhNLaDZVVkGWzVkmMB02zFo/edit?usp=sharing
-
 ### TESTING CON JUGADORES EXTERNOS AL PROYECTO
-+ **¿Qué se prueba?**
+- **¿Qué se prueba?**
 El objetivo principal de las pruebas es comprobar si un jugador real que no conoce nada sobre el desarrollo del juego, es capaz de utilizar las mecánicas y de
 pasar sin problema por los diferentes niveles tal y como los desarrolladores lo pensamos en un principio. 
 Esta experiencia nos sirve para aprender del jugador y retocar lo necesario para mejorar la experiencia, la jugabilidad y corregir errores inesperados que
 aparezcan por comportamientos que no hayamos tenido en cuenta a la hora de programar el juego.
-+  **¿Cómo se lleva a cabo una prueba?**
+-  **¿Cómo se lleva a cabo una prueba?**
 Durante las pruebas, el jugador es el unico que tiene control del juego, haciendo que sea lo más cercano posible a una situación real. Pero a diferencia de esta,
 un miembro del equipo estará con el durante la experiencia para ayudar en caso de que no pueda avanzar o tenga dudas de cualquier tipo. Tanto el comportamiento
 del jugador como estas dudas son el material que nos sirve para hacer todos estos pequeños cambios en el juego.
-   +   **Número de participantes**: 5
-   +   **Guía de las pruebas**:
+   -   **Número de participantes**: 5
+   -   **Guía de las pruebas**:
 Los jugadores empezarían en la aldea donde cada uno realizará la investigación pertinente antes de entrar a la mazmorra. Podrán conocer algo más del background del juego, visitar la tienda o simplemente acceder a la mazmorra.
 Una vez dentro de la mazmorra tendrán total libertad a realizar cualquier actividad tanto como probar el scroll o avanzar por el topdown. Como hemos indicado anteriormente en el caso que el jugador necesite ayuda con algo, el miembro del equipo que este supervisando la prueba, le ayudará con lo que necesite.
 Una vez matado el boss, en el caso que le haya faltado por descubrir algo el supervisor le indicará que cosas podría buscar.
@@ -309,7 +287,7 @@ Los jugadores siguieron matando al boss pero no desbloqueaban los poderes nuevos
 
 Finalmente, para hacer que los jugadores probarán el juego en su totalidad, se le desbloquearon los poderes necesarios para pasar todos los niveles del Scroll y así poder llegar a enfrentarse al boss final de verdad. Este boss les pareció bien pero pensaron que tenía numerosos ataques y algunos parecían imposibles de esquivar.
 
-+  **Acciones tomadas respecto a pruebas**
+-  **Acciones tomadas respecto a pruebas**
 
 Respecto a las primeras pruebas realizadas por los jugadores, implementamos varias mejoras con el feedback recibido de las partidas observadas.
    + Añadimos control con mando en el menu de empezar partida, para poder comenzarla con mando.
