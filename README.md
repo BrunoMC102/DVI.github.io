@@ -87,7 +87,7 @@ ultimo botón que simplemente cierra el menu.
 + Tienda 
 + NPCS(Non Player Character):
 + Herrero, Hewg te permitirá 
-+ General del cuartel, Roger, personaje que se
++ General del cuartel, Roger, personaje que se encarga de hacer una pequeña introducción al juego y a la mazmorra contando un poco el desarrollo de la historia al jugador
 
 
 ### RECURSOS DEL JUGADOR
