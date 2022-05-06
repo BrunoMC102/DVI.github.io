@@ -208,6 +208,24 @@ llegar a la habitacion del boss final.
 En la carpeta de UML del repositorio.
 
 
+### PLATAFORMA DE COMUNICACION
+
+Para ello hemos utilizado presentaciones creadas con PowerPoint, las cuales se pueden encontrar en la carpeta presentaciones del juego,
+con ellas, hemos recibido el feedback adecuado para mejorar el juego y llevarlo al mejor estado posible tomando en cuenta el tiempo
+limite para el desarrollo del mismo.
+
+
+### DESCRIPCION DEL PROCESO
+
+Para el desarrollo del proyecto, nos reuniamos todos los jueves en el laboratorio de la universidad para organizarnos y pensar en que es
+lo que ibamos a tener listo para la siguiente semana, en caso de existir dudas despues de dicha reunion, nos poniamos en contacto mediante 
+WhatsApp y a veces nos reuniamos por Discord. 
+
+Durante el desarrollo existio una clara division de tareas entre los miembros del equipo, Felix se dedico sobre todo a realizar implementaciones
+y a crear nuevas mecanicas dentro del juego, Alejandro se dedico al diseño de la aldea, de los niveles Top-Down y de dos niveles en el Scroll y 
+luego implementarlos dentro del juego, los otros dos niveles de Scroll fueron hechos por Jose, que tambien se dedico a realizar las mecanicas de 
+la aldea como la tienda y los NPC, a la vez que tambien realizo la gran mayoria de los recursos artisticos del juego como los sonidos y las interfaces.
+
 
 ### PLAN PARA HITOS RESTANTES
 
