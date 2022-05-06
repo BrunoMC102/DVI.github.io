@@ -1,5 +1,3 @@
-import PasivePowerUpList from "./objetos_recogibles/pasivos/pasivePowerUpList.js";
-
 /**
  * Escena de fin de juego. Cuando el personaje principal gane volverá al principio.
  */

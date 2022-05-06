@@ -1,25 +1,25 @@
-import ProjectileBar from "./projectileBar.js";
+
 export default class PlayerData {
   constructor() {
 
     //Atributos generales
-    this.damage = 1000;
+    this.damage = 7;
     
     this.isPadControlling = false;
-    this.progressStory = 3;
+    this.progressStory = 0;
     this.wins = 0;
     this.deaths = 0;
-    this.keys = 1;
+    this.keys = 0;
     this.maxSpeed = 750;
 
     //Recursos jugador
     this.health = 6;
     this.maxhealth = 6;
     this.money = 10; // dinero del jugador
-    this.healthPotions = 50; // pociones de vida
-    this.manaPotions = 50; // pociones de mana
+    this.healthPotions = 3; // pociones de vida
+    this.manaPotions = 3; // pociones de mana
     this.mana = 0;
-    this.arrows = 100;
+    this.arrows = 20;
     this.maxMana = 100;
 
     //Atributos topdown
@@ -123,10 +123,10 @@ export default class PlayerData {
     this.maxhealth = 6;
     
     if(this.money < 0) this.money = 0; 
-    this.healthPotions = 50; // pociones de vida
-    this.manaPotions = 50; // pociones de mana
+    this.healthPotions = 3; // pociones de vida
+    this.manaPotions = 3; // pociones de mana
     this.mana = 0;
-    this.arrows = 100;
+    this.arrows = 20;
     this.projectileBaseSpeed = 500;
     this.weapon = 0;
     this.dashDuration = 0.13;

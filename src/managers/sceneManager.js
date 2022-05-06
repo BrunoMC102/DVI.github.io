@@ -86,7 +86,6 @@ import LevelTopDownBigW from "../levels/levelsTopDown/Dungeon Big/LevelTopDownBi
 import LevelTopDownBigS from "../levels/levelsTopDown/Dungeon Big/LevelTopDownBigS.js"
 import LevelTopDownBigN from "../levels/levelsTopDown/Dungeon Big/LevelTopDownBigN.js"
 
-import LevelBig from "../levels/levelsTopDown/Dungeon Big/levelBigParent.js"
 import ChestRoomE from "../levels/levelsTopDown/chestRoomE.js"
 import ChestRoomN from "../levels/levelsTopDown/chestRoomN.js"
 import ChestRoomS from "../levels/levelsTopDown/chestRoomS.js"

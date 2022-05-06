@@ -1,5 +1,3 @@
-import PasivePowerUpList from "./pasivos/pasivePowerUpList.js";
-
 export default class Chest extends Phaser.GameObjects.Sprite{
 
     constructor(scene,player,x,y){
