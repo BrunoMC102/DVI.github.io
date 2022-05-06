@@ -45,7 +45,7 @@ En esta vista el personaje podrá:
    + **Moverse**, para avanzar a lo largo de la sala.
    + **Esquivar**, para evadir los ataques de los enemigos 
    + **Atacar cuerpo a cuerpo**, para poder eliminar a los enemigos que traten de acercarse al jugador
-   + **Atacar a distancia con arco**, para poder eliminar a los enemigos a la distancia con un arco con flechas limitadas.
+   + **Atacar a distancia con arco**, para poder eliminar a los enemigos a la distancia con un arco con flechas limitadas. Al tratarse de un ataque cargado, cuanto más tiempo se deje pulsado el botón de disparar, con mayor velocidad se dispararán las flechas
    + **Atacar a distancia con bastón**, para poder eliminar a los enemigos a la distancia con un bastón que al golpear a un enemigo se dispersará en cuatro direcciones golpeando en nuevos enemigos. Este ataque costará maná al jugador.
 Aparte de las mecánicas del personaje, el jugador tendrá también:
 + **Interfaz gráfica de usuario**: el jugador contará con una interfaz donde se le mostrará la información de cuantos recursos tiene en ese momento. Los recursos del jugador son varios, pero estos se desarrollan más en el apartado de Recursos.
@@ -54,10 +54,12 @@ Aparte de las mecánicas del personaje, el jugador tendrá también:
 
 + **Recoger objetos**: A lo largo de la mazmorra, el jugador podrá recoger objetos que le aumentan los atributos pasivamente, le aumenten sus recursos como vida o pociones o le añadan una nueva mecánica.
 + **Obtención maná**: Tras vencer a los enemigos el jugador recibirá maná de ellos.
-+ Morir: Si la vida del jugador llega a 0, el jugador perderá y tendrá que volver a empezar en la aldea sin ninguna de las mejoras pasivas que tenía, incluyendo también la perdida de pociones y dinero.
++ **Morir**: Si la vida del jugador llega a 0, el jugador perderá y tendrá que volver a empezar en la aldea sin ninguna de las mejoras pasivas que tenía, incluyendo también la perdida de pociones y dinero.
 + **Ganar**: En el caso que el jugador consiga vencer al boss del juego podrá volver a la aldea para jugar otra partida cogiendo la corona que aparecerá en la sala del boss. En el caso que el jugador haya conseguido todas las llaves posibles con sus poderes actuales dentro de los Scrolls, al vencer al boss desbloqueará una nueva habilidad dentro del Scroll, que le servirá para completar un nuevo nivel.
 + **Viajar hacia el boss final**: En el caso que el jugador haya conseguido todas las llaves de los Scrolls y mate al boss principal, al lado de la corona para volver a la aldea, se abrirá un portal que permitirá al jugador visitar la zona del verdadero boss final.
 + **Tienda**: En la aldea, el jugador será capaz de comprar objetos al herrero que le ayudarán en su instancia en la mazmorra.
+
++ **Progreso**: En la sala principal aparecerán siempre cuatro puertas que darán acceso a los niveles de scroll. Cada nivel necesitará de una nueva habilidad para poder completarlo. Al final de cada nivel se encontrará un llave que podremos recoger. Una vez recogida la llave, habrá que volver al topdown y derrotar al boss principal. Esto desbloqueará una nueva habilidad para poder completar el siguiente nivel de scroll. Si tras recoger la llave se pierde la partida, esta se perderá, y habrá que recogerla en la siguente si queremos desbloquear la habilidad. Una vez desbloqueadas las habilidades no habrá que volver a recoger las llaves ya recogidas, es decir, si hemos desbloqueado el doble salto (primer poder) recogiendo la primera llave, no habrá que recoger esa llave de nuevo para desbloquear el siguiente poder, solo habrá que recoger la siguiente. Finalmente cuando se han desbloqueado todos los poderes, se podrá recoger la cuarta llave la cual nos permite el acceso al boss verdadero. Esta llave habrá que recogerla cada partida que se quiera luchar contra este boss, y no se guardará al igual que las anteriores al ganar la partida.
 
 
 ### DINÁMICAS
