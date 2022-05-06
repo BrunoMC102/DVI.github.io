@@ -211,28 +211,23 @@ En la carpeta de UML del repositorio.
 
 De cara a futuros hitos, tenemos planeadas varias mejoras para implementar en el juego. Las más importantes, y que implementaremos 
 primero serán: 
--Meter más sonidos y animaciones al juego.
--Crear mejores menus del juego, incluyendo el menu principal y la interfaz del usuario en general.
--Crear boss con varios ataques y fases.
--Crear un tutorial.
--Dentro de la aldea crear nuevos sitios y NPCS que le den vida al juego 
++ Meter más sonidos y animaciones al juego.
++ Crear mejores menus del juego, incluyendo el menu principal y la interfaz del usuario en general.
++ Crear boss con varios ataques y fases.
++ Crear un tutorial.
++ Dentro de la aldea crear nuevos sitios y NPCS que le den vida al juego 
 
 Desde aqui se podrá acceder al tutorial, y se podrán mejorar habilidades.
--Crear diferentes tipos de salas: Tiendas/tesoro/desafio/secreta
--Un arbol de habilidades, que se podrá ir mejorando desde el lobby.
++ Crear diferentes tipos de salas: Tiendas/tesoro/desafio/secreta
++ Un arbol de habilidades, que se podrá ir mejorando desde el lobby.
 
 Otras mejoras menos prioritarias que tambien tenemos planeado son:
--Aumentar la cantidad de enemigos.
--Aumentar la cantidad de objetos.
--Crear zonas nuevas con estetica distinta, y enemigos distintos.
-
--Para este hito hemos trabajado bastante para pulir bastante todo el tema relacionado con el topDown,
-para el hito final trabajaremos para tener un scrollLateral bien implementado.
++ Aumentar la cantidad de enemigos.
++ Aumentar la cantidad de objetos.
++ Crear zonas nuevas con estetica distinta, y enemigos distintos.
 
 emlace al GDD:
 https://docs.google.com/document/d/1VJKg9feMnnY7HcWO3QgpQhNLaDZVVkGWzVkmMB02zFo/edit?usp=sharing
-Descripcion del proceso
-
 
 ### TESTING CON JUGADORES EXTERNOS AL PROYECTO
    - ¿Qué se prueba?
