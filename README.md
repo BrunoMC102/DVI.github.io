@@ -312,18 +312,18 @@ Finalmente, para hacer que los jugadores probarán el juego en su totalidad, se 
 +  **Acciones tomadas respecto a pruebas**
 
 Respecto a las primeras pruebas realizadas por los jugadores, implementamos varias mejoras con el feedback recibido de las partidas observadas.
-      -Añadimos control con mando en el menu de empezar partida, para poder comenzarla con mando.
-      -Añadimos y arreglamos controles con mando en la tienda.
-      -Añadimos un mensaje iformativo que explicaba como usar la tienda.
-      -Añadimos opción de pantalla completa en el menu del juego, para poder ponerla una vez iniciada la partida.
-      -Quitamos el minimapa durante los combates y hacemos que vuelva a aparecer al finalizar el combate, para que no obstaculice la visibilidad del jugador.
-      -Cambiamos el color de las flechas para que se vean mejor, y pusimos colores distintos a las que te persiguen de las que no para poder diferenciarlas.
-      -Cambiamos el diseño de varias salas, poniendo enemigos más centrados, y eliminando enemigos en salas que eran demasiado tediosas o dificiles.
-      -Añadimos una flecha de ayuda que se puede activar y desactivar cuando el jugador desee desde el menu del juego de cara sobre todo a los jugadores con mando, para que puedan diferenciar donde están apuntando su arma.
-      -Aumentamos el coste del hechizo del jugador, y le disminuimos el poder, haciendo que al golpear nuevos enemigos, solo se creen 4 nuevos proyectiles en vez de 8. Tambien hicimos que cada vez que se expande el hechizo, las nuevas balas tengan menos tiempo de vida para evitar que se expanda infinitamente.
-      -Arreglamos el bug visual de las armas al entrar en salas ya expoloradas
-      -Arreglamos el bug de la música duplicada al morir
-      -Añadimos sonido al dash del scroll, y tambien lo reusamos en el dash del topdown, con menor volumen.
+      + Añadimos control con mando en el menu de empezar partida, para poder comenzarla con mando.
+      + Añadimos y arreglamos controles con mando en la tienda.
+      + Añadimos un mensaje iformativo que explicaba como usar la tienda.
+      + Añadimos opción de pantalla completa en el menu del juego, para poder ponerla una vez iniciada la partida.
+      + Quitamos el minimapa durante los combates y hacemos que vuelva a aparecer al finalizar el combate, para que no obstaculice la visibilidad del jugador.
+      + Cambiamos el color de las flechas para que se vean mejor, y pusimos colores distintos a las que te persiguen de las que no para poder diferenciarlas.
+      + Cambiamos el diseño de varias salas, poniendo enemigos más centrados, y eliminando enemigos en salas que eran demasiado tediosas o dificiles.
+      + Añadimos una flecha de ayuda que se puede activar y desactivar cuando el jugador desee desde el menu del juego de cara sobre todo a los jugadores con mando, para que puedan  diferenciar donde están apuntando su arma.
+      + Aumentamos el coste del hechizo del jugador, y le disminuimos el poder, haciendo que al golpear nuevos enemigos, solo se creen 4 nuevos proyectiles en vez de 8. Tambien hicimos que cada vez que se expande el hechizo, las nuevas balas tengan menos tiempo de vida para evitar que se expanda infinitamente.
+      + Arreglamos el bug visual de las armas al entrar en salas ya expoloradas
+      + Arreglamos el bug de la música duplicada al morir
+      + Añadimos sonido al dash del scroll, y tambien lo reusamos en el dash del topdown, con menor volumen.
 
 
 De las segundas pruebas, aprendimos muchos de los errores pero dado que estas pruebas se realizaron muy pegadas a la fecha de entrega del proyecto no se pudieron arreglar todos los cambios y los dejamos abiertos para a lo mejor en un futuro arreglarlo.
