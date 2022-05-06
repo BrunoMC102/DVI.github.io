@@ -268,12 +268,10 @@ https://docs.google.com/document/d/1VJKg9feMnnY7HcWO3QgpQhNLaDZVVkGWzVkmMB02zFo/
       del jugador como estas dudas son el material que nos sirve para hacer todos estos pequeños cambios en el juego.
    +   **Número de participantes**: 5
    +   **Guía de las pruebas**:
-   
       Los jugadores empezarían en la aldea donde cada uno realizará la investigación pertinente antes de entrar a la mazmorra. Podrán conocer algo más del background del juego, visitar la tienda o simplemente acceder a la mazmorra.
       Una vez dentro de la mazmorra tendrán total libertad a realizar cualquier actividad tanto como probar el scroll o avanzar por el topdown. Como hemos indicado anteriormente en el caso que el jugador necesite ayuda con algo, el miembro del equipo que este supervisando la prueba, le ayudará con lo que necesite.
       Una vez matado el boss, en el caso que le haya faltado por descubrir algo el supervisor le indicará que cosas podría buscar.
    +   **Resumen de las pruebas**: 
-
       Después nuevos individuos probaron el juego, como esta indicado en la guía los jugadores empezaron en la aldea y empezaron a entablar conversaciones con los NPCs del juego.
       Todos remarcaron que los textos se deberían de poder pasar pulsando alguna tecla en vez de estar quietos leyendo el texto sin poder pasar los diálogos. Además dentro de aldea hay ciertos carteles que eran simplemente de decoración y los jugadores nos comentaron que podrían tener interacciones con el jugador para aprender más sobre la aldea, incluso utilizar telemetría y enseñar algunas estadísticas del jugador.
       Respecto a la tienda todos remarcaron que estaba bien pero les hubiera gustado a lo mejor un menú específico donde poder comprar los objetos.
