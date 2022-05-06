@@ -60,7 +60,7 @@ Las mejoras y objetos al igual que los recursos no se perderán, al ganar la par
 En el caso que el jugador haya conseguido todas las llaves posibles con sus poderes actuales dentro de los Scrolls, al vencer al boss desbloqueará una nueva habilidad dentro del Scroll, que le servirá para completar un nuevo nivel.
 
 + **Viajar hacia el boss final**: En el caso que el jugador haya conseguido todas las llaves de los Scrolls y mate al boss principal, al lado de la corona para volver a la aldea, se abrirá un portal que permitirá al jugador visitar la zona del verdadero boss final.
-+ **Tienda**: En la aldea, el jugador será capaz de comprar objetos al herrero que le ayudarán en su instancia en la mazmorra.
++ **Tienda**: En la aldea, el jugador será capaz de comprar objetos al herrero que le ayudarán en su estancia en la mazmorra.
 
 + **Progreso**: En la sala inicial aparecerán siempre cuatro puertas que darán acceso a los niveles de scroll. Cada nivel necesitará de una nueva habilidad para poder completarlo. Al final de cada nivel se encontrará un llave que podremos recoger. Una vez recogida la llave, habrá que volver al topdown y derrotar al boss principal. Esto desbloqueará una nueva habilidad para poder completar el siguiente nivel de scroll. Si tras recoger la llave se pierde la partida, esta se perderá, y habrá que recogerla en la siguente si queremos desbloquear la habilidad. Una vez desbloqueadas las habilidades no habrá que volver a recoger las llaves ya recogidas, es decir, si hemos desbloqueado el doble salto (primer poder) recogiendo la primera llave, no habrá que recoger esa llave de nuevo para desbloquear el siguiente poder, solo habrá que recoger la siguiente. Finalmente cuando se han desbloqueado todos los poderes, se podrá recoger la cuarta llave la cual nos permite el acceso al boss verdadero. Esta llave habrá que recogerla cada partida que se quiera luchar contra este boss, y no se guardará al igual que las anteriores al ganar la partida.
 
@@ -78,7 +78,7 @@ Otra dinámica muy marcada es el tema del balance entre la dificultad y la recom
 - Conforme se van ganando partidas derrotando al boss (normal) del piso se podrán acumular recursos y poderes entre partidas. Gracias a esto se puede acumular mucho poder si se ganan varias partidas consecutivas haciendo que ganar la siguiente sea más fácil. De cara a derrotar al boss final esto puede ser muy util, sin embargo, para poder enfrentarte al mismo será necesario recoger la última llave del scroll, dónde todo el poder acumulado no es de utilidad. Los jugadores dudarán si es más beneficioso intentar acumular poder ganando varias partidas para enfrentarse con más facilidad al boss final, con el riesgo de perder todo el progreso al intentar coger la llave, o por otra parte intentar recoger la llave y enfrentarse al boss final sin acumular poder, permitiendo muchos más intentos en el mismo tiempo, y sin riesgo de perder mucho progreso (tiempo invertido), con la desventaja de ir mucho menos preparado al enfrentamiento contra el boss final, y que sea mucho más dificil derrotarlo.
 - Relacionada con el Scroll, una vez el jugador empieza la partida este es capaz de entrar a todos los niveles de Scroll, obviamente al acabar de empezar la partida solo podrá completar el primer nivel y todos los demás el jugador se dará cuenta que no tendrá las habilidades necesarias para pasárselo por lo que deberá jugar al juego para desbloquear nuevas habilidades y acordarse de que en el Scroll podrá utilizarlas.
 - El segundo nivel del Scroll es el único sitio donde el jugador nunca podrá morir, debido a esto este nivel se construyó para que al principio del nivel el jugador estuviese más tranquilo. Eso se intenta conseguir cuando al principio del nivel abajo de todo se empieza con un lago de agua de color azul fluorescente que intenta transmitir tranquilidad al jugador. A medida que vas subiendo en ese mismo nivel aparecen dos caminos a elegir uno más sencillo que otro. El camino mása díficil se intenta demostrar con un pequeño lago de lava tapado indicando como peligro o dificultad.  
-- Gracias a la existencia de la tienda, el jugador deberá barajar las diferentes opciones que tenga a comprar para entrar a la mazmorra la mejor manera posible. A medida que el jugador vaya jugando irá aprendiendo cuales son los mejores objetos a comprar. 
+- Gracias a la existencia de la tienda, el jugador deberá barajar las diferentes opciones que tenga a comprar para entrar a la mazmorra la mejor manera posible. A medida que el jugador vaya jugando irá aprendiendo cuales son los mejores objetos a comprar.
 
 ### CONTROLES
 
@@ -268,8 +268,49 @@ https://docs.google.com/document/d/1VJKg9feMnnY7HcWO3QgpQhNLaDZVVkGWzVkmMB02zFo/
       del jugador como estas dudas son el material que nos sirve para hacer todos estos pequeños cambios en el juego.
    +   **Número de participantes**: 5
    +   **Guía de las pruebas**:
+   
       Los jugadores empezarían en la aldea donde cada uno realizará la investigación pertinente antes de entrar a la mazmorra. Podrán conocer algo más del background del juego, visitar la tienda o simplemente acceder a la mazmorra.
       Una vez dentro de la mazmorra tendrán total libertad a realizar cualquier actividad tanto como probar el scroll o avanzar por el topdown. Como hemos indicado anteriormente en el caso que el jugador necesite ayuda con algo, el miembro del equipo que este supervisando la prueba, le ayudará con lo que necesite.
       Una vez matado el boss, en el caso que le haya faltado por descubrir algo el supervisor le indicará que cosas podría buscar.
-   +   **Conclusiones**: (que funciona y que no)
-      Después nuevos individuos probaron el juego, como esta indicado en la guía de las pruebas 
+   +   **Resumen de las pruebas**: 
+
+      Después nuevos individuos probaron el juego, como esta indicado en la guía los jugadores empezaron en la aldea y empezaron a entablar conversaciones con los NPCs del juego.
+      Todos remarcaron que los textos se deberían de poder pasar pulsando alguna tecla en vez de estar quietos leyendo el texto sin poder pasar los diálogos. Además dentro de aldea hay ciertos carteles que eran simplemente de decoración y los jugadores nos comentaron que podrían tener interacciones con el jugador para aprender más sobre la aldea, incluso utilizar telemetría y enseñar algunas estadísticas del jugador.
+      Respecto a la tienda todos remarcaron que estaba bien pero les hubiera gustado a lo mejor un menú específico donde poder comprar los objetos.
+
+      Una vez terminada su estancia en la aldea, los jugadores pasaban a la mazmorra y empezaban sobretodo en la parte del Top-Down, avanzaban a lo largo de las habitaciones y empezaron a dar sus primeros detalles de feedback.
+      Respecto a las armas, los jugadores comentaron que la espada con mando se notaba algo rara pero agredecieron la flecha de guía que se incorporó gracias a las primeras pruebas. En cuanto al arco, comentaron que les pareció bien pero que si tenías muchas flechas los bosses podían llegar a morir muy rápido.
+      Finalmente, en cuanto al bastón, comentaron que si lanzabas un par de hechizos y empezaban a rebotar en los enemigos, dentro de la pantalla se hacia algo lioso saber donde estaban los proyectiles. 
+      Respecto al comportamiento de los enemigos, los jugadores comentaban que siempre que se acercaban a ellos y les atacaban los enemigos seguían con sus patrones de ataque haciendo algo complicado algunos combates.
+      Hablando ya de los objetos, todos los jugadores pensaron que estaban muy bien pero uno de los jugadores comentó que le hubiera gustado una especie de inventario o algún lugar para saber que mejoras pasivas lleva el personaje en ese momento.
+
+      Después de avanzar por el Top-Down decidieron introducirse en el Scroll-Lateral, en este caso los jugadores solo podían realizar hasta el momento el primer nivel pero aún asi comentaron que el cambio entre las dos vistas hacia que el juego fuera más refrescante y divertido.
+
+      Finalmente, se dirigieron a la habitación del boss, nada más empezar la pelea los jugadores comentaron que hubiesen preferido otro tipo de música para el boss que la misma que en la mazmorra. Centrandonos ya en la pelea, los jugadores explicaban que en las partes donde el boss cambiaba de fase debería de ser identificativo para que el jugador no se acercase innecesariamente y pierda vida.
+
+      Una vez terminada la partida volvieron a la aldea, se dirijieron a la tienda directamente a comprar ciertos objetos donde se veía que la dinámica que el jugador fuera consciente de la tienda y de la recompensa que ha obtenido gracias a completar la run salieron a flote.
+      Una vez dentro de la mazmorra otra vez, el supervisor les dijo que habían desbloqueado un nuevo nivel, y los jugadores se quedaron sorprendidos porque no sabían cuando lo habían conseguido.
+
+      Aparte de eso decidieron entrar al siguiente nivel del Scroll y ya descubrieron que tenían el primer poder desbloqueado, el doble salto, y pasaron con algunas dificultades este nivel pero llegaron a cumplirlo. En el segundo nivel de Scroll, los jugadores decidieron ir siempre por el camino fácil dado que por el díficil no había ninguan recompensa por lo que nos comentaron que a lo mejor era interesante mejorar ese apartado.
+
+      Los jugadores siguieron matando al boss pero no desbloqueaban los poderes nuevos debido a que no cogían todas las llaves de los niveles del Scroll por lo que pensaron que sería mejor simplemente que para desbloquear un poder nuevo necesitarás coger la última llave posible, es decir, pasarte el nivel de Scroll más lejano que pudieses.
+
+      Finalmente, para hacer que los jugadores probarán el juego en su totalidad, se le desbloquearon los poderes necesarios para pasar todos los niveles del Scroll y así poder llegar a enfrentarse al boss final de verdad. Este boss les pareció bien pero pensaron que tenía numerosos ataques y algunos parecían imposibles de esquivar.
+
+   +  **Acciones tomadas respecto a pruebas**
+
+      De las segundas pruebas, aprendimos muchos de los errores pero dado que estas pruebas se realizaron muy pegadas a la fecha de entrega del proyecto no se pudieron arreglar todos los cambios y los dejamos abiertos para a lo mejor en un futuro arreglarlo.
+      Respecto a los cambios de la tienda, el equipo decidió recoger datos de las muertes y de las victorias de los personajes para en futuro a lo mejor enseñar en cada lápida donde se aparece ver las estadísticas del jugador.
+
+      Respecto a las armas, en futuro para no entorpecer la visión del jugador con los ataques del hechizo hariamos que cuando se completará una sala se eliminarán todos los proyectiles de la escena. Además bajariamos la cantidad de flechas iniciales cuando se empiece la partida.
+
+      Respecto al progreso, decidimos retocar todo el apartado de las llaves y cambiamos que para desbloquear un nivel solo tuvieras que conseguir la última llave disponible y vencer al boss.
+      Además como no quedaba claro, cuando coges la corona en el boss final ahora si has desbloqueado un nivel te aparece un cartel descriptivo del nuevo poder.
+
+      Finalmente, al boss final le hicimos que redujese la cantidad de ataques por segundo y redujimos la cantidad de proyectiles que lanzaba en cada ataque. 
+
+      
+
+
+
+      
