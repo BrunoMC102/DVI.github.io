@@ -273,6 +273,19 @@ Una vez dentro de la mazmorra tendrán total libertad a realizar cualquier activ
 Una vez matado el boss, en el caso que le haya faltado por descubrir algo el supervisor le indicará que cosas podría buscar.
 +   **Resumen de las pruebas**: 
 
+En las primeras pruebas que se realizaron pudimos observar como los jugadores se encontraron con varios problemas a solucionar.
+Para empezar dimos a los jugadores la opción de jugar con mando o teclado a su decisión. Los jugadores empezaron en el menu de comienzo donde surgió el primer problema: no se podia comenzar el juego con mando. Una vez iniciado el juego, empezaron a explorar la aldea principal, donde varios se arrepientieron de no haber puesto la pantalla completa, puesto que una vez iniciado el juego ya no podían hacerlo. Después encontraron la tienda, sin embargo, ninguno de los jugadores supo como interactuar con ella, y tuvieron que pedir ayuda al miembro del equipo. Desgraciadamente para los jugadores que estaban jugando con mando, nos dimos cuenta que los controles de la tienda con mando no funcionaban correctamente, por lo que aun despues de la explicación no pudieron comprar objetos :( . 
+Despues de visitar la tienda, los jugadores entraron en la mazmorra sin necesidad de indicaciones por nuestra parte. Una vez en la mazmorra empezaron a explorar habitaciones, enfrentarse a enemigos y bosses.
+Durante los combates nos comunicaron casi todos los jugadores, que el minimapa bloqueaba parte de la visión y resultaba molesto a la hora de ver a los enemigos.
+Nos dimos cuenta también de que tenian dificualtades esquivando las flechas al no verlas bien debido a su colo oscuro y al poco contraste que habia con el fondo.
+También pudimos observar como los jugadores rápidamente se dieron cuenta de lo poderoso y barato que era el hechizo, y lo empezaron a usar en todas las salas pudiendo acabar facilmente con todos los enemigos. 
+Respecto al diseño de las salas, nos comunicaron que algunas no eran muy buenas por varias razones, entre ellas: enemigos muy cerca de las puertas que te golpean casi al instante de entrar, enenmigos que se atascaban y era muy dificil acceder a ellos y matarlos (sobre todo el arquero).
+Los jugadores con mando nos comunicaron tambien que se sentia extraño el ataque del jugador puesto que se veía intuitivamente la direccion en la que se está apuntando la espada y el bastón.
+Finalmente tambien nos dimos cuenta de la existencia de varios bugs, entre ellos:
+   Al entrar en una sala anteriormente visitada con un arma distinta, se veia el arma anterior
+   Musica se duplicaba al morir
+Respecto al scroll nos comunicaron que agradecerían un feedback al hacer el dash, ya sea una animación o un sonido. 
+
 Después nuevos individuos probaron el juego, como esta indicado en la guía los jugadores empezaron en la aldea y empezaron a entablar conversaciones con los NPCs del juego.
 Todos remarcaron que los textos se deberían de poder pasar pulsando alguna tecla en vez de estar quietos leyendo el texto sin poder pasar los diálogos. Además dentro de aldea hay ciertos carteles que eran simplemente de decoración y los jugadores nos comentaron que podrían tener interacciones con el jugador para aprender más sobre la aldea, incluso utilizar telemetría y enseñar algunas estadísticas del jugador.
 Respecto a la tienda todos remarcaron que estaba bien pero les hubiera gustado a lo mejor un menú específico donde poder comprar los objetos.
@@ -297,6 +310,21 @@ Los jugadores siguieron matando al boss pero no desbloqueaban los poderes nuevos
 Finalmente, para hacer que los jugadores probarán el juego en su totalidad, se le desbloquearon los poderes necesarios para pasar todos los niveles del Scroll y así poder llegar a enfrentarse al boss final de verdad. Este boss les pareció bien pero pensaron que tenía numerosos ataques y algunos parecían imposibles de esquivar.
 
 +  **Acciones tomadas respecto a pruebas**
+
+Respecto a las primeras pruebas realizadas por los jugadores, implementamos varias mejoras con el feedback recibido de las partidas observadas.
+      -Añadimos control con mando en el menu de empezar partida, para poder comenzarla con mando.
+      -Añadimos y arreglamos controles con mando en la tienda.
+      -Añadimos un mensaje iformativo que explicaba como usar la tienda.
+      -Añadimos opción de pantalla completa en el menu del juego, para poder ponerla una vez iniciada la partida.
+      -Quitamos el minimapa durante los combates y hacemos que vuelva a aparecer al finalizar el combate, para que no obstaculice la visibilidad del jugador.
+      -Cambiamos el color de las flechas para que se vean mejor, y pusimos colores distintos a las que te persiguen de las que no para poder diferenciarlas.
+      -Cambiamos el diseño de varias salas, poniendo enemigos más centrados, y eliminando enemigos en salas que eran demasiado tediosas o dificiles.
+      -Añadimos una flecha de ayuda que se puede activar y desactivar cuando el jugador desee desde el menu del juego de cara sobre todo a los jugadores con mando, para que puedan diferenciar donde están apuntando su arma.
+      -Aumentamos el coste del hechizo del jugador, y le disminuimos el poder, haciendo que al golpear nuevos enemigos, solo se creen 4 nuevos proyectiles en vez de 8. Tambien hicimos que cada vez que se expande el hechizo, las nuevas balas tengan menos tiempo de vida para evitar que se expanda infinitamente.
+      -Arreglamos el bug visual de las armas al entrar en salas ya expoloradas
+      -Arreglamos el bug de la música duplicada al morir
+      -Añadimos sonido al dash del scroll, y tambien lo reusamos en el dash del topdown, con menor volumen.
+
 
 De las segundas pruebas, aprendimos muchos de los errores pero dado que estas pruebas se realizaron muy pegadas a la fecha de entrega del proyecto no se pudieron arreglar todos los cambios y los dejamos abiertos para a lo mejor en un futuro arreglarlo.
 Respecto a los cambios de la tienda, el equipo decidió recoger datos de las muertes y de las victorias de los personajes para en futuro a lo mejor enseñar en cada lápida donde se aparece ver las estadísticas del jugador.

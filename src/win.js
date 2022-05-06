@@ -54,7 +54,7 @@ export default class Win extends Phaser.Scene {
         text = "You have unlocked double jump. \nPress jump mid air to\n jump twice"
       }
       if (this.power == 2) {
-        text = "You have unlocked the dash. \nPress C or L2 to go\n further"
+        text = "You have unlocked the dash. \nPress C or R2 to go\n further"
       }
       if (this.power == 3) {
         text = "You have unlocked the mystic\n boxes, Press X or triangle\n to go throw a new box\n or freeze an existing one"
