@@ -23,6 +23,7 @@ para poder pasar cada uno de los niveles.
 
 La trama del juego nos cuenta la historia de un caballero que tras recibir el informe de que algo ha pasado en la aldea, decide hablar con el general del tercer escuadrón de Radagon, Roger.
 Básicamente el malvado hechicero Radahn, uno de los hechiceros más temidos de la época ha vuelto a la aldea cuando se pensaba que había sido derrotado por Radagon, uno de los caballeros más valerosos de la época que falleció en la pelea. Resucitado no sabemos por qué Radahn se prepara para intentar lanzar uno de sus hechizos más peligrosos.
+
 Como caballero deberás adentrarte en la mazmorra y descubrir que es lo que planea Radahn y cómo puedes detenerle. 
 Durante tus aventuras descubrirás la existencia de llaves secretas escondidas dentro de la mazmorra, las cuales contienen un poder secreto que deberás luchar para saber como explotar su verdadero potencial. 
 Tras descubrir que el malévolo mago está intentando invocar a una deidad maligna, el caballero deberá utilizar el poder de las cuatro llaves secretas para entrar a la dimensión donde se esconde la deidad para derrotarla y salvar así a su aldea.
