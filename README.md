@@ -230,19 +230,19 @@ emlace al GDD:
 https://docs.google.com/document/d/1VJKg9feMnnY7HcWO3QgpQhNLaDZVVkGWzVkmMB02zFo/edit?usp=sharing
 
 ### TESTING CON JUGADORES EXTERNOS AL PROYECTO
-   - ¿Qué se prueba?
+   + ¿Qué se prueba?
       El objetivo principal de las pruebas es comprobar si un jugador real que no conoce nada sobre el desarrollo del juego, es capaz de utilizar las mecánicas y de
       pasar sin problema por los diferentes niveles tal y como los desarrolladores lo pensamos en un principio. 
       Esta experiencia nos sirve para aprender del jugador y retocar lo necesario para mejorar la experiencia, la jugabilidad y corregir errores inesperados que
       aparezcan por comportamientos que no hayamos tenido en cuenta a la hora de programar el juego.
-   - ¿Cómo se lleva a cabo una prueba?
+   + ¿Cómo se lleva a cabo una prueba?
       Durante las pruebas, el jugador es el unico que tiene control del juego, haciendo que sea lo más cercano posible a una situación real. Pero a diferencia de esta,
       un miembro del equipo estará con el durante la experiencia para ayudar en caso de que no pueda avanzar o tenga dudas de cualquier tipo. Tanto el comportamiento
       del jugador como estas dudas son el material que nos sirve para hacer todos estos pequeños cambios en el juego.
-   -  Número de participantes: 5
-   -  Guía de las pruebas
+   +  Número de participantes: 5
+   +  Guía de las pruebas
       Los jugadores empezarían en la aldea donde cada uno realizará la investigación pertinente antes de entrar a la mazmorra. Podrán conocer algo más del background del juego, visitar la tienda o simplemente acceder a la mazmorra.
       Una vez dentro de la mazmorra tendrán total libertad a realizar cualquier actividad tanto como probar el scroll o avanzar por el topdown. Como hemos indicado anteriormente en el caso que el jugador necesite ayuda con algo, el miembro del equipo que este supervisando la prueba, le ayudará con lo que necesite.
       Una vez matado el boss, en el caso que le haya faltado por descubrir algo el supervisor le indicará que cosas podría buscar.
-   -  Conclusiones (que funciona y que no)
+   +  Conclusiones (que funciona y que no)
       Después nuevos individuos probaron el juego, como esta indicado en la guía de las pruebas 
