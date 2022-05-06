@@ -1,17 +1,4 @@
-import GhostBoss from "../../enemies/ghostBoss.js";
-import Minotaur from "../../enemies/minotaur.js";
-import WizardBoss from "../../enemies/wizardBoss.js";
-import Minimap from "../../managers/minimap.js";
-import Enemy from "../../enemies/inverter.js";
 import LevelParent from "./levelParent.js";
-import wizardProjectile from "../../proyectile/wizardProjectile.js";
-import GhostArrow from "../../proyectile/ghostArrow.js";
-import Chest from "../../objetos_recogibles/chest.js";
-import Enemy4 from "../../enemies/enemy4.js";
-import Enemy5 from "../../enemies/enemy5.js";
-import Enemy7 from "../../enemies/enemy7.js";
-import PlayerData from "../../player/playerData.js";
-import GhostArrow_2 from "../../proyectile/ghostArrow_2.js";
 
 
 export default class InitialLevel extends LevelParent {
@@ -26,23 +13,11 @@ export default class InitialLevel extends LevelParent {
     }
 
     createEnemies() {
-
         return [];
-
     }
 
     createOthers() {
-        new Chest(this, this.player, 1100, 200);
-        new Chest(this, this.player, 1100, 800);
-        new Chest(this, this.player, 720, 490);
-        new Chest(this, this.player, 760, 490);
-        new Chest(this, this.player, 800, 490);
-        new Chest(this, this.player, 480, 490);
-        new Chest(this, this.player, 440, 490);
-        new Chest(this, this.player, 400, 490);
-        new Chest(this, this.player, 360, 490);
         this.dungeonSound = this.sound.add("dungeontheme",{loop: true}).play();
-
     }
 
     init(data) {

@@ -1,6 +1,3 @@
-
-
-
 export default class ProjectileBar extends Phaser.GameObjects.Rectangle {
     constructor(scene, x, y) {
         super(scene, x, y, 100, 15, 0xff0000)

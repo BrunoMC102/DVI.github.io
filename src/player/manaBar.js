@@ -1,5 +1,3 @@
-
-
 export default class ManaBar extends Phaser.GameObjects.Rectangle{
     constructor(scene,x,y){
         super(scene,x,y,200,15,0x1e0bd0).setScrollFactor(0).setDepth(4);

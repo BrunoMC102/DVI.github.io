@@ -1,7 +1,5 @@
-import HealthPotion from '../../objetos_recogibles/consumibles/healthPotion.js';
 import Key from '../../objetos_recogibles/pasivos/key.js';
 import Player from '../../player/player.js';
-import PlayerTopDown from '../../player/playerTopDown.js';
 
 /**
  .

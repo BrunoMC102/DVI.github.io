@@ -289,19 +289,9 @@ export default class Boot extends Phaser.Scene {
     
   }
 
-  /**
-   * Creación de la escena. En este caso, solo cambiamos a la escena que representa el
-   * nivel del juego
-   */
   create() {
     this.createAnimations();
     this.scene.start('mainMenu');
-    //this.scene.start('finalBoss', { playerData: new PlayerData(), levelList: [], powerUpList: [], direction: 0 })
-
-    //this.scene.start('Scroll1', {coordinates: {x: 100, y: 800}, playerData: new PlayerData()});
-    //this.scene.start('Scroll2', {coordinates: {x: 100, y: 4500}, playerData: new PlayerData()});
-    //this.scene.start('Scroll3', {coordinates: {x: 200, y: 1200}, playerData: new PlayerData()});
-    //this.scene.start('Scroll4', {coordinates: {x: 100, y: 500}, playerData: new PlayerData()});
   }
 
   createAnimations() {
@@ -371,7 +361,7 @@ export default class Boot extends Phaser.Scene {
       repeat: -1
     })
 
-    // goblinKing animations
+    // GoblinKing
     this.anims.create({
       key: 'goblinKing_idle',
       frames: this.anims.generateFrameNames('goblinKing', { start: 1, end: 4, prefix: 'idle-', suffix: '.png' }),
@@ -512,6 +502,7 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     })
+    //Archer
     this.anims.create({
       key: 'archerMove',
       frames: this.anims.generateFrameNames('archer', { start: 1, end: 6, prefix: 'run', suffix: '.png' }),
@@ -545,7 +536,7 @@ export default class Boot extends Phaser.Scene {
     })
 
 
-    // ice elemental animations
+    // Ice elemental
     this.anims.create({
       key: 'iceElemental_idle',
       frames: this.anims.generateFrameNames('iceElemental', { start: 1, end: 5, suffix: '.png' }),
@@ -570,6 +561,7 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     })
+    //Mimic Chest
     this.anims.create({
       key: 'mimicChestAttack',
       frames: this.anims.generateFrameNames('mimicChest', { start: 1, end: 4, suffix: '.png' }),
@@ -594,7 +586,7 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: 0
     })
-
+    //Wizard
     this.anims.create({
       key: 'wizardAttack1',
       frames: this.anims.generateFrameNames('wizardBoss', { start: 0, end: 7, prefix: 'attack',  suffix: '.png' }),
@@ -679,6 +671,7 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: 0
     })
+    //Ghost
     this.anims.create({
       key: 'ghostBossIdle',
       frames: this.anims.generateFrameNames('ghostBoss', { start: 0, end: 9, prefix: 'idle' , suffix: '.png' }),
@@ -741,14 +734,14 @@ export default class Boot extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     })
-
+    //Fire Ghost
     this.anims.create({
       key: 'fireEnemy',
       frames: this.anims.generateFrameNames('fireEnemy', { start: 0, end: 9, suffix: '.png' }),
       frameRate: 10,
       repeat: -1
     })
-
+    //Boxes
     this.anims.create({
       key: 'boxDestroy',
       frames: this.anims.generateFrameNames('box', { start: 1, end: 7, prefix: 'box_', suffix: '.png' }),
@@ -763,7 +756,7 @@ export default class Boot extends Phaser.Scene {
       repeat: 2,
       yoyo:true
     })
-
+    //Teleport Gate
     this.anims.create({
       key: 'TeleportGate',
       frames: this.anims.generateFrameNames('TeleportGate', {start:1, end:2, prefix:'TeleportGate', suffix: '.png'}),

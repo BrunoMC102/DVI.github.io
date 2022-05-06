@@ -1,5 +1,3 @@
-import Sword from "./sword.js";
-
 export default class Bow extends Phaser.GameObjects.Container {
 
     constructor(scene, x, y, player) {

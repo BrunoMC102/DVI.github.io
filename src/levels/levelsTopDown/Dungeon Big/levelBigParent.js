@@ -1,21 +1,6 @@
-import HealthPotion from '../../../objetos_recogibles/consumibles/healthPotion.js';
 import PlayerTopDown from '../../../player/playerTopDown.js';
-import PowerUp from '../../../objetos_recogibles/powerUp.js';
-import Coin from '../../../objetos_recogibles/consumibles/coin.js';
-import Health from '../../../objetos_recogibles/consumibles/health.js';
-import Arrow from '../../../objetos_recogibles/consumibles/arrow.js';
-import Bouncy from '../../../objetos_recogibles/pasivos/bouncy.js';
-import Minotaur from '../../../enemies/minotaur.js';
-import Enemy from '../../../enemies/enemy.js';
-import Trabuquero from '../../../enemies/trabuquero.js';
-import GoblinKing from '../../../enemies/goblinKing.js';
-import Mole from '../../../enemies/moleVariante.js';
-import Mole2 from '../../../enemies/moleVariante2.js';
-import Chest from '../../../objetos_recogibles/chest.js';
-import Archer from '../../../enemies/archer.js';
 import LevelParent from '../levelParent.js';
 import WizardBoss from '../../../enemies/wizardBoss.js';
-import GhostBoss from '../../../enemies/ghostBoss.js';
 import WinTrophy from '../../../objetos_recogibles/pasivos/winTrophy.js';
 
 
@@ -94,7 +79,7 @@ export default class LevelBigParent extends LevelParent {
   }
 
   onBossDefeated(){
-    if(this.playerData.progressStory >= 0 && this.playerData.keys >= 0){
+    if(this.playerData.progressStory >= 3 && this.playerData.keys >= 4){
       this.createPortal();
       this.spawnTrophy(this.dimensions.x/2-250, this.dimensions.y/2);
     }
