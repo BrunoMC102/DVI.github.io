@@ -1,21 +1,31 @@
 # Knightmares
 
-![alt text](https://github.com/BrunoMC102/DVI.github.io/blob/main/ImagenJuego.png)
-
 *Nombre del Juego:* KnightMares
 
 *Nombre del Grupo:* Knight Studios
+
+![alt text](https://github.com/BrunoMC102/DVI.github.io/blob/main/ImagenJuego.png)
+
 
 Dirección del juego: https://brunomc102.github.io/DVI.github.io/
 
 
 ### IDEA GENERAL
 
-Este juego se basa en un juego Roguelike que combinará las vistas de Side-Lateral y Top-Down.
+Este juego se basa en un juego Roguelike que combinará las vistas de Scroll-Lateral y Top-Down.
 En el Scroll-Lateral el personaje podrá andar y saltar intentando atravesar una pequeña habitación desafiante para volver al mapa en Top-Down.
 
-En el Top-Down el personaje deberá pasar habitaciones llenas de enemigos para llegar al final de la mazmorra. En algunas habitaciones tendrá la posibilidad de acceder a ciertas zonas concretas para pasar al SideLateral. 
+En el Top-Down el personaje deberá pasar habitaciones llenas de enemigos para llegar al final de la mazmorra donde se encontrará el boss del juego.
+En la habitación principal de la mazmorra tendrá acceso a los cuatro niveles del Scroll-Lateral y deberá conseguir los tres tipos de poderes diferentes
+para poder pasar cada uno de los niveles. 
 
+### BACKGROUND GENERAL DEL JUEGO
+
+La trama del juego nos cuenta la historia de un caballero que tras recibir el informe de que algo ha pasado en la aldea, decide hablar con el general del tercer escuadrón de Radagon, Roger.
+Básicamente el malvado hechicero Radahn, uno de los hechiceros más temidos de la época ha vuelto a la aldea cuando se pensaba que había sido derrotado por Radagon, uno de los caballeros más valerosos de la época que falleció en la pelea. Resucitado no sabemos por qué Radahn se prepara para intentar lanzar uno de sus hechizos más peligrosos.
+Como caballero deberás adentrarte en la mazmorra y descubrir que es lo que planea Radahn y cómo puedes detenerle. 
+Durante tus aventuras descubrirás la existencia de llaves secretas escondidas dentro de la mazmorra, las cuales contienen un poder secreto que deberás luchar para saber como explotar su verdadero potencial. 
+Tras descubrir que el malévolo mago está intentando invocar a una deidad maligna, el caballero deberá utilizar el poder de las cuatro llaves secretas para entrar a la dimensión donde se esconde la deidad para derrotarla y salvar así a su aldea.
 
 ### MECÁNICAS
 
@@ -57,9 +67,28 @@ Dentro de este apartado describiremos las dinámicas del juego, la manera de ver
 Otra dinámica muy marcada es el tema del balance entre la dificultad y la recompensa. Dentro del TopDown, a medida que el jugador vaya avanzando a lo largo de la mazmorra, la dificultad de las salas aumentará y además al jugador podrá en malas condiciones, por lo que deberá tomar las decisiones de si seguir avanzando y conseguir alguna recompensa que le ayude con el boss o dejar pasar la oportunidad.
 - Además, a medida que el jugador vaya avanzando por el mapa puede ser que en algunas salas venza a los enemigos sin recibir daño, en el caso que los enemigos suelten un corazón de vida y el jugador tenga la máxima vida, el corazón se quedará en esa sala sin recoger, donde el jugador deberá acordarse más delante en su partida por si pierde vida podrá volver a esta sala donde no recibió daño y recoger este corazón.
 - Dentro de nuestro juego contamos con numerosos objetos. Estos no contienen ningún tipo de descripción así que el jugador deberá aprenderse las mejoras que garantizan los objetos si de verdad quiere sacarle potencial a cada uno de ellos.
-- Relacionada con el Scroll, una vez el jugador empieza la partida este es capaz de entrar a todos los niveles de Scroll, obviamente al acabar de empezar la partida solo podrá completar el primer nivel y todos los demás el jugador se dará cuenta que no tendrá las habilidades necesarias para pasárselo por lo que deberá jugar al juego para desbloquear nuevas habilidades y acordarse de que en el Scroll podrá utilizarlas.
 - El boss final es uno de los enemigos más complicados del juego y se caracteriza por ser muy agresivo, por lo que en vez de intentar entender sus ataques es mejor atacarlo rápidamente para intentar vencer el juego. A lo mejor otros jugadores pueden pensar que es mejor aprenderse los patrones de ataque pero no es lo recomendable.
+- Relacionada con el Scroll, una vez el jugador empieza la partida este es capaz de entrar a todos los niveles de Scroll, obviamente al acabar de empezar la partida solo podrá completar el primer nivel y todos los demás el jugador se dará cuenta que no tendrá las habilidades necesarias para pasárselo por lo que deberá jugar al juego para desbloquear nuevas habilidades y acordarse de que en el Scroll podrá utilizarlas.
+- El segundo nivel del Scroll es el único sitio donde el jugador nunca podrá morir, debido a esto este nivel se construyó para que al principio del nivel el jugador estuviese más tranquilo. Eso se intenta conseguir cuando al principio del nivel abajo de todo se empieza con un lago de agua de color azul fluorescente que intenta transmitir tranquilidad al jugador. A medida que vas subiendo en ese mismo nivel aparecen dos caminos a elegir uno más sencillo que otro. El camino mása díficil se intenta demostrar con un pequeño lago de lava tapado indicando como peligro o dificultad.  
 
+
+### CONTROLES
+
+El juego se puede usar tanto con teclado como con mando, dentro del juego aparecen los controles detallados al pulsar la tecla esc.
+
+### IDEA DEL ARTE
+
+En cuanto al arte del juego, nos hemos inspirado en un estilo pixel-art, semejante a juegos como Enter The Gungeon o el Moonlighter, pero con tonalidades mas oscuras haciendo referencia al medievo.
+
+Herramienta para paleta de colores: Adobe Color
+
+Paleta para el lobby: Utilizamos tonos claros y alegres, como son el verde, amarillo, marrón(tierra) y azul claro. 
+
+Paleta mazmorra: Utilizamos tonos más oscuros como son el azul oscuro, gris, negro(simboliza el vacío), naranja(lava), azul claro (para dar tranquilidad).
+
+- Principios de niveles: 
+En el Top-Down serán pequeñas habitaciones con enemigos donde el jugador deberá limpiar la habitación para poder avanzar.
+En el Scroll-Lateral serán habitaciones más grandes donde el jugador deberá cruzar los diferentes obstáculos hasta llegar el final y coger la llave.  
 
 
 ### MENU INICIAL
@@ -173,38 +202,11 @@ llegar a la habitacion del boss final.
 + Las coronas, que se obtienen al matar al boss y teletransportan al jugador de vuelta a la aldea.
 
 
-### CONTROLES
-
-El juego se puede usar tanto con teclado como con mando, dentro del juego aparecen los controles detallados al pulsar la tecla esc.
-
-
-Paleta para el lobby: Adobe Color
-
-Paleta mazmorra tonos más oscuros poco a poco.
-
-Principios de niveles: 
-En el Top-Down serán pequeñas habitaciones con enemigos donde el jugador deberá limpiar la habitación para poder avanzar.
-En el Scroll-Lateral serán habitaciones más grandes donde el jugador deberá cruzar los diferentes obstaculos hasta el final.  
-
-
-BACKGROUND GENERAL DEL JUEGO
-
-La trama del juego nos cuenta la historia de un caballero que tras recibir el informe de que algo ha pasado en la aldea, decide hablar con el general del tercer escuadrón de Radagon, Roger.
-Básicamente el malvado hechicero Radahn, uno de los hechiceros más temidos de la época ha vuelto a la aldea cuando se pensaba que había sido derrotado por Radagon, uno de los caballeros más valerosos de la época que falleció en la pelea. Resucitado no sabemos por qué Radahn se prepara para intentar lanzar uno de sus hechizos más peligrosos.
-Como caballero deberás adentrarte en la mazmorra y descubrir que es lo que planea Radahn y cómo puedes detenerle. 
-Durante tus aventuras descubrirás la existencia de llaves secretas escondidas dentro de la mazmorra, las cuales contienen un poder secreto que deberás luchar para saber como explotar su verdadero potencial. 
-Tras descubrir que el malévolo mago está intentando invocar a una deidad maligna, el caballero deberá utilizar el poder de las cuatro llaves secretas para entrar a la dimensión donde se esconde la deidad para derrotarla y salvar así a su aldea.
-
-
-### IDEA DEL ARTE
-
-En cuanto al arte del juego, nos hemos inspirado en un estilo pixel-art, semejante a juegos como Enter The Gungeon o el Moonlighter, pero con tonalidades mas oscuras haciendo referencia al medievo.
-
-
 
 ### UML INICIAL
 
 En la carpeta de UML del repositorio.
+
 
 
 ### PLAN PARA HITOS RESTANTES
